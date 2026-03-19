@@ -302,6 +302,15 @@ export default function PackCalculation({ packId }: { packId: string }) {
               </div>
             ))}
           </div>
+          <div className="mt-2 flex justify-end">
+            <span className="text-sm text-gray-400">
+              Total ore:{" "}
+              <span className="text-purple-300 font-bold">
+                {result.decompositions.reduce((sum, d) => sum + d.unitsToDecompose, 0).toLocaleString()}
+              </span>{" "}
+              units
+            </span>
+          </div>
         </div>
       )}
 

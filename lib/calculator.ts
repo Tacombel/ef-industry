@@ -217,24 +217,56 @@ export function calculate(
     }
   }
 
-  // Track how many units of each source item we decide to decompose
-  const decompUnits = new Map<string, number>(); // sourceItemId → unitsToDecompose
-
+  // Greedy iterative decomposition suggestion:
+  // Process the most-constrained material first (fewest ore sources),
+  // assign runs, subtract production from all remaining needs, repeat.
+  const remaining = new Map<string, number>();
   for (const row of rawMaterials) {
-    if (row.toBuy <= 0) continue;
-    const sources = decompByOutput.get(row.itemId);
-    if (!sources) continue;
+    if (row.toBuy > 0) remaining.set(row.itemId, row.toBuy);
+  }
 
-    for (const source of sources) {
-      const dec = source.decomposition!;
-      // How much of this raw material does one decomposition run yield?
-      const outputEntry = dec.outputs.find((o) => o.itemId === row.itemId)!;
-      const yieldPerRun = outputEntry.quantity; // per inputQty units decomposed
-      // How many units of source do we need to decompose to cover row.toBuy?
-      const runsNeeded = Math.ceil(row.toBuy / yieldPerRun);
-      const unitsNeeded = runsNeeded * dec.inputQty;
-      decompUnits.set(source.id, (decompUnits.get(source.id) ?? 0) + unitsNeeded);
+  const decompRuns = new Map<string, number>(); // sourceItemId → runs
+
+  while (remaining.size > 0) {
+    // Find the material with the fewest ore sources (most constrained)
+    let matId = "";
+    let fewest = Infinity;
+    for (const id of remaining.keys()) {
+      const count = (decompByOutput.get(id) ?? []).length;
+      if (count === 0) { remaining.delete(id); continue; }
+      if (count < fewest) { fewest = count; matId = id; }
     }
+    if (!matId || !remaining.has(matId)) break;
+
+    const need = remaining.get(matId)!;
+    const sources = decompByOutput.get(matId)!;
+
+    // Pick the ore with the highest yield for this material
+    const source = sources.reduce((best, s) => {
+      const bYield = best.decomposition!.outputs.find((o) => o.itemId === matId)!.quantity;
+      const sYield = s.decomposition!.outputs.find((o) => o.itemId === matId)!.quantity;
+      return sYield > bYield ? s : best;
+    });
+
+    const dec = source.decomposition!;
+    const yieldPerRun = dec.outputs.find((o) => o.itemId === matId)!.quantity;
+    const runsNeeded = Math.ceil(need / yieldPerRun);
+
+    decompRuns.set(source.id, (decompRuns.get(source.id) ?? 0) + runsNeeded);
+
+    // Subtract this ore's full production from all remaining needs
+    for (const out of dec.outputs) {
+      if (remaining.has(out.itemId)) {
+        const newNeed = remaining.get(out.itemId)! - out.quantity * runsNeeded;
+        if (newNeed <= 0) remaining.delete(out.itemId);
+        else remaining.set(out.itemId, newNeed);
+      }
+    }
+  }
+
+  const decompUnits = new Map<string, number>();
+  for (const [sourceId, runs] of decompRuns) {
+    decompUnits.set(sourceId, runs * itemMap.get(sourceId)!.decomposition!.inputQty);
   }
 
   const decompositions: DecompositionResult[] = [];

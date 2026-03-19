@@ -85,7 +85,7 @@ export default function PacksPage() {
         <p className="text-gray-500">No packs yet.</p>
       ) : (
         <div className="space-y-4">
-          {packs.map((pack) => (
+          {packs.filter((pack) => !calcPackId || pack.id === calcPackId).map((pack) => (
             <div key={pack.id} className="rounded-lg border border-gray-800 bg-gray-900 p-4">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
@@ -101,23 +101,6 @@ export default function PacksPage() {
                   </button>
                   <button onClick={() => openEdit(pack)} className="btn-sm">Edit</button>
                   <button onClick={() => remove(pack.id, pack.name)} className="btn-sm btn-danger">Del</button>
-                </div>
-              </div>
-
-              <div className="mb-3">
-                <p className="text-xs text-gray-600 uppercase tracking-wide mb-1">Final products</p>
-                <div className="flex flex-wrap gap-2">
-                  {pack.items.map((pi) => {
-                    const factory = pi.item.blueprints[0]?.factory;
-                    return (
-                      <span key={pi.id} className="text-xs bg-cyan-900/50 text-cyan-300 font-medium rounded px-2 py-1 flex items-center gap-1.5">
-                        <span>{pi.item.name} ×{pi.quantity}</span>
-                        {factory && (
-                          <span className="badge badge-blue">{factory}</span>
-                        )}
-                      </span>
-                    );
-                  })}
                 </div>
               </div>
 
