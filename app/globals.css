@@ -2,26 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  .btn-primary {
+    @apply bg-cyan-700 hover:bg-cyan-600 text-white text-sm font-medium px-4 py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  .btn-ghost {
+    @apply text-gray-400 hover:text-gray-100 text-sm font-medium px-3 py-2 rounded-md hover:bg-gray-800 transition-colors disabled:opacity-40;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .btn-sm {
+    @apply text-xs font-medium px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-gray-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-red-900/50 hover:bg-red-800 text-red-400 hover:text-red-200;
+  }
+
+  .input {
+    @apply bg-gray-800 border border-gray-700 text-gray-100 text-sm rounded-md px-3 py-1.5 focus:outline-none focus:border-cyan-600 placeholder-gray-600;
+  }
+
+  .label {
+    @apply text-xs font-medium text-gray-400 uppercase tracking-wide;
+  }
+
+  .badge {
+    @apply text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+
+  .badge-yellow {
+    @apply bg-yellow-900/50 text-yellow-400;
+  }
+
+  .badge-cyan {
+    @apply bg-cyan-900/50 text-cyan-400;
+  }
+
+  .badge-blue {
+    @apply bg-blue-900/50 text-blue-400;
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4;
+  }
+
+  .modal {
+    @apply bg-gray-900 border border-gray-700 rounded-xl p-6 w-full max-w-md shadow-2xl;
+  }
+
+  .toggle {
+    @apply w-4 h-4 rounded accent-cyan-600 cursor-pointer;
   }
 }

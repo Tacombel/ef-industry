@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id             String   @id @default(cuid())
+  name           String   @unique
+  isRawMaterial  Boolean  @default(false)
+  isFinalProduct Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  blueprints           Blueprint[]
+  usedAsInput          BlueprintInput[]
+  stock                Stock?
+  packItems            PackItem[]
+  decomposition        Decomposition?
+  decompositionOutputs DecompositionOutput[]
+  asteroidTypes        ItemAsteroidType[]
+}
+
+model Blueprint {
+  id           String   @id @default(cuid())
+  outputItemId String
+  factory      String   @default("")
+  outputQty    Int      @default(1)
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  outputItem Item             @relation(fields: [outputItemId], references: [id], onDelete: Cascade)
+  inputs     BlueprintInput[]
+}
+
+model BlueprintInput {
+  id          String @id @default(cuid())
+  blueprintId String
+  itemId      String
+  quantity    Int
+
+  blueprint Blueprint @relation(fields: [blueprintId], references: [id], onDelete: Cascade)
+  item      Item      @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([blueprintId, itemId])
+}
+
+model Stock {
+  id        String   @id @default(cuid())
+  itemId    String   @unique
+  quantity  Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
+
+// 1 unit of sourceItem → multiple output materials (reprocessing/decomposition)
+model Decomposition {
+  id           String   @id @default(cuid())
+  sourceItemId String   @unique
+  inputQty     Int      @default(1)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  sourceItem Item                  @relation(fields: [sourceItemId], references: [id], onDelete: Cascade)
+  outputs    DecompositionOutput[]
+}
+
+model DecompositionOutput {
+  id              String @id @default(cuid())
+  decompositionId String
+  itemId          String
+  quantity        Int
+
+  decomposition Decomposition @relation(fields: [decompositionId], references: [id], onDelete: Cascade)
+  item          Item          @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([decompositionId, itemId])
+}
+
+model AsteroidType {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items     ItemAsteroidType[]
+  locations AsteroidTypeLocation[]
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  asteroids AsteroidTypeLocation[]
+}
+
+model ItemAsteroidType {
+  itemId         String
+  asteroidTypeId String
+
+  item         Item         @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  asteroidType AsteroidType @relation(fields: [asteroidTypeId], references: [id], onDelete: Cascade)
+
+  @@id([itemId, asteroidTypeId])
+}
+
+model AsteroidTypeLocation {
+  asteroidTypeId String
+  locationId     String
+
+  asteroidType AsteroidType @relation(fields: [asteroidTypeId], references: [id], onDelete: Cascade)
+  location     Location     @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@id([asteroidTypeId, locationId])
+}
+
+model Pack {
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  items PackItem[]
+}
+
+model PackItem {
+  id       String @id @default(cuid())
+  packId   String
+  itemId   String
+  quantity Int
+
+  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([packId, itemId])
+}
