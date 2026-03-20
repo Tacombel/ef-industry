@@ -6,6 +6,7 @@ interface StockItem {
   id: string;
   name: string;
   isRawMaterial: boolean;
+  isFound: boolean;
   isFinalProduct: boolean;
   quantity: number;
 }
@@ -15,7 +16,7 @@ export default function StockPage() {
   const [pending, setPending] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<"all" | "raw" | "crafted">("all");
+  const [filter, setFilter] = useState<"all" | "ore" | "raw" | "crafted">("all");
   const [search, setSearch] = useState("");
 
   const load = useCallback(async () => {
@@ -49,8 +50,9 @@ export default function StockPage() {
 
   const filtered = items.filter((i) => {
     const matchesSearch = i.name.toLowerCase().includes(search.toLowerCase());
-    if (filter === "raw") return i.isRawMaterial && matchesSearch;
-    if (filter === "crafted") return !i.isRawMaterial && matchesSearch;
+    if (filter === "ore") return i.isRawMaterial && matchesSearch;
+    if (filter === "raw") return i.isFound && matchesSearch;
+    if (filter === "crafted") return !i.isRawMaterial && !i.isFound && matchesSearch;
     return matchesSearch;
   });
 
@@ -69,13 +71,13 @@ export default function StockPage() {
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="flex gap-1">
-          {(["all", "raw", "crafted"] as const).map((f) => (
+          {(["all", "ore", "raw", "crafted"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`btn-sm ${filter === f ? "btn-primary" : "btn-ghost"}`}
             >
-              {f === "all" ? "All" : f === "raw" ? "Ore" : "Crafted"}
+              {f === "all" ? "All" : f === "ore" ? "Ore" : f === "raw" ? "Raw" : "Crafted"}
             </button>
           ))}
         </div>
@@ -104,6 +106,8 @@ export default function StockPage() {
                   <td className="py-2 pr-4">
                     {item.isRawMaterial
                       ? <span className="badge badge-yellow">Ore</span>
+                      : item.isFound
+                      ? <span className="badge badge-blue">Raw</span>
                       : item.isFinalProduct
                       ? <span className="badge badge-cyan">Final</span>
                       : <span className="badge badge-blue">Crafted</span>}

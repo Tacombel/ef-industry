@@ -15,6 +15,7 @@ export interface CalcItem {
   id: string;
   name: string;
   isRawMaterial: boolean;
+  isFound: boolean;
   stock: number;
   blueprints: CalcBlueprint[];
   decomposition: CalcDecomposition | null;
@@ -62,6 +63,7 @@ export interface FinalProductResult {
   itemName: string;
   quantityNeeded: number;
   actualStock: number;
+  factory?: string;
 }
 
 export interface CalculationResult {
@@ -101,8 +103,8 @@ function resolve(
 
   const blueprint = pickBlueprint(item);
 
-  // Base case: raw material or no blueprint — accumulate raw demand
-  if (item.isRawMaterial || !blueprint) {
+  // Base case: raw material, found item, or no blueprint — accumulate raw demand
+  if (item.isRawMaterial || item.isFound || !blueprint) {
     demand.set(itemId, (demand.get(itemId) ?? 0) + quantityNeeded);
     grossDemand.set(itemId, (grossDemand.get(itemId) ?? 0) + quantityNeeded);
     return;
@@ -158,7 +160,7 @@ export function calculate(
     const item = itemMap.get(itemId)!;
     const blueprint = pickBlueprint(item);
 
-    if (item.isRawMaterial || !blueprint) {
+    if (item.isRawMaterial || item.isFound || !blueprint) {
       const gross = grossDemand.get(itemId) ?? needed;
       const inStock = Math.min(item.stock, gross);
       rawMaterials.push({

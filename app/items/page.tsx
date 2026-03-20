@@ -6,12 +6,13 @@ interface Item {
   id: string;
   name: string;
   isRawMaterial: boolean;
+  isFound: boolean;
   isFinalProduct: boolean;
   stock: { quantity: number } | null;
   blueprints: { id: string; factory: string; outputQty: number; isDefault: boolean }[];
 }
 
-const emptyForm = { name: "", isRawMaterial: false, isFinalProduct: false };
+const emptyForm = { name: "", isRawMaterial: false, isFound: false, isFinalProduct: false };
 
 export default function ItemsPage() {
   const [items, setItems] = useState<Item[]>([]);
@@ -43,7 +44,7 @@ export default function ItemsPage() {
   }
 
   function openEdit(item: Item) {
-    setForm({ name: item.name, isRawMaterial: item.isRawMaterial, isFinalProduct: item.isFinalProduct });
+    setForm({ name: item.name, isRawMaterial: item.isRawMaterial, isFound: item.isFound, isFinalProduct: item.isFinalProduct });
     setEditId(item.id);
     setError("");
     setShowForm(true);
@@ -91,6 +92,7 @@ export default function ItemsPage() {
             <tr className="text-left text-gray-400 border-b border-gray-800">
               <th className="pb-2 pr-4">Name</th>
               <th className="pb-2 pr-4">Ore</th>
+              <th className="pb-2 pr-4">Raw material</th>
               <th className="pb-2 pr-4">Final Product</th>
               <th className="pb-2 pr-4">Stock</th>
               <th className="pb-2 pr-4">Blueprints</th>
@@ -103,6 +105,9 @@ export default function ItemsPage() {
                 <td className="py-2 pr-4 font-medium text-gray-100">{item.name}</td>
                 <td className="py-2 pr-4">
                   {item.isRawMaterial && <span className="badge badge-yellow">Ore</span>}
+                </td>
+                <td className="py-2 pr-4">
+                  {item.isFound && <span className="badge badge-blue">Raw</span>}
                 </td>
                 <td className="py-2 pr-4">
                   {item.isFinalProduct && <span className="badge badge-cyan">Final</span>}
@@ -148,7 +153,17 @@ export default function ItemsPage() {
                 checked={form.isRawMaterial}
                 onChange={(e) => setForm({ ...form, isRawMaterial: e.target.checked })}
               />
-              <span className="label">Ore (no blueprint)</span>
+              <span className="label">Ore (mined, decomposed)</span>
+            </label>
+
+            <label className="flex items-center gap-3 mb-3 cursor-pointer">
+              <input
+                type="checkbox"
+                className="toggle"
+                checked={form.isFound}
+                onChange={(e) => setForm({ ...form, isFound: e.target.checked })}
+              />
+              <span className="label">Raw material (found/looted)</span>
             </label>
 
             <label className="flex items-center gap-3 mb-6 cursor-pointer">

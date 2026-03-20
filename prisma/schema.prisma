@@ -11,6 +11,7 @@ model Item {
   id             String   @id @default(cuid())
   name           String   @unique
   isRawMaterial  Boolean  @default(false)
+  isFound        Boolean  @default(false)
   isFinalProduct Boolean  @default(false)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt

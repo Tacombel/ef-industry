@@ -16,13 +16,14 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const body = await req.json();
-  const { name, isRawMaterial, isFinalProduct } = body;
+  const { name, isRawMaterial, isFound, isFinalProduct } = body;
 
   const item = await prisma.item.update({
     where: { id: params.id },
     data: {
       ...(name !== undefined && { name: name.trim() }),
       ...(isRawMaterial !== undefined && { isRawMaterial }),
+      ...(isFound !== undefined && { isFound }),
       ...(isFinalProduct !== undefined && { isFinalProduct }),
     },
     include: { stock: true, blueprints: { select: { id: true, factory: true, outputQty: true, isDefault: true } } },

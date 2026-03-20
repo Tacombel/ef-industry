@@ -30,6 +30,7 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
     id: item.id,
     name: item.name,
     isRawMaterial: item.isRawMaterial,
+    isFound: item.isFound,
     stock: item.stock?.quantity ?? 0,
     blueprints: item.blueprints.map((bp) => ({
       id: bp.id,
@@ -55,11 +56,13 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
     result.intermediates = result.intermediates.filter((i) => !packItemIds.has(i.itemId));
     result.finalProducts = pack.items.map((pi) => {
       const item = itemMap.get(pi.itemId);
+      const blueprint = item?.blueprints.find((b) => b.isDefault) ?? item?.blueprints[0];
       return {
         itemId: pi.itemId,
         itemName: item?.name ?? pi.itemId,
         quantityNeeded: pi.quantity,
         actualStock: item?.stock ?? 0,
+        factory: blueprint?.factory || undefined,
       };
     });
 

@@ -12,6 +12,7 @@ export async function GET() {
       id: item.id,
       name: item.name,
       isRawMaterial: item.isRawMaterial,
+      isFound: item.isFound,
       isFinalProduct: item.isFinalProduct,
       quantity: item.stock?.quantity ?? 0,
     }))

@@ -32,6 +32,7 @@ export default function PackCalculation({ packId }: { packId: string }) {
   // pending stock edits: itemId -> value
   const [stock, setStock] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState(false);
+  const [executing, setExecuting] = useState(false);
 
   const load = useCallback((isReload = false) => {
     if (isReload) setRecalculating(true);
@@ -88,6 +89,19 @@ export default function PackCalculation({ packId }: { packId: string }) {
     load(true);
   }
 
+  async function execute() {
+    if (!confirm("This will update stock: consume materials and add final products. Continue?")) return;
+    setExecuting(true);
+    const res = await fetch(`/api/packs/${packId}/execute`, { method: "POST" });
+    if (!res.ok) {
+      const d = await res.json();
+      setError(d.error ?? "Execute failed");
+    } else {
+      load(true);
+    }
+    setExecuting(false);
+  }
+
   const allStockRows = result
     ? [
         ...result.rawMaterials,
@@ -140,7 +154,10 @@ export default function PackCalculation({ packId }: { packId: string }) {
             <tbody>
               {result.finalProducts.map((row) => (
                 <tr key={row.itemId} className="border-b border-gray-800/40">
-                  <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
+                  <td className="py-1 pr-4 text-gray-200">
+                    {row.itemName}
+                    {row.factory && <span className="badge badge-blue ml-1.5">{row.factory}</span>}
+                  </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.quantityNeeded}</td>
                   <td className="py-1 pr-4 text-right">
                     <input
@@ -212,7 +229,12 @@ export default function PackCalculation({ packId }: { packId: string }) {
       )}
 
       {/* Raw materials */}
-      {result.rawMaterials.length > 0 && (
+      {(() => {
+        const decompOutputIds = new Set(
+          result.decompositions.flatMap((d) => d.outputs.map((o) => o.itemId))
+        );
+        const filtered = result.rawMaterials.filter((r) => decompOutputIds.has(r.itemId) || r.toBuy > 0);
+        return filtered.length > 0 ? (
         <div>
           <h3 className="text-sm font-semibold text-yellow-400 mb-2">Raw Materials Needed</h3>
           <table className="w-full table-fixed text-xs">
@@ -231,7 +253,7 @@ export default function PackCalculation({ packId }: { packId: string }) {
               </tr>
             </thead>
             <tbody>
-              {result.rawMaterials.map((row) => (
+              {filtered.map((row) => (
                 <tr key={row.itemId} className="border-b border-gray-800/40">
                   <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
@@ -254,7 +276,8 @@ export default function PackCalculation({ packId }: { packId: string }) {
             </tbody>
           </table>
         </div>
-      )}
+        ) : null;
+      })()}
 
       {/* Decompositions */}
       {(result.decompositions ?? []).length > 0 && (
@@ -290,6 +313,12 @@ export default function PackCalculation({ packId }: { packId: string }) {
                     onChange={(e) => setStock((s) => ({ ...s, [d.sourceItemId]: Number(e.target.value) }))}
                   />
                   <span className="text-xs text-gray-600">in stock</span>
+                  {(() => {
+                    const toMine = Math.max(0, d.unitsToDecompose - (stock[d.sourceItemId] ?? d.actualStock));
+                    return toMine > 0
+                      ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
+                      : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
+                  })()}
                 </div>
                 <div className="flex flex-wrap gap-1 text-xs text-gray-400">
                   <span className="text-gray-600">→</span>
@@ -318,14 +347,21 @@ export default function PackCalculation({ packId }: { packId: string }) {
         <p className="text-gray-500 text-sm">Nothing to calculate.</p>
       )}
 
-      {/* Single save button */}
-      <div className="flex justify-end pt-1">
+      {/* Action buttons */}
+      <div className="flex justify-end gap-2 pt-1">
         <button
           onClick={saveAll}
           disabled={!hasChanges || saving}
           className={`btn-sm ${hasChanges ? "btn-primary" : "opacity-30"}`}
         >
           {saving ? "Saving…" : isRecalculating ? "Recalculating…" : "Update Stock & Recalculate"}
+        </button>
+        <button
+          onClick={execute}
+          disabled={executing || saving}
+          className="btn-sm bg-green-800 hover:bg-green-700 text-green-100 disabled:opacity-40"
+        >
+          {executing ? "Executing…" : "⚡ Execute"}
         </button>
       </div>
     </div>

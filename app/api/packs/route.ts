@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const packs = await prisma.pack.findMany({
-    include: { items: { include: { item: { include: { blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+    include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
     orderBy: { name: "asc" },
   });
   return NextResponse.json(packs);
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
         })),
       },
     },
-    include: { items: { include: { item: { include: { blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+    include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
   });
 
   return NextResponse.json(pack, { status: 201 });

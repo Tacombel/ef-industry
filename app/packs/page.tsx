@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import PackCalculation from "@/components/packs/PackCalculation";
 
-interface Item { id: string; name: string; blueprints: { factory: string }[] }
+interface Item { id: string; name: string; isRawMaterial: boolean; isFound: boolean; blueprints: { factory: string }[] }
 interface PackItem { id: string; itemId: string; quantity: number; item: Item }
 interface Pack { id: string; name: string; description?: string; items: PackItem[] }
 
@@ -92,6 +92,15 @@ export default function PacksPage() {
                   <h2 className="font-semibold text-gray-100">{pack.name}</h2>
                   {pack.description && <p className="text-sm text-gray-500 mt-0.5">{pack.description}</p>}
                 </div>
+                {(() => {
+                    const missing = pack.items.filter((pi) => !pi.item.isRawMaterial && !pi.item.isFound && pi.item.blueprints.length === 0);
+                    return missing.length > 0 ? (
+                      <div className="flex items-center gap-1.5 rounded bg-yellow-900/30 border border-yellow-700/50 px-2 py-1 text-xs text-yellow-400">
+                        <span>⚠</span>
+                        <span>No blueprint: {missing.map((pi) => pi.item.name).join(", ")}</span>
+                      </div>
+                    ) : null;
+                  })()}
                 <div className="flex gap-2 shrink-0">
                   <button
                     onClick={() => setCalcPackId(calcPackId === pack.id ? null : pack.id)}
