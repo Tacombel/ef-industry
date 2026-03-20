@@ -29,6 +29,8 @@ export interface AsteroidInfo {
 export interface RawMaterialResult {
   itemId: string;
   itemName: string;
+  isRawMaterial: boolean;
+  isFound: boolean;
   totalNeeded: number;
   actualStock: number;
   inStock: number;      // amount consumed from stock
@@ -167,6 +169,8 @@ export function calculate(
       rawMaterials.push({
         itemId,
         itemName: item.name,
+        isRawMaterial: item.isRawMaterial,
+        isFound: item.isFound,
         totalNeeded: gross,
         actualStock: item.stock,
         inStock,

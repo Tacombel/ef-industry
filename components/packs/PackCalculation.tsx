@@ -292,7 +292,10 @@ export default function PackCalculation({ packId }: { packId: string }) {
             <tbody>
               {filtered.map((row) => (
                 <tr key={row.itemId} className="border-b border-gray-800/40">
-                  <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
+                  <td className="py-1 pr-4 text-gray-200">
+                    {row.itemName}
+                    {row.isRawMaterial && <span className="badge badge-yellow ml-1.5">Ore</span>}
+                  </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right">
                     <input
