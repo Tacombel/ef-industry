@@ -268,10 +268,10 @@ export default function PackCalculation({ packId }: { packId: string }) {
         </div>
       )}
 
-      {/* Raw materials */}
+      {/* Raw materials (found/looted only) */}
       {(() => {
-        const filtered = result.rawMaterials;
-        return filtered.length > 0 ? (
+        const foundOnly = result.rawMaterials.filter((r) => !r.isRawMaterial);
+        return foundOnly.length > 0 ? (
         <div>
           <h3 className="text-sm font-semibold text-yellow-400 mb-2">Raw Materials Needed</h3>
           <table className="w-full table-fixed text-xs">
@@ -290,12 +290,9 @@ export default function PackCalculation({ packId }: { packId: string }) {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((row) => (
+              {foundOnly.map((row) => (
                 <tr key={row.itemId} className="border-b border-gray-800/40">
-                  <td className="py-1 pr-4 text-gray-200">
-                    {row.itemName}
-                    {row.isRawMaterial && <span className="badge badge-yellow ml-1.5">Ore</span>}
-                  </td>
+                  <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right">
                     <input
@@ -319,69 +316,113 @@ export default function PackCalculation({ packId }: { packId: string }) {
         ) : null;
       })()}
 
-      {/* Decompositions */}
-      {(result.decompositions ?? []).length > 0 && (
-        <div>
-          <h3 className="text-sm font-semibold text-purple-400 mb-2">Ore to Decompose</h3>
-          <div className="space-y-2">
-            {result.decompositions.map((d) => (
-              <div key={d.sourceItemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className={`relative text-xs font-medium text-gray-200 flex-1 ${d.asteroids?.length ? "cursor-help" : ""}`}
-                    onMouseEnter={() => d.asteroids?.length && setHoveredItemId(d.sourceItemId)}
-                    onMouseLeave={() => setHoveredItemId(null)}
-                  >
-                    {d.sourceItemName}
-                    {d.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
-                    {hoveredItemId === d.sourceItemId && d.asteroids?.length && (
-                      <AsteroidTooltip asteroids={d.asteroids} />
-                    )}
-                  </span>
-                  <span className="text-xs text-gray-500">
-                    Decompose <span className="text-purple-300 font-semibold">{d.unitsToDecompose}</span> units
-                    ({d.runs} run{d.runs > 1 ? "s" : ""} of {d.inputQty})
-                  </span>
-                  <input
-                    type="number"
-                    min={0}
-                    title="Stock"
-                    className={`input w-24 text-right py-0.5 text-xs ${
-                      (stock[d.sourceItemId] ?? d.actualStock) !== d.actualStock ? "border-cyan-600" : ""
-                    }`}
-                    value={stock[d.sourceItemId] ?? d.actualStock}
-                    onChange={(e) => setStock((s) => ({ ...s, [d.sourceItemId]: Number(e.target.value) }))}
-                  />
-                  <span className="text-xs text-gray-600">in stock</span>
-                  {(() => {
-                    const toMine = Math.max(0, d.unitsToDecompose - (stock[d.sourceItemId] ?? d.actualStock));
-                    return toMine > 0
-                      ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
-                      : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
-                  })()}
-                </div>
-                <div className="flex flex-wrap gap-1 text-xs text-gray-400">
-                  <span className="text-gray-600">→</span>
-                  {d.outputs.map((o) => (
-                    <span key={o.itemId} className="bg-gray-700 rounded px-1.5 py-0.5 text-gray-300">
-                      {o.itemName} <span className="text-yellow-400">×{o.quantityObtained}</span>
+      {/* Ore section: decompositions + direct-use ores */}
+      {(() => {
+        const directOres = result.rawMaterials.filter((r) => r.isRawMaterial);
+        const decomps = result.decompositions ?? [];
+        if (decomps.length === 0 && directOres.length === 0) return null;
+        return (
+          <div>
+            <h3 className="text-sm font-semibold text-purple-400 mb-2">Ore to Decompose</h3>
+            <div className="space-y-2">
+              {decomps.map((d) => (
+                <div key={d.sourceItemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span
+                      className={`relative text-xs font-medium text-gray-200 flex-1 ${d.asteroids?.length ? "cursor-help" : ""}`}
+                      onMouseEnter={() => d.asteroids?.length && setHoveredItemId(d.sourceItemId)}
+                      onMouseLeave={() => setHoveredItemId(null)}
+                    >
+                      {d.sourceItemName}
+                      {d.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
+                      {hoveredItemId === d.sourceItemId && d.asteroids?.length && (
+                        <AsteroidTooltip asteroids={d.asteroids} />
+                      )}
                     </span>
-                  ))}
+                    <span className="text-xs text-gray-500">
+                      Decompose <span className="text-purple-300 font-semibold">{d.unitsToDecompose}</span> units
+                      ({d.runs} run{d.runs > 1 ? "s" : ""} of {d.inputQty})
+                    </span>
+                    <input
+                      type="number"
+                      min={0}
+                      title="Stock"
+                      className={`input w-24 text-right py-0.5 text-xs ${
+                        (stock[d.sourceItemId] ?? d.actualStock) !== d.actualStock ? "border-cyan-600" : ""
+                      }`}
+                      value={stock[d.sourceItemId] ?? d.actualStock}
+                      onChange={(e) => setStock((s) => ({ ...s, [d.sourceItemId]: Number(e.target.value) }))}
+                    />
+                    <span className="text-xs text-gray-600">in stock</span>
+                    {(() => {
+                      const toMine = Math.max(0, d.unitsToDecompose - (stock[d.sourceItemId] ?? d.actualStock));
+                      return toMine > 0
+                        ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
+                        : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
+                    })()}
+                  </div>
+                  <div className="flex flex-wrap gap-1 text-xs text-gray-400">
+                    <span className="text-gray-600">→</span>
+                    {d.outputs.map((o) => (
+                      <span key={o.itemId} className="bg-gray-700 rounded px-1.5 py-0.5 text-gray-300">
+                        {o.itemName} <span className="text-yellow-400">×{o.quantityObtained}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              ))}
+              {directOres.map((row) => (
+                <div key={row.itemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`relative text-xs font-medium text-gray-200 flex-1 ${row.asteroids?.length ? "cursor-help" : ""}`}
+                      onMouseEnter={() => row.asteroids?.length && setHoveredItemId(row.itemId)}
+                      onMouseLeave={() => setHoveredItemId(null)}
+                    >
+                      {row.itemName}
+                      {row.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
+                      {hoveredItemId === row.itemId && row.asteroids?.length && (
+                        <AsteroidTooltip asteroids={row.asteroids} />
+                      )}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      Mine <span className="text-purple-300 font-semibold">{row.totalNeeded}</span> units directly
+                    </span>
+                    <input
+                      type="number"
+                      min={0}
+                      title="Stock"
+                      className={`input w-24 text-right py-0.5 text-xs ${
+                        (stock[row.itemId] ?? row.actualStock) !== row.actualStock ? "border-cyan-600" : ""
+                      }`}
+                      value={stock[row.itemId] ?? row.actualStock}
+                      onChange={(e) => setStock((s) => ({ ...s, [row.itemId]: Number(e.target.value) }))}
+                    />
+                    <span className="text-xs text-gray-600">in stock</span>
+                    {(() => {
+                      const toMine = Math.max(0, row.totalNeeded - (stock[row.itemId] ?? row.actualStock));
+                      return toMine > 0
+                        ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
+                        : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
+                    })()}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {decomps.length > 0 && (
+              <div className="mt-2 flex justify-end">
+                <span className="text-sm text-gray-400">
+                  Total ore to decompose:{" "}
+                  <span className="text-purple-300 font-bold">
+                    {decomps.reduce((sum, d) => sum + d.unitsToDecompose, 0).toLocaleString()}
+                  </span>{" "}
+                  units
+                </span>
               </div>
-            ))}
+            )}
           </div>
-          <div className="mt-2 flex justify-end">
-            <span className="text-sm text-gray-400">
-              Total ore:{" "}
-              <span className="text-purple-300 font-bold">
-                {result.decompositions.reduce((sum, d) => sum + d.unitsToDecompose, 0).toLocaleString()}
-              </span>{" "}
-              units
-            </span>
-          </div>
-        </div>
-      )}
+        );
+      })()}
 
       {result.rawMaterials.length === 0 && result.intermediates.length === 0 && (
         <p className="text-gray-500 text-sm">Nothing to calculate.</p>

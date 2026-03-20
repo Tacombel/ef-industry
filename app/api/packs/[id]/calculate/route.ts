@@ -71,11 +71,12 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       };
     });
 
-    // Enrich ore (decomposition source items) with asteroid/location data
-    if (result.decompositions.length > 0) {
-      const oreItemIds = result.decompositions.map((d) => d.sourceItemId);
+    // Enrich ore items (decompositions + direct-use ores in rawMaterials) with asteroid/location data
+    const directOreIds = result.rawMaterials.filter((r) => r.isRawMaterial).map((r) => r.itemId);
+    const allOreIds = [...result.decompositions.map((d) => d.sourceItemId), ...directOreIds];
+    if (allOreIds.length > 0) {
       const asteroidData = await prisma.itemAsteroidType.findMany({
-        where: { itemId: { in: oreItemIds } },
+        where: { itemId: { in: allOreIds } },
         include: {
           asteroidType: {
             include: { locations: { include: { location: true } } },
@@ -94,6 +95,12 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       for (const d of result.decompositions) {
         const info = asteroidsByItem.get(d.sourceItemId);
         if (info) d.asteroids = info;
+      }
+      for (const r of result.rawMaterials) {
+        if (r.isRawMaterial) {
+          const info = asteroidsByItem.get(r.itemId);
+          if (info) r.asteroids = info;
+        }
       }
     }
 
