@@ -270,10 +270,7 @@ export default function PackCalculation({ packId }: { packId: string }) {
 
       {/* Raw materials */}
       {(() => {
-        const decompOutputIds = new Set(
-          result.decompositions.flatMap((d) => d.outputs.map((o) => o.itemId))
-        );
-        const filtered = result.rawMaterials.filter((r) => decompOutputIds.has(r.itemId) || r.toBuy > 0 || r.inStock > 0);
+        const filtered = result.rawMaterials;
         return filtered.length > 0 ? (
         <div>
           <h3 className="text-sm font-semibold text-yellow-400 mb-2">Raw Materials Needed</h3>
