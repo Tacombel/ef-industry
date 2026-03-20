@@ -38,7 +38,7 @@ export default function Sidebar() {
                   : "text-gray-400 hover:bg-gray-800 hover:text-gray-100"
               }`}
             >
-              <span>{item.icon}</span>
+              <span className="w-5 text-center shrink-0">{item.icon}</span>
               {item.label}
             </Link>
           );
