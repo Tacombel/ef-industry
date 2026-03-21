@@ -16,6 +16,7 @@ export default function StockPage() {
   const [pending, setPending] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
+  const [resetting, setResetting] = useState(false);
   const [filter, setFilter] = useState<"all" | "ore" | "raw" | "crafted">("all");
   const [search, setSearch] = useState("");
 
@@ -44,6 +45,14 @@ export default function StockPage() {
     setItems((prev) => prev.map((i) => i.id === itemId ? { ...i, quantity: pending[itemId] } : i));
   }
 
+  async function resetAll() {
+    if (!confirm("Set all stock quantities to 0?")) return;
+    setResetting(true);
+    await fetch("/api/stock/reset", { method: "POST" });
+    await load();
+    setResetting(false);
+  }
+
   function handleKey(e: React.KeyboardEvent, itemId: string) {
     if (e.key === "Enter") save(itemId);
   }
@@ -60,7 +69,12 @@ export default function StockPage() {
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-100">Stock</h1>
-        <button onClick={load} className="btn-ghost text-sm">↺ Refresh</button>
+        <div className="flex gap-2">
+          <button onClick={load} className="btn-ghost text-sm">↺ Refresh</button>
+          <button onClick={resetAll} disabled={resetting} className="btn-sm btn-danger text-sm">
+            {resetting ? "…" : "Reset to 0"}
+          </button>
+        </div>
       </div>
 
       <div className="flex gap-3 mb-4">
