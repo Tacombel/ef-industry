@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
 
 interface Item { id: string; name: string; isRawMaterial: boolean }
 interface BlueprintInput { id: string; itemId: string; quantity: number; item: Item }
@@ -33,6 +34,7 @@ export default function BlueprintsPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [calcItemId, setCalcItemId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -115,6 +117,10 @@ export default function BlueprintsPage() {
     });
   }
 
+  function toggleCalc(itemId: string) {
+    setCalcItemId((prev) => (prev === itemId ? null : itemId));
+  }
+
   const inputItems = allItems.filter((i) => i.id !== outputItemId);
 
   return (
@@ -142,7 +148,21 @@ export default function BlueprintsPage() {
                 </button>
                 <span className="flex-1 font-semibold text-gray-100">{item.name}</span>
                 <span className="text-xs text-gray-600">{blueprints.length} blueprint{blueprints.length > 1 ? "s" : ""}</span>
+                <button
+                  onClick={() => toggleCalc(item.id)}
+                  className={`btn-sm text-xs ${calcItemId === item.id ? "bg-cyan-800 hover:bg-cyan-700 text-cyan-100" : ""}`}
+                  title="Calculate materials needed"
+                >
+                  {calcItemId === item.id ? "✕ Close" : "⚡ Calculate"}
+                </button>
               </div>
+
+              {/* Calculation panel */}
+              {calcItemId === item.id && (
+                <div className="px-4 py-4 border-b border-gray-800 bg-gray-900/50">
+                  <BlueprintCalculation itemId={item.id} itemName={item.name} />
+                </div>
+              )}
 
               {/* Blueprint rows */}
               {expanded.has(item.id) && (
