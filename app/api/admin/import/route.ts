@@ -81,23 +81,24 @@ async function applyAdditive(data: SeedData) {
     }
   }
 
-  // Blueprints — match by (outputItem, factory), update or create; never delete
+  // Blueprints — match by (outputItem, factory normalized), update or create; never delete
   for (const bp of data.blueprints) {
     const outputItem = await prisma.item.findUnique({ where: { name: normalizeName(bp.outputItem) } });
     if (!outputItem) continue;
-    const existing = await prisma.blueprint.findFirst({
-      where: { outputItemId: outputItem.id, factory: normalizeName(bp.factory ?? "") },
-    });
+    const normalizedFactory = normalizeName(bp.factory ?? "");
+    // Fetch all blueprints for this item and compare factory names normalized (tolerates existing un-normalized values)
+    const candidates = await prisma.blueprint.findMany({ where: { outputItemId: outputItem.id } });
+    const existing = candidates.find(b => normalizeName(b.factory) === normalizedFactory) ?? null;
     let blueprintId: string;
     if (existing) {
       await prisma.blueprint.update({
         where: { id: existing.id },
-        data: { outputQty: bp.outputQty, isDefault: bp.isDefault },
+        data: { factory: normalizedFactory, outputQty: bp.outputQty, isDefault: bp.isDefault },
       });
       blueprintId = existing.id;
     } else {
       const created = await prisma.blueprint.create({
-        data: { outputItemId: outputItem.id, factory: normalizeName(bp.factory ?? ""), outputQty: bp.outputQty, isDefault: bp.isDefault },
+        data: { outputItemId: outputItem.id, factory: normalizedFactory, outputQty: bp.outputQty, isDefault: bp.isDefault },
       });
       blueprintId = created.id;
     }

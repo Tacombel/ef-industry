@@ -77,21 +77,43 @@ async function renormalizeAsteroidTypes(): Promise<Stats> {
   return { renamed, duplicatesRemoved };
 }
 
+async function renormalizeBlueprintFactories(): Promise<Stats> {
+  const blueprints = await prisma.blueprint.findMany();
+  let renamed = 0, duplicatesRemoved = 0;
+  for (const b of blueprints) {
+    const correct = normalizeName(b.factory);
+    if (correct === b.factory) continue;
+    // Check if another blueprint for same item already has the correct factory name
+    const conflict = await prisma.blueprint.findFirst({
+      where: { outputItemId: b.outputItemId, factory: correct, NOT: { id: b.id } },
+    });
+    if (conflict) {
+      await prisma.blueprint.delete({ where: { id: b.id } });
+      duplicatesRemoved++;
+    } else {
+      await prisma.blueprint.update({ where: { id: b.id }, data: { factory: correct } });
+      renamed++;
+    }
+  }
+  return { renamed, duplicatesRemoved };
+}
+
 export async function POST() {
   try {
-    const [items, factories, locations, asteroids] = await Promise.all([
+    const [items, factories, locations, asteroids, blueprintFactories] = await Promise.all([
       renormalizeItems(),
       renormalizeFactories(),
       renormalizeLocations(),
       renormalizeAsteroidTypes(),
+      renormalizeBlueprintFactories(),
     ]);
 
     const total = {
-      renamed: items.renamed + factories.renamed + locations.renamed + asteroids.renamed,
-      duplicatesRemoved: items.duplicatesRemoved + factories.duplicatesRemoved + locations.duplicatesRemoved + asteroids.duplicatesRemoved,
+      renamed: items.renamed + factories.renamed + locations.renamed + asteroids.renamed + blueprintFactories.renamed,
+      duplicatesRemoved: items.duplicatesRemoved + factories.duplicatesRemoved + locations.duplicatesRemoved + asteroids.duplicatesRemoved + blueprintFactories.duplicatesRemoved,
     };
 
-    return NextResponse.json({ ok: true, items, factories, locations, asteroids, total });
+    return NextResponse.json({ ok: true, items, factories, locations, asteroids, blueprintFactories, total });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Re-normalize failed";
     return NextResponse.json({ error: message }, { status: 500 });
