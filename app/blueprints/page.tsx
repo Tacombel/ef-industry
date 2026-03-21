@@ -35,6 +35,7 @@ export default function BlueprintsPage() {
   const [error, setError] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [calcItemId, setCalcItemId] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -122,12 +123,24 @@ export default function BlueprintsPage() {
   }
 
   const inputItems = allItems.filter((i) => i.id !== outputItemId);
+  const filteredGrouped = search.trim()
+    ? grouped.filter(({ item }) => item.name.toLowerCase().includes(search.trim().toLowerCase()))
+    : grouped;
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-bold text-gray-100">Blueprints</h1>
         <button onClick={openNew} className="btn-primary">+ New Blueprint</button>
+      </div>
+      <div className="mb-4">
+        <input
+          type="search"
+          placeholder="Search blueprints…"
+          className="input w-full"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
 
       {loading ? (
@@ -136,7 +149,10 @@ export default function BlueprintsPage() {
         <p className="text-gray-500">No blueprints yet. Create items first, then add blueprints.</p>
       ) : (
         <div className="space-y-3">
-          {grouped.map(({ item, blueprints }) => (
+          {filteredGrouped.length === 0 && (
+            <p className="text-gray-500">No blueprints match "{search}".</p>
+          )}
+          {filteredGrouped.map(({ item, blueprints }) => (
             <div key={item.id} className="rounded-lg border border-gray-800 bg-gray-900">
               {/* Item header */}
               <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-800">
