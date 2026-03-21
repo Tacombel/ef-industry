@@ -6,13 +6,13 @@ import pkg from "@/package.json";
 const version = pkg.version;
 
 const navItems = [
-  { href: "/decompositions", label: "Decompositions", icon: "🔩" },
   { href: "/items", label: "Items", icon: "⬡" },
-  { href: "/blueprints", label: "Blueprints", icon: "📐" },
+  { href: "/asteroids", label: "Asteroids", icon: "🪨" },
+  { href: "/decompositions", label: "Decompositions", icon: "🔩" },
   { href: "/factories", label: "Factories", icon: "🏭" },
   { href: "/stock", label: "Stock", icon: "📦" },
+  { href: "/blueprints", label: "Blueprints", icon: "📐" },
   { href: "/packs", label: "Packs", icon: "🗃️" },
-  { href: "/asteroids", label: "Asteroids", icon: "🪨" },
 ];
 
 export default function Sidebar() {
