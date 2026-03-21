@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { ImportPreview } from "@/app/api/admin/import/preview/route";
 
 type ActionResult = {
   mode?: "merge" | "reset";
@@ -27,7 +28,144 @@ function CountList({ counts }: { counts: ActionResult["counts"] }) {
   );
 }
 
+function PreviewSection({
+  label,
+  items,
+  color,
+}: {
+  label: string;
+  items: string[];
+  color: string;
+}) {
+  if (items.length === 0) return null;
+  return (
+    <div>
+      <p className={`text-xs font-medium mb-1 ${color}`}>
+        {label} ({items.length})
+      </p>
+      <ul className="text-xs text-gray-400 space-y-0.5 max-h-28 overflow-y-auto">
+        {items.map((name) => (
+          <li key={name} className="truncate">{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function PreviewModal({
+  preview,
+  loading,
+  onConfirm,
+  onCancel,
+}: {
+  preview: ImportPreview | null;
+  loading: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  const hasChanges = preview && (
+    preview.factories.new.length > 0 ||
+    preview.locations.new.length > 0 ||
+    preview.items.new.length > 0 ||
+    preview.items.updated.length > 0 ||
+    preview.asteroidTypes.new.length > 0 ||
+    preview.decompositions.new.length > 0 ||
+    preview.blueprints.new.length > 0 ||
+    preview.blueprints.updated.length > 0
+  );
+
+  return (
+    <div className="modal-backdrop" onClick={onCancel}>
+      <div className="modal w-full max-w-lg" onClick={(e) => e.stopPropagation()}>
+        <h2 className="text-lg font-bold mb-1">Import preview</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Review the changes from <code className="text-cyan-400 bg-gray-800 px-1 rounded">seed.json</code> before applying.
+        </p>
+
+        {loading && <p className="text-gray-500 text-sm">Analysing seed.json…</p>}
+
+        {preview && (
+          <div className="space-y-4 max-h-96 overflow-y-auto pr-1">
+            {!hasChanges && (
+              <div className="rounded bg-gray-800 px-4 py-3 text-sm text-gray-400">
+                No changes detected — your database is already up to date.
+              </div>
+            )}
+
+            {/* Items */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Items</p>
+              <PreviewSection label="New" items={preview.items.new} color="text-green-400" />
+              <PreviewSection label="Updated" items={preview.items.updated} color="text-yellow-400" />
+              {preview.items.unchanged > 0 && (
+                <p className="text-xs text-gray-600">{preview.items.unchanged} unchanged</p>
+              )}
+            </div>
+
+            {/* Blueprints */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Blueprints</p>
+              <PreviewSection label="New" items={preview.blueprints.new} color="text-green-400" />
+              <PreviewSection label="Updated" items={preview.blueprints.updated} color="text-yellow-400" />
+              {preview.blueprints.unchanged > 0 && (
+                <p className="text-xs text-gray-600">{preview.blueprints.unchanged} unchanged</p>
+              )}
+            </div>
+
+            {/* Factories */}
+            {(preview.factories.new.length > 0) && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Factories</p>
+                <PreviewSection label="New" items={preview.factories.new} color="text-green-400" />
+              </div>
+            )}
+
+            {/* Locations */}
+            {preview.locations.new.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Locations</p>
+                <PreviewSection label="New" items={preview.locations.new} color="text-green-400" />
+              </div>
+            )}
+
+            {/* Asteroid types */}
+            {preview.asteroidTypes.new.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Asteroid types</p>
+                <PreviewSection label="New" items={preview.asteroidTypes.new} color="text-green-400" />
+              </div>
+            )}
+
+            {/* Decompositions */}
+            {preview.decompositions.new.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Decompositions</p>
+                <PreviewSection label="New" items={preview.decompositions.new} color="text-green-400" />
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="flex justify-end gap-3 mt-6">
+          <button onClick={onCancel} className="btn-ghost">Cancel</button>
+          <button
+            onClick={onConfirm}
+            disabled={loading || !preview}
+            className="btn-primary disabled:opacity-50"
+          >
+            {hasChanges ? "Apply changes" : "OK"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AdminPage() {
+  const [preview, setPreview] = useState<ImportPreview | null>(null);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
   const [importing, setImporting] = useState(false);
   const [importResult, setImportResult] = useState<ActionResult | null>(null);
   const [importError, setImportError] = useState("");
@@ -36,14 +174,22 @@ export default function AdminPage() {
   const [exportResult, setExportResult] = useState<ActionResult | null>(null);
   const [exportError, setExportError] = useState("");
 
-  async function runImport(mode: "merge" | "reset") {
-    const warning = mode === "reset"
-      ? "FULL RESET: this will delete ALL game data and reload from seed.json.\n\nYour stock will be preserved.\n\nContinue?"
-      : "This will add/update data from seed.json. Existing data not in the seed will be kept.\n\nContinue?";
-    if (!confirm(warning)) return;
-    setImporting(true);
+  async function openPreview() {
+    setShowPreview(true);
+    setPreview(null);
+    setPreviewLoading(true);
     setImportResult(null);
     setImportError("");
+    const res = await fetch("/api/admin/import/preview", { method: "POST" });
+    const data = await res.json();
+    if (res.ok) setPreview(data);
+    else setImportError(data.error ?? "Preview failed");
+    setPreviewLoading(false);
+  }
+
+  async function applyImport(mode: "merge" | "reset") {
+    setShowPreview(false);
+    setImporting(true);
     const res = await fetch("/api/admin/import", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -51,6 +197,22 @@ export default function AdminPage() {
     });
     const data = await res.json();
     if (!res.ok || data.error) setImportError(data.error ?? "Import failed");
+    else setImportResult(data);
+    setImporting(false);
+  }
+
+  async function runReset() {
+    if (!confirm("FULL RESET: this will delete ALL game data and reload from seed.json.\n\nYour stock will be preserved.\n\nContinue?")) return;
+    setImporting(true);
+    setImportResult(null);
+    setImportError("");
+    const res = await fetch("/api/admin/import", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "reset" }),
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) setImportError(data.error ?? "Reset failed");
     else setImportResult(data);
     setImporting(false);
   }
@@ -97,16 +259,16 @@ export default function AdminPage() {
             )}
           </div>
 
-          {/* Import — merge */}
+          {/* Import — merge with preview */}
           <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
             <h2 className="text-base font-semibold text-gray-100 mb-1">Merge import</h2>
             <p className="text-sm text-gray-500 mb-4">
               Adds and updates data from{" "}
               <code className="text-cyan-400 bg-gray-800 px-1 rounded">prisma/seed.json</code>.
               Existing data not present in the seed is <strong className="text-gray-300">kept</strong>.
-              Safe to use after pulling from GitHub.
+              Shows a preview before applying.
             </p>
-            <button onClick={() => runImport("merge")} disabled={importing} className="btn-primary disabled:opacity-50">
+            <button onClick={openPreview} disabled={importing} className="btn-primary disabled:opacity-50">
               {importing ? "Importing…" : "⬇ Merge from seed.json"}
             </button>
             {importError && (
@@ -130,7 +292,7 @@ export default function AdminPage() {
               Stock is preserved.
             </p>
             <button
-              onClick={() => runImport("reset")}
+              onClick={runReset}
               disabled={importing}
               className="btn-sm bg-red-900 hover:bg-red-800 text-red-200 disabled:opacity-50"
             >
@@ -169,7 +331,7 @@ git push
             <p className="text-cyan-400 font-medium mb-2">To sync the latest data</p>
             <ol className="text-gray-400 space-y-2 list-decimal list-inside">
               <li>Pull the latest changes from GitHub (or ask the owner to merge your PR first)</li>
-              <li>Use <strong className="text-gray-300">Merge import</strong> to add new data without losing yours</li>
+              <li>Use <strong className="text-gray-300">Merge import</strong> — preview what changes before applying</li>
             </ol>
           </div>
 
@@ -185,6 +347,16 @@ git push
         </div>
 
       </div>
+
+      {/* Preview modal */}
+      {showPreview && (
+        <PreviewModal
+          preview={preview}
+          loading={previewLoading}
+          onConfirm={() => applyImport("merge")}
+          onCancel={() => setShowPreview(false)}
+        />
+      )}
     </div>
   );
 }
