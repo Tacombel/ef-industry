@@ -36,3 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 /app/generated/prisma
+
+# database files (use prisma/seed.json for shared data)
+*.db
+*.db-journal
