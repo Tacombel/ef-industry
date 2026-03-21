@@ -80,7 +80,14 @@ export default function AdminPage() {
             <ol className="text-gray-400 space-y-1 list-decimal list-inside">
               <li>Make your changes in the app (items, blueprints, etc.)</li>
               <li>Export to seed.json <span className="text-gray-600">(button below)</span></li>
-              <li>Commit <code className="text-cyan-400 bg-gray-800 px-1 rounded">prisma/seed.json</code> and open a Pull Request on GitHub</li>
+              <li>
+                Commit and open a Pull Request on GitHub:
+                <pre className="mt-2 bg-gray-800 rounded p-3 text-xs text-gray-300 overflow-x-auto whitespace-pre">{`git add prisma/seed.json
+git commit -m "feat: describe your changes"
+git push
+# Then open a Pull Request at:
+# https://github.com/Tacombel/eve-frontier-blueprints/pulls`}</pre>
+              </li>
             </ol>
           </div>
           <div>
