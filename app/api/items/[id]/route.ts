@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const item = await prisma.item.findUnique({
@@ -21,7 +22,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const item = await prisma.item.update({
     where: { id: params.id },
     data: {
-      ...(name !== undefined && { name: name.trim() }),
+      ...(name !== undefined && { name: normalizeName(name) }),
       ...(isRawMaterial !== undefined && { isRawMaterial }),
       ...(isFound !== undefined && { isFound }),
       ...(isFinalProduct !== undefined && { isFinalProduct }),

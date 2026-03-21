@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const { name } = await req.json();
@@ -7,7 +8,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
   const location = await prisma.location.update({
     where: { id: params.id },
-    data: { name: name.trim() },
+    data: { name: normalizeName(name) },
   });
   return NextResponse.json(location);
 }

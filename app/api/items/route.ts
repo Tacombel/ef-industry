@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest) {
   }
 
   const item = await prisma.item.create({
-    data: { name: name.trim(), isRawMaterial, isFound, isFinalProduct },
+    data: { name: normalizeName(name), isRawMaterial, isFound, isFinalProduct },
     include: { stock: true, blueprints: { select: { id: true, factory: true, outputQty: true, isDefault: true } } },
   });
 

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const { name } = await req.json();
   if (!name?.trim()) return NextResponse.json({ error: "Name required" }, { status: 400 });
   try {
-    const factory = await prisma.factory.update({ where: { id: params.id }, data: { name: name.trim() } });
+    const factory = await prisma.factory.update({ where: { id: params.id }, data: { name: normalizeName(name) } });
     return NextResponse.json(factory);
   } catch {
     return NextResponse.json({ error: "Not found or name already exists" }, { status: 409 });

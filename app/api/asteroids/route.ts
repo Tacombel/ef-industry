@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function GET() {
   const asteroids = await prisma.asteroidType.findMany({
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   const asteroid = await prisma.asteroidType.create({
     data: {
-      name: name.trim(),
+      name: normalizeName(name),
       locations: {
         create: (locationIds as string[]).map((locationId) => ({ locationId })),
       },

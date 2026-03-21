@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 import fs from "fs";
 import path from "path";
 
@@ -15,28 +16,32 @@ type SeedData = {
 async function applyAdditive(data: SeedData) {
   // Factories
   for (const name of data.factories) {
-    await prisma.factory.upsert({ where: { name }, update: {}, create: { name } });
+    const n = normalizeName(name);
+    await prisma.factory.upsert({ where: { name: n }, update: {}, create: { name: n } });
   }
 
   // Locations
   for (const name of data.locations) {
-    await prisma.location.upsert({ where: { name }, update: {}, create: { name } });
+    const n = normalizeName(name);
+    await prisma.location.upsert({ where: { name: n }, update: {}, create: { name: n } });
   }
 
   // Items
   for (const item of data.items) {
+    const n = normalizeName(item.name);
     await prisma.item.upsert({
-      where: { name: item.name },
+      where: { name: n },
       update: { isRawMaterial: item.isRawMaterial, isFound: item.isFound, isFinalProduct: item.isFinalProduct },
-      create: item,
+      create: { ...item, name: n },
     });
   }
 
   // Asteroid types + links (add missing links, don't remove existing)
   for (const at of data.asteroidTypes) {
-    const created = await prisma.asteroidType.upsert({ where: { name: at.name }, update: {}, create: { name: at.name } });
+    const n = normalizeName(at.name);
+    const created = await prisma.asteroidType.upsert({ where: { name: n }, update: {}, create: { name: n } });
     for (const locName of at.locations) {
-      const loc = await prisma.location.findUnique({ where: { name: locName } });
+      const loc = await prisma.location.findUnique({ where: { name: normalizeName(locName) } });
       if (loc) {
         await prisma.asteroidTypeLocation.upsert({
           where: { asteroidTypeId_locationId: { asteroidTypeId: created.id, locationId: loc.id } },
@@ -46,7 +51,7 @@ async function applyAdditive(data: SeedData) {
       }
     }
     for (const itemName of at.items) {
-      const item = await prisma.item.findUnique({ where: { name: itemName } });
+      const item = await prisma.item.findUnique({ where: { name: normalizeName(itemName) } });
       if (item) {
         await prisma.itemAsteroidType.upsert({
           where: { itemId_asteroidTypeId: { itemId: item.id, asteroidTypeId: created.id } },
@@ -59,7 +64,7 @@ async function applyAdditive(data: SeedData) {
 
   // Decompositions — upsert by sourceItem, replace outputs
   for (const d of data.decompositions) {
-    const source = await prisma.item.findUnique({ where: { name: d.sourceItem } });
+    const source = await prisma.item.findUnique({ where: { name: normalizeName(d.sourceItem) } });
     if (!source) continue;
     const decomp = await prisma.decomposition.upsert({
       where: { sourceItemId: source.id },
@@ -69,7 +74,7 @@ async function applyAdditive(data: SeedData) {
     // Replace outputs for this decomposition
     await prisma.decompositionOutput.deleteMany({ where: { decompositionId: decomp.id } });
     for (const out of d.outputs) {
-      const outItem = await prisma.item.findUnique({ where: { name: out.item } });
+      const outItem = await prisma.item.findUnique({ where: { name: normalizeName(out.item) } });
       if (outItem) {
         await prisma.decompositionOutput.create({ data: { decompositionId: decomp.id, itemId: outItem.id, quantity: out.quantity } });
       }
@@ -78,10 +83,10 @@ async function applyAdditive(data: SeedData) {
 
   // Blueprints — match by (outputItem, factory), update or create; never delete
   for (const bp of data.blueprints) {
-    const outputItem = await prisma.item.findUnique({ where: { name: bp.outputItem } });
+    const outputItem = await prisma.item.findUnique({ where: { name: normalizeName(bp.outputItem) } });
     if (!outputItem) continue;
     const existing = await prisma.blueprint.findFirst({
-      where: { outputItemId: outputItem.id, factory: bp.factory ?? "" },
+      where: { outputItemId: outputItem.id, factory: normalizeName(bp.factory ?? "") },
     });
     let blueprintId: string;
     if (existing) {
@@ -92,14 +97,14 @@ async function applyAdditive(data: SeedData) {
       blueprintId = existing.id;
     } else {
       const created = await prisma.blueprint.create({
-        data: { outputItemId: outputItem.id, factory: bp.factory ?? "", outputQty: bp.outputQty, isDefault: bp.isDefault },
+        data: { outputItemId: outputItem.id, factory: normalizeName(bp.factory ?? ""), outputQty: bp.outputQty, isDefault: bp.isDefault },
       });
       blueprintId = created.id;
     }
     // Replace inputs for this blueprint
     await prisma.blueprintInput.deleteMany({ where: { blueprintId } });
     for (const inp of bp.inputs) {
-      const inpItem = await prisma.item.findUnique({ where: { name: inp.item } });
+      const inpItem = await prisma.item.findUnique({ where: { name: normalizeName(inp.item) } });
       if (inpItem) {
         await prisma.blueprintInput.create({ data: { blueprintId, itemId: inpItem.id, quantity: inp.quantity } });
       }
@@ -140,7 +145,7 @@ async function applyReset(data: SeedData) {
     if (!source) continue;
     const decomp = await prisma.decomposition.create({ data: { sourceItemId: source.id, inputQty: d.inputQty } });
     for (const out of d.outputs) {
-      const outItem = await prisma.item.findUnique({ where: { name: out.item } });
+      const outItem = await prisma.item.findUnique({ where: { name: normalizeName(out.item) } });
       if (outItem) await prisma.decompositionOutput.create({ data: { decompositionId: decomp.id, itemId: outItem.id, quantity: out.quantity } });
     }
   }
@@ -152,7 +157,7 @@ async function applyReset(data: SeedData) {
       data: { outputItemId: outputItem.id, factory: bp.factory ?? "", outputQty: bp.outputQty, isDefault: bp.isDefault },
     });
     for (const inp of bp.inputs) {
-      const inpItem = await prisma.item.findUnique({ where: { name: inp.item } });
+      const inpItem = await prisma.item.findUnique({ where: { name: normalizeName(inp.item) } });
       if (inpItem) await prisma.blueprintInput.create({ data: { blueprintId: created.id, itemId: inpItem.id, quantity: inp.quantity } });
     }
   }

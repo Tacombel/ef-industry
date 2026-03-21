@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 import type { Prisma } from "@prisma/client";
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
@@ -11,7 +12,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const updated = await tx.asteroidType.update({
       where: { id: params.id },
       data: {
-        ...(name !== undefined && { name: name.trim() }),
+        ...(name !== undefined && { name: normalizeName(name) }),
       },
     });
 
