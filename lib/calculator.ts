@@ -36,6 +36,7 @@ export interface RawMaterialResult {
   actualStock: number;
   inStock: number;      // amount consumed from stock
   toBuy: number;
+  volume: number;
   asteroids?: AsteroidInfo[];
 }
 
@@ -177,6 +178,7 @@ export function calculate(
         actualStock: item.stock,
         inStock,
         toBuy: Math.max(0, needed - Math.min(item.stock, needed)),
+        volume: item.volume,
       });
     } else {
       const inStock = stockUsed.get(itemId) ?? 0;

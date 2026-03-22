@@ -83,7 +83,8 @@ function computeOreSubstitution(
     });
 
     const rate = best.d.outputs.find((x) => x.itemId === mat.itemId)!.quantityObtained / best.d.unitsToDecompose;
-    const extra = Math.ceil(needed / rate);
+    const extraRaw = Math.ceil(needed / rate);
+    const extra = Math.ceil(extraRaw / best.d.inputQty) * best.d.inputQty;
 
     extraPerOre.set(best.d.sourceItemId, (extraPerOre.get(best.d.sourceItemId) ?? 0) + extra);
 
@@ -530,19 +531,9 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                       </span>
                       <span className="text-xs text-gray-500">
                         Decompose <span className="text-purple-300 font-semibold">{d.unitsToDecompose}</span> units
-                        ({d.runs} run{d.runs > 1 ? "s" : ""} of {d.inputQty})
+                        · <span className="text-gray-300 font-semibold">{d.runs}</span> batch{d.runs > 1 ? "es" : ""}
+                        <span className="text-gray-600"> of {d.inputQty} u</span>
                       </span>
-                      {op && (
-                        <span className="text-xs text-gray-600">
-                          {op.trips} trip{op.trips > 1 ? "s" : ""}
-                          {" · "}<span className="text-gray-500">{op.totalVolume.toFixed(2)} m³</span>
-                          {op.pico > 0.0001 && (
-                            <span className={`ml-1 ${op.pico <= cargoCapacity * 0.25 ? "text-yellow-500" : "text-gray-500"}`}>
-                              · pico <span className="font-semibold">{op.pico.toFixed(2)}</span> m³
-                            </span>
-                          )}
-                        </span>
-                      )}
                       <input
                         type="number"
                         min={0}
@@ -556,9 +547,24 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                       <span className="text-xs text-gray-600">in stock</span>
                       {(() => {
                         const toMine = Math.max(0, d.unitsToDecompose - (stock[d.sourceItemId] ?? d.actualStock));
-                        return toMine > 0
-                          ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
-                          : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
+                        return (
+                          <div className="flex flex-col items-end w-32">
+                            {toMine > 0
+                              ? <span className="text-xs font-semibold text-red-400">⛏ {toMine}</span>
+                              : <span className="text-xs font-semibold text-green-400">✓</span>}
+                            {op && op.trips > 0 && toMine > 0 && (
+                              <span className="text-xs text-blue-400"><span className="font-semibold">{op.trips}</span> trip{op.trips > 1 ? "s" : ""}</span>
+                            )}
+                            {op && op.totalVolume > 0 && toMine > 0 && (
+                              <span className="text-xs text-gray-500">{op.totalVolume.toFixed(2)} m³</span>
+                            )}
+                            {op && op.pico > 0.0001 && toMine > 0 && (
+                              <span className={`text-xs ${op.pico <= cargoCapacity * 0.25 ? "text-yellow-500" : "text-gray-600"}`}>
+                                leftover {op.pico.toFixed(2)} m³
+                              </span>
+                            )}
+                          </div>
+                        );
                       })()}
                     </div>
                     <div className="flex flex-wrap gap-1 text-xs">
@@ -579,7 +585,12 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                   </div>
                 );
               })}
-              {directOres.map((row) => (
+              {directOres.map((row) => {
+                const toMine = Math.max(0, row.totalNeeded - (stock[row.itemId] ?? row.actualStock));
+                const directTrips = (cargoCapacity > 0 && row.volume > 0 && toMine > 0)
+                  ? Math.ceil((toMine * row.volume) / cargoCapacity)
+                  : null;
+                return (
                 <div key={row.itemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
                   <div className="flex items-center gap-3">
                     <span
@@ -596,6 +607,11 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                     <span className="text-xs text-gray-500">
                       Mine <span className="text-purple-300 font-semibold">{row.totalNeeded}</span> units directly
                     </span>
+                    {directTrips !== null && (
+                      <span className="text-xs text-gray-600">
+                        {directTrips} trip{directTrips > 1 ? "s" : ""}
+                      </span>
+                    )}
                     <input
                       type="number"
                       min={0}
@@ -607,15 +623,13 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                       onChange={(e) => setStock((s) => ({ ...s, [row.itemId]: Number(e.target.value) }))}
                     />
                     <span className="text-xs text-gray-600">in stock</span>
-                    {(() => {
-                      const toMine = Math.max(0, row.totalNeeded - (stock[row.itemId] ?? row.actualStock));
-                      return toMine > 0
-                        ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
-                        : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>;
-                    })()}
+                    {toMine > 0
+                      ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
+                      : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>}
                   </div>
                 </div>
-              ))}
+              );
+              })}
             </div>
 
             {decomps.length > 0 && (

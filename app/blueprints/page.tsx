@@ -131,7 +131,7 @@ export default function BlueprintsPage() {
     : searchFiltered;
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-bold text-gray-100">Blueprints</h1>
         <button onClick={openNew} className="btn-primary">+ New Blueprint</button>
