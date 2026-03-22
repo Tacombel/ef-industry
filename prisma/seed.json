@@ -2,9 +2,11 @@
   "factories": [
     "Assembler",
     "Build",
-    "Field Printer",
-    "Mini Berth",
-    "Mini Printer"
+    "Field printer",
+    "Heavy printer",
+    "Mini berth",
+    "Mini printer",
+    "Printer"
   ],
   "locations": [
     "Inner ancient cluster",
@@ -16,7 +18,7 @@
     "Outer blue rift",
     "Outer grove",
     "Rift 0020",
-    "Rift F935",
+    "Rift f935",
     "Trojan drifting annex",
     "Trojan garden"
   ],
@@ -68,6 +70,12 @@
       "isRawMaterial": false,
       "isFound": true,
       "isFinalProduct": false
+    },
+    {
+      "name": "Heavy printer",
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": true
     },
     {
       "name": "Hydrated sulfide matrix",
@@ -344,9 +352,7 @@
           "item": "Hydrocarbon residue",
           "quantity": 5
         }
-      ],
-      "refinery": "",
-      "isDefault": true
+      ]
     },
     {
       "sourceItem": "Hydrated sulfide matrix",
@@ -360,9 +366,7 @@
           "item": "Hydrocarbon residue",
           "quantity": 10
         }
-      ],
-      "refinery": "",
-      "isDefault": true
+      ]
     },
     {
       "sourceItem": "Platinum-paladium matrix",
@@ -380,15 +384,13 @@
           "item": "Palladium",
           "quantity": 4
         }
-      ],
-      "refinery": "",
-      "isDefault": true
+      ]
     }
   ],
   "blueprints": [
     {
       "outputItem": "Afterburner II",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -420,7 +422,7 @@
     },
     {
       "outputItem": "Building foam",
-      "factory": "Mini Printer",
+      "factory": "Mini printer",
       "outputQty": 10,
       "isDefault": true,
       "inputs": [
@@ -440,7 +442,7 @@
     },
     {
       "outputItem": "Carbon weave",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 14,
       "isDefault": true,
       "inputs": [
@@ -463,6 +465,18 @@
         {
           "item": "Reinforced alloys",
           "quantity": 4
+        }
+      ]
+    },
+    {
+      "outputItem": "Heavy printer",
+      "factory": "Build",
+      "outputQty": 1,
+      "isDefault": true,
+      "inputs": [
+        {
+          "item": "Building foam",
+          "quantity": 100
         }
       ]
     },
@@ -540,7 +554,7 @@
     },
     {
       "outputItem": "Nomad program frame",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -552,7 +566,7 @@
     },
     {
       "outputItem": "Printed circuits",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -596,7 +610,7 @@
     },
     {
       "outputItem": "Reflex",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -628,7 +642,7 @@
     },
     {
       "outputItem": "Reinforced alloys",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 8,
       "isDefault": true,
       "inputs": [
@@ -648,7 +662,7 @@
     },
     {
       "outputItem": "Reiver",
-      "factory": "Mini Berth",
+      "factory": "Mini berth",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -692,7 +706,7 @@
     },
     {
       "outputItem": "Small cutting laser",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -708,7 +722,7 @@
     },
     {
       "outputItem": "Sojourn",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -724,7 +738,7 @@
     },
     {
       "outputItem": "Synthetic mining lens",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 1,
       "isDefault": true,
       "inputs": [
@@ -736,7 +750,7 @@
     },
     {
       "outputItem": "Thermal composite",
-      "factory": "Field Printer",
+      "factory": "Field printer",
       "outputQty": 14,
       "isDefault": true,
       "inputs": [
