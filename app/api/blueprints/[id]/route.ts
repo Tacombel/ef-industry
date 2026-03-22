@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const blueprint = await prisma.blueprint.findUnique({
@@ -37,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     return tx.blueprint.update({
       where: { id: params.id },
       data: {
-        ...(factory !== undefined && { factory }),
+        ...(factory !== undefined && { factory: normalizeName(factory) }),
         ...(outputQty !== undefined && { outputQty }),
         ...(isDefault !== undefined && { isDefault }),
         ...(inputs !== undefined && {

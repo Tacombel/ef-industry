@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeName } from "@/lib/normalize";
 
 export async function GET() {
   const blueprints = await prisma.blueprint.findMany({
@@ -15,6 +16,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { outputItemId, factory = "", outputQty = 1, isDefault = false, inputs = [] } = body;
+  const normalizedFactory = normalizeName(factory);
 
   if (!outputItemId) {
     return NextResponse.json({ error: "outputItemId is required" }, { status: 400 });
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
     return tx.blueprint.create({
       data: {
         outputItemId,
-        factory,
+        factory: normalizedFactory,
         outputQty,
         isDefault: shouldBeDefault,
         inputs: {

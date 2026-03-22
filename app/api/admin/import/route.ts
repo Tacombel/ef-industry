@@ -155,7 +155,7 @@ async function applyReset(data: SeedData) {
     const outputItem = await prisma.item.findUnique({ where: { name: bp.outputItem } });
     if (!outputItem) continue;
     const created = await prisma.blueprint.create({
-      data: { outputItemId: outputItem.id, factory: bp.factory ?? "", outputQty: bp.outputQty, isDefault: bp.isDefault },
+      data: { outputItemId: outputItem.id, factory: normalizeName(bp.factory ?? ""), outputQty: bp.outputQty, isDefault: bp.isDefault },
     });
     for (const inp of bp.inputs) {
       const inpItem = await prisma.item.findUnique({ where: { name: normalizeName(inp.item) } });
