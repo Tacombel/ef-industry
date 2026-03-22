@@ -44,6 +44,10 @@ export default function LegalModal() {
               All your data (stock, packs, blueprints) is stored <span className="text-gray-100">locally on this server only</span>.
               Nothing is sent to third parties. No analytics. No tracking.
             </p>
+            <p className="mt-2">
+              A single <span className="text-gray-100">functional cookie</span> is used to keep you logged in during your session.
+              No tracking or advertising cookies are used.
+            </p>
           </div>
           <div className="border-t border-gray-700 pt-4">
             <p className="font-medium text-gray-200 mb-1">Use at your own risk</p>
