@@ -18,9 +18,10 @@ export default function AdminPage() {
   const [usersLoading, setUsersLoading] = useState(true);
   const [userError, setUserError] = useState("");
 
-  // Reset password inline state: userId → new password value
+  // Reset password inline state
   const [resetId, setResetId] = useState<string | null>(null);
   const [resetPw, setResetPw] = useState("");
+  const [resetCopied, setResetCopied] = useState(false);
   const [resetError, setResetError] = useState("");
   const [resetOk, setResetOk] = useState<string | null>(null);
 
@@ -64,9 +65,17 @@ export default function AdminPage() {
     await loadUsers();
   }
 
+  function generatePassword() {
+    const chars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%";
+    const arr = new Uint8Array(14);
+    crypto.getRandomValues(arr);
+    return Array.from(arr).map((b) => chars[b % chars.length]).join("");
+  }
+
   function openReset(userId: string) {
     setResetId(userId);
-    setResetPw("");
+    setResetPw(generatePassword());
+    setResetCopied(false);
     setResetError("");
     setResetOk(null);
   }
@@ -74,15 +83,17 @@ export default function AdminPage() {
   function cancelReset() {
     setResetId(null);
     setResetPw("");
+    setResetCopied(false);
     setResetError("");
+  }
+
+  async function copyPassword() {
+    await navigator.clipboard.writeText(resetPw);
+    setResetCopied(true);
   }
 
   async function submitReset(userId: string) {
     setResetError("");
-    if (resetPw.length < 6) {
-      setResetError("Password must be at least 6 characters");
-      return;
-    }
     const res = await fetch(`/api/admin/users/${userId}/password`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -96,6 +107,7 @@ export default function AdminPage() {
     setResetOk(userId);
     setResetId(null);
     setResetPw("");
+    setResetCopied(false);
     setTimeout(() => setResetOk(null), 3000);
   }
 
@@ -186,19 +198,19 @@ export default function AdminPage() {
                       <tr className="border-b border-gray-800/50 bg-gray-800/20">
                         <td colSpan={4} className="px-2 py-3">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs text-gray-400 shrink-0">New password for <span className="text-gray-200">{u.username}</span>:</span>
-                            <input
-                              type="password"
-                              value={resetPw}
-                              onChange={(e) => setResetPw(e.target.value)}
-                              placeholder="min. 6 characters"
-                              className="input text-sm flex-1 min-w-0"
-                              autoFocus
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") submitReset(u.id);
-                                if (e.key === "Escape") cancelReset();
-                              }}
-                            />
+                            <span className="text-xs text-gray-400 shrink-0">
+                              New password for <span className="text-gray-200">{u.username}</span>:
+                            </span>
+                            <code className="flex-1 min-w-0 font-mono text-sm text-cyan-300 bg-gray-950 border border-gray-700 rounded px-2 py-1 truncate select-all">
+                              {resetPw}
+                            </code>
+                            <button
+                              onClick={copyPassword}
+                              className="btn-ghost text-xs shrink-0"
+                              title="Copy to clipboard"
+                            >
+                              {resetCopied ? "Copied!" : "Copy"}
+                            </button>
                             <button
                               onClick={() => submitReset(u.id)}
                               className="btn-sm btn-primary shrink-0"
