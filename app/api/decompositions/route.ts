@@ -23,6 +23,12 @@ export async function POST(req: NextRequest) {
   if (outputs.length === 0) {
     return NextResponse.json({ error: "At least one output is required" }, { status: 400 });
   }
+  if (!Number.isInteger(inputQty) || inputQty < 1) {
+    return NextResponse.json({ error: "inputQty must be a positive integer" }, { status: 400 });
+  }
+  if (outputs.some((o: { itemId: string; quantity: number }) => !o.itemId || !Number.isInteger(o.quantity) || o.quantity < 1)) {
+    return NextResponse.json({ error: "Each output must have a valid itemId and quantity >= 1" }, { status: 400 });
+  }
 
   const normalizedRefinery = normalizeName(refinery);
 

@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   const runs = Number(req.nextUrl.searchParams.get("runs") ?? "1");
 
   if (!itemId) return NextResponse.json({ error: "itemId required" }, { status: 400 });
-  if (runs < 1) return NextResponse.json({ error: "runs must be >= 1" }, { status: 400 });
+  if (!Number.isInteger(runs) || runs < 1) return NextResponse.json({ error: "runs must be a positive integer" }, { status: 400 });
 
   const itemMap = buildItemMap(await fetchCalcItems());
 

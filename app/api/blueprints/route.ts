@@ -21,6 +21,12 @@ export async function POST(req: NextRequest) {
   if (!outputItemId) {
     return NextResponse.json({ error: "outputItemId is required" }, { status: 400 });
   }
+  if (!Number.isInteger(outputQty) || outputQty < 1) {
+    return NextResponse.json({ error: "outputQty must be a positive integer" }, { status: 400 });
+  }
+  if (inputs.some((i: { itemId: string; quantity: number }) => !i.itemId || !Number.isInteger(i.quantity) || i.quantity < 1)) {
+    return NextResponse.json({ error: "Each input must have a valid itemId and quantity >= 1" }, { status: 400 });
+  }
 
   const blueprint = await prisma.$transaction(async (tx) => {
     // If this is set as default, unset any existing default for this item

@@ -4,9 +4,8 @@ import { fetchCalcItems, buildStockDeltas, applyStockDeltas } from "@/lib/calc-h
 
 export async function POST(req: NextRequest) {
   const { itemId, runs } = await req.json();
-  if (!itemId || !runs) {
-    return NextResponse.json({ error: "itemId and runs required" }, { status: 400 });
-  }
+  if (!itemId) return NextResponse.json({ error: "itemId required" }, { status: 400 });
+  if (!Number.isInteger(runs) || runs < 1) return NextResponse.json({ error: "runs must be a positive integer" }, { status: 400 });
 
   const itemMap = buildItemMap(await fetchCalcItems());
 
