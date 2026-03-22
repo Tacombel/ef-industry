@@ -63,6 +63,10 @@ export async function POST() {
     return NextResponse.json({ ok: false, error: "No hay servidor remoto configurado." }, { status: 400 });
   }
 
+  if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+$/.test(config.host)) {
+    return NextResponse.json({ ok: false, error: "Configuración de host inválida." }, { status: 400 });
+  }
+
   const sshDir = resolveSSHDir();
   const keyPath = resolve(sshDir, "eve_backup_ed25519");
   if (!existsSync(keyPath)) {

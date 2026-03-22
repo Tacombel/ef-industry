@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/hooks/useSession";
 
 interface User {
@@ -113,6 +113,11 @@ export default function AdminPage() {
     setRenormalizing(false);
   }
 
+  const selfId = useMemo(
+    () => users.find((x) => x.username === me?.username)?.id,
+    [users, me]
+  );
+
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-gray-100">Admin</h1>
@@ -139,7 +144,7 @@ export default function AdminPage() {
             </thead>
             <tbody>
               {users.map((u) => {
-                const isSelfById = users.find(x => x.username === me?.username)?.id === u.id;
+                const isSelfById = selfId === u.id;
                 const isResetting = resetId === u.id;
                 return (
                   <Fragment key={u.id}>

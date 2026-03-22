@@ -38,7 +38,10 @@ export async function getSession(): Promise<SessionPayload | null> {
 
   try {
     const { payload } = await jwtVerify(cookie.value, getSecret());
-    return { userId: payload.userId as string, username: payload.username as string, role: payload.role as string };
+    if (typeof payload.userId !== "string" || typeof payload.username !== "string" || typeof payload.role !== "string") {
+      return null;
+    }
+    return { userId: payload.userId, username: payload.username, role: payload.role };
   } catch {
     return null;
   }

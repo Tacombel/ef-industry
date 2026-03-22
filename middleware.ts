@@ -10,7 +10,9 @@ const ADMIN_PAGES = ["/admin"];
 const ADMIN_API = ["/api/admin"];
 
 function getSecret() {
-  return new TextEncoder().encode(process.env.JWT_SECRET ?? "");
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error("JWT_SECRET is not set");
+  return new TextEncoder().encode(secret);
 }
 
 export async function middleware(req: NextRequest) {
