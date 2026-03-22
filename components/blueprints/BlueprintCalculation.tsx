@@ -112,6 +112,10 @@ function computeOreSubstitution(
       return { ore, extraUnits, newTotal: ore.d.unitsToDecompose + extraUnits, fitsInSpare, extraTrips };
     });
 
+    // Only suggest if the optimization actually saves trips
+    const totalExtraTrips = adjustments.reduce((s, a) => s + a.extraTrips, 0);
+    if (target.trips - totalExtraTrips <= 0) continue;
+
     return {
       target,
       adjustments,
@@ -471,6 +475,11 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
             </div>
 
             {/* Ore substitution suggestion — shown before the list */}
+            {!suggestion && cargoCapacity > 0 && decomps.length >= 2 && (
+              <div className="mb-3 rounded border border-gray-800 bg-gray-800/30 p-3 text-xs text-gray-500">
+                💡 No trip optimization possible for this combination.
+              </div>
+            )}
             {suggestion && (
               <div className={`mb-3 rounded border p-3 text-xs ${
                 suggestion.allFitInSpare
