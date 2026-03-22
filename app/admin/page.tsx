@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSession } from "@/hooks/useSession";
 
 interface User {
@@ -139,8 +139,8 @@ export default function AdminPage() {
                 const isSelfById = users.find(x => x.username === me?.username)?.id === u.id;
                 const isResetting = resetId === u.id;
                 return (
-                  <>
-                    <tr key={u.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <Fragment key={u.id}>
+                    <tr className="border-b border-gray-800/50 hover:bg-gray-800/30">
                       <td className="py-2 pr-4 font-medium text-gray-200">
                         {u.username}
                         {isSelfById && <span className="ml-2 text-xs text-gray-600">(you)</span>}
@@ -183,7 +183,7 @@ export default function AdminPage() {
                       </td>
                     </tr>
                     {isResetting && (
-                      <tr key={`${u.id}-reset`} className="border-b border-gray-800/50 bg-gray-800/20">
+                      <tr className="border-b border-gray-800/50 bg-gray-800/20">
                         <td colSpan={4} className="px-2 py-3">
                           <div className="flex items-center gap-2">
                             <span className="text-xs text-gray-400 shrink-0">New password for <span className="text-gray-200">{u.username}</span>:</span>
@@ -212,7 +212,7 @@ export default function AdminPage() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
             </tbody>
