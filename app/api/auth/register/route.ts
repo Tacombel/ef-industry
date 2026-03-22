@@ -16,8 +16,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
   }
 
-  const existing = await prisma.user.findUnique({ where: { username: username.trim() } });
-  if (existing) {
+  const trimmed = username.trim();
+
+  const existing = await prisma.$queryRaw<{ id: string }[]>`
+    SELECT id FROM "User" WHERE LOWER(username) = LOWER(${trimmed}) LIMIT 1
+  `;
+  if (existing.length > 0) {
     return NextResponse.json({ error: "Username already taken" }, { status: 409 });
   }
 
@@ -26,7 +30,7 @@ export async function POST(req: NextRequest) {
   const role = userCount === 0 ? "ADMIN" : "USER";
 
   const user = await prisma.user.create({
-    data: { username: username.trim(), password: hashed, role },
+    data: { username: trimmed, password: hashed, role },
   });
 
   await createSession({ userId: user.id, username: user.username, role: user.role });

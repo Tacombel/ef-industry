@@ -10,7 +10,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Username and password are required" }, { status: 400 });
   }
 
-  const user = await prisma.user.findUnique({ where: { username: username.trim() } });
+  const rows = await prisma.$queryRaw<{ id: string; username: string; password: string; role: string }[]>`
+    SELECT id, username, password, role FROM "User" WHERE LOWER(username) = LOWER(${username.trim()}) LIMIT 1
+  `;
+  const user = rows[0] ?? null;
   if (!user) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
