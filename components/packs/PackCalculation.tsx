@@ -84,16 +84,20 @@ export default function PackCalculation({ packId }: { packId: string }) {
       ...(result.finalProducts ?? []),
       ...(result.decompositions ?? []).map((d) => ({ itemId: d.sourceItemId, actualStock: d.actualStock })),
     ];
-    await Promise.all(
+    const results = await Promise.allSettled(
       allRows.map((row) =>
         fetch(`/api/stock/${row.itemId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ quantity: stock[row.itemId] ?? row.actualStock }),
-        })
+        }).then((r) => { if (!r.ok) throw new Error(`Stock save failed for ${row.itemId}`); })
       )
     );
+    const failed = results.filter((r) => r.status === "rejected").length;
     setSaving(false);
+    if (failed > 0) {
+      alert(`${failed} item(s) could not be saved. The rest were updated successfully.`);
+    }
     load(true);
   }
 
