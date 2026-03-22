@@ -86,19 +86,6 @@ Then open the app and go to **Admin**. You have two import options:
 
 > Your stock and packs are never affected by either import.
 
-### Contribute data
-
-1. Fork the repository (or ask to be added as a collaborator)
-2. Pull the latest changes: `git pull`
-3. Make your changes in the app (add items, blueprints, etc.)
-4. Go to **Admin → Export** to save the updated dataset
-5. Commit and open a Pull Request:
-   ```bash
-   git add prisma/seed.json
-   git commit -m "feat: add blueprints for XYZ"
-   git push
-   ```
-
 ---
 
 ## Tech stack
