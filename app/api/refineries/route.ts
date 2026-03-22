@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeName } from "@/lib/normalize";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET() {
   const refineries = await prisma.refinery.findMany({ orderBy: { name: "asc" } });
@@ -8,6 +9,9 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const { name } = await req.json();
   if (!name?.trim()) return NextResponse.json({ error: "Name required" }, { status: 400 });
   try {

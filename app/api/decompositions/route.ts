@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeName } from "@/lib/normalize";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET() {
   const decompositions = await prisma.decomposition.findMany({
@@ -14,6 +15,9 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const body = await req.json();
   const { sourceItemId, refinery = "", inputQty = 1, isDefault = false, outputs = [] } = body;
 

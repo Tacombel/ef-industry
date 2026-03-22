@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useSession } from "@/hooks/useSession";
 
 interface Item { id: string; name: string }
 interface Refinery { id: string; name: string }
@@ -17,6 +18,7 @@ interface Decomposition {
 const emptyOutputRow = () => ({ itemId: "", quantity: 1 });
 
 export default function DecompositionsPage() {
+  const { isAdmin } = useSession();
   const [decompositions, setDecompositions] = useState<Decomposition[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [refineries, setRefineries] = useState<Refinery[]>([]);
@@ -116,7 +118,7 @@ export default function DecompositionsPage() {
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-2xl font-bold text-gray-100">Decompositions</h1>
-        <button onClick={openNew} className="btn-primary">+ New Decomposition</button>
+        {isAdmin && <button onClick={openNew} className="btn-primary">+ New Decomposition</button>}
       </div>
       <p className="text-sm text-gray-500 mb-6">
         Define how a material breaks down when reprocessed. Multiple refineries can yield different outputs.
@@ -150,8 +152,8 @@ export default function DecompositionsPage() {
                       </span>
                       {d.isDefault && <span className="badge badge-yellow text-xs">Default</span>}
                       <span className="text-xs text-gray-500">{d.inputQty} u/run</span>
-                      <button onClick={() => openEdit(d)} className="btn-sm">Edit</button>
-                      <button onClick={() => remove(d.id, d.sourceItem.name, d.refinery)} className="btn-sm btn-danger">Del</button>
+                      {isAdmin && <button onClick={() => openEdit(d)} className="btn-sm">Edit</button>}
+                      {isAdmin && <button onClick={() => remove(d.id, d.sourceItem.name, d.refinery)} className="btn-sm btn-danger">Del</button>}
                     </div>
                     <div className="flex flex-wrap gap-2 ml-6">
                       {d.outputs.map((o) => (

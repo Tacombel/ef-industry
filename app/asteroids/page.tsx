@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
 
 interface Location {
   id: string;
@@ -29,6 +30,7 @@ export default function AsteroidsPage() {
 
   const [showAsteroidForm, setShowAsteroidForm] = useState(false);
   const [editAsteroidId, setEditAsteroidId] = useState<string | null>(null);
+  const { isAdmin } = useSession();
   const [asteroidForm, setAsteroidForm] = useState(emptyForm);
 
   const [showLocationForm, setShowLocationForm] = useState(false);
@@ -151,7 +153,7 @@ export default function AsteroidsPage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-base font-semibold text-cyan-300">Asteroid Types</h2>
-          <button className="btn-sm btn-primary" onClick={openNewAsteroid}>+ Add</button>
+          {isAdmin && <button className="btn-sm btn-primary" onClick={openNewAsteroid}>+ Add</button>}
         </div>
 
         {asteroids.length === 0 ? (
@@ -188,10 +190,12 @@ export default function AsteroidsPage() {
                         ))}
                     </div>
                   </td>
-                  <td className="py-2 text-right space-x-2">
-                    <button className="btn-ghost text-xs" onClick={() => openEditAsteroid(a)}>Edit</button>
-                    <button className="btn-ghost btn-danger text-xs" onClick={() => deleteAsteroid(a.id)}>Del</button>
-                  </td>
+                  {isAdmin && (
+                    <td className="py-2 text-right space-x-2">
+                      <button className="btn-ghost text-xs" onClick={() => openEditAsteroid(a)}>Edit</button>
+                      <button className="btn-ghost btn-danger text-xs" onClick={() => deleteAsteroid(a.id)}>Del</button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -203,7 +207,7 @@ export default function AsteroidsPage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-base font-semibold text-cyan-300">Locations</h2>
-          <button className="btn-sm btn-primary" onClick={openNewLocation}>+ Add</button>
+          {isAdmin && <button className="btn-sm btn-primary" onClick={openNewLocation}>+ Add</button>}
         </div>
 
         {locations.length === 0 ? (
@@ -234,10 +238,12 @@ export default function AsteroidsPage() {
                           ))}
                       </div>
                     </td>
-                    <td className="py-2 text-right space-x-2">
-                      <button className="btn-ghost text-xs" onClick={() => openEditLocation(l)}>Edit</button>
-                      <button className="btn-ghost btn-danger text-xs" onClick={() => deleteLocation(l.id)}>Del</button>
-                    </td>
+                    {isAdmin && (
+                      <td className="py-2 text-right space-x-2">
+                        <button className="btn-ghost text-xs" onClick={() => openEditLocation(l)}>Edit</button>
+                        <button className="btn-ghost btn-danger text-xs" onClick={() => deleteLocation(l.id)}>Del</button>
+                      </td>
+                    )}
                   </tr>
                 );
               })}

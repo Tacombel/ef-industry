@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useSession } from "@/hooks/useSession";
 import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
 
 interface Item { id: string; name: string; isRawMaterial: boolean }
@@ -24,6 +25,7 @@ export default function BlueprintsPage() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
   const [loading, setLoading] = useState(true);
+  const { isAdmin } = useSession();
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [outputItemId, setOutputItemId] = useState("");
@@ -134,7 +136,7 @@ export default function BlueprintsPage() {
     <div className="max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-bold text-gray-100">Blueprints</h1>
-        <button onClick={openNew} className="btn-primary">+ New Blueprint</button>
+        {isAdmin && <button onClick={openNew} className="btn-primary">+ New Blueprint</button>}
       </div>
       <div className="mb-4">
         <input
@@ -204,8 +206,8 @@ export default function BlueprintsPage() {
                           <span className="badge badge-yellow text-xs">Default</span>
                         )}
                         <span className="text-xs text-gray-500">×{bp.outputQty}/run</span>
-                        <button onClick={() => openEdit(bp)} className="btn-sm">Edit</button>
-                        <button onClick={() => remove(bp.id, item.name, bp.factory)} className="btn-sm btn-danger">Del</button>
+                        {isAdmin && <button onClick={() => openEdit(bp)} className="btn-sm">Edit</button>}
+                        {isAdmin && <button onClick={() => remove(bp.id, item.name, bp.factory)} className="btn-sm btn-danger">Del</button>}
                       </div>
 
                       {/* Inputs table */}

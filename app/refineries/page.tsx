@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
 
 interface Refinery {
   id: string;
@@ -8,6 +9,7 @@ interface Refinery {
 }
 
 export default function RefineriesPage() {
+  const { isAdmin } = useSession();
   const [refineries, setRefineries] = useState<Refinery[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
@@ -61,7 +63,7 @@ export default function RefineriesPage() {
     <div className="p-6 space-y-6 max-w-2xl">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-gray-100">Refineries</h1>
-        <button className="btn-sm btn-primary" onClick={openNew}>+ New Refinery</button>
+        {isAdmin && <button className="btn-sm btn-primary" onClick={openNew}>+ New Refinery</button>}
       </div>
 
       {refineries.length === 0 ? (
@@ -78,10 +80,12 @@ export default function RefineriesPage() {
             {refineries.map((r) => (
               <tr key={r.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                 <td className="py-2 pr-4 font-medium text-gray-200">{r.name}</td>
-                <td className="py-2 text-right space-x-2">
-                  <button className="btn-ghost text-xs" onClick={() => openEdit(r)}>Edit</button>
-                  <button className="btn-ghost btn-danger text-xs" onClick={() => deleteRefinery(r.id, r.name)}>Del</button>
-                </td>
+                {isAdmin && (
+                  <td className="py-2 text-right space-x-2">
+                    <button className="btn-ghost text-xs" onClick={() => openEdit(r)}>Edit</button>
+                    <button className="btn-ghost btn-danger text-xs" onClick={() => deleteRefinery(r.id, r.name)}>Del</button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
 
 interface Item {
   id: string;
@@ -16,6 +17,7 @@ interface Item {
 const emptyForm = { name: "", isRawMaterial: false, isFound: false, isFinalProduct: false, volume: 0 };
 
 export default function ItemsPage() {
+  const { isAdmin } = useSession();
   const [items, setItems] = useState<Item[]>([]);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -73,7 +75,7 @@ export default function ItemsPage() {
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-100">Items</h1>
-        <button onClick={openNew} className="btn-primary">+ New Item</button>
+        {isAdmin && <button onClick={openNew} className="btn-primary">+ New Item</button>}
       </div>
 
       <input
@@ -119,10 +121,12 @@ export default function ItemsPage() {
                     ? <span className="text-gray-600">—</span>
                     : <span>{item.blueprints.length} blueprint{item.blueprints.length > 1 ? "s" : ""}</span>}
                 </td>
-                <td className="py-2 flex gap-2 justify-end">
-                  <button onClick={() => openEdit(item)} className="btn-sm">Edit</button>
-                  <button onClick={() => remove(item.id, item.name)} className="btn-sm btn-danger">Del</button>
-                </td>
+                {isAdmin && (
+                  <td className="py-2 flex gap-2 justify-end">
+                    <button onClick={() => openEdit(item)} className="btn-sm">Edit</button>
+                    <button onClick={() => remove(item.id, item.name)} className="btn-sm btn-danger">Del</button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

@@ -47,3 +47,12 @@ export async function getSession(): Promise<SessionPayload | null> {
 export async function deleteSession(): Promise<void> {
   cookies().delete(COOKIE_NAME);
 }
+
+/** Returns a 401/403 response if the session is missing or not ADMIN, null otherwise. */
+export async function requireAdmin(): Promise<import("next/server").NextResponse | null> {
+  const { NextResponse } = await import("next/server");
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (session.role !== "ADMIN") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  return null;
+}

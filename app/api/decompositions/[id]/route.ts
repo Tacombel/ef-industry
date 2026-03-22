@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeName } from "@/lib/normalize";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const d = await prisma.decomposition.findUnique({
@@ -12,6 +13,9 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const body = await req.json();
   const { refinery, inputQty, isDefault, outputs } = body;
 
@@ -54,6 +58,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const deleted = await prisma.decomposition.delete({ where: { id: params.id } });
 
   // If it was the default, promote another decomposition for the same item

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
 
 interface Factory {
   id: string;
@@ -8,6 +9,7 @@ interface Factory {
 }
 
 export default function FactoriesPage() {
+  const { isAdmin } = useSession();
   const [factories, setFactories] = useState<Factory[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
@@ -67,7 +69,7 @@ export default function FactoriesPage() {
     <div className="p-6 space-y-6 max-w-2xl">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-gray-100">Factories</h1>
-        <button className="btn-sm btn-primary" onClick={openNew}>+ New Factory</button>
+        {isAdmin && <button className="btn-sm btn-primary" onClick={openNew}>+ New Factory</button>}
       </div>
 
       {factories.length === 0 ? (
@@ -84,10 +86,12 @@ export default function FactoriesPage() {
             {factories.map((f) => (
               <tr key={f.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                 <td className="py-2 pr-4 font-medium text-gray-200">{f.name}</td>
-                <td className="py-2 text-right space-x-2">
-                  <button className="btn-ghost text-xs" onClick={() => openEdit(f)}>Edit</button>
-                  <button className="btn-ghost btn-danger text-xs" onClick={() => deleteFactory(f.id, f.name)}>Del</button>
-                </td>
+                {isAdmin && (
+                  <td className="py-2 text-right space-x-2">
+                    <button className="btn-ghost text-xs" onClick={() => openEdit(f)}>Edit</button>
+                    <button className="btn-ghost btn-danger text-xs" onClick={() => deleteFactory(f.id, f.name)}>Del</button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

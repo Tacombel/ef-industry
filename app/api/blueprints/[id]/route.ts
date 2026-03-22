@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeName } from "@/lib/normalize";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const blueprint = await prisma.blueprint.findUnique({
@@ -16,6 +17,9 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const body = await req.json();
   const { factory, outputQty, isDefault, inputs } = body;
 
@@ -61,6 +65,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const deleted = await prisma.blueprint.delete({ where: { id: params.id } });
 
   // If the deleted blueprint was the default, promote the next one

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeName } from "@/lib/normalize";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET() {
   const asteroids = await prisma.asteroidType.findMany({
@@ -14,6 +15,9 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   const { name, locationIds = [], itemIds = [] } = await req.json();
   if (!name?.trim()) return NextResponse.json({ error: "Name is required" }, { status: 400 });
 
