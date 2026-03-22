@@ -14,53 +14,42 @@ A tool to manage blueprints, calculate required materials, and track stock in EV
 
 ---
 
-## Requirements
-
-- [Node.js](https://nodejs.org/) v18 or higher
-- npm (included with Node.js)
-- Git
-
----
-
 ## Installation
 
-### 1. Clone the repository
+### Option A — Local (Node.js)
+
+**Requirements:** [Node.js](https://nodejs.org/) v18 or higher, npm, Git
+
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Tacombel/eve-frontier-blueprints.git
 cd eve-frontier-blueprints
 ```
 
-### 2. Install dependencies
+#### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Set up the database
+#### 3. Set up the database
 
-Create a `.env` file in the project root with the following content:
+Create a `.env` file in the project root:
 
 ```env
 DATABASE_URL="file:./prisma/dev.db"
+JWT_SECRET="change-this-to-a-random-secret"
 ```
 
-Apply the migrations to create the database structure:
+Apply the migrations:
 
 ```bash
 npx prisma migrate deploy
 npx prisma generate
 ```
 
-Then load the shared game data:
-
-```bash
-npm run db:seed
-```
-
-> **Note:** `npm run db:seed` does a **full reset** of all game data (items, blueprints, decompositions, factories, asteroid types) and replaces it with the contents of `prisma/seed.json`. Your personal stock and packs are **never affected**.
-
-### 4. Start the app
+#### 4. Start the app
 
 ```bash
 npm run dev
@@ -70,13 +59,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Collaborative data
+### Option B — Docker *(Soon)*
 
-Game data (items, blueprints, decompositions, factories, asteroid types) is stored in [`prisma/seed.json`](prisma/seed.json) and shared via this repository. Stock and packs are personal and stay local only.
+> Docker support is coming. A pre-built image for `linux/amd64` and `linux/arm64` will be available on Docker Hub.
 
-### Sync the latest data from GitHub
+---
 
-When someone pushes new data to `seed.json`, pull the changes:
+## Game data
+
+Game data (items, blueprints, decompositions, factories, asteroid types) is shared via this repository. Stock and packs are personal and stay local only.
+
+### Sync the latest data
+
+When new data is pushed to the repository, pull the changes:
 
 ```bash
 git pull
@@ -86,19 +81,17 @@ Then open the app and go to **Admin**. You have two import options:
 
 | Option | What it does |
 |--------|-------------|
-| **Merge import** | Adds or updates records from `seed.json`. Existing data not in the file is left untouched. Safe for day-to-day updates. |
-| **Reset import** | Deletes **all** game data and replaces it with `seed.json`. Use this to fix inconsistencies or start clean. |
+| **Merge import** | Adds or updates records from the shared dataset. Existing data not in the file is left untouched. Safe for day-to-day updates. |
+| **Reset import** | Deletes **all** game data and replaces it with the shared dataset. Use this to fix inconsistencies or start clean. |
 
 > Your stock and packs are never affected by either import.
-
-If you prefer the terminal, `npm run db:seed` is equivalent to a full reset import.
 
 ### Contribute data
 
 1. Fork the repository (or ask to be added as a collaborator)
 2. Pull the latest changes: `git pull`
 3. Make your changes in the app (add items, blueprints, etc.)
-4. Go to **Admin → Export to seed.json** (or run `npm run db:export`)
+4. Go to **Admin → Export** to save the updated dataset
 5. Commit and open a Pull Request:
    ```bash
    git add prisma/seed.json
