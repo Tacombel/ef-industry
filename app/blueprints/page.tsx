@@ -155,7 +155,7 @@ export default function BlueprintsPage() {
       ) : (
         <div className="space-y-3">
           {filteredGrouped.length === 0 && (
-            <p className="text-gray-500">No blueprints match "{search}".</p>
+            <p className="text-gray-500">No blueprints match &quot;{search}&quot;.</p>
           )}
           {filteredGrouped.map(({ item, blueprints }) => (
             <div key={item.id} className="rounded-lg border border-gray-800 bg-gray-900">
