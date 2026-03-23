@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { execSync } from "child_process";
 
-const REPO = "Tacombel/eve-frontier-blueprints";
+const REPO = "Tacombel/ef-industry";
 const BRANCH = "main";
 
 function getLocalCommit(): string | null {

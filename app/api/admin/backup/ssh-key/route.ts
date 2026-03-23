@@ -3,6 +3,7 @@ import { requireAdmin } from "@/lib/auth";
 import { existsSync, mkdirSync, readFileSync, renameSync, unlinkSync } from "fs";
 import { resolve } from "path";
 import { execFileSync } from "child_process";
+import { name as appName } from "@/package.json";
 
 function resolveSSHDir(): string {
   const dir = existsSync("/data") ? "/data/ssh" : resolve(process.cwd(), "prisma/ssh");
@@ -41,7 +42,7 @@ export async function POST() {
   try { unlinkSync(`${keyPath}.pub`); } catch { /* no existía */ }
 
   try {
-    execFileSync("ssh-keygen", ["-t", "ed25519", "-N", "", "-f", keyPath, "-C", "ef_industry_backup"], {
+    execFileSync("ssh-keygen", ["-t", "ed25519", "-N", "", "-f", keyPath, "-C", `${appName}_backup`], {
       timeout: 10_000,
     });
   } catch (err: unknown) {

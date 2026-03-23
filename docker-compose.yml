@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: eve-frontier-blueprints
+    container_name: ef-industry
     ports:
       - "${HOST_PORT:-3000}:3000"
     environment:

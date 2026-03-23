@@ -23,8 +23,8 @@ A tool to manage blueprints, calculate required materials, and track stock in EV
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Tacombel/eve-frontier-blueprints.git
-cd eve-frontier-blueprints
+git clone https://github.com/Tacombel/ef-industry.git
+cd ef-industry
 ```
 
 #### 2. Install dependencies
