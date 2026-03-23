@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
+import { name as appName } from "@/package.json";
 
 function resolveRemoteConfigPath(): string {
   const base = existsSync("/data") ? "/data" : resolve(process.cwd(), "prisma");
@@ -17,11 +18,11 @@ interface RemoteConfig {
 
 function readConfig(): RemoteConfig {
   const configPath = resolveRemoteConfigPath();
-  if (!existsSync(configPath)) return { host: null, port: null, path: "~/eve-backups", lastSync: null };
+  if (!existsSync(configPath)) return { host: null, port: null, path: `~/sync/${appName}`, lastSync: null };
   try {
     return JSON.parse(readFileSync(configPath, "utf8")) as RemoteConfig;
   } catch {
-    return { host: null, port: null, path: "~/eve-backups", lastSync: null };
+    return { host: null, port: null, path: `~/sync/${appName}`, lastSync: null };
   }
 }
 
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
   }
 
   const rawPath = typeof body.path === "string" ? body.path.trim() : "";
-  const remotePath = rawPath || "~/eve-backups";
+  const remotePath = rawPath || `~/sync/${appName}`;
   if (remotePath.includes("..") || !/^[\w.~\-/]+$/.test(remotePath)) {
     return NextResponse.json({ error: "Ruta remota inválida" }, { status: 400 });
   }

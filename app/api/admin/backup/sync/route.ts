@@ -3,6 +3,7 @@ import { requireAdmin } from "@/lib/auth";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { spawn } from "child_process";
+import { name as appName } from "@/package.json";
 
 function resolveSSHDir(): string {
   const dir = existsSync("/data") ? "/data/ssh" : resolve(process.cwd(), "prisma/ssh");
@@ -15,9 +16,17 @@ function resolveRemoteConfigPath(): string {
   return resolve(base, "backup_remote.json");
 }
 
-function resolveBackupDir(): string | null {
-  const candidates = ["/data/backups", resolve(process.cwd(), "prisma/backups")];
-  return candidates.find(existsSync) ?? null;
+function resolveBackupDir(): string {
+  const dir = existsSync("/data") ? "/data/backups" : resolve(process.cwd(), "prisma/backups");
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      resolve(dir, "test_de_backup.txt"),
+      `Fichero de prueba creado el ${new Date().toISOString()}.\nEl primer backup real se generará automáticamente a las 02:00.\n`,
+      "utf8"
+    );
+  }
+  return dir;
 }
 
 interface RemoteConfig {
@@ -68,18 +77,15 @@ export async function POST() {
   }
 
   const sshDir = resolveSSHDir();
-  const keyPath = resolve(sshDir, "eve_backup_ed25519");
+  const keyPath = resolve(sshDir, `${appName}_backup_ed25519`);
   if (!existsSync(keyPath)) {
     return NextResponse.json({ ok: false, error: "No hay clave SSH generada. Genera una clave primero." }, { status: 400 });
   }
 
   const backupDir = resolveBackupDir();
-  if (!backupDir) {
-    return NextResponse.json({ ok: false, error: "No se encontró el directorio de backups." }, { status: 500 });
-  }
 
   const knownHostsPath = resolve(sshDir, "known_hosts");
-  const remotePath = config.path || "~/eve-backups";
+  const remotePath = config.path || `~/sync/${appName}`;
   const portNum = config.port ? parseInt(String(config.port), 10) : NaN;
   const portFlag = !isNaN(portNum) && portNum > 0 && portNum <= 65535 ? ` -p ${portNum}` : "";
 

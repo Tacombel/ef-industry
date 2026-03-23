@@ -9,7 +9,7 @@ function resolveSSHDir(): string {
   const dir = existsSync("/data") ? "/data/ssh" : resolve(process.cwd(), "prisma/ssh");
   mkdirSync(dir, { recursive: true, mode: 0o700 });
   const oldKey = resolve(dir, "eve_backup_rsa");
-  const newKey = resolve(dir, "eve_backup_ed25519");
+  const newKey = resolve(dir, `${appName}_backup_ed25519`);
   if (existsSync(oldKey) && !existsSync(newKey)) {
     try {
       renameSync(oldKey, newKey);
@@ -24,7 +24,7 @@ export async function GET() {
   if (authError) return authError;
 
   const sshDir = resolveSSHDir();
-  const pubKeyPath = resolve(sshDir, "eve_backup_ed25519.pub");
+  const pubKeyPath = resolve(sshDir, `${appName}_backup_ed25519.pub`);
   if (!existsSync(pubKeyPath)) return NextResponse.json({ publicKey: null });
 
   const publicKey = readFileSync(pubKeyPath, "utf8").trim();
@@ -36,7 +36,7 @@ export async function POST() {
   if (authError) return authError;
 
   const sshDir = resolveSSHDir();
-  const keyPath = resolve(sshDir, "eve_backup_ed25519");
+  const keyPath = resolve(sshDir, `${appName}_backup_ed25519`);
 
   try { unlinkSync(keyPath); } catch { /* no existía */ }
   try { unlinkSync(`${keyPath}.pub`); } catch { /* no existía */ }
