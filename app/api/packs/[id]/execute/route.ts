@@ -36,6 +36,8 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
         itemId: pi.itemId,
         itemName: item?.name ?? pi.itemId,
         quantityNeeded: pi.quantity,
+        outputQty: pi.quantity,
+        blueprintRuns: 1,
         actualStock: item?.stock ?? 0,
       };
     });

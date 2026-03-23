@@ -4,7 +4,6 @@ import type { DecompositionResult } from "./calculator";
 
 function makeDecomp(overrides: Partial<DecompositionResult> & { sourceItemId: string }): DecompositionResult {
   return {
-    sourceItemId: overrides.sourceItemId,
     sourceItemName: overrides.sourceItemId,
     unitsToDecompose: 100,
     volumePerUnit: 1,
