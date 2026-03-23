@@ -7,6 +7,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   if (authError) return authError;
 
   const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { role: newRole } = await req.json();
 
   if (!["USER", "ADMIN", "SUPERADMIN"].includes(newRole)) {
@@ -17,17 +18,17 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   if (!target) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   // Only SUPERADMIN can touch a SUPERADMIN
-  if (target.role === "SUPERADMIN" && session!.role !== "SUPERADMIN") {
+  if (target.role === "SUPERADMIN" && session.role !== "SUPERADMIN") {
     return NextResponse.json({ error: "Only a superadmin can modify a superadmin" }, { status: 403 });
   }
 
   // Only SUPERADMIN can assign SUPERADMIN role
-  if (newRole === "SUPERADMIN" && session!.role !== "SUPERADMIN") {
+  if (newRole === "SUPERADMIN" && session.role !== "SUPERADMIN") {
     return NextResponse.json({ error: "Only a superadmin can assign the superadmin role" }, { status: 403 });
   }
 
   // SUPERADMIN cannot demote themselves unless another SUPERADMIN exists
-  if (params.id === session!.userId && session!.role === "SUPERADMIN" && newRole !== "SUPERADMIN") {
+  if (params.id === session.userId && session.role === "SUPERADMIN" && newRole !== "SUPERADMIN") {
     const superAdminCount = await prisma.user.count({ where: { role: "SUPERADMIN" } });
     if (superAdminCount <= 1) {
       return NextResponse.json({ error: "Cannot demote yourself: you are the only superadmin" }, { status: 403 });
@@ -35,7 +36,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 
   // ADMIN cannot demote themselves
-  if (params.id === session!.userId && session!.role === "ADMIN" && newRole === "USER") {
+  if (params.id === session.userId && session.role === "ADMIN" && newRole === "USER") {
     return NextResponse.json({ error: "You cannot demote yourself" }, { status: 403 });
   }
 
@@ -53,17 +54,18 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
   if (authError) return authError;
 
   const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const target = await prisma.user.findUnique({ where: { id: params.id }, select: { role: true } });
   if (!target) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   // Only SUPERADMIN can delete a SUPERADMIN
-  if (target.role === "SUPERADMIN" && session!.role !== "SUPERADMIN") {
+  if (target.role === "SUPERADMIN" && session.role !== "SUPERADMIN") {
     return NextResponse.json({ error: "Only a superadmin can delete a superadmin" }, { status: 403 });
   }
 
-  if (params.id === session!.userId) {
-    if (session!.role === "SUPERADMIN") {
+  if (params.id === session.userId) {
+    if (session.role === "SUPERADMIN") {
       // SUPERADMIN can delete themselves only if another SUPERADMIN exists
       const superAdminCount = await prisma.user.count({ where: { role: "SUPERADMIN" } });
       if (superAdminCount <= 1) {

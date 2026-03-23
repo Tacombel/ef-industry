@@ -59,12 +59,3 @@ export async function requireAdmin(): Promise<import("next/server").NextResponse
   if (session.role !== "ADMIN" && session.role !== "SUPERADMIN") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   return null;
 }
-
-/** Returns a 401/403 response if the session is missing or not SUPERADMIN, null otherwise. */
-export async function requireSuperAdmin(): Promise<import("next/server").NextResponse | null> {
-  const { NextResponse } = await import("next/server");
-  const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  if (session.role !== "SUPERADMIN") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  return null;
-}

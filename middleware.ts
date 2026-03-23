@@ -5,7 +5,7 @@ import { jwtVerify } from "jose";
 const USER_PAGES = ["/stock", "/packs", "/profile"];
 const USER_API = ["/api/stock", "/api/packs", "/api/auth/password"];
 
-// Require ADMIN role
+// Require ADMIN or SUPERADMIN role
 const ADMIN_PAGES = ["/admin"];
 const ADMIN_API = ["/api/admin"];
 

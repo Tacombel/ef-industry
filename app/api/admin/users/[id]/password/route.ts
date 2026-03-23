@@ -8,12 +8,13 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   if (authError) return authError;
 
   const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const target = await prisma.user.findUnique({ where: { id: params.id }, select: { role: true } });
   if (!target) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   // Only SUPERADMIN can reset a SUPERADMIN's password
-  if (target.role === "SUPERADMIN" && session!.role !== "SUPERADMIN") {
+  if (target.role === "SUPERADMIN" && session.role !== "SUPERADMIN") {
     return NextResponse.json({ error: "Only a superadmin can reset a superadmin's password" }, { status: 403 });
   }
 
