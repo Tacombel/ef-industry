@@ -47,7 +47,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
             },
           }),
         },
-        include: { items: { include: { item: { include: { blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+        include: { items: { include: { item: { include: { blueprints: { select: { factory: true }, take: 1 } } } } } },
       });
     });
     return NextResponse.json(pack);
