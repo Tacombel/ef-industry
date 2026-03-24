@@ -24,6 +24,7 @@ export default function ItemsPage() {
   const [showLoot, setShowLoot] = useState(false);
   const [lootCount, setLootCount] = useState(0);
   const [lootIds, setLootIds] = useState<Set<string>>(new Set());
+  const [decompSourceIds, setDecompSourceIds] = useState<Set<string>>(new Set());
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [editId, setEditId] = useState<string | null>(null);
@@ -45,13 +46,14 @@ export default function ItemsPage() {
     const bps = await bpsRes.json();
 
     const bpOutputIds = new Set(bps.map((b: any) => b.outputItem?.id).filter(Boolean));
-    const decompSourceIds = new Set(decomps.map((d: any) => d.sourceItem?.id).filter(Boolean));
-    const loot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !decompSourceIds.has(i.id));
+    const decompSourceIdSet = new Set(decomps.map((d: any) => d.sourceItem?.id).filter(Boolean));
+    const loot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !decompSourceIdSet.has(i.id));
     const lootIdSet = new Set(loot.map((i: any) => i.id));
 
     setTotalItems(allItems.length);
     setLootCount(loot.length);
     setLootIds(lootIdSet);
+    setDecompSourceIds(decompSourceIdSet);
     setLoading(false);
   }
 
@@ -132,7 +134,7 @@ export default function ItemsPage() {
               <th className="pb-2 pr-4">Type</th>
               <th className="pb-2 pr-4 text-right">Volume</th>
               <th className="pb-2 pr-4">Stock</th>
-              <th className="pb-2 pr-4">Blueprints</th>
+              <th className="pb-2 pr-4">Recipes</th>
               <th className="pb-2"></th>
             </tr>
           </thead>
@@ -151,10 +153,10 @@ export default function ItemsPage() {
                   {item.volume > 0 ? <span>{item.volume} m³</span> : <span className="text-gray-600">—</span>}
                 </td>
                 <td className="py-2 pr-4 text-gray-400">{item.stock?.quantity ?? 0}</td>
-                <td className="py-2 pr-4 text-gray-400">
-                  {item.blueprints.length === 0
-                    ? <span className="text-gray-600">—</span>
-                    : <span>{item.blueprints.length} blueprint{item.blueprints.length > 1 ? "s" : ""}</span>}
+                <td className="py-2 pr-4 flex gap-1 flex-wrap">
+                  {item.blueprints.length > 0 && <span className="badge badge-green">Blueprint ×{item.blueprints.length}</span>}
+                  {decompSourceIds.has(item.id) && <span className="badge badge-purple">Decompose</span>}
+                  {item.blueprints.length === 0 && !decompSourceIds.has(item.id) && <span className="text-gray-600">—</span>}
                 </td>
                 {isAdmin && (
                   <td className="py-2 flex gap-2 justify-end">
