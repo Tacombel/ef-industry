@@ -190,20 +190,20 @@ export default function ItemsPage() {
           </thead>
           <tbody>
             {(showOre ? items.filter(i => i.isRawMaterial && !i.isFound && i.blueprints.length === 0 && !i.isFinalProduct) : showLoot ? items.filter(i => lootIds.has(i.id)) : items).map((item) => (
-              <tr key={item.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
-                <td className="py-1 pr-4 font-medium text-gray-100">{item.name}</td>
-                <td className="py-1 pr-4 flex gap-0.5 items-center">
+              <tr key={item.id} className="border-b border-gray-800/50 hover:bg-gray-800/30 h-8">
+                <td className="py-1 pr-4 font-medium text-gray-100 whitespace-nowrap">{item.name}</td>
+                <td className="py-1 pr-4 flex gap-0.5 items-center whitespace-nowrap">
                   {item.isRawMaterial && <span className="badge badge-yellow">Ore</span>}
                   {item.isFound && <span className="badge badge-blue">Raw</span>}
                   {item.blueprints.length > 0 && !item.isFinalProduct && <span className="badge badge-gray">Intermediate</span>}
                   {item.isFinalProduct && <span className="badge badge-cyan">Final</span>}
                   {!item.isRawMaterial && !item.isFound && !item.isFinalProduct && item.blueprints.length === 0 && <span className="text-gray-600">—</span>}
                 </td>
-                <td className="py-1 pr-4 text-right text-gray-400">
+                <td className="py-1 pr-4 text-right text-gray-400 whitespace-nowrap">
                   {item.volume > 0 ? <span>{item.volume} m³</span> : <span className="text-gray-600">—</span>}
                 </td>
-                <td className="py-1 pr-4 text-gray-400">{item.stock?.quantity ?? 0}</td>
-                <td className="py-1 pr-4 flex gap-0.5 items-center">
+                <td className="py-1 pr-4 text-gray-400 whitespace-nowrap">{item.stock?.quantity ?? 0}</td>
+                <td className="py-1 pr-4 flex gap-0.5 items-center whitespace-nowrap overflow-x-auto">
                   {(() => {
                     if (item.isRawMaterial) {
                       return <span className="badge badge-yellow">Mining</span>;
@@ -224,7 +224,7 @@ export default function ItemsPage() {
                   })()}
                 </td>
                 {isAdmin && (
-                  <td className="py-1 flex gap-2 justify-end">
+                  <td className="py-1 flex gap-2 justify-end whitespace-nowrap">
                     <button onClick={() => openEdit(item)} className="btn-sm">Edit</button>
                     <button onClick={() => remove(item.id, item.name)} className="btn-sm btn-danger">Del</button>
                   </td>
