@@ -156,7 +156,7 @@ export default function ItemsPage() {
           className={`btn-sm ${showLoot ? "bg-amber-700 hover:bg-amber-600 text-amber-100" : ""}`}
           title="Show only loot (items without blueprint or decomposition)"
         >
-          {showLoot ? "✓ Loot" : `Loot (${lootCount})`}
+          {showLoot ? `✓ Loot (${lootCount})` : `Loot (${lootCount})`}
         </button>
       </div>
 
