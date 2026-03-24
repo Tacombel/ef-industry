@@ -24,7 +24,6 @@ export default function BlueprintsPage() {
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
-  const [totalBlueprints, setTotalBlueprints] = useState(0);
   const [loading, setLoading] = useState(true);
   const { isAdmin } = useSession();
   const [showForm, setShowForm] = useState(false);
@@ -57,7 +56,6 @@ export default function BlueprintsPage() {
       map.get(key)!.blueprints.push(bp);
     }
     setGrouped(Array.from(map.values()));
-    setTotalBlueprints(blueprints.length);
     setLoading(false);
   }, []);
 
@@ -140,7 +138,7 @@ export default function BlueprintsPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-100">Blueprints</h1>
           <p className="text-xs text-gray-500 mt-1">
-            {loading ? "Loading…" : `${filteredGrouped.reduce((sum, g) => sum + g.blueprints.length, 0)} of ${totalBlueprints} blueprints`}
+            {loading ? "Loading…" : `${filteredGrouped.length} of ${grouped.length} items`}
           </p>
         </div>
         {isAdmin && <button onClick={openNew} className="btn-primary">+ New Blueprint</button>}
