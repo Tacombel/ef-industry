@@ -208,18 +208,24 @@ export default function OreSection({
               </div>
               <div className="flex flex-wrap gap-1 text-xs">
                 <span className="text-gray-600 self-center">→</span>
-                {d.outputs.map((o) => {
-                  const needed = neededIds.has(o.itemId);
-                  return needed ? (
-                    <span key={o.itemId} className="bg-purple-900/60 border border-purple-700 rounded px-1.5 py-0.5 text-purple-200 font-medium">
-                      {o.itemName} <span className="text-yellow-400">×{o.quantityObtained}</span>
-                    </span>
-                  ) : (
-                    <span key={o.itemId} className="bg-gray-700 border border-gray-500 rounded px-1.5 py-0.5 text-gray-300">
-                      {o.itemName} <span className="text-gray-400">×{o.quantityObtained}</span>
-                    </span>
-                  );
-                })}
+                {d.isUnrefined ? (
+                  <span className="bg-gray-700 border border-gray-600 rounded px-1.5 py-0.5 text-gray-400 italic">
+                    Consumido sin refinar
+                  </span>
+                ) : (
+                  d.outputs.map((o) => {
+                    const needed = neededIds.has(o.itemId);
+                    return needed ? (
+                      <span key={o.itemId} className="bg-purple-900/60 border border-purple-700 rounded px-1.5 py-0.5 text-purple-200 font-medium">
+                        {o.itemName} <span className="text-yellow-400">×{o.quantityObtained}</span>
+                      </span>
+                    ) : (
+                      <span key={o.itemId} className="bg-gray-700 border border-gray-500 rounded px-1.5 py-0.5 text-gray-300">
+                        {o.itemName} <span className="text-gray-400">×{o.quantityObtained}</span>
+                      </span>
+                    );
+                  })
+                )}
               </div>
             </div>
           );

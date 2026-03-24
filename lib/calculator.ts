@@ -76,6 +76,7 @@ export interface DecompositionResult {
   actualStock: number;
   outputs: { itemId: string; itemName: string; quantityObtained: number }[];
   asteroids?: AsteroidInfo[];
+  isUnrefined?: boolean; // True if material is used directly without refining
 }
 
 export interface SecondaryDecompositionResult {
@@ -409,23 +410,17 @@ export function calculate(
     const dec = pickDecomposition(source);
     if (!dec) continue; // No decomposition available
 
-    // Show optional decomposition with units = 0 (user can choose to decompose)
+    // Mark as unrefined: material is consumed directly without refining
     decompositions.push({
       sourceItemId: row.itemId,
       sourceItemName: row.itemName,
-      unitsToDecompose: 0, // Optional
+      unitsToDecompose: 0,
       volumePerUnit: source.volume,
       inputQty: dec.inputQty,
       runs: 0,
       actualStock: source.stock,
-      outputs: dec.outputs.map((o) => {
-        const outItem = itemMap.get(o.itemId);
-        return {
-          itemId: o.itemId,
-          itemName: outItem?.name ?? o.itemId,
-          quantityObtained: 0,
-        };
-      }),
+      isUnrefined: true, // Mark as "consumed without refining"
+      outputs: [], // No outputs shown for unrefined materials
     });
   }
 
