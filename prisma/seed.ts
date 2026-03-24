@@ -7,8 +7,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding database...");
 
-  // Clear game data (cascades handle children automatically)
-  await prisma.factory.deleteMany();
+  // Clear game data
   await prisma.blueprintInput.deleteMany();
   await prisma.blueprint.deleteMany();
   await prisma.decompositionOutput.deleteMany();
@@ -18,12 +17,19 @@ async function main() {
   await prisma.asteroidType.deleteMany();
   await prisma.location.deleteMany();
   await prisma.item.deleteMany();
+  await prisma.factory.deleteMany();
+  await prisma.refinery.deleteMany();
 
-  // Factories
-  for (const name of data.factories) {
-    await prisma.factory.create({ data: { name } });
+  // Facilities (factories and refineries)
+  const factories = data.facilities.filter((f) => f.type === "factory");
+  const refineries = data.facilities.filter((f) => f.type === "refinery");
+  for (const f of factories) {
+    await prisma.factory.create({ data: { name: f.name } });
   }
-  console.log(`  ✓ ${data.factories.length} factories`);
+  for (const r of refineries) {
+    await prisma.refinery.create({ data: { name: r.name } });
+  }
+  console.log(`  ✓ ${factories.length} factories, ${refineries.length} refineries`);
 
   // Locations
   for (const name of data.locations) {
@@ -64,7 +70,12 @@ async function main() {
     const source = await prisma.item.findUnique({ where: { name: d.sourceItem } });
     if (!source) { console.warn(`  ⚠ Item not found for decomposition: ${d.sourceItem}`); continue; }
     const decomp = await prisma.decomposition.create({
-      data: { sourceItemId: source.id, inputQty: d.inputQty },
+      data: {
+        sourceItemId: source.id,
+        refinery: d.facility,
+        inputQty: d.inputQty,
+        runTime: d.runTime,
+      },
     });
     for (const out of d.outputs) {
       const outItem = await prisma.item.findUnique({ where: { name: out.item } });
@@ -84,9 +95,10 @@ async function main() {
     const created = await prisma.blueprint.create({
       data: {
         outputItemId: outputItem.id,
-        factory: bp.factory ?? "",
+        factory: bp.facility,
         outputQty: bp.outputQty,
-        isDefault: bp.isDefault,
+        runTime: bp.runTime,
+        isDefault: false,
       },
     });
     for (const inp of bp.inputs) {
