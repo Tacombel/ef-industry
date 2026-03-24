@@ -21,7 +21,9 @@ export default function ItemsPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [search, setSearch] = useState("");
-  const [showNoBlueprints, setShowNoBlueprints] = useState(false);
+  const [showLoot, setShowLoot] = useState(false);
+  const [lootCount, setLootCount] = useState(0);
+  const [lootIds, setLootIds] = useState<Set<string>>(new Set());
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [editId, setEditId] = useState<string | null>(null);
@@ -31,13 +33,25 @@ export default function ItemsPage() {
 
   async function load() {
     setLoading(true);
-    const [filteredRes, totalRes] = await Promise.all([
+    const [filteredRes, totalRes, decompsRes, bpsRes] = await Promise.all([
       fetch(`/api/items?search=${encodeURIComponent(search)}`),
       fetch("/api/items"),
+      fetch("/api/decompositions"),
+      fetch("/api/blueprints"),
     ]);
     setItems(await filteredRes.json());
     const allItems = await totalRes.json();
+    const decomps = await decompsRes.json();
+    const bps = await bpsRes.json();
+
+    const bpOutputIds = new Set(bps.map((b: any) => b.outputItem?.id).filter(Boolean));
+    const decompSourceIds = new Set(decomps.map((d: any) => d.sourceItem?.id).filter(Boolean));
+    const loot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !decompSourceIds.has(i.id));
+    const lootIdSet = new Set(loot.map((i: any) => i.id));
+
     setTotalItems(allItems.length);
+    setLootCount(loot.length);
+    setLootIds(lootIdSet);
     setLoading(false);
   }
 
@@ -98,11 +112,11 @@ export default function ItemsPage() {
           onChange={(e) => setSearch(e.target.value)}
         />
         <button
-          onClick={() => setShowNoBlueprints(!showNoBlueprints)}
-          className={`btn-sm ${showNoBlueprints ? "bg-amber-700 hover:bg-amber-600 text-amber-100" : ""}`}
-          title="Show only items without blueprints (49)"
+          onClick={() => setShowLoot(!showLoot)}
+          className={`btn-sm ${showLoot ? "bg-amber-700 hover:bg-amber-600 text-amber-100" : ""}`}
+          title="Show only loot (items without blueprint or decomposition)"
         >
-          {showNoBlueprints ? "✓ No Blueprint" : "No Blueprint (49)"}
+          {showLoot ? "✓ Loot" : `Loot (${lootCount})`}
         </button>
       </div>
 
@@ -123,7 +137,7 @@ export default function ItemsPage() {
             </tr>
           </thead>
           <tbody>
-            {(showNoBlueprints ? items.filter(i => i.blueprints.length === 0) : items).map((item) => (
+            {(showLoot ? items.filter(i => lootIds.has(i.id)) : items).map((item) => (
               <tr key={item.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                 <td className="py-2 pr-4 font-medium text-gray-100">{item.name}</td>
                 <td className="py-2 pr-4 flex gap-1 flex-wrap">
