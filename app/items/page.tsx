@@ -50,6 +50,10 @@ export default function ItemsPage() {
     const loot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !decompSourceIdSet.has(i.id));
     const lootIdSet = new Set(loot.map((i: any) => i.id));
 
+    // Loot = items sin blueprint (not manufactured), regardless of decomposition
+    const trueLoot = allItems.filter((i: any) => !bpOutputIds.has(i.id));
+    const trueLootIdSet = new Set(trueLoot.map((i: any) => i.id));
+
     // Build recipes map: itemId -> { factories, refineries }
     const recipes = new Map<string, { factories: string[]; refineries: string[] }>();
     for (const bp of bps) {
@@ -77,8 +81,8 @@ export default function ItemsPage() {
     }
 
     setTotalItems(allItems.length);
-    setLootCount(loot.length);
-    setLootIds(lootIdSet);
+    setLootCount(trueLoot.length);
+    setLootIds(trueLootIdSet);
     setRecipesByItem(recipes);
     setLoading(false);
   }
