@@ -333,17 +333,36 @@ export function calculate(
     if (row.toBuy > 0) remaining.set(row.itemId, row.toBuy);
   }
 
+
   const decompRuns = new Map<string, number>();
   // Track surplus byproducts already committed by prior greedy steps
   const surplus = new Map<string, number>();
 
+  // Byproduct coverage: how many remaining items does an item's best-yield source also produce?
+  const getBestSourceCoverage = (id: string) => {
+    const sources = decompByOutput.get(id) ?? [];
+    if (sources.length === 0) return 0;
+    const best = sources.reduce((b, s) => {
+      const bY = pickDecomposition(b)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      const sY = pickDecomposition(s)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      return sY > bY ? s : b;
+    });
+    const dec = pickDecomposition(best);
+    if (!dec) return 0;
+    return dec.outputs.filter((o) => o.itemId !== id && remaining.has(o.itemId)).length;
+  };
+
   while (remaining.size > 0) {
     let matId = "";
     let fewest = Infinity;
+    let bestCoverage = -1;
     for (const id of remaining.keys()) {
       const count = (decompByOutput.get(id) ?? []).length;
       if (count === 0) { remaining.delete(id); continue; }
-      if (count < fewest) { fewest = count; matId = id; }
+      const coverage = getBestSourceCoverage(id);
+      if (count < fewest || (count === fewest && coverage > bestCoverage)) {
+        fewest = count; matId = id; bestCoverage = coverage;
+      }
     }
     if (!matId || !remaining.has(matId)) break;
 

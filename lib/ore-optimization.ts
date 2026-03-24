@@ -27,7 +27,8 @@ export interface OreSubstitution {
 export function computeOreSubstitution(
   decomps: DecompositionResult[],
   cargoCapacity: number,
-  toMineMap?: Map<string, number>
+  toMineMap?: Map<string, number>,
+  neededIds?: Set<string>
 ): OreSubstitution | null {
   if (!cargoCapacity || decomps.length < 2) return null;
 
@@ -53,6 +54,8 @@ export function computeOreSubstitution(
 
     const remaining = new Map<string, number>();
     for (const out of target.d.outputs) {
+      // Only cover outputs that are actually needed by the recipe
+      if (neededIds && !neededIds.has(out.itemId)) continue;
       remaining.set(out.itemId, out.quantityObtained);
     }
 

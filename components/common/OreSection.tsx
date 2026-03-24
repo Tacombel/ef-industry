@@ -34,7 +34,7 @@ export default function OreSection({
     toMineMap.set(d.sourceItemId, Math.max(0, d.unitsToDecompose - (stock[d.sourceItemId] ?? d.actualStock)));
   }
 
-  const suggestion = computeOreSubstitution(decomps, cargoCapacity, toMineMap);
+  const suggestion = computeOreSubstitution(decomps, cargoCapacity, toMineMap, neededIds);
 
   // Compute picos for display using pending-to-mine volume
   const picoMap = new Map<string, OreWithPico>();
