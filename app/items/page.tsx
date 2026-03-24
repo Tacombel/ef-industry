@@ -218,7 +218,7 @@ export default function ItemsPage() {
                     }
                     return (
                       <>
-                        {recipe.factories.map((f) => <span key={f} className="badge badge-blue">{f}</span>)}
+                        {recipe.factories.map((f) => <span key={f} className={`badge ${f === "Build" ? "badge-build" : "badge-blue"}`}>{f}</span>)}
                         {recipe.refineries.map((r) => <span key={r} className="badge badge-purple">{r}</span>)}
                       </>
                     );

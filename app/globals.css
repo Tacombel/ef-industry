@@ -51,6 +51,18 @@
     @apply bg-gray-700/60 text-gray-400;
   }
 
+  .badge-purple {
+    @apply bg-violet-900/60 text-violet-300;
+  }
+
+  .badge-orange {
+    @apply bg-orange-900/60 text-orange-300;
+  }
+
+  .badge-build {
+    @apply bg-green-900/60 text-green-300;
+  }
+
   .modal-backdrop {
     @apply fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4;
   }
