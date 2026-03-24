@@ -14,6 +14,13 @@ export async function fetchCalcItems(userId?: string): Promise<CalcItem[]> {
         include: { outputs: { select: { itemId: true, quantity: true } } },
         orderBy: { isDefault: "desc" },
       },
+      decompositionOutputs: {
+        include: {
+          decomposition: {
+            select: { id: true, sourceItemId: true, inputQty: true, refinery: true, isDefault: true },
+          },
+        },
+      },
     },
   });
 
@@ -28,6 +35,7 @@ export async function fetchCalcItems(userId?: string): Promise<CalcItem[]> {
       id: bp.id,
       outputQty: bp.outputQty,
       factory: bp.factory,
+      runTime: bp.runTime,
       isDefault: bp.isDefault,
       inputs: bp.inputs,
     })),
@@ -35,15 +43,24 @@ export async function fetchCalcItems(userId?: string): Promise<CalcItem[]> {
       id: d.id,
       refinery: d.refinery,
       inputQty: d.inputQty,
+      runTime: d.runTime,
       isDefault: d.isDefault,
       outputs: d.outputs,
+    })),
+    producedBy: item.decompositionOutputs.map((dOut) => ({
+      decompositionId: dOut.decompositionId,
+      sourceItemId: dOut.decomposition.sourceItemId,
+      inputQty: dOut.decomposition.inputQty,
+      outputQty: dOut.quantity,
+      refinery: dOut.decomposition.refinery,
+      isDefault: dOut.decomposition.isDefault,
     })),
   }));
 }
 
 /** Enrich decompositions and direct-ore raw materials with asteroid/location data. */
 export async function enrichAsteroids(result: CalculationResult): Promise<void> {
-  const directOreIds = result.rawMaterials.filter((r) => r.isRawMaterial).map((r) => r.itemId);
+  const directOreIds = result.rawMaterials.filter((r) => r.isRawMaterial && !r.isFound).map((r) => r.itemId);
   const allOreIds = [...result.decompositions.map((d) => d.sourceItemId), ...directOreIds];
   if (allOreIds.length === 0) return;
 

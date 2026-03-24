@@ -21,6 +21,7 @@ interface GameDataDecomposition {
   sourceItem: string;
   refinery?: string;
   inputQty: number;
+  runTime?: number;
   outputs: { item: string; quantity: number }[];
 }
 interface GameDataBlueprint {
@@ -28,6 +29,7 @@ interface GameDataBlueprint {
   factory: string;
   outputQty: number;
   isDefault: boolean;
+  runTime?: number;
   inputs: { item: string; quantity: number }[];
 }
 interface GameData {
@@ -111,7 +113,7 @@ export async function seedStatic() {
       continue;
     }
     const decomp = await prisma.decomposition.create({
-      data: { sourceItemId: source.id, refinery: d.refinery ?? "", inputQty: d.inputQty },
+      data: { sourceItemId: source.id, refinery: d.refinery ?? "", inputQty: d.inputQty, runTime: d.runTime ?? 0 },
     });
     for (const out of d.outputs) {
       const outItem = await prisma.item.findUnique({ where: { name: out.item } });
@@ -136,6 +138,7 @@ export async function seedStatic() {
         outputItemId: outputItem.id,
         factory: bp.factory ?? "",
         outputQty: bp.outputQty,
+        runTime: bp.runTime ?? 0,
         isDefault: bp.isDefault,
       },
     });

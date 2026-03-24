@@ -14,6 +14,7 @@ function makeItem(overrides: Partial<CalcItem>): CalcItem {
     volume: 1,
     blueprints: [],
     decompositions: [],
+    producedBy: [],
     ...overrides,
   };
 }
@@ -196,6 +197,140 @@ describe("calculate", () => {
     expect(a?.totalNeeded).toBe(5);
     expect(a?.toBuy).toBe(2);
     expect(a?.inStock).toBe(3);
+  });
+
+  // ── Secondary refinery ────────────────────────────────────────────────────
+
+  it("resolves a secondary refinery product via producedBy", () => {
+    // secondary decomp d_sec: intermediate(isFound) ×10 → refined ×5
+    // blueprint needs refined ×10  → 2 secondary runs → intermediate ×20
+    const intermediate = makeItem({
+      id: "inter", name: "Inter", isFound: true,
+      decompositions: [{ id: "d_sec", refinery: "Secondary", inputQty: 10, isDefault: true,
+        outputs: [{ itemId: "refined", quantity: 5 }] }],
+    });
+    const refined = makeItem({
+      id: "refined", name: "Refined",
+      producedBy: [{
+        decompositionId: "d_sec", sourceItemId: "inter",
+        inputQty: 10, outputQty: 5, refinery: "Secondary", isDefault: true,
+      }],
+    });
+    const final = makeItem({
+      id: "final", name: "Final",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "refined", quantity: 10 }] }],
+    });
+
+    const itemMap = buildItemMap([intermediate, refined, final]);
+    const result = calculate([{ itemId: "final", quantity: 1 }], itemMap);
+
+    // intermediate is the raw demand (secondary refinery source)
+    const raw = result.rawMaterials.find((r) => r.itemId === "inter");
+    expect(raw?.totalNeeded).toBe(20);
+    expect(raw?.toBuy).toBe(20);
+
+    // one secondary decomposition entry
+    expect(result.secondaryDecompositions).toHaveLength(1);
+    const sec = result.secondaryDecompositions[0];
+    expect(sec.sourceItemId).toBe("inter");
+    expect(sec.runs).toBe(2);
+    expect(sec.unitsNeeded).toBe(20);
+    expect(sec.outputs[0].quantityProduced).toBe(10);
+  });
+
+  it("deduplicates secondary refinery runs when multiple outputs from same decomp are needed", () => {
+    // d_sec: inter ×10 → refined_a ×5 + refined_b ×3
+    // blueprint needs refined_a ×10 (→2 runs) AND refined_b ×6 (→2 runs)
+    // max-runs: 2 total, inter consumed = 20 (not 40)
+    const inter = makeItem({ id: "inter", name: "Inter", isFound: true,
+      decompositions: [{ id: "d_sec", refinery: "Secondary", inputQty: 10, isDefault: true,
+        outputs: [{ itemId: "rA", quantity: 5 }, { itemId: "rB", quantity: 3 }] }],
+    });
+    const refinedA = makeItem({
+      id: "rA", name: "Refined A",
+      producedBy: [{ decompositionId: "d_sec", sourceItemId: "inter", inputQty: 10, outputQty: 5, refinery: "Secondary", isDefault: true }],
+    });
+    const refinedB = makeItem({
+      id: "rB", name: "Refined B",
+      producedBy: [{ decompositionId: "d_sec", sourceItemId: "inter", inputQty: 10, outputQty: 3, refinery: "Secondary", isDefault: true }],
+    });
+    const final = makeItem({
+      id: "final", name: "Final",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "rA", quantity: 10 }, { itemId: "rB", quantity: 6 }] }],
+    });
+
+    const itemMap = buildItemMap([inter, refinedA, refinedB, final]);
+    const result = calculate([{ itemId: "final", quantity: 1 }], itemMap);
+
+    const sec = result.secondaryDecompositions.find((d) => d.decompositionId === "d_sec");
+    expect(sec?.runs).toBe(2);
+    expect(result.rawMaterials.find((r) => r.itemId === "inter")?.totalNeeded).toBe(20);
+  });
+
+  it("applies stock to secondary refinery products", () => {
+    const inter = makeItem({ id: "inter", name: "Inter", isFound: true,
+      decompositions: [{ id: "d_sec", refinery: "Secondary", inputQty: 10, isDefault: true,
+        outputs: [{ itemId: "refined", quantity: 5 }] }],
+    });
+    const refined = makeItem({
+      id: "refined", name: "Refined", stock: 5,
+      producedBy: [{ decompositionId: "d_sec", sourceItemId: "inter", inputQty: 10, outputQty: 5, refinery: "Secondary", isDefault: true }],
+    });
+    const final = makeItem({
+      id: "final", name: "Final",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "refined", quantity: 10 }] }],
+    });
+
+    const itemMap = buildItemMap([inter, refined, final]);
+    const result = calculate([{ itemId: "final", quantity: 1 }], itemMap);
+
+    // refined: need 10, stock 5 → still need 5 → 1 secondary run → inter ×10
+    const raw = result.rawMaterials.find((r) => r.itemId === "inter");
+    expect(raw?.totalNeeded).toBe(10);
+
+    const sec = result.secondaryDecompositions[0];
+    expect(sec.runs).toBe(1);
+    expect(sec.unitsNeeded).toBe(10);
+  });
+
+  it("chains secondary refinery → ore decomposition suggestion", () => {
+    // ore(isRawMaterial) → [field refinery] → inter(isFound, decomp d1: ×20 → inter ×15)
+    // inter → [secondary refinery d_sec: ×10 → refined ×5]
+    // blueprint needs refined ×10 → 2 secondary runs → inter ×20 → ore decomp suggests running d1
+    const ore = makeItem({ id: "ore", name: "Ore", isRawMaterial: true,
+      decompositions: [{ id: "d1", refinery: "Field Refinery", inputQty: 20, isDefault: true,
+        outputs: [{ itemId: "inter", quantity: 15 }] }],
+    });
+    const inter = makeItem({ id: "inter", name: "Inter", isFound: true,
+      decompositions: [{ id: "d_sec", refinery: "Secondary", inputQty: 10, isDefault: true,
+        outputs: [{ itemId: "refined", quantity: 5 }] }],
+    });
+    const refined = makeItem({
+      id: "refined", name: "Refined",
+      producedBy: [{ decompositionId: "d_sec", sourceItemId: "inter", inputQty: 10, outputQty: 5, refinery: "Secondary", isDefault: true }],
+    });
+    const final = makeItem({
+      id: "final", name: "Final",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "refined", quantity: 10 }] }],
+    });
+
+    const itemMap = buildItemMap([ore, inter, refined, final]);
+    const result = calculate([{ itemId: "final", quantity: 1 }], itemMap);
+
+    // inter in rawMaterials (secondary source): need 20
+    expect(result.rawMaterials.find((r) => r.itemId === "inter")?.totalNeeded).toBe(20);
+
+    // secondary decomp: 2 runs
+    expect(result.secondaryDecompositions[0].runs).toBe(2);
+
+    // ore decomp suggestion: need 20 inter, d1 yields 15/run → 2 runs of d1 → ore ×40
+    const oreDecomp = result.decompositions.find((d) => d.sourceItemId === "ore");
+    expect(oreDecomp).toBeDefined();
+    expect(oreDecomp!.runs).toBe(2);
   });
 
   it("includes decomposition suggestions for raw materials", () => {

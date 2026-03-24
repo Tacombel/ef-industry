@@ -2,6 +2,7 @@ export interface CalcBlueprint {
   id: string;
   outputQty: number;
   factory: string;
+  runTime: number;
   isDefault: boolean;
   inputs: { itemId: string; quantity: number }[];
 }
@@ -10,8 +11,18 @@ export interface CalcDecomposition {
   id: string;
   refinery: string;
   inputQty: number;
+  runTime: number;
   isDefault: boolean;
   outputs: { itemId: string; quantity: number }[];
+}
+
+export interface ProducedByDecomposition {
+  decompositionId: string;
+  sourceItemId: string;
+  inputQty: number;    // source units consumed per run
+  outputQty: number;   // THIS item produced per run
+  refinery: string;
+  isDefault: boolean;
 }
 
 export interface CalcItem {
@@ -23,6 +34,7 @@ export interface CalcItem {
   volume: number;
   blueprints: CalcBlueprint[];
   decompositions: CalcDecomposition[];
+  producedBy: ProducedByDecomposition[];  // decompositions where THIS item is an output
 }
 
 export interface AsteroidInfo {
@@ -37,7 +49,7 @@ export interface RawMaterialResult {
   isFound: boolean;
   totalNeeded: number;
   actualStock: number;
-  inStock: number;      // amount consumed from stock
+  inStock: number;
   toBuy: number;
   volume: number;
   asteroids?: AsteroidInfo[];
@@ -48,7 +60,7 @@ export interface IntermediateResult {
   itemName: string;
   totalNeeded: number;
   actualStock: number;
-  inStock: number;      // amount consumed from stock
+  inStock: number;
   toProduce: number;
   blueprintRuns: number;
   factory: string;
@@ -59,11 +71,22 @@ export interface DecompositionResult {
   sourceItemName: string;
   unitsToDecompose: number;
   volumePerUnit: number;
-  inputQty: number;      // units per decomposition run
+  inputQty: number;
   runs: number;
   actualStock: number;
   outputs: { itemId: string; itemName: string; quantityObtained: number }[];
   asteroids?: AsteroidInfo[];
+}
+
+export interface SecondaryDecompositionResult {
+  decompositionId: string;
+  sourceItemId: string;
+  sourceItemName: string;
+  refinery: string;
+  unitsNeeded: number;
+  inputQty: number;
+  runs: number;
+  outputs: { itemId: string; itemName: string; quantityProduced: number }[];
 }
 
 export interface FinalProductResult {
@@ -81,6 +104,7 @@ export interface CalculationResult {
   rawMaterials: RawMaterialResult[];
   intermediates: IntermediateResult[];
   decompositions: DecompositionResult[];
+  secondaryDecompositions: SecondaryDecompositionResult[];
   finalProducts: FinalProductResult[];
 }
 
@@ -99,6 +123,11 @@ function pickDecomposition(item: CalcItem): CalcDecomposition | null {
   return item.decompositions.find((d) => d.isDefault) ?? item.decompositions[0];
 }
 
+function pickProducedBy(item: CalcItem): ProducedByDecomposition | null {
+  if (item.producedBy.length === 0) return null;
+  return item.producedBy.find((p) => p.isDefault) ?? item.producedBy[0];
+}
+
 function resolve(
   itemId: string,
   quantityNeeded: number,
@@ -108,7 +137,8 @@ function resolve(
   stockUsed: StockUsed,
   factoryMap: FactoryMap,
   visiting: Set<string>,
-  stockSatisfied: Set<string>
+  stockSatisfied: Set<string>,
+  secondaryDecompRuns: Map<string, number>
 ): void {
   if (visiting.has(itemId)) {
     throw new Error(`Circular blueprint dependency on item "${itemId}"`);
@@ -119,8 +149,13 @@ function resolve(
 
   const blueprint = pickBlueprint(item);
 
-  // Base case: raw material, found item, or no blueprint — accumulate raw demand
-  if (item.isRawMaterial || item.isFound || !blueprint) {
+  // Secondary refinery only applies to items that are neither raw nor found.
+  // Raw/found items are always leaves — the post-process greedy handles their
+  // ore/field-refinery decompositions.
+  const producedBy = (item.isRawMaterial || item.isFound) ? null : pickProducedBy(item);
+
+  // Leaf: no production path — accumulate raw demand
+  if (!blueprint && !producedBy) {
     demand.set(itemId, (demand.get(itemId) ?? 0) + quantityNeeded);
     grossDemand.set(itemId, (grossDemand.get(itemId) ?? 0) + quantityNeeded);
     return;
@@ -136,23 +171,41 @@ function resolve(
   const stillNeeded = quantityNeeded - fromStock;
 
   stockUsed.set(itemId, alreadyUsed + fromStock);
-  factoryMap.set(itemId, blueprint.factory);
 
   if (stillNeeded <= 0) {
-    // Fully covered by stock — track for display so the user can edit stock
     stockSatisfied.add(itemId);
     return;
   }
 
-  const runs = Math.ceil(stillNeeded / blueprint.outputQty);
   demand.set(itemId, (demand.get(itemId) ?? 0) + stillNeeded);
-  factoryMap.set(itemId, blueprint.factory);
 
-  visiting.add(itemId);
-  for (const input of blueprint.inputs) {
-    resolve(input.itemId, input.quantity * runs, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied);
+  if (blueprint) {
+    // ── Blueprint intermediate ────────────────────────────────────────────────
+    const runs = Math.ceil(stillNeeded / blueprint.outputQty);
+    factoryMap.set(itemId, blueprint.factory);
+
+    visiting.add(itemId);
+    for (const input of blueprint.inputs) {
+      resolve(input.itemId, input.quantity * runs, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns);
+    }
+    visiting.delete(itemId);
+  } else {
+    // ── Secondary refinery product ────────────────────────────────────────────
+    // producedBy is non-null here (leaf case above already returned)
+    const runsNeeded = Math.ceil(stillNeeded / producedBy!.outputQty);
+    const currentRuns = secondaryDecompRuns.get(producedBy!.decompositionId) ?? 0;
+    const additionalRuns = Math.max(0, runsNeeded - currentRuns);
+
+    // Use max-runs: if another output of the same decomposition already committed
+    // more runs, reuse them (avoids double-consuming the source item).
+    secondaryDecompRuns.set(producedBy!.decompositionId, Math.max(currentRuns, runsNeeded));
+
+    if (additionalRuns > 0) {
+      visiting.add(itemId);
+      resolve(producedBy!.sourceItemId, additionalRuns * producedBy!.inputQty, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns);
+      visiting.delete(itemId);
+    }
   }
-  visiting.delete(itemId);
 }
 
 export function calculate(
@@ -164,9 +217,10 @@ export function calculate(
   const stockUsed: StockUsed = new Map();
   const factoryMap: FactoryMap = new Map();
   const stockSatisfied: Set<string> = new Set();
+  const secondaryDecompRuns: Map<string, number> = new Map();
 
   for (const pi of packItems) {
-    resolve(pi.itemId, pi.quantity, itemMap, demand, grossDemand, stockUsed, factoryMap, new Set(), stockSatisfied);
+    resolve(pi.itemId, pi.quantity, itemMap, demand, grossDemand, stockUsed, factoryMap, new Set(), stockSatisfied, secondaryDecompRuns);
   }
 
   const rawMaterials: RawMaterialResult[] = [];
@@ -175,8 +229,10 @@ export function calculate(
   for (const [itemId, needed] of demand) {
     const item = itemMap.get(itemId)!;
     const blueprint = pickBlueprint(item);
+    const producedBy = (item.isRawMaterial || item.isFound) ? null : pickProducedBy(item);
 
-    if (item.isRawMaterial || item.isFound || !blueprint) {
+    if (!blueprint && !producedBy) {
+      // Raw material leaf
       const gross = grossDemand.get(itemId) ?? needed;
       const inStock = Math.min(item.stock, gross);
       rawMaterials.push({
@@ -190,7 +246,8 @@ export function calculate(
         toBuy: Math.max(0, needed - Math.min(item.stock, needed)),
         volume: item.volume,
       });
-    } else {
+    } else if (blueprint) {
+      // Blueprint intermediate
       const inStock = stockUsed.get(itemId) ?? 0;
       const runs = Math.ceil(needed / blueprint.outputQty);
       intermediates.push({
@@ -204,13 +261,16 @@ export function calculate(
         factory: factoryMap.get(itemId) ?? blueprint.factory,
       });
     }
+    // Secondary refinery products that appear in demand are also shown
+    // as part of secondaryDecompositions (built below) — no separate entry here.
   }
 
-  // Include intermediates fully satisfied from stock (not in demand) so the user can edit their stock
+  // Include intermediates fully satisfied from stock
   for (const itemId of stockSatisfied) {
-    if (demand.has(itemId)) continue; // already in intermediates above
+    if (demand.has(itemId)) continue;
     const item = itemMap.get(itemId)!;
-    const blueprint = pickBlueprint(item)!;
+    const blueprint = pickBlueprint(item);
+    if (!blueprint) continue;
     const inStock = stockUsed.get(itemId) ?? 0;
     intermediates.push({
       itemId,
@@ -224,10 +284,38 @@ export function calculate(
     });
   }
 
-  // --- Decomposition suggestions ---
-  // For each raw material that needs to be bought (toBuy > 0), check if any
-  // item in the map has a decomposition that produces it.
-  // Build an index: outputItemId → [sourceItem]
+  // ── Secondary decompositions ─────────────────────────────────────────────
+  // Build a lookup: decompositionId → { sourceItem, decomp }
+  const decompById = new Map<string, { sourceItem: CalcItem; decomp: CalcDecomposition }>();
+  for (const item of itemMap.values()) {
+    for (const d of item.decompositions) {
+      decompById.set(d.id, { sourceItem: item, decomp: d });
+    }
+  }
+
+  const secondaryDecompositions: SecondaryDecompositionResult[] = [];
+  for (const [decompId, runs] of secondaryDecompRuns) {
+    const info = decompById.get(decompId);
+    if (!info) continue;
+    const { sourceItem, decomp } = info;
+    secondaryDecompositions.push({
+      decompositionId: decompId,
+      sourceItemId: sourceItem.id,
+      sourceItemName: sourceItem.name,
+      refinery: decomp.refinery,
+      unitsNeeded: runs * decomp.inputQty,
+      inputQty: decomp.inputQty,
+      runs,
+      outputs: decomp.outputs.map((o) => ({
+        itemId: o.itemId,
+        itemName: itemMap.get(o.itemId)?.name ?? o.itemId,
+        quantityProduced: o.quantity * runs,
+      })),
+    });
+  }
+  secondaryDecompositions.sort((a, b) => a.sourceItemName.localeCompare(b.sourceItemName));
+
+  // ── Primary ore decomposition suggestions ────────────────────────────────
   const decompByOutput = new Map<string, CalcItem[]>();
   for (const item of itemMap.values()) {
     const dec = pickDecomposition(item);
@@ -239,18 +327,14 @@ export function calculate(
     }
   }
 
-  // Greedy iterative decomposition suggestion:
-  // Process the most-constrained material first (fewest ore sources),
-  // assign runs, subtract production from all remaining needs, repeat.
   const remaining = new Map<string, number>();
   for (const row of rawMaterials) {
     if (row.toBuy > 0) remaining.set(row.itemId, row.toBuy);
   }
 
-  const decompRuns = new Map<string, number>(); // sourceItemId → runs
+  const decompRuns = new Map<string, number>();
 
   while (remaining.size > 0) {
-    // Find the material with the fewest ore sources (most constrained)
     let matId = "";
     let fewest = Infinity;
     for (const id of remaining.keys()) {
@@ -263,7 +347,6 @@ export function calculate(
     const need = remaining.get(matId)!;
     const sources = decompByOutput.get(matId)!;
 
-    // Pick the ore with the highest yield for this material
     const source = sources.reduce((best, s) => {
       const bYield = pickDecomposition(best)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
       const sYield = pickDecomposition(s)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
@@ -277,7 +360,6 @@ export function calculate(
 
     decompRuns.set(source.id, (decompRuns.get(source.id) ?? 0) + runsNeeded);
 
-    // Subtract this ore's full production from all remaining needs
     for (const out of dec.outputs) {
       if (remaining.has(out.itemId)) {
         const newNeed = remaining.get(out.itemId)! - out.quantity * runsNeeded;
@@ -320,7 +402,7 @@ export function calculate(
   rawMaterials.sort((a, b) => a.itemName.localeCompare(b.itemName));
   intermediates.sort((a, b) => a.itemName.localeCompare(b.itemName));
 
-  return { rawMaterials, intermediates, decompositions, finalProducts: [] };
+  return { rawMaterials, intermediates, decompositions, secondaryDecompositions, finalProducts: [] };
 }
 
 export function buildItemMap(items: CalcItem[]): ItemMap {

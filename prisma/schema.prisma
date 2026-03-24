@@ -32,6 +32,7 @@ model Blueprint {
   outputItemId String
   factory      String   @default("")
   outputQty    Int      @default(1)
+  runTime      Int      @default(0)
   isDefault    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -83,6 +84,7 @@ model Decomposition {
   sourceItemId String
   refinery     String   @default("")
   inputQty     Int      @default(1)
+  runTime      Int      @default(0)
   isDefault    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
