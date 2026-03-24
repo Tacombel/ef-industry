@@ -50,8 +50,8 @@ export default function ItemsPage() {
     const loot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !decompSourceIdSet.has(i.id));
     const lootIdSet = new Set(loot.map((i: any) => i.id));
 
-    // Loot = items sin blueprint (not manufactured), regardless of decomposition
-    const trueLoot = allItems.filter((i: any) => !bpOutputIds.has(i.id));
+    // Loot = items sin blueprint AND no ores (raw materials)
+    const trueLoot = allItems.filter((i: any) => !bpOutputIds.has(i.id) && !i.isRawMaterial);
     const trueLootIdSet = new Set(trueLoot.map((i: any) => i.id));
 
     // Build recipes map: itemId -> { factories, refineries }
