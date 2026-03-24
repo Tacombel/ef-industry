@@ -98,7 +98,8 @@
       "name": "Aromatic Carbon Veins",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Aromatic Carbon Weave",
@@ -440,7 +441,8 @@
       "name": "Feldspar Crystals",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Feral Echo",
@@ -500,7 +502,8 @@
       "name": "Hydrated Sulfide Matrix",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Hydrocarbon Residue",
@@ -512,7 +515,8 @@
       "name": "Iridosmine Nodules",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Iron-Rich Nodules",
@@ -584,7 +588,8 @@
       "name": "Methane Ice Shards",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Mini berth",
@@ -668,13 +673,15 @@
       "name": "Platinum-Palladium Matrix",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Primitive Kerogen Matrix",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Printed Circuits",
@@ -1088,7 +1095,8 @@
       "name": "Tholin Nodules",
       "isRawMaterial": true,
       "isFound": false,
-      "isFinalProduct": false
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Tier 2 Autocannon (S)",
