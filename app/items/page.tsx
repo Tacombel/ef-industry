@@ -169,11 +169,12 @@ export default function ItemsPage() {
               <tr key={item.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                 <td className="py-2 pr-4 font-medium text-gray-100">{item.name}</td>
                 <td className="py-2 pr-4 flex gap-1 flex-wrap">
-                  {item.isRawMaterial && <span className="badge badge-yellow">Ore</span>}
+                  {item.isRawMaterial && <span className="badge badge-yellow">Mining</span>}
                   {item.isFound && <span className="badge badge-blue">Raw</span>}
                   {item.blueprints.length > 0 && !item.isFinalProduct && <span className="badge badge-gray">Intermediate</span>}
                   {item.isFinalProduct && <span className="badge badge-cyan">Final</span>}
-                  {!item.isRawMaterial && !item.isFound && !item.isFinalProduct && item.blueprints.length === 0 && <span className="text-gray-600">—</span>}
+                  {lootIds.has(item.id) && <span className="badge badge-orange">Loot</span>}
+                  {!item.isRawMaterial && !item.isFound && !item.isFinalProduct && !lootIds.has(item.id) && item.blueprints.length === 0 && <span className="text-gray-600">—</span>}
                 </td>
                 <td className="py-2 pr-4 text-right text-gray-400">
                   {item.volume > 0 ? <span>{item.volume} m³</span> : <span className="text-gray-600">—</span>}
