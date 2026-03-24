@@ -47,6 +47,7 @@ export interface RawMaterialResult {
   itemName: string;
   isRawMaterial: boolean;
   isFound: boolean;
+  isLoot: boolean; // no blueprint, not rawMaterial, not decomp output
   totalNeeded: number;
   actualStock: number;
   inStock: number;
@@ -249,6 +250,7 @@ export function calculate(
         itemName: item.name,
         isRawMaterial: item.isRawMaterial,
         isFound: item.isFound,
+        isLoot: !item.isRawMaterial && item.blueprints.length === 0 && item.producedBy.length === 0,
         totalNeeded: gross,
         actualStock: item.stock,
         inStock,
