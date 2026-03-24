@@ -452,15 +452,17 @@
     },
     {
       "name": "Fine Old Crude Matter",
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false
+      "isRawMaterial": true,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Fine Young Crude Matter",
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false
+      "isRawMaterial": true,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Fossilized Exotronics",
@@ -793,15 +795,17 @@
     },
     {
       "name": "Rough Old Crude Matter",
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false
+      "isRawMaterial": true,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Rough Young Crude Matter",
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false
+      "isRawMaterial": true,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 1
     },
     {
       "name": "Salt",
