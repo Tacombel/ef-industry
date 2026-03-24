@@ -326,7 +326,7 @@ export default function BlueprintCalculation({ itemId, itemName }: { itemId: str
                   <tr key={row.itemId} className="border-b border-gray-800/40">
                     <td className="py-1 pr-4 text-gray-200">
                       {row.itemName}
-                      {row.isFound && <span className="badge badge-loot ml-1.5">Loot</span>}
+                      {row.isFound && !row.isRawMaterial && <span className="badge badge-loot ml-1.5">Loot</span>}
                     </td>
                     <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                     <td className="py-1 pr-4 text-right">
