@@ -55,57 +55,6 @@ export default function OreSection({
 
   return (
     <div>
-      {/* Raw Materials section */}
-      {directOres.length > 0 && (
-        <div className="mb-4">
-          <h3 className="text-sm font-semibold text-yellow-400 mb-2">Raw Materials</h3>
-          <div className="space-y-2">
-            {directOres.map((row) => {
-              const toMine = Math.max(0, row.totalNeeded - (stock[row.itemId] ?? row.actualStock));
-              const directTrips = (cargoCapacity > 0 && row.volume > 0 && toMine > 0)
-                ? Math.ceil((toMine * row.volume) / cargoCapacity)
-                : null;
-              return (
-                <div key={row.itemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`relative text-xs font-medium text-gray-200 flex-1 ${row.asteroids?.length ? "cursor-help" : ""}`}
-                      onMouseEnter={() => row.asteroids?.length && setHoveredItemId(row.itemId)}
-                      onMouseLeave={() => setHoveredItemId(null)}
-                    >
-                      {row.itemName}
-                      {row.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
-                      {hoveredItemId === row.itemId && row.asteroids?.length && (
-                        <AsteroidTooltip asteroids={row.asteroids} />
-                      )}
-                    </span>
-                    {directTrips !== null && (
-                      <span className="text-xs text-gray-600">
-                        {directTrips} trip{directTrips > 1 ? "s" : ""}
-                      </span>
-                    )}
-                    <input
-                      type="number"
-                      min={0}
-                      title="Stock"
-                      className={`input w-24 text-right py-0.5 text-xs ${
-                        (stock[row.itemId] ?? row.actualStock) !== row.actualStock ? "border-cyan-600" : ""
-                      }`}
-                      value={stock[row.itemId] ?? row.actualStock}
-                      onChange={(e) => onStockChange(row.itemId, Number(e.target.value))}
-                    />
-                    <span className="text-xs text-gray-600">in stock</span>
-                    {toMine > 0
-                      ? <span className="text-xs font-semibold text-red-400 w-24 text-right">⛏ {toMine}</span>
-                      : <span className="text-xs font-semibold text-green-400 w-24 text-right">✓</span>}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
       {/* Header + cargo capacity input for Ore to Decompose */}
       <div className="flex items-center gap-3 mb-2">
         <h3 className="text-sm font-semibold text-purple-400 flex-1">Ore to Decompose</h3>

@@ -265,9 +265,9 @@ const [stock, setStock] = useState<Record<string, number>>({});
         </div>
       )}
 
-      {/* Raw materials (found/looted only) */}
+      {/* Raw materials needed */}
       {(() => {
-        const foundOnly = result.rawMaterials.filter((r) => !r.isRawMaterial);
+        const foundOnly = result.rawMaterials;
         return foundOnly.length > 0 ? (
           <div>
             <h3 className="text-sm font-semibold text-yellow-400 mb-2">Raw Materials Needed</h3>
@@ -316,7 +316,7 @@ const [stock, setStock] = useState<Record<string, number>>({});
       {/* Ore section */}
       <OreSection
         decomps={result.decompositions ?? []}
-        directOres={result.rawMaterials.filter((r) => r.isRawMaterial)}
+        directOres={[]}
         neededIds={new Set(result.rawMaterials.filter((r) => r.toBuy > 0).map((r) => r.itemId))}
         cargoCapacity={cargoCapacity}
         onCargoChange={updateCargoCapacity}
