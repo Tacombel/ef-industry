@@ -27,30 +27,34 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const body = await req.json();
   const { name, description, items } = body;
 
-  const pack = await prisma.$transaction(async (tx) => {
-    if (items !== undefined) {
-      await tx.packItem.deleteMany({ where: { packId: params.id } });
-    }
+  try {
+    const pack = await prisma.$transaction(async (tx) => {
+      if (items !== undefined) {
+        await tx.packItem.deleteMany({ where: { packId: params.id } });
+      }
 
-    return tx.pack.update({
-      where: { id: params.id },
-      data: {
-        ...(name !== undefined && { name: name.trim() }),
-        ...(description !== undefined && { description }),
-        ...(items !== undefined && {
-          items: {
-            create: items.map((i: { itemId: string; quantity: number }) => ({
-              itemId: i.itemId,
-              quantity: i.quantity,
-            })),
-          },
-        }),
-      },
-      include: { items: { include: { item: { include: { blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+      return tx.pack.update({
+        where: { id: params.id },
+        data: {
+          ...(name !== undefined && { name: name.trim() }),
+          ...(description !== undefined && { description }),
+          ...(items !== undefined && {
+            items: {
+              create: items.map((i: { itemId: string; quantity: number }) => ({
+                itemId: i.itemId,
+                quantity: i.quantity,
+              })),
+            },
+          }),
+        },
+        include: { items: { include: { item: { include: { blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+      });
     });
-  });
-
-  return NextResponse.json(pack);
+    return NextResponse.json(pack);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to update pack";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {

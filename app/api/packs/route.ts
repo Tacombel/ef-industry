@@ -25,20 +25,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name is required" }, { status: 400 });
   }
 
-  const pack = await prisma.pack.create({
-    data: {
-      name: name.trim(),
-      description,
-      userId: session.userId,
-      items: {
-        create: items.map((i: { itemId: string; quantity: number }) => ({
-          itemId: i.itemId,
-          quantity: i.quantity,
-        })),
+  try {
+    const pack = await prisma.pack.create({
+      data: {
+        name: name.trim(),
+        description,
+        userId: session.userId,
+        items: {
+          create: items.map((i: { itemId: string; quantity: number }) => ({
+            itemId: i.itemId,
+            quantity: i.quantity,
+          })),
+        },
       },
-    },
-    include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
-  });
-
-  return NextResponse.json(pack, { status: 201 });
+      include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { where: { isDefault: true }, select: { factory: true }, take: 1 } } } } } },
+    });
+    return NextResponse.json(pack, { status: 201 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to create pack";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }

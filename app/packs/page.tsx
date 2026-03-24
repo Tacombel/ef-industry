@@ -55,15 +55,27 @@ export default function PacksPage() {
     if (!name.trim()) { setError("Name is required"); return; }
     if (rows.some((r) => !r.itemId)) { setError("All rows need an item"); return; }
     setSaving(true);
-    const url = editId ? `/api/packs/${editId}` : "/api/packs";
-    const method = editId ? "PUT" : "POST";
-    const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, description, items: rows }),
-    });
-    if (!res.ok) { setError((await res.json()).error ?? "Error"); setSaving(false); return; }
-    setSaving(false); setShowForm(false); load();
+    try {
+      const url = editId ? `/api/packs/${editId}` : "/api/packs";
+      const method = editId ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, description, items: rows }),
+      });
+      if (!res.ok) {
+        let msg = "Error";
+        try { msg = (await res.json()).error ?? msg; } catch {}
+        setError(msg);
+        return;
+      }
+      setShowForm(false);
+      load();
+    } catch {
+      setError("Network error");
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function remove(id: string, packName: string) {
