@@ -210,7 +210,7 @@ export default function OreSection({
                 <span className="text-gray-600 self-center">→</span>
                 {d.isUnrefined ? (
                   <span className="bg-gray-700 border border-gray-600 rounded px-1.5 py-0.5 text-gray-400 italic">
-                    Consumido sin refinar
+                    Consumed without refining
                   </span>
                 ) : (
                   d.outputs.map((o) => {
@@ -252,7 +252,7 @@ export default function OreSection({
                   )}
                 </span>
                 <span className="text-xs text-gray-500">
-                  Mine <span className="text-purple-300 font-semibold">{row.totalNeeded}</span> units directly
+                  Mine <span className="text-purple-300 font-semibold">{row.totalNeeded}</span> units
                 </span>
                 {directTrips !== null && (
                   <span className="text-xs text-gray-600">
@@ -278,7 +278,7 @@ export default function OreSection({
                 <div className="flex flex-wrap gap-1 text-xs mt-2">
                   <span className="text-gray-600 self-center">→</span>
                   <span className="bg-gray-700 border border-gray-600 rounded px-1.5 py-0.5 text-gray-400 italic">
-                    Consumido sin refinar
+                    Consumed without refining
                   </span>
                 </div>
               )}
