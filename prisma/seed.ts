@@ -2,6 +2,15 @@ import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import data from "./seed.json";
 
+type SeedItem = {
+  name: string;
+  isRawMaterial: boolean;
+  isFound: boolean;
+  isFinalProduct: boolean;
+  volume?: number;
+  typeId?: number | null;
+};
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -25,7 +34,7 @@ async function main() {
   console.log(`  ✓ ${data.locations.length} locations`);
 
   // Items
-  for (const item of data.items) {
+  for (const item of data.items as SeedItem[]) {
     await prisma.item.upsert({
       where: { name: item.name },
       update: { isRawMaterial: item.isRawMaterial, isFound: item.isFound, isFinalProduct: item.isFinalProduct, volume: item.volume ?? 0, typeId: item.typeId ?? null },
