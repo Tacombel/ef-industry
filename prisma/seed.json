@@ -110,8 +110,8 @@
     },
     {
       "name": "Aromatic Carbon Weave",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -180,8 +180,8 @@
     },
     {
       "name": "Brine",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -313,8 +313,8 @@
     },
     {
       "name": "Chitinous Organics",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -369,8 +369,8 @@
     },
     {
       "name": "D1 Fuel",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -404,8 +404,8 @@
     },
     {
       "name": "EU-40 Fuel",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -425,8 +425,8 @@
     },
     {
       "name": "Eupraxite",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -495,8 +495,8 @@
     },
     {
       "name": "Feldspar Crystal Shards",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -579,8 +579,8 @@
     },
     {
       "name": "Hydrocarbon Residue",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -593,15 +593,15 @@
     },
     {
       "name": "Iron-Rich Nodules",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
     {
       "name": "Kerogen Tar",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -712,8 +712,8 @@
     },
     {
       "name": "Nickel-Iron Veins",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -754,15 +754,15 @@
     },
     {
       "name": "Palladium",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
     {
       "name": "Platinum-Group Veins",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -922,15 +922,15 @@
     },
     {
       "name": "SOF-40 Fuel",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
     {
       "name": "Salt",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -964,15 +964,15 @@
     },
     {
       "name": "Silica Grains",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
     {
       "name": "Silicon Dust",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -999,8 +999,8 @@
     },
     {
       "name": "Sophrogon",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -1251,8 +1251,8 @@
     },
     {
       "name": "Tholin Aggregates",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -1349,8 +1349,8 @@
     },
     {
       "name": "Troilite Sulfide Grains",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
@@ -1426,8 +1426,8 @@
     },
     {
       "name": "Water Ice",
-      "isRawMaterial": true,
-      "isFound": false,
+      "isRawMaterial": false,
+      "isFound": true,
       "isFinalProduct": false,
       "volume": 1
     },
