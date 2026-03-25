@@ -3,8 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CalculationResult } from "@/lib/calculator";
 import OreSection from "@/components/common/OreSection";
+import SsuAddressBar from "@/components/common/SsuAddressBar";
+import { useSsuAddress } from "@/hooks/useSsuAddress";
 
 export default function BlueprintCalculation({ itemId }: { itemId: string; itemName: string }) {
+  const { address: ssuAddress, saveAddress } = useSsuAddress();
+  const ssuAddressRef = useRef(ssuAddress);
+  useEffect(() => { ssuAddressRef.current = ssuAddress; }, [ssuAddress]);
+
   const [quantity, setQuantity] = useState(1);
   const [pendingQty, setPendingQty] = useState(1);
   const [result, setResult] = useState<CalculationResult | null>(null);
@@ -38,7 +44,8 @@ export default function BlueprintCalculation({ itemId }: { itemId: string; itemN
     setError("");
     const qty = quantityRef.current;
     const excluded = [...excludedOreIdsRef.current].join(",");
-    const url = `/api/calculate?itemId=${itemId}&runs=${qty}${excluded ? `&excludedOres=${excluded}` : ""}`;
+    const addr = ssuAddressRef.current.trim();
+    const url = `/api/calculate?itemId=${itemId}&runs=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addr ? `&ssuAddress=${encodeURIComponent(addr)}` : ""}`;
     fetch(url, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => {
@@ -59,6 +66,7 @@ export default function BlueprintCalculation({ itemId }: { itemId: string; itemN
   }, [itemId]);
 
   useEffect(() => { load(); }, [load]);
+  useEffect(() => { if (result !== null) load(true); }, [ssuAddress]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function applyQuantity() {
     quantityRef.current = pendingQty;
@@ -96,6 +104,9 @@ export default function BlueprintCalculation({ itemId }: { itemId: string; itemN
 
   return (
     <div className={`space-y-4 ${isRecalculating ? "opacity-60" : ""}`}>
+      {/* SSU address */}
+      <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
+
       {/* Quantity selector */}
       <div className="flex items-center gap-2">
         <span className="text-xs text-gray-400">Batches to produce:</span>

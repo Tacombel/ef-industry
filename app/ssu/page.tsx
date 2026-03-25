@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSsuAddress } from "@/hooks/useSsuAddress";
+import SsuAddressBar from "@/components/common/SsuAddressBar";
 
 interface InventoryItem {
   typeId: number;
@@ -46,30 +48,30 @@ function SortHeader({
 }
 
 export default function SsuPage() {
-  const [address, setAddress] = useState("");
+  const { address, saveAddress } = useSsuAddress();
   const [data, setData] = useState<SsuData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("name");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
-  async function fetchInventory() {
-    const addr = address.trim();
-    if (!addr) return;
+  useEffect(() => {
+    if (!address.trim()) {
+      setData(null);
+      return;
+    }
     setLoading(true);
     setError(null);
     setData(null);
-    try {
-      const res = await fetch(`/api/ssu-inventory?address=${encodeURIComponent(addr)}`);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Error fetching inventory");
-      setData(json);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Unknown error");
-    } finally {
-      setLoading(false);
-    }
-  }
+    fetch(`/api/ssu-inventory?address=${encodeURIComponent(address.trim())}`)
+      .then((res) => res.json().then((json) => ({ ok: res.ok, json })))
+      .then(({ ok, json }) => {
+        if (!ok) throw new Error(json.error ?? "Error fetching inventory");
+        setData(json);
+      })
+      .catch((e) => setError(e instanceof Error ? e.message : "Unknown error"))
+      .finally(() => setLoading(false));
+  }, [address]);
 
   function handleSort(key: SortKey) {
     if (key === sortKey) {
@@ -107,23 +109,9 @@ export default function SsuPage() {
         <p className="text-sm text-gray-500 mt-1">Inventario on-chain de un SSU</p>
       </div>
 
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && fetchInventory()}
-          placeholder="0x..."
-          className="flex-1 rounded bg-gray-800 border border-gray-700 px-3 py-2 text-sm font-mono text-gray-100 placeholder-gray-600 focus:outline-none focus:border-cyan-600"
-        />
-        <button
-          onClick={fetchInventory}
-          disabled={loading || !address.trim()}
-          className="rounded bg-cyan-700 hover:bg-cyan-600 disabled:bg-gray-700 disabled:text-gray-500 px-4 py-2 text-sm font-medium text-white transition-colors"
-        >
-          {loading ? "Cargando..." : "Consultar"}
-        </button>
-      </div>
+      <SsuAddressBar address={address} onSave={saveAddress} />
+
+      {loading && <p className="text-sm text-gray-500">Cargando inventario…</p>}
 
       {error && (
         <div className="rounded bg-red-900/40 border border-red-700 px-4 py-3 text-sm text-red-300">

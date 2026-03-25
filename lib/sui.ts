@@ -126,19 +126,14 @@ export async function getSsuInventory(address: string): Promise<SsuInventory> {
  * keyed by the DB item CUID, matched via typeId.
  * Returns an empty map if the user has no ssuAddress configured.
  */
-export async function fetchUserStockMap(userId: string): Promise<Map<string, number>> {
-  const user = await prisma.user.findUnique({ where: { id: userId }, select: { ssuAddress: true } });
-  if (!user?.ssuAddress) return new Map();
+export async function fetchStockMapFromAddress(ssuAddress: string): Promise<Map<string, number>> {
+  const inventory = await getSsuInventory(ssuAddress);
 
-  const inventory = await getSsuInventory(user.ssuAddress);
-
-  // Build typeId -> quantity map from SSU
   const byTypeId = new Map<number, number>();
   for (const item of inventory.items) {
     byTypeId.set(item.typeId, (byTypeId.get(item.typeId) ?? 0) + item.quantity);
   }
 
-  // Match to DB item CUIDs via typeId
   const dbItems = await prisma.item.findMany({
     where: { typeId: { not: null } },
     select: { id: true, typeId: true },
@@ -151,4 +146,15 @@ export async function fetchUserStockMap(userId: string): Promise<Map<string, num
   }
 
   return stockMap;
+}
+
+export async function fetchUserStockMap(userId: string, addressOverride?: string): Promise<Map<string, number>> {
+  const address = addressOverride?.trim() || null;
+  if (!address) {
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { ssuAddress: true } });
+    if (!user?.ssuAddress) return new Map();
+    return fetchStockMapFromAddress(user.ssuAddress);
+  }
+
+  return fetchStockMapFromAddress(address);
 }

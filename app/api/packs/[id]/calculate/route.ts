@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculate, buildItemMap } from "@/lib/calculator";
 import { fetchCalcItems, enrichAsteroids } from "@/lib/calc-helpers";
-import { fetchUserStockMap } from "@/lib/sui";
+import { fetchUserStockMap, fetchStockMapFromAddress } from "@/lib/sui";
 import { getSession } from "@/lib/auth";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
@@ -11,6 +11,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 
   const ignoreParam = req.nextUrl.searchParams.get("ignore");
   const ignoredIds = new Set(ignoreParam ? ignoreParam.split(",").filter(Boolean) : []);
+  const ssuAddress = req.nextUrl.searchParams.get("ssuAddress") ?? undefined;
 
   const pack = await prisma.pack.findUnique({
     where: { id: params.id },
@@ -23,7 +24,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ rawMaterials: [], intermediates: [], decompositions: [], finalProducts: [] });
   }
 
-  const stockMap = await fetchUserStockMap(session.userId);
+  const stockMap = ssuAddress
+    ? await fetchStockMapFromAddress(ssuAddress)
+    : await fetchUserStockMap(session.userId);
   const itemMap = buildItemMap(await fetchCalcItems(stockMap));
 
   try {
