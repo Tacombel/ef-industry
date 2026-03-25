@@ -53,12 +53,6 @@ export default function RefineriesPage() {
     setSaving(false);
   }
 
-  async function deleteRefinery(id: string, refineryName: string) {
-    if (!confirm(`Delete refinery "${refineryName}"?`)) return;
-    await fetch(`/api/refineries/${id}`, { method: "DELETE" });
-    await load();
-  }
-
   return (
     <div className="p-6 space-y-6 max-w-2xl">
       <div className="flex items-center justify-between">
@@ -81,9 +75,8 @@ export default function RefineriesPage() {
               <tr key={r.id} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                 <td className="py-2 pr-4 font-medium text-gray-200">{r.name}</td>
                 {isAdmin && (
-                  <td className="py-2 text-right space-x-2">
+                  <td className="py-2 text-right">
                     <button className="btn-ghost text-xs" onClick={() => openEdit(r)}>Edit</button>
-                    <button className="btn-ghost btn-danger text-xs" onClick={() => deleteRefinery(r.id, r.name)}>Del</button>
                   </td>
                 )}
               </tr>

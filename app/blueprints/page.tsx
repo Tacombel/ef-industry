@@ -96,13 +96,6 @@ export default function BlueprintsPage() {
     setSaving(false); setShowForm(false); load();
   }
 
-  async function remove(id: string, itemName: string, factoryName: string) {
-    const label = factoryName ? `${itemName} (${factoryName})` : itemName;
-    if (!confirm(`Delete blueprint for "${label}"?`)) return;
-    await fetch(`/api/blueprints/${id}`, { method: "DELETE" });
-    load();
-  }
-
   async function setDefault(id: string) {
     await fetch(`/api/blueprints/${id}`, {
       method: "PUT",
@@ -212,7 +205,6 @@ export default function BlueprintsPage() {
                         )}
                         <span className="text-xs text-gray-500">×{bp.outputQty}/run</span>
                         {isAdmin && <button onClick={() => openEdit(bp)} className="btn-sm">Edit</button>}
-                        {isAdmin && <button onClick={() => remove(bp.id, item.name, bp.factory)} className="btn-sm btn-danger">Del</button>}
                       </div>
 
                       {/* Inputs table */}

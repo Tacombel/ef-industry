@@ -94,12 +94,6 @@ export default function AsteroidsPage() {
     setSaving(false);
   }
 
-  async function deleteAsteroid(id: string) {
-    if (!confirm("Delete this asteroid type?")) return;
-    await fetch(`/api/asteroids/${id}`, { method: "DELETE" });
-    await loadAll();
-  }
-
   function toggleId(ids: string[], id: string): string[] {
     return ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
   }
@@ -138,12 +132,6 @@ export default function AsteroidsPage() {
       await loadAll();
     }
     setSaving(false);
-  }
-
-  async function deleteLocation(id: string) {
-    if (!confirm("Delete this location?")) return;
-    await fetch(`/api/locations/${id}`, { method: "DELETE" });
-    await loadAll();
   }
 
   return (
@@ -196,9 +184,8 @@ export default function AsteroidsPage() {
                     </div>
                   </td>
                   {isAdmin && (
-                    <td className="py-2 text-right space-x-2">
+                    <td className="py-2 text-right">
                       <button className="btn-ghost text-xs" onClick={() => openEditAsteroid(a)}>Edit</button>
-                      <button className="btn-ghost btn-danger text-xs" onClick={() => deleteAsteroid(a.id)}>Del</button>
                     </td>
                   )}
                 </tr>
@@ -244,9 +231,8 @@ export default function AsteroidsPage() {
                       </div>
                     </td>
                     {isAdmin && (
-                      <td className="py-2 text-right space-x-2">
+                      <td className="py-2 text-right">
                         <button className="btn-ghost text-xs" onClick={() => openEditLocation(l)}>Edit</button>
-                        <button className="btn-ghost btn-danger text-xs" onClick={() => deleteLocation(l.id)}>Del</button>
                       </td>
                     )}
                   </tr>

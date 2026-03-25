@@ -39,6 +39,8 @@ model Blueprint {
 
   outputItem Item             @relation(fields: [outputItemId], references: [id], onDelete: Cascade)
   inputs     BlueprintInput[]
+
+  @@unique([outputItemId, factory])
 }
 
 model BlueprintInput {

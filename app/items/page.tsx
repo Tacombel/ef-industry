@@ -139,12 +139,6 @@ export default function ItemsPage() {
     load();
   }
 
-  async function remove(id: string, name: string) {
-    if (!confirm(`Delete "${name}"?`)) return;
-    await fetch(`/api/items/${id}`, { method: "DELETE" });
-    load();
-  }
-
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
@@ -235,7 +229,6 @@ export default function ItemsPage() {
                 {isAdmin && (
                   <td className="py-1 pl-2 flex gap-2 justify-end whitespace-nowrap">
                     <button onClick={() => openEdit(item)} className="btn-sm">Edit</button>
-                    <button onClick={() => remove(item.id, item.name)} className="btn-sm btn-danger">Del</button>
                   </td>
                 )}
               </tr>

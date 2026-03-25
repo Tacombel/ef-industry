@@ -97,13 +97,6 @@ export default function DecompositionsPage() {
     setSaving(false); setShowForm(false); load();
   }
 
-  async function remove(id: string, name: string, ref: string) {
-    const label = ref ? `${name} (${ref})` : name;
-    if (!confirm(`Delete decomposition for "${label}"?`)) return;
-    await fetch(`/api/decompositions/${id}`, { method: "DELETE" });
-    load();
-  }
-
   // Group decompositions by source item
   const grouped = decompositions.reduce((acc, d) => {
     const key = d.sourceItem.id;
@@ -153,7 +146,6 @@ export default function DecompositionsPage() {
                       {d.isDefault && <span className="badge badge-yellow text-xs">Default</span>}
                       <span className="text-xs text-gray-500">{d.inputQty} u/run</span>
                       {isAdmin && <button onClick={() => openEdit(d)} className="btn-sm">Edit</button>}
-                      {isAdmin && <button onClick={() => remove(d.id, d.sourceItem.name, d.refinery)} className="btn-sm btn-danger">Del</button>}
                     </div>
                     <div className="flex flex-wrap gap-2 ml-6">
                       {d.outputs.map((o) => (

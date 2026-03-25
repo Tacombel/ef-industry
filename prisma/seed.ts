@@ -82,27 +82,22 @@ async function main() {
   }
   console.log(`  ✓ ${data.decompositions.length} decompositions`);
 
-  // Blueprints — upsert not possible (no unique constraint on outputItem+factory)
-  // Strategy: delete and recreate only blueprints, preserving user data
-  await prisma.blueprintInput.deleteMany();
-  await prisma.blueprint.deleteMany();
+  // Blueprints — upsert by (outputItemId, factory)
   for (const bp of data.blueprints) {
     const outputItem = await prisma.item.findUnique({ where: { name: bp.outputItem } });
     if (!outputItem) { console.warn(`  ⚠ Item not found for blueprint: ${bp.outputItem}`); continue; }
-    const created = await prisma.blueprint.create({
-      data: {
-        outputItemId: outputItem.id,
-        factory: bp.facility,
-        outputQty: bp.outputQty,
-        runTime: bp.runTime,
-        isDefault: false,
-      },
+    const upserted = await prisma.blueprint.upsert({
+      where: { outputItemId_factory: { outputItemId: outputItem.id, factory: bp.facility } },
+      update: { outputQty: bp.outputQty, runTime: bp.runTime },
+      create: { outputItemId: outputItem.id, factory: bp.facility, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false },
     });
     for (const inp of bp.inputs) {
       const inpItem = await prisma.item.findUnique({ where: { name: inp.item } });
       if (inpItem) {
-        await prisma.blueprintInput.create({
-          data: { blueprintId: created.id, itemId: inpItem.id, quantity: inp.quantity },
+        await prisma.blueprintInput.upsert({
+          where: { blueprintId_itemId: { blueprintId: upserted.id, itemId: inpItem.id } },
+          update: { quantity: inp.quantity },
+          create: { blueprintId: upserted.id, itemId: inpItem.id, quantity: inp.quantity },
         });
       }
     }
