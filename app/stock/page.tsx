@@ -78,12 +78,15 @@ export default function StockPage() {
       </div>
 
       <div className="flex gap-3 mb-4">
-        <input
-          className="input flex-1 max-w-xs"
-          placeholder="Search…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="relative flex-1 max-w-xs">
+          <input
+            className="input w-full"
+            placeholder="Search…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {search && <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">✕</button>}
+        </div>
         <div className="flex gap-1">
           {(["all", "ore", "raw", "crafted"] as const).map((f) => (
             <button

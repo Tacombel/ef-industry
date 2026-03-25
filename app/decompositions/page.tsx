@@ -125,13 +125,15 @@ export default function DecompositionsPage() {
       <p className="text-sm text-gray-500 mb-3">
         Define how a material breaks down when reprocessed. Multiple refineries can yield different outputs.
       </p>
-      <input
-        type="search"
-        placeholder="Search by input or output…"
-        className="input w-full mb-6"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="relative mb-6">
+        <input
+          placeholder="Search by input or output…"
+          className="input w-full"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {search && <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">✕</button>}
+      </div>
 
       {loading ? (
         <p className="text-gray-500">Loading…</p>

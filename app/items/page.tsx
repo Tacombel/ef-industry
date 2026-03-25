@@ -152,12 +152,15 @@ export default function ItemsPage() {
       </div>
 
       <div className="flex gap-3 mb-4 items-end">
-        <input
-          className="input flex-1 max-w-xs"
-          placeholder="Search items…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="relative flex-1 max-w-xs">
+          <input
+            className="input w-full"
+            placeholder="Search items…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {search && <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">✕</button>}
+        </div>
         <button
           onClick={() => setShowOre(!showOre)}
           className={`btn-sm ${showOre ? "bg-yellow-700 hover:bg-yellow-600 text-yellow-100" : ""}`}
