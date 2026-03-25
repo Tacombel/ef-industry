@@ -11,7 +11,7 @@
     "test:watch": "vitest",
     "db:seed": "tsx prisma/seed.ts",
     "db:export": "tsx prisma/export.ts",
-    "prepare": "git config core.hooksPath .githooks"
+    "prepare": "git rev-parse --git-dir > /dev/null 2>&1 && git config core.hooksPath .githooks || true"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
