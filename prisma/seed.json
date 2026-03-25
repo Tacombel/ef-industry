@@ -17,19 +17,19 @@
       "type": "factory"
     },
     {
-      "name": "Heavy berth",
+      "name": "Heavy Berth",
       "type": "factory"
     },
     {
-      "name": "Heavy printer",
+      "name": "Heavy Printer",
       "type": "factory"
     },
     {
-      "name": "Mini berth",
+      "name": "Mini Berth",
       "type": "factory"
     },
     {
-      "name": "Mini printer",
+      "name": "Mini Printer",
       "type": "factory"
     },
     {
@@ -41,7 +41,7 @@
       "type": "refinery"
     },
     {
-      "name": "Heavy refinery",
+      "name": "Heavy Refinery",
       "type": "refinery"
     },
     {
@@ -576,21 +576,21 @@
       "volume": 0
     },
     {
-      "name": "Heavy berth",
+      "name": "Heavy Berth",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
       "volume": 0
     },
     {
-      "name": "Heavy printer",
+      "name": "Heavy Printer",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
       "volume": 0
     },
     {
-      "name": "Heavy refinery",
+      "name": "Heavy Refinery",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
@@ -716,21 +716,21 @@
       "volume": 1
     },
     {
-      "name": "Mini berth",
+      "name": "Mini Berth",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
       "volume": 0
     },
     {
-      "name": "Mini printer",
+      "name": "Mini Printer",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
       "volume": 0
     },
     {
-      "name": "Mini storage",
+      "name": "Mini Storage",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
@@ -744,7 +744,7 @@
       "volume": 0
     },
     {
-      "name": "Network node",
+      "name": "Network Node",
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
@@ -2080,7 +2080,7 @@
     },
     {
       "outputItem": "AC Gyrojet Ammo 1 (S)",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 100,
       "runTime": 3,
       "inputs": [
@@ -2388,7 +2388,7 @@
     },
     {
       "outputItem": "Building Foam",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 10,
       "runTime": 25,
       "inputs": [
@@ -2528,7 +2528,7 @@
     },
     {
       "outputItem": "Carbon Weave",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 14,
       "runTime": 5,
       "inputs": [
@@ -2620,7 +2620,7 @@
     },
     {
       "outputItem": "Carom",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 10260,
       "inputs": [
@@ -2648,7 +2648,7 @@
     },
     {
       "outputItem": "Carom Stack",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 43200,
       "inputs": [
@@ -2784,7 +2784,7 @@
     },
     {
       "outputItem": "Coilgun Ammo 1 (S)",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 100,
       "runTime": 5,
       "inputs": [
@@ -2812,7 +2812,7 @@
     },
     {
       "outputItem": "Compressed Coolant",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 10,
       "runTime": 3,
       "inputs": [
@@ -2868,7 +2868,7 @@
     },
     {
       "outputItem": "D2 Fuel",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 200,
       "runTime": 6,
       "inputs": [
@@ -2920,7 +2920,7 @@
     },
     {
       "outputItem": "Echo Chamber",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 17,
       "inputs": [
@@ -3191,7 +3191,7 @@
       ]
     },
     {
-      "outputItem": "Heavy printer",
+      "outputItem": "Heavy Printer",
       "facility": "Build",
       "outputQty": 1,
       "runTime": 0,
@@ -3324,7 +3324,7 @@
     },
     {
       "outputItem": "Luminalis Mining Lens",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -3375,7 +3375,7 @@
       ]
     },
     {
-      "outputItem": "Mini berth",
+      "outputItem": "Mini Berth",
       "facility": "Build",
       "outputQty": 1,
       "runTime": 0,
@@ -3395,7 +3395,7 @@
       ]
     },
     {
-      "outputItem": "Mini printer",
+      "outputItem": "Mini Printer",
       "facility": "Build",
       "outputQty": 1,
       "runTime": 0,
@@ -3411,7 +3411,7 @@
       ]
     },
     {
-      "outputItem": "Mini storage",
+      "outputItem": "Mini Storage",
       "facility": "Build",
       "outputQty": 1,
       "runTime": 0,
@@ -3427,7 +3427,7 @@
       ]
     },
     {
-      "outputItem": "Network node",
+      "outputItem": "Network Node",
       "facility": "Build",
       "outputQty": 1,
       "runTime": 0,
@@ -3508,7 +3508,7 @@
     },
     {
       "outputItem": "Nomad Program Frame",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 20,
       "inputs": [
@@ -3548,7 +3548,7 @@
     },
     {
       "outputItem": "Printed Circuits",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -3576,7 +3576,7 @@
     },
     {
       "outputItem": "Radiantium Mining Lens",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -3612,7 +3612,7 @@
     },
     {
       "outputItem": "Rapid Plasma Ammo 1 (S)",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 100,
       "runTime": 5,
       "inputs": [
@@ -3676,7 +3676,7 @@
     },
     {
       "outputItem": "Recurve",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 130,
       "inputs": [
@@ -3740,7 +3740,7 @@
     },
     {
       "outputItem": "Reflex",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 50,
       "inputs": [
@@ -3792,7 +3792,7 @@
     },
     {
       "outputItem": "Reinforced Alloys",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 14,
       "runTime": 4,
       "inputs": [
@@ -3840,7 +3840,7 @@
     },
     {
       "outputItem": "Reiver",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 150,
       "inputs": [
@@ -4124,7 +4124,7 @@
     },
     {
       "outputItem": "Still Kernel",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 11,
       "inputs": [
@@ -4140,7 +4140,7 @@
     },
     {
       "outputItem": "Still Knot",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 11,
       "inputs": [
@@ -4156,7 +4156,7 @@
     },
     {
       "outputItem": "Stride",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 10630,
       "inputs": [
@@ -4184,7 +4184,7 @@
     },
     {
       "outputItem": "Stride Stack",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 43200,
       "inputs": [
@@ -4220,7 +4220,7 @@
     },
     {
       "outputItem": "Synthetic Mining Lens",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -4348,7 +4348,7 @@
     },
     {
       "outputItem": "Thermal Composites",
-      "facility": "Mini printer",
+      "facility": "Mini Printer",
       "outputQty": 14,
       "runTime": 4,
       "inputs": [
@@ -4956,7 +4956,7 @@
     },
     {
       "outputItem": "Wend",
-      "facility": "Mini berth",
+      "facility": "Mini Berth",
       "outputQty": 1,
       "runTime": 60,
       "inputs": [
