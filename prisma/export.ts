@@ -67,6 +67,7 @@ async function main() {
       isRawMaterial: i.isRawMaterial,
       isFound: i.isFound,
       isFinalProduct: i.isFinalProduct,
+      isAsteroid: i.isAsteroid,
       volume: i.volume,
       ...(i.description ? { description: i.description } : {}),
       ...(i.mass !== null ? { mass: i.mass } : {}),

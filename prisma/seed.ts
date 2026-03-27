@@ -8,6 +8,7 @@ type SeedItem = {
   isRawMaterial: boolean;
   isFound: boolean;
   isFinalProduct: boolean;
+  isAsteroid?: boolean;
   volume?: number;
   description?: string | null;
   mass?: number | null;
@@ -51,6 +52,7 @@ async function main() {
         isRawMaterial: item.isRawMaterial,
         isFound: item.isFound,
         isFinalProduct: item.isFinalProduct,
+        isAsteroid: item.isAsteroid ?? false,
         volume: item.volume ?? 0,
         description: item.description ?? null,
         mass: item.mass ?? null,

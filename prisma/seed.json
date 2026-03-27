@@ -4148,7 +4148,8 @@
       "groupName": "Natural Resources",
       "groupId": 0,
       "categoryName": "Asteroid",
-      "categoryId": 25
+      "categoryId": 25,
+      "isAsteroid": true
     },
     {
       "name": "Cryogenic Ejector S",
@@ -5071,7 +5072,8 @@
       "groupName": "Rift",
       "groupId": 0,
       "categoryName": "Asteroid",
-      "categoryId": 25
+      "categoryId": 25,
+      "isAsteroid": true
     },
     {
       "name": "Stride Stack",
@@ -5312,7 +5314,8 @@
       "groupName": "Char",
       "groupId": 0,
       "categoryName": "Asteroid",
-      "categoryId": 25
+      "categoryId": 25,
+      "isAsteroid": true
     },
     {
       "name": "Slag",
@@ -5328,7 +5331,8 @@
       "groupName": "Slag",
       "groupId": 0,
       "categoryName": "Asteroid",
-      "categoryId": 25
+      "categoryId": 25,
+      "isAsteroid": true
     },
     {
       "name": "Ingot",
@@ -5360,7 +5364,8 @@
       "groupName": "Comet",
       "groupId": 0,
       "categoryName": "Asteroid",
-      "categoryId": 25
+      "categoryId": 25,
+      "isAsteroid": true
     },
     {
       "name": "Dewdrop",

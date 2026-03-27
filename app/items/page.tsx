@@ -9,6 +9,7 @@ interface ItemData {
   isRawMaterial: boolean;
   isFound: boolean;
   isFinalProduct: boolean;
+  isAsteroid: boolean;
   volume: number;
   stock: { quantity: number } | null;
   blueprints: { id: string; factory: string; outputQty: number; isDefault: boolean }[];
@@ -68,7 +69,7 @@ export default function ItemsPage() {
       }
     });
     const trueLoot = allItems.filter((i: ItemData) =>
-      !bpOutputIds.has(i.id) && !i.isRawMaterial && !decompOutputIds.has(i.id)
+      !bpOutputIds.has(i.id) && !i.isRawMaterial && !i.isAsteroid && !decompOutputIds.has(i.id)
     );
     const trueLootIdSet = new Set<string>(trueLoot.map((i: ItemData) => i.id));
 
@@ -98,7 +99,7 @@ export default function ItemsPage() {
       }
     }
 
-    const ores = allItems.filter((i: ItemData) => i.isRawMaterial && !i.isFound && i.blueprints.length === 0 && !i.isFinalProduct);
+    const ores = allItems.filter((i: ItemData) => i.isRawMaterial && !i.isFound && !i.isFinalProduct);
 
     setTotalItems(allItems.length);
     setOreCount(ores.length);
@@ -195,15 +196,16 @@ export default function ItemsPage() {
             </tr>
           </thead>
           <tbody>
-            {(showOre ? items.filter(i => i.isRawMaterial && !i.isFound && i.blueprints.length === 0 && !i.isFinalProduct) : showLoot ? items.filter(i => lootIds.has(i.id)) : items).map((item) => (
+            {(showOre ? items.filter(i => i.isRawMaterial && !i.isFound && !i.isFinalProduct) : showLoot ? items.filter(i => lootIds.has(i.id)) : items).map((item) => (
               <tr key={item.id} className="border-b border-gray-800/50 hover:bg-gray-800/30 h-8 align-middle">
                 <td className="py-1 pr-3 font-medium text-gray-100 whitespace-nowrap align-middle">{item.name}</td>
                 <td className="py-1 pr-3 text-xs whitespace-nowrap overflow-hidden">
                   {item.isRawMaterial && <span className="badge badge-yellow">Ore</span>}
+                  {item.isAsteroid && <span className="badge badge-orange">Asteroid</span>}
                   {item.isFound && <span className="badge badge-blue">Raw</span>}
-                  {item.blueprints.length > 0 && !item.isFinalProduct && <span className="badge badge-gray">Intermediate</span>}
+                  {item.blueprints.length > 0 && !item.isFinalProduct && !item.isRawMaterial && !item.isAsteroid && <span className="badge badge-gray">Intermediate</span>}
                   {item.isFinalProduct && <span className="badge badge-cyan">Final</span>}
-                  {!item.isRawMaterial && !item.isFound && !item.isFinalProduct && item.blueprints.length === 0 && <span className="text-gray-600">—</span>}
+                  {!item.isRawMaterial && !item.isAsteroid && !item.isFound && !item.isFinalProduct && item.blueprints.length === 0 && <span className="text-gray-600">—</span>}
                 </td>
                 <td className="py-1 pr-3 text-right text-gray-400 whitespace-nowrap">
                   {item.volume > 0 ? <span>{item.volume} m³</span> : <span className="text-gray-600">—</span>}
@@ -211,7 +213,7 @@ export default function ItemsPage() {
                 <td className="py-1 pr-3 text-gray-400 whitespace-nowrap">{item.stock?.quantity ?? 0}</td>
                 <td className="py-1 pr-3 text-xs whitespace-nowrap overflow-hidden">
                   {(() => {
-                    if (item.isRawMaterial) {
+                    if (item.isRawMaterial || item.isAsteroid) {
                       return <span className="badge badge-yellow">Mining</span>;
                     }
                     if (lootIds.has(item.id)) {
