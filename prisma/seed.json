@@ -2365,6 +2365,14 @@
       "categoryId": 7
     },
     {
+      "name": "Unknown (83524)",
+      "typeId": 83524,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
       "name": "Purified Moon Cutting Laser",
       "typeId": 83525,
       "isRawMaterial": false,
@@ -2680,6 +2688,14 @@
       "groupId": 0,
       "categoryName": "Module",
       "categoryId": 7
+    },
+    {
+      "name": "Unknown (83775)",
+      "typeId": 83775,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 0
     },
     {
       "name": "Explosive Field Array II",
@@ -5053,6 +5069,102 @@
       "categoryId": 25
     },
     {
+      "name": "Stride Stack",
+      "typeId": 89978,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": true,
+      "volume": 0
+    },
+    {
+      "name": "Carom Stack",
+      "typeId": 89979,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": true,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 31P",
+      "typeId": 89980,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 31F",
+      "typeId": 89981,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5C0",
+      "typeId": 89982,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 31Q",
+      "typeId": 89983,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5DK",
+      "typeId": 89984,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 31V",
+      "typeId": 89985,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5DZ",
+      "typeId": 89986,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5C1",
+      "typeId": 89987,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5DE",
+      "typeId": 89988,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Stack Slice 5DW",
+      "typeId": 89989,
+      "isRawMaterial": false,
+      "isFound": true,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
       "name": "Relay",
       "typeId": 90184,
       "isRawMaterial": false,
@@ -5742,6 +5854,14 @@
       "categoryId": 22
     },
     {
+      "name": "Unknown (91749)",
+      "typeId": 91749,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
       "name": "Refuge",
       "typeId": 91751,
       "isRawMaterial": false,
@@ -5837,6 +5957,22 @@
       "groupId": 0,
       "categoryName": "Commodity",
       "categoryId": 17
+    },
+    {
+      "name": "Unknown (91967)",
+      "typeId": 91967,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 0
+    },
+    {
+      "name": "Unknown (91968)",
+      "typeId": 91968,
+      "isRawMaterial": false,
+      "isFound": false,
+      "isFinalProduct": false,
+      "volume": 0
     },
     {
       "name": "Nursery",
@@ -6207,107 +6343,11 @@
       "categoryId": 4
     },
     {
-      "name": "Carom Stack",
-      "typeId": 10000001,
-      "isRawMaterial": false,
-      "isFound": false,
-      "isFinalProduct": true,
-      "volume": 0
-    },
-    {
       "name": "Large Cutting Laser",
       "typeId": 10000002,
       "isRawMaterial": false,
       "isFound": false,
       "isFinalProduct": true,
-      "volume": 0
-    },
-    {
-      "name": "Stride Stack",
-      "typeId": 10000003,
-      "isRawMaterial": false,
-      "isFound": false,
-      "isFinalProduct": true,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 31F",
-      "typeId": 10000004,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 31P",
-      "typeId": 10000005,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 31Q",
-      "typeId": 10000006,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 31V",
-      "typeId": 10000007,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5C0",
-      "typeId": 10000008,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5C1",
-      "typeId": 10000009,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5DE",
-      "typeId": 10000010,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5DK",
-      "typeId": 10000011,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5DW",
-      "typeId": 10000012,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
-      "volume": 0
-    },
-    {
-      "name": "Stack Slice 5DZ",
-      "typeId": 10000013,
-      "isRawMaterial": false,
-      "isFound": true,
-      "isFinalProduct": false,
       "volume": 0
     }
   ],
@@ -7440,7 +7480,7 @@
           "quantity": 44
         },
         {
-          "typeId": 10000001,
+          "typeId": 89979,
           "quantity": 1
         },
         {
@@ -7458,33 +7498,33 @@
       ]
     },
     {
-      "outputTypeId": 10000001,
+      "outputTypeId": 89979,
       "facilityTypeId": 87119,
       "outputQty": 1,
       "runTime": 43200,
       "inputs": [
         {
-          "typeId": 10000004,
+          "typeId": 89981,
           "quantity": 1
         },
         {
-          "typeId": 10000006,
+          "typeId": 89983,
           "quantity": 1
         },
         {
-          "typeId": 10000007,
+          "typeId": 89985,
           "quantity": 1
         },
         {
-          "typeId": 10000009,
+          "typeId": 89987,
           "quantity": 1
         },
         {
-          "typeId": 10000010,
+          "typeId": 89988,
           "quantity": 1
         },
         {
-          "typeId": 10000012,
+          "typeId": 89989,
           "quantity": 1
         }
       ]
@@ -8984,7 +9024,7 @@
           "quantity": 96
         },
         {
-          "typeId": 10000003,
+          "typeId": 89978,
           "quantity": 1
         },
         {
@@ -8994,25 +9034,25 @@
       ]
     },
     {
-      "outputTypeId": 10000003,
+      "outputTypeId": 89978,
       "facilityTypeId": 87119,
       "outputQty": 1,
       "runTime": 43200,
       "inputs": [
         {
-          "typeId": 10000005,
+          "typeId": 89980,
           "quantity": 1
         },
         {
-          "typeId": 10000008,
+          "typeId": 89982,
           "quantity": 1
         },
         {
-          "typeId": 10000011,
+          "typeId": 89984,
           "quantity": 1
         },
         {
-          "typeId": 10000013,
+          "typeId": 89986,
           "quantity": 1
         }
       ]
@@ -9834,6 +9874,1254 @@
         {
           "typeId": 84182,
           "quantity": 4
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82652,
+      "facilityTypeId": 88068,
+      "outputQty": 1,
+      "runTime": 207,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 4
+        },
+        {
+          "typeId": 84210,
+          "quantity": 7
+        },
+        {
+          "typeId": 99001,
+          "quantity": 150
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88780,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 17,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 120
+        },
+        {
+          "typeId": 88234,
+          "quantity": 45
+        },
+        {
+          "typeId": 88235,
+          "quantity": 105
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88565,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 11,
+      "inputs": [
+        {
+          "typeId": 83839,
+          "quantity": 5
+        },
+        {
+          "typeId": 88564,
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78515,
+      "facilityTypeId": 88067,
+      "outputQty": 600,
+      "runTime": 35,
+      "inputs": [
+        {
+          "typeId": 83899,
+          "quantity": 44
+        },
+        {
+          "typeId": 84868,
+          "quantity": 600
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82137,
+      "facilityTypeId": 88067,
+      "outputQty": 100,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 20
+        },
+        {
+          "typeId": 77805,
+          "quantity": 60
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88843,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 7,
+      "inputs": [
+        {
+          "typeId": 88561,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88839,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88841,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 8,
+      "inputs": [
+        {
+          "typeId": 84210,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 84204,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 7,
+      "inputs": [
+        {
+          "typeId": 84182,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82411,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 248,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        },
+        {
+          "typeId": 84210,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82412,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 222,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        },
+        {
+          "typeId": 88561,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78416,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 46,
+      "inputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        },
+        {
+          "typeId": 88780,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 128
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78417,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 31,
+      "inputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        },
+        {
+          "typeId": 88780,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 38
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82413,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 222,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        },
+        {
+          "typeId": 88561,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82410,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 222,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        },
+        {
+          "typeId": 88561,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78420,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 31,
+      "inputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        },
+        {
+          "typeId": 88780,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 38
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78421,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 31,
+      "inputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        },
+        {
+          "typeId": 88780,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 38
+        }
+      ]
+    },
+    {
+      "outputTypeId": 83896,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 77803,
+          "quantity": 50
+        },
+        {
+          "typeId": 83891,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 83898,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 77803,
+          "quantity": 50
+        },
+        {
+          "typeId": 83893,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82127,
+      "facilityTypeId": 88067,
+      "outputQty": 100,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 230
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82131,
+      "facilityTypeId": 88067,
+      "outputQty": 100,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 77805,
+          "quantity": 400
+        },
+        {
+          "typeId": 88234,
+          "quantity": 400
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82126,
+      "facilityTypeId": 88067,
+      "outputQty": 100,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 230
+        }
+      ]
+    },
+    {
+      "outputTypeId": 81658,
+      "facilityTypeId": 88067,
+      "outputQty": 100,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 3
+        },
+        {
+          "typeId": 77805,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88844,
+      "facilityTypeId": 87120,
+      "outputQty": 1,
+      "runTime": 32,
+      "inputs": [
+        {
+          "typeId": 88843,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78437,
+      "facilityTypeId": 87120,
+      "outputQty": 600,
+      "runTime": 35,
+      "inputs": [
+        {
+          "typeId": 78516,
+          "quantity": 600
+        },
+        {
+          "typeId": 83899,
+          "quantity": 60
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88840,
+      "facilityTypeId": 87120,
+      "outputQty": 1,
+      "runTime": 24,
+      "inputs": [
+        {
+          "typeId": 88839,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88842,
+      "facilityTypeId": 87120,
+      "outputQty": 1,
+      "runTime": 37,
+      "inputs": [
+        {
+          "typeId": 88841,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 84206,
+      "facilityTypeId": 87120,
+      "outputQty": 1,
+      "runTime": 32,
+      "inputs": [
+        {
+          "typeId": 84204,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78422,
+      "facilityTypeId": 87120,
+      "outputQty": 1,
+      "runTime": 126,
+      "inputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        },
+        {
+          "typeId": 88780,
+          "quantity": 1
+        },
+        {
+          "typeId": 88782,
+          "quantity": 1347
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82134,
+      "facilityTypeId": 87120,
+      "outputQty": 100,
+      "runTime": 13,
+      "inputs": [
+        {
+          "typeId": 84182,
+          "quantity": 7
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82132,
+      "facilityTypeId": 87120,
+      "outputQty": 100,
+      "runTime": 13,
+      "inputs": [
+        {
+          "typeId": 84182,
+          "quantity": 4
+        },
+        {
+          "typeId": 88234,
+          "quantity": 800
+        },
+        {
+          "typeId": 77801,
+          "quantity": 1000
+        },
+        {
+          "typeId": 88234,
+          "quantity": 400
+        },
+        {
+          "typeId": 99001,
+          "quantity": 700
+        },
+        {
+          "typeId": 77811,
+          "quantity": 100
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82140,
+      "facilityTypeId": 87120,
+      "outputQty": 100,
+      "runTime": 13,
+      "inputs": [
+        {
+          "typeId": 84182,
+          "quantity": 6
+        },
+        {
+          "typeId": 88234,
+          "quantity": 400
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82137,
+      "facilityTypeId": 87120,
+      "outputQty": 100,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77801,
+          "quantity": 6
+        },
+        {
+          "typeId": 77805,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 83457,
+      "facilityTypeId": 88068,
+      "outputQty": 1,
+      "runTime": 1169,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 31
+        },
+        {
+          "typeId": 84210,
+          "quantity": 62
+        }
+      ]
+    },
+    {
+      "outputTypeId": 83524,
+      "facilityTypeId": 88068,
+      "outputQty": 1,
+      "runTime": 14863,
+      "inputs": [
+        {
+          "typeId": 84180,
+          "quantity": 7
+        },
+        {
+          "typeId": 84210,
+          "quantity": 15
+        }
+      ]
+    },
+    {
+      "outputTypeId": 83775,
+      "facilityTypeId": 88068,
+      "outputQty": 1,
+      "runTime": 1811,
+      "inputs": [
+        {
+          "typeId": 88561,
+          "quantity": 22
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88764,
+      "facilityTypeId": 87161,
+      "outputQty": 1,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88764,
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88319,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88319,
+          "quantity": 200
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78423,
+      "facilityTypeId": 88064,
+      "outputQty": 75,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 78423,
+          "quantity": 275
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77800,
+      "facilityTypeId": 87161,
+      "outputQty": 5,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77811,
+      "facilityTypeId": 87161,
+      "outputQty": 10,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77811,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77810,
+      "facilityTypeId": 87161,
+      "outputQty": 8,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77810,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88765,
+      "facilityTypeId": 87161,
+      "outputQty": 7,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88765,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89258,
+      "facilityTypeId": 88063,
+      "outputQty": 20,
+      "runTime": 9,
+      "inputs": [
+        {
+          "typeId": 89258,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88764,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 88764,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89259,
+      "facilityTypeId": 88063,
+      "outputQty": 50,
+      "runTime": 9,
+      "inputs": [
+        {
+          "typeId": 89259,
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78435,
+      "facilityTypeId": 88064,
+      "outputQty": 3,
+      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 92394,
+          "quantity": 30
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89260,
+      "facilityTypeId": 88063,
+      "outputQty": 20,
+      "runTime": 9,
+      "inputs": [
+        {
+          "typeId": 89260,
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77728,
+      "facilityTypeId": 88064,
+      "outputQty": 3,
+      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 92414,
+          "quantity": 30
+        }
+      ]
+    },
+    {
+      "outputTypeId": 88765,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88765,
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77729,
+      "facilityTypeId": 88064,
+      "outputQty": 16,
+      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 77729,
+          "quantity": 30
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78434,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 78434,
+          "quantity": 30
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78446,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78446,
+          "quantity": 100
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78447,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78447,
+          "quantity": 100
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78448,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78448,
+          "quantity": 100
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78449,
+      "facilityTypeId": 88064,
+      "outputQty": 1,
+      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78449,
+          "quantity": 100
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77800,
+      "facilityTypeId": 88063,
+      "outputQty": 10,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 40
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77810,
+      "facilityTypeId": 88063,
+      "outputQty": 10,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77810,
+          "quantity": 40
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77811,
+      "facilityTypeId": 88063,
+      "outputQty": 20,
+      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 77811,
+          "quantity": 40
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78426,
+      "facilityTypeId": 88063,
+      "outputQty": 40,
+      "runTime": 5,
+      "inputs": [
+        {
+          "typeId": 78426,
+          "quantity": 40
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89258,
+      "facilityTypeId": 88064,
+      "outputQty": 60,
+      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89258,
+          "quantity": 60
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89259,
+      "facilityTypeId": 88064,
+      "outputQty": 150,
+      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89259,
+          "quantity": 60
+        }
+      ]
+    },
+    {
+      "outputTypeId": 89260,
+      "facilityTypeId": 88064,
+      "outputQty": 60,
+      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89260,
+          "quantity": 60
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77800,
+      "facilityTypeId": 88064,
+      "outputQty": 30,
+      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 120
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77810,
+      "facilityTypeId": 88064,
+      "outputQty": 30,
+      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77810,
+          "quantity": 120
+        }
+      ]
+    },
+    {
+      "outputTypeId": 77811,
+      "facilityTypeId": 88064,
+      "outputQty": 60,
+      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77811,
+          "quantity": 120
+        }
+      ]
+    },
+    {
+      "outputTypeId": 78426,
+      "facilityTypeId": 88064,
+      "outputQty": 120,
+      "runTime": 8,
+      "inputs": [
+        {
+          "typeId": 78426,
+          "quantity": 120
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82426,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 8320,
+      "inputs": [
+        {
+          "typeId": 78417,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 58
+        },
+        {
+          "typeId": 88841,
+          "quantity": 29
+        },
+        {
+          "typeId": 88843,
+          "quantity": 29
+        }
+      ]
+    },
+    {
+      "outputTypeId": 81904,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 79200,
+      "inputs": [
+        {
+          "typeId": 78421,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 88
+        },
+        {
+          "typeId": 88841,
+          "quantity": 48
+        },
+        {
+          "typeId": 88843,
+          "quantity": 48
+        },
+        {
+          "typeId": 92483,
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "outputTypeId": 81808,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 151200,
+      "inputs": [
+        {
+          "typeId": 78416,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 124
+        },
+        {
+          "typeId": 88841,
+          "quantity": 72
+        },
+        {
+          "typeId": 88843,
+          "quantity": 72
+        },
+        {
+          "typeId": 92483,
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82424,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 82800,
+      "inputs": [
+        {
+          "typeId": 78421,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 160
+        },
+        {
+          "typeId": 88841,
+          "quantity": 74
+        },
+        {
+          "typeId": 88843,
+          "quantity": 74
+        }
+      ]
+    },
+    {
+      "outputTypeId": 81609,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 8200,
+      "inputs": [
+        {
+          "typeId": 78420,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 56
+        },
+        {
+          "typeId": 88841,
+          "quantity": 28
+        },
+        {
+          "typeId": 88843,
+          "quantity": 28
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82430,
+      "facilityTypeId": 88071,
+      "outputQty": 1,
+      "runTime": 244800,
+      "inputs": [
+        {
+          "typeId": 78416,
+          "quantity": 1
+        },
+        {
+          "typeId": 84206,
+          "quantity": 46
+        },
+        {
+          "typeId": 88842,
+          "quantity": 30
+        },
+        {
+          "typeId": 88844,
+          "quantity": 30
+        },
+        {
+          "typeId": 88780,
+          "quantity": 7
+        },
+        {
+          "typeId": 88565,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "outputTypeId": 81611,
+      "facilityTypeId": 88071,
+      "outputQty": 1,
+      "runTime": 324000,
+      "inputs": [
+        {
+          "typeId": 78422,
+          "quantity": 1
+        },
+        {
+          "typeId": 88842,
+          "quantity": 128
+        },
+        {
+          "typeId": 88844,
+          "quantity": 128
+        },
+        {
+          "typeId": 84206,
+          "quantity": 256
+        }
+      ]
+    },
+    {
+      "outputTypeId": 91967,
+      "facilityTypeId": 91978,
+      "outputQty": 1,
+      "runTime": 46400,
+      "inputs": [
+        {
+          "typeId": 78418,
+          "quantity": 1
+        },
+        {
+          "typeId": 83839,
+          "quantity": 3
+        },
+        {
+          "typeId": 92483,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "outputTypeId": 91968,
+      "facilityTypeId": 91978,
+      "outputQty": 1,
+      "runTime": 37100,
+      "inputs": [
+        {
+          "typeId": 78416,
+          "quantity": 1
+        },
+        {
+          "typeId": 88781,
+          "quantity": 6
+        },
+        {
+          "typeId": 88783,
+          "quantity": 4
+        },
+        {
+          "typeId": 83839,
+          "quantity": 2
+        },
+        {
+          "typeId": 92483,
+          "quantity": 1
+        },
+        {
+          "typeId": 78423,
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "outputTypeId": 92483,
+      "facilityTypeId": 88067,
+      "outputQty": 1,
+      "runTime": 11,
+      "inputs": [
+        {
+          "typeId": 92422,
+          "quantity": 50
+        },
+        {
+          "typeId": 78449,
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "outputTypeId": 82425,
+      "facilityTypeId": 88070,
+      "outputQty": 1,
+      "runTime": 78000,
+      "inputs": [
+        {
+          "typeId": 78421,
+          "quantity": 1
+        },
+        {
+          "typeId": 84204,
+          "quantity": 80
+        },
+        {
+          "typeId": 88841,
+          "quantity": 70
+        },
+        {
+          "typeId": 88843,
+          "quantity": 70
+        },
+        {
+          "typeId": 92483,
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "outputTypeId": 91749,
+      "facilityTypeId": 91978,
+      "outputQty": 1,
+      "runTime": 50800,
+      "inputs": [
+        {
+          "typeId": 78421,
+          "quantity": 1
+        },
+        {
+          "typeId": 77728,
+          "quantity": 3
+        },
+        {
+          "typeId": 92483,
+          "quantity": 1
+        },
+        {
+          "typeId": 78423,
+          "quantity": 8
         }
       ]
     }
