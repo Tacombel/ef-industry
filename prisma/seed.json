@@ -2365,7 +2365,7 @@
       "categoryId": 7
     },
     {
-      "name": "83524",
+      "name": "Large Cutting Laser",
       "typeId": 83524,
       "isRawMaterial": false,
       "isFound": false,
@@ -2690,7 +2690,7 @@
       "categoryId": 7
     },
     {
-      "name": "83775",
+      "name": "Thermal Field Array V",
       "typeId": 83775,
       "isRawMaterial": false,
       "isFound": false,
@@ -6341,14 +6341,6 @@
       "groupId": 0,
       "categoryName": "Material",
       "categoryId": 4
-    },
-    {
-      "name": "Large Cutting Laser",
-      "typeId": 10000002,
-      "isRawMaterial": false,
-      "isFound": false,
-      "isFinalProduct": true,
-      "volume": 0
     }
   ],
   "asteroidTypes": [
@@ -8138,7 +8130,7 @@
       ]
     },
     {
-      "outputTypeId": 10000002,
+      "outputTypeId": 83524,
       "facilityTypeId": 88068,
       "outputQty": 1,
       "runTime": 14863,
