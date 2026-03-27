@@ -28,6 +28,8 @@ export default function Sidebar() {
   const [decompositionCount, setDecompositionCount] = useState<number | null>(null);
   const [factoryCount, setFactoryCount] = useState<number | null>(null);
   const [refineryCount, setRefineryCount] = useState<number | null>(null);
+  const [asteroidCount, setAsteroidCount] = useState<number | null>(null);
+  const [packCount, setPackCount] = useState<number | null>(null);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -35,14 +37,16 @@ export default function Sidebar() {
       .then((data) => { setUsername(data?.username ?? null); setRole(data?.role ?? null); })
       .catch(() => { setUsername(null); setRole(null); });
 
-    Promise.all([fetch("/api/items"), fetch("/api/blueprints"), fetch("/api/decompositions"), fetch("/api/factories"), fetch("/api/refineries")])
-      .then(([iRes, bRes, dRes, fRes, rRes]) => Promise.all([iRes.json(), bRes.json(), dRes.json(), fRes.json(), rRes.json()]))
-      .then(([items, blueprints, decompositions, factories, refineries]) => {
+    Promise.all([fetch("/api/items"), fetch("/api/blueprints"), fetch("/api/decompositions"), fetch("/api/factories"), fetch("/api/refineries"), fetch("/api/asteroids"), fetch("/api/packs")])
+      .then(([iRes, bRes, dRes, fRes, rRes, aRes, pRes]) => Promise.all([iRes.json(), bRes.json(), dRes.json(), fRes.json(), rRes.json(), aRes.json(), pRes.json()]))
+      .then(([items, blueprints, decompositions, factories, refineries, asteroids, packs]) => {
         setItemCount(items.length);
         setBlueprintCount(blueprints.length);
         setDecompositionCount(decompositions.length);
         setFactoryCount(factories.length);
         setRefineryCount(refineries.length);
+        setAsteroidCount(asteroids.length);
+        setPackCount(packs.length);
       })
       .catch(() => {
         setItemCount(null);
@@ -50,6 +54,8 @@ export default function Sidebar() {
         setDecompositionCount(null);
         setFactoryCount(null);
         setRefineryCount(null);
+        setAsteroidCount(null);
+        setPackCount(null);
       });
   }, [pathname]);
 
@@ -70,7 +76,7 @@ export default function Sidebar() {
       <nav className="flex-1 px-2 py-4 space-y-1">
         {navItems.map((item) => {
           const active = pathname.startsWith(item.href);
-          const count = item.label === "Items" ? itemCount : item.label === "Blueprints" ? blueprintCount : item.label === "Decompositions" ? decompositionCount : item.label === "Factories" ? factoryCount : item.label === "Refineries" ? refineryCount : null;
+          const count = item.label === "Items" ? itemCount : item.label === "Blueprints" ? blueprintCount : item.label === "Decompositions" ? decompositionCount : item.label === "Factories" ? factoryCount : item.label === "Refineries" ? refineryCount : item.label === "Asteroids" ? asteroidCount : item.label === "Packs" ? packCount : null;
           return (
             <Link
               key={item.href}
