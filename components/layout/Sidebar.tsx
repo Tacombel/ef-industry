@@ -9,10 +9,10 @@ const version = pkg.version;
 const navItems = [
   { href: "/items", label: "Items", icon: "⬡" },
   { href: "/asteroids", label: "Asteroids", icon: "🪨" },
-  { href: "/decompositions", label: "Decompositions", icon: "🔩" },
   { href: "/factories", label: "Factories", icon: "🏭" },
   { href: "/refineries", label: "Refineries", icon: "⚗️" },
   { href: "/ssu", label: "SSU", icon: "🛰️" },
+  { href: "/decompositions", label: "Decompositions", icon: "🔩" },
   { href: "/blueprints", label: "Blueprints", icon: "📐" },
   { href: "/packs", label: "Packs", icon: "🗃️" },
 ];
