@@ -2,7 +2,7 @@ export interface CalcBlueprint {
   id: string;
   outputQty: number;
   factory: string;
-  runTime: number;
+  runTime?: number;
   isDefault: boolean;
   inputs: { itemId: string; quantity: number }[];
 }
@@ -11,7 +11,7 @@ export interface CalcDecomposition {
   id: string;
   refinery: string;
   inputQty: number;
-  runTime: number;
+  runTime?: number;
   isDefault: boolean;
   outputs: { itemId: string; quantity: number }[];
 }
