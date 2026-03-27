@@ -158,10 +158,10 @@ function resolve(
   const item = itemMap.get(itemId);
   if (!item) throw new Error(`Item "${itemId}" not found in item map`);
 
-  const blueprint = pickBlueprint(item);
-
   // Raw/found items are always leaves in the resolve tree — the post-process
-  // greedy handles their ore decompositions.
+  // greedy handles their ore decompositions. Never follow their blueprints
+  // (purification blueprints have input=output and would cause circular deps).
+  const blueprint = (item.isRawMaterial || item.isFound) ? null : pickBlueprint(item);
   const producedBy = (item.isRawMaterial || item.isFound) ? null : pickProducedBy(item);
 
   // Leaf: no production path — accumulate raw demand
