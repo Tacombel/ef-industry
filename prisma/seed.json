@@ -16,7 +16,7 @@
       "typeId": 10000014
     },
     {
-      "name": "Field printer",
+      "name": "Field Printer",
       "type": "factory",
       "typeId": 87162
     },
@@ -6879,7 +6879,7 @@
   "blueprints": [
     {
       "outputItem": "AC Gyrojet Ammo 1 (S)",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 100,
       "runTime": 3,
       "inputs": [
@@ -6947,7 +6947,7 @@
     },
     {
       "outputItem": "Afterburner II",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 97,
       "inputs": [
@@ -7079,7 +7079,7 @@
     },
     {
       "outputItem": "Base Autocannon (S)",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 156,
       "inputs": [
@@ -7219,7 +7219,7 @@
     },
     {
       "outputItem": "Bulky Armor Plates II",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 155,
       "inputs": [
@@ -7267,7 +7267,7 @@
     },
     {
       "outputItem": "Bulwark Shield Generator II",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 207,
       "inputs": [
@@ -7327,7 +7327,7 @@
     },
     {
       "outputItem": "Carbon Weave",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 14,
       "runTime": 5,
       "inputs": [
@@ -7607,7 +7607,7 @@
     },
     {
       "outputItem": "Compressed Coolant",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 10,
       "runTime": 3,
       "inputs": [
@@ -7963,7 +7963,7 @@
     },
     {
       "outputItem": "Heat Exchanger XS",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 197,
       "inputs": [
@@ -8015,7 +8015,7 @@
     },
     {
       "outputItem": "Hop",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 120,
       "inputs": [
@@ -8307,7 +8307,7 @@
     },
     {
       "outputItem": "Nomad Program Frame",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 20,
       "inputs": [
@@ -8343,7 +8343,7 @@
     },
     {
       "outputItem": "Printed Circuits",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -8531,7 +8531,7 @@
     },
     {
       "outputItem": "Reflex",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 50,
       "inputs": [
@@ -8583,7 +8583,7 @@
     },
     {
       "outputItem": "Reinforced Alloys",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 8,
       "runTime": 4,
       "inputs": [
@@ -8759,7 +8759,7 @@
     },
     {
       "outputItem": "Skip",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 97,
       "inputs": [
@@ -8771,7 +8771,7 @@
     },
     {
       "outputItem": "Small Cutting Laser",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 167,
       "inputs": [
@@ -8803,7 +8803,7 @@
     },
     {
       "outputItem": "Sojourn",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 39,
       "inputs": [
@@ -9019,7 +9019,7 @@
     },
     {
       "outputItem": "Synthetic Mining Lens",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 1,
       "runTime": 3,
       "inputs": [
@@ -9143,7 +9143,7 @@
     },
     {
       "outputItem": "Thermal Composites",
-      "facility": "Field printer",
+      "facility": "Field Printer",
       "outputQty": 14,
       "runTime": 4,
       "inputs": [
