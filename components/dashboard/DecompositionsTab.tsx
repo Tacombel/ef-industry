@@ -94,7 +94,11 @@ export default function DecompositionsTab() {
 
       {/* SSU Address Bar */}
       <div className="mb-6">
-        <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
+        <SsuAddressBar
+          address={ssuAddress}
+          onSave={saveAddress}
+          onRefresh={() => {}}
+        />
       </div>
 
       {loading ? (

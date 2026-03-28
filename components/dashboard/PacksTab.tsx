@@ -101,7 +101,7 @@ export default function PacksTab() {
         <SsuAddressBar
           address={ssuAddress}
           onSave={saveAddress}
-          onRefresh={calcPackId ? () => setRefreshKey(k => k + 1) : undefined}
+          onRefresh={() => calcPackId && setRefreshKey(k => k + 1)}
         />
       </div>
 

@@ -115,7 +115,7 @@ export default function BlueprintPacksTab() {
         <SsuAddressBar
           address={ssuAddress}
           onSave={saveAddress}
-          onRefresh={calcItemId ? () => setRefreshKey(k => k + 1) : undefined}
+          onRefresh={() => calcItemId && setRefreshKey(k => k + 1)}
         />
       </div>
 
