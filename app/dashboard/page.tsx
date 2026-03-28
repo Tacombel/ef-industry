@@ -45,6 +45,12 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col h-full -mx-6 -my-6">
+      {/* App header */}
+      <div className="px-6 py-4 bg-gray-950 border-b border-gray-800 flex-shrink-0">
+        <h1 className="text-xl font-bold text-cyan-400 tracking-wide">EVE Frontier</h1>
+        <p className="text-xs text-gray-500 mt-0.5">Industry Calculator</p>
+      </div>
+
       {/* Tab buttons bar */}
       <div className="flex items-center gap-0 border-b border-gray-800 px-6 py-4 bg-gray-950 flex-shrink-0">
         {(Object.keys(tabConfig) as TabType[]).map((tab) => (
