@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useSsuAddress } from "@/hooks/useSsuAddress";
+import { useSsuIgnore } from "@/hooks/useSsuIgnore";
 import SsuAddressBar from "@/components/common/SsuAddressBar";
 
 interface InventoryItem {
@@ -49,6 +50,7 @@ function SortHeader({
 
 export default function SsuTab() {
   const { address, saveAddress } = useSsuAddress();
+  const { ignoreSsu, setIgnoreSsu } = useSsuIgnore();
   const [data, setData] = useState<SsuData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -109,7 +111,28 @@ export default function SsuTab() {
         <p className="text-sm text-gray-500 mt-1">Inventario on-chain de un SSU</p>
       </div>
 
-      <SsuAddressBar address={address} onSave={saveAddress} />
+      <div className="flex items-center gap-3">
+        <div className="flex-1">
+          <SsuAddressBar address={address} onSave={saveAddress} />
+        </div>
+        <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer shrink-0">
+          <span>Ignore SSU</span>
+          <button
+            type="button"
+            onClick={() => setIgnoreSsu(!ignoreSsu)}
+            title={ignoreSsu ? "Click to use SSU" : "Click to ignore SSU"}
+            className={`relative inline-flex h-4 w-8 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${
+              ignoreSsu ? "bg-gray-600" : "bg-cyan-600"
+            }`}
+          >
+            <span
+              className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition duration-200 ${
+                ignoreSsu ? "translate-x-0" : "translate-x-4"
+              }`}
+            />
+          </button>
+        </label>
+      </div>
 
       {loading && <p className="text-sm text-gray-500">Cargando inventario…</p>}
 

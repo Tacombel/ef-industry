@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import PackCalculation from "@/components/packs/PackCalculation";
 import SsuAddressBar from "@/components/common/SsuAddressBar";
 import { useSsuAddress } from "@/hooks/useSsuAddress";
+import { useSsuIgnore } from "@/hooks/useSsuIgnore";
 
 interface Item { id: string; name: string; isRawMaterial: boolean; isFound: boolean; blueprints: { factory: string }[] }
 interface PackItem { id: string; itemId: string; quantity: number; item: Item }
@@ -13,6 +14,7 @@ const emptyRow = () => ({ itemId: "", quantity: 1 });
 
 export default function PacksTab() {
   const { address: ssuAddress, saveAddress } = useSsuAddress();
+  const { ignoreSsu, setIgnoreSsu } = useSsuIgnore();
   const [packs, setPacks] = useState<Pack[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,6 @@ export default function PacksTab() {
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [refreshKey, setRefreshKey] = useState(0);
-  const [ignoreSsu, setIgnoreSsu] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);

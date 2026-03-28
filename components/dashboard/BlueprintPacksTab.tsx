@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
 import SsuAddressBar from "@/components/common/SsuAddressBar";
 import { useSsuAddress } from "@/hooks/useSsuAddress";
+import { useSsuIgnore } from "@/hooks/useSsuIgnore";
 
 interface Item { id: string; name: string; isRawMaterial: boolean }
 interface BlueprintInput { id: string; itemId: string; quantity: number; item: Item }
@@ -20,6 +21,7 @@ type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
 export default function BlueprintPacksTab() {
   const { address: ssuAddress, saveAddress } = useSsuAddress();
+  const { ignoreSsu, setIgnoreSsu } = useSsuIgnore();
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +30,6 @@ export default function BlueprintPacksTab() {
   const [search, setSearch] = useState("");
   const [filterFactory, setFilterFactory] = useState("");
   const [refreshKey, setRefreshKey] = useState(0);
-  const [ignoreSsu, setIgnoreSsu] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
