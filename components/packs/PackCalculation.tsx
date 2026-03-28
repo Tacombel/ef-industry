@@ -38,6 +38,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
     const params = new URLSearchParams();
     if (ignored.size > 0) params.set("ignore", [...ignored].join(","));
     if (addr) params.set("ssuAddress", addr);
+    if (ignoreSsu) params.set("ignoreSsu", "true");
     const query = params.toString() ? `?${params.toString()}` : "";
     fetch(`/api/packs/${packId}/calculate${query}`)
       .then((r) => r.json())

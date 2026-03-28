@@ -14,8 +14,11 @@ export async function GET(req: NextRequest) {
   if (!Number.isInteger(runs) || runs < 1) return NextResponse.json({ error: "runs must be a positive integer" }, { status: 400 });
 
   const ssuAddress = req.nextUrl.searchParams.get("ssuAddress") ?? undefined;
+  const ignoreSsu = req.nextUrl.searchParams.get("ignoreSsu") === "true";
   const session = await getSession();
-  const stockMap = ssuAddress
+  const stockMap = ignoreSsu
+    ? new Map<string, number>()
+    : ssuAddress
     ? await fetchStockMapFromAddress(ssuAddress)
     : session
     ? await fetchUserStockMap(session.userId)

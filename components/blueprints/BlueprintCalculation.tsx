@@ -45,7 +45,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ignoreSsu
     const qty = quantityRef.current;
     const excluded = [...excludedOreIdsRef.current].join(",");
     const addr = ignoreSsu ? "" : ssuAddressRef.current.trim();
-    const url = `/api/calculate?itemId=${itemId}&runs=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addr ? `&ssuAddress=${encodeURIComponent(addr)}` : ""}`;
+    const url = `/api/calculate?itemId=${itemId}&runs=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addr ? `&ssuAddress=${encodeURIComponent(addr)}` : ""}${ignoreSsu ? "&ignoreSsu=true" : ""}`;
     fetch(url, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => {

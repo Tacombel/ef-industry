@@ -12,6 +12,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const ignoreParam = req.nextUrl.searchParams.get("ignore");
   const ignoredIds = new Set(ignoreParam ? ignoreParam.split(",").filter(Boolean) : []);
   const ssuAddress = req.nextUrl.searchParams.get("ssuAddress") ?? undefined;
+  const ignoreSsu = req.nextUrl.searchParams.get("ignoreSsu") === "true";
 
   const pack = await prisma.pack.findUnique({
     where: { id: params.id },
@@ -24,7 +25,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ rawMaterials: [], intermediates: [], decompositions: [], finalProducts: [] });
   }
 
-  const stockMap = ssuAddress
+  const stockMap = ignoreSsu
+    ? new Map<string, number>()
+    : ssuAddress
     ? await fetchStockMapFromAddress(ssuAddress)
     : await fetchUserStockMap(session.userId);
   const itemMap = buildItemMap(await fetchCalcItems(stockMap));
