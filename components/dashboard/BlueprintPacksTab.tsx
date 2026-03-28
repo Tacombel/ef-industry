@@ -27,6 +27,7 @@ export default function BlueprintPacksTab() {
   const [calcItemId, setCalcItemId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [filterFactory, setFilterFactory] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -111,7 +112,11 @@ export default function BlueprintPacksTab() {
 
       {/* SSU Address Bar */}
       <div className="mb-4">
-        <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
+        <SsuAddressBar
+          address={ssuAddress}
+          onSave={saveAddress}
+          onRefresh={calcItemId ? () => setRefreshKey(k => k + 1) : undefined}
+        />
       </div>
 
       {loading ? (
@@ -145,7 +150,7 @@ export default function BlueprintPacksTab() {
 
               {calcItemId === item.id && (
                 <div className="px-4 py-4 border-b border-gray-800 bg-gray-900/50">
-                  <BlueprintCalculation itemId={item.id} itemName={item.name} />
+                  <BlueprintCalculation itemId={item.id} itemName={item.name} refreshKey={refreshKey} />
                 </div>
               )}
 

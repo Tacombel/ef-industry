@@ -25,6 +25,7 @@ export default function PacksTab() {
   const [error, setError] = useState("");
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -97,7 +98,11 @@ export default function PacksTab() {
 
       {/* SSU Address Bar */}
       <div className="mb-4">
-        <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
+        <SsuAddressBar
+          address={ssuAddress}
+          onSave={saveAddress}
+          onRefresh={calcPackId ? () => setRefreshKey(k => k + 1) : undefined}
+        />
       </div>
 
       {/* Search */}
@@ -155,7 +160,7 @@ export default function PacksTab() {
                 </div>
               </div>
 
-              {calcPackId === pack.id && <PackCalculation packId={pack.id} />}
+              {calcPackId === pack.id && <PackCalculation packId={pack.id} refreshKey={refreshKey} />}
             </div>
           ))}
         </div>

@@ -6,7 +6,7 @@ import OreSection from "@/components/common/OreSection";
 import SsuAddressBar from "@/components/common/SsuAddressBar";
 import { useSsuAddress } from "@/hooks/useSsuAddress";
 
-export default function PackCalculation({ packId }: { packId: string }) {
+export default function PackCalculation({ packId, refreshKey = 0 }: { packId: string; refreshKey?: number }) {
   const { address: ssuAddress, saveAddress } = useSsuAddress();
   const ssuAddressRef = useRef(ssuAddress);
   useEffect(() => { ssuAddressRef.current = ssuAddress; }, [ssuAddress]);
@@ -75,6 +75,7 @@ export default function PackCalculation({ packId }: { packId: string }) {
   }, [ignoredItems]);
 
   useEffect(() => { if (result !== null) load(true); }, [ssuAddress]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <p className="text-gray-500 text-sm">Calculating…</p>;
   if (error) return <p className="text-red-400 text-sm">Error: {error}</p>;
