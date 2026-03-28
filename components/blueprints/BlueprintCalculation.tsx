@@ -63,7 +63,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ignoreSsu
         setLoading(false);
         setRecalculating(false);
       });
-  }, [itemId]);
+  }, [itemId, ignoreSsu]);
 
   useEffect(() => { load(); }, [load]);
   useEffect(() => { if (result !== null) load(true); }, [ssuAddress]); // eslint-disable-line react-hooks/exhaustive-deps

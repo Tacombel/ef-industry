@@ -13,14 +13,9 @@ const adminNavItems = [
   { href: "/refineries", label: "Refineries", icon: "⚗️" },
 ];
 
-export default function Sidebar() {
+function SidebarContent() {
   const pathname = usePathname();
   const router = useRouter();
-
-  // Hide sidebar on dashboard, home, login, and profile
-  if (pathname === '/dashboard' || pathname === '/' || pathname === '/login' || pathname === '/profile') {
-    return null;
-  }
   const [username, setUsername] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [itemCount, setItemCount] = useState<number | null>(null);
@@ -171,4 +166,15 @@ export default function Sidebar() {
       </div>
     </aside>
   );
+}
+
+export default function Sidebar() {
+  const pathname = usePathname();
+
+  // Hide sidebar on dashboard, home, login, and profile
+  if (pathname === '/dashboard' || pathname === '/' || pathname === '/login' || pathname === '/profile') {
+    return null;
+  }
+
+  return <SidebarContent />;
 }

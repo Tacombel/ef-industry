@@ -55,7 +55,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
         setLoading(false);
         setRecalculating(false);
       });
-  }, [packId]);
+  }, [packId, ignoreSsu]);
 
   useEffect(() => { load(); }, [load]);
 
