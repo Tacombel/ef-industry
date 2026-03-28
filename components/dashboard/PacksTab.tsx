@@ -5,6 +5,7 @@ import PackCalculation from "@/components/packs/PackCalculation";
 import SsuAddressBar from "@/components/common/SsuAddressBar";
 import { useSsuAddress } from "@/hooks/useSsuAddress";
 import { useSsuIgnore } from "@/hooks/useSsuIgnore";
+import { useSession } from "@/hooks/useSession";
 
 interface Item { id: string; name: string; isRawMaterial: boolean; isFound: boolean; blueprints: { factory: string }[] }
 interface PackItem { id: string; itemId: string; quantity: number; item: Item }
@@ -15,6 +16,7 @@ const emptyRow = () => ({ itemId: "", quantity: 1 });
 export default function PacksTab() {
   const { address: ssuAddress, saveAddress } = useSsuAddress();
   const { ignoreSsu, setIgnoreSsu } = useSsuIgnore();
+  const { isLoggedIn } = useSession();
   const [packs, setPacks] = useState<Pack[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,8 +34,8 @@ export default function PacksTab() {
   const load = useCallback(async () => {
     setLoading(true);
     const [packRes, itemRes] = await Promise.all([fetch("/api/packs"), fetch("/api/items")]);
-    setPacks(await packRes.json());
-    setItems(await itemRes.json());
+    setPacks(packRes.ok ? await packRes.json() : []);
+    setItems(itemRes.ok ? await itemRes.json() : []);
     setLoading(false);
   }, []);
 
@@ -95,7 +97,11 @@ export default function PacksTab() {
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-100">Production Packs</h2>
-        <button onClick={openNew} className="btn-primary">+ New Pack</button>
+        {isLoggedIn ? (
+          <button onClick={openNew} className="btn-primary">+ New Pack</button>
+        ) : (
+          <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save packs.</p>
+        )}
       </div>
 
       {/* SSU Address Bar */}

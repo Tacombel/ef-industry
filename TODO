@@ -33,3 +33,9 @@ Añadir numero de packs en el calculador de packs
 Pasar items, asteroids, factories y refineries a admin
 Estudiar distribuciones verticales para uso en un SSU
 Revisar textos en español
+Confirmar que no se guarda stock en la build
+El healthchek apunta a blueprints
+Si se cierra la sesion va la la pantalla login. Debe ir a l SPA
+Si no hay usuario logeado la pagina packs aparece vacia.
+Sin usuario logeado, la SSU muestra Unauthorized. DEbe funcionar aunque no se guarde la direccion
+REvisar BD y limpiar campos obsoletos

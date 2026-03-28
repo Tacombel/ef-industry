@@ -10,6 +10,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "EVE Frontier — Industry",
   description: "Blueprint and production calculator for EVE Frontier",
+  openGraph: {
+    title: "EVE Frontier — Industry",
+    description: "Blueprint and production calculator for EVE Frontier",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

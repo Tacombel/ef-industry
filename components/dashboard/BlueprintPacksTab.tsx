@@ -34,8 +34,8 @@ export default function BlueprintPacksTab() {
   const load = useCallback(async () => {
     setLoading(true);
     const [bpRes, factoriesRes] = await Promise.all([fetch("/api/blueprints"), fetch("/api/factories")]);
-    const blueprints: Blueprint[] = await bpRes.json();
-    const factoriesList: {id: string; name: string}[] = await factoriesRes.json();
+    const blueprints: Blueprint[] = bpRes.ok ? await bpRes.json() : [];
+    const factoriesList: {id: string; name: string}[] = factoriesRes.ok ? await factoriesRes.json() : [];
     setFactories(factoriesList);
 
     const map = new Map<string, { item: Item; blueprints: Blueprint[] }>();

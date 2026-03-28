@@ -30,8 +30,8 @@ export default function DecompositionsTab() {
       fetch("/api/decompositions"),
       fetch("/api/refineries"),
     ]);
-    setDecompositions(await decRes.json());
-    setRefineries(await refRes.json());
+    setDecompositions(decRes.ok ? await decRes.json() : []);
+    setRefineries(refRes.ok ? await refRes.json() : []);
     setLoading(false);
   }, []);
 
