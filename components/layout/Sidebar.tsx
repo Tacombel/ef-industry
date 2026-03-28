@@ -6,13 +6,6 @@ import { useEffect, useState } from "react";
 import pkg from "@/package.json";
 const version = pkg.version;
 
-const mainNavItems = [
-  { href: "/ssu", label: "SSU", icon: "🛰️" },
-  { href: "/decompositions", label: "Decompositions", icon: "🔩" },
-  { href: "/blueprints", label: "Blueprints", icon: "📐" },
-  { href: "/packs", label: "Packs", icon: "🗃️" },
-];
-
 const adminNavItems = [
   { href: "/items", label: "Items", icon: "⬡" },
   { href: "/asteroids", label: "Asteroids", icon: "🪨" },
@@ -31,12 +24,9 @@ export default function Sidebar() {
   const [username, setUsername] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [itemCount, setItemCount] = useState<number | null>(null);
-  const [blueprintCount, setBlueprintCount] = useState<number | null>(null);
-  const [decompositionCount, setDecompositionCount] = useState<number | null>(null);
   const [factoryCount, setFactoryCount] = useState<number | null>(null);
   const [refineryCount, setRefineryCount] = useState<number | null>(null);
   const [asteroidCount, setAsteroidCount] = useState<number | null>(null);
-  const [packCount, setPackCount] = useState<number | null>(null);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -44,25 +34,19 @@ export default function Sidebar() {
       .then((data) => { setUsername(data?.username ?? null); setRole(data?.role ?? null); })
       .catch(() => { setUsername(null); setRole(null); });
 
-    Promise.all([fetch("/api/items"), fetch("/api/blueprints"), fetch("/api/decompositions"), fetch("/api/factories"), fetch("/api/refineries"), fetch("/api/asteroids"), fetch("/api/packs")])
-      .then(([iRes, bRes, dRes, fRes, rRes, aRes, pRes]) => Promise.all([iRes.json(), bRes.json(), dRes.json(), fRes.json(), rRes.json(), aRes.json(), pRes.json()]))
-      .then(([items, blueprints, decompositions, factories, refineries, asteroids, packs]) => {
+    Promise.all([fetch("/api/items"), fetch("/api/factories"), fetch("/api/refineries"), fetch("/api/asteroids")])
+      .then(([iRes, fRes, rRes, aRes]) => Promise.all([iRes.json(), fRes.json(), rRes.json(), aRes.json()]))
+      .then(([items, factories, refineries, asteroids]) => {
         setItemCount(items.length);
-        setBlueprintCount(blueprints.length);
-        setDecompositionCount(decompositions.length);
         setFactoryCount(factories.length);
         setRefineryCount(refineries.length);
         setAsteroidCount(asteroids.length);
-        setPackCount(packs.length);
       })
       .catch(() => {
         setItemCount(null);
-        setBlueprintCount(null);
-        setDecompositionCount(null);
         setFactoryCount(null);
         setRefineryCount(null);
         setAsteroidCount(null);
-        setPackCount(null);
       });
   }, [pathname]);
 
@@ -94,29 +78,6 @@ export default function Sidebar() {
             <span className="w-5 text-center shrink-0">🏠</span>
             <span className="flex-1">Dashboard</span>
           </Link>
-        </div>
-
-        {/* Main navigation items */}
-        <div className="px-2 py-4 space-y-1">
-          {mainNavItems.map((item) => {
-            const active = pathname.startsWith(item.href);
-            const count = item.label === "Blueprints" ? blueprintCount : item.label === "Decompositions" ? decompositionCount : item.label === "Packs" ? packCount : null;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-cyan-900/50 text-cyan-300"
-                    : "text-gray-400 hover:bg-gray-800 hover:text-gray-100"
-                }`}
-              >
-                <span className="w-5 text-center shrink-0">{item.icon}</span>
-                <span className="flex-1">{item.label}</span>
-                {count !== null && <span className="text-xs text-gray-500">{count}</span>}
-              </Link>
-            );
-          })}
         </div>
 
         {/* Admin navigation items */}
