@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import BlueprintPacksTab from "@/components/dashboard/BlueprintPacksTab";
+import PacksTab from "@/components/dashboard/PacksTab";
 import DecompositionsTab from "@/components/dashboard/DecompositionsTab";
 import SsuTab from "@/components/dashboard/SsuTab";
 
-type TabType = 'blueprints' | 'decompositions' | 'ssu';
+type TabType = 'blueprints' | 'packs' | 'decompositions' | 'ssu';
 
 const tabConfig: Record<TabType, { label: string }> = {
-  blueprints: { label: '📐 Blueprints & Packs' },
+  blueprints: { label: '📐 Blueprints' },
+  packs: { label: '🗃️ Packs' },
   decompositions: { label: '🔩 Decompositions' },
   ssu: { label: '🛰️ SSU Inventory' },
 };
@@ -38,6 +40,7 @@ export default function DashboardPage() {
       {/* Tab content area */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
         {activeTab === 'blueprints' && <BlueprintPacksTab />}
+        {activeTab === 'packs' && <PacksTab />}
         {activeTab === 'decompositions' && <DecompositionsTab />}
         {activeTab === 'ssu' && <SsuTab />}
       </div>
