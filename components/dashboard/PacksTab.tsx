@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useCallback } from "react";
 import PackCalculation from "@/components/packs/PackCalculation";
+import SsuAddressBar from "@/components/common/SsuAddressBar";
+import { useSsuAddress } from "@/hooks/useSsuAddress";
 
 interface Item { id: string; name: string; isRawMaterial: boolean; isFound: boolean; blueprints: { factory: string }[] }
 interface PackItem { id: string; itemId: string; quantity: number; item: Item }
@@ -10,6 +12,7 @@ interface Pack { id: string; name: string; description?: string; items: PackItem
 const emptyRow = () => ({ itemId: "", quantity: 1 });
 
 export default function PacksTab() {
+  const { address: ssuAddress, saveAddress } = useSsuAddress();
   const [packs, setPacks] = useState<Pack[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -89,6 +92,11 @@ export default function PacksTab() {
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-100">Production Packs</h2>
         <button onClick={openNew} className="btn-primary">+ New Pack</button>
+      </div>
+
+      {/* SSU Address Bar */}
+      <div className="mb-4">
+        <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
       </div>
 
       {loading ? (

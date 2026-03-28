@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useCallback } from "react";
 import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
+import SsuAddressBar from "@/components/common/SsuAddressBar";
+import { useSsuAddress } from "@/hooks/useSsuAddress";
 
 interface Item { id: string; name: string; isRawMaterial: boolean }
 interface BlueprintInput { id: string; itemId: string; quantity: number; item: Item }
@@ -17,6 +19,7 @@ interface Blueprint {
 type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
 export default function BlueprintPacksTab() {
+  const { address: ssuAddress, saveAddress } = useSsuAddress();
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
   const [loading, setLoading] = useState(true);
@@ -104,6 +107,11 @@ export default function BlueprintPacksTab() {
             <option key={f.id} value={f.name}>{f.name}</option>
           ))}
         </select>
+      </div>
+
+      {/* SSU Address Bar */}
+      <div className="mb-4">
+        <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
       </div>
 
       {loading ? (
