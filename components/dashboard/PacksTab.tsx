@@ -24,6 +24,7 @@ export default function PacksTab() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -99,13 +100,34 @@ export default function PacksTab() {
         <SsuAddressBar address={ssuAddress} onSave={saveAddress} />
       </div>
 
+      {/* Search */}
+      <div className="relative flex-1 max-w-xs mb-4">
+        <input
+          placeholder="Search packs…"
+          className="input w-full"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {search && <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">✕</button>}
+      </div>
+
       {loading ? (
         <p className="text-gray-500">Loading…</p>
       ) : packs.length === 0 ? (
         <p className="text-gray-500">No packs yet.</p>
       ) : (
+        (() => {
+          const filtered = packs.filter((pack) => {
+            if (search && !pack.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (calcPackId && pack.id !== calcPackId) return false;
+            return true;
+          });
+          return (
         <div className="space-y-4">
-          {packs.filter((pack) => !calcPackId || pack.id === calcPackId).map((pack) => (
+          {filtered.length === 0 && search && (
+            <p className="text-gray-500">No packs match &quot;{search}&quot;.</p>
+          )}
+          {filtered.map((pack) => (
             <div key={pack.id} className="rounded-lg border border-gray-800 bg-gray-900 p-4">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
@@ -137,6 +159,8 @@ export default function PacksTab() {
             </div>
           ))}
         </div>
+          );
+        })()
       )}
 
       {showForm && (
