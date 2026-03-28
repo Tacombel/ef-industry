@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "@/hooks/useSession";
 
 interface ItemData {
   id: string;
@@ -26,10 +25,7 @@ interface Decomposition {
   outputs?: Array<{ itemId: string }>;
 }
 
-const emptyForm = { name: "", isRawMaterial: false, isFound: false, isFinalProduct: false, volume: 0 };
-
 export default function ItemsPage() {
-  const { canEdit: isAdmin } = useSession();
   const [items, setItems] = useState<ItemData[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [search, setSearch] = useState("");
@@ -39,12 +35,7 @@ export default function ItemsPage() {
   const [lootCount, setLootCount] = useState(0);
   const [lootIds, setLootIds] = useState<Set<string>>(new Set());
   const [recipesByItem, setRecipesByItem] = useState<Map<string, { factories: string[]; refineries: string[] }>>(new Map());
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState(emptyForm);
-  const [editId, setEditId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
 
   async function load() {
     setLoading(true);
@@ -61,7 +52,6 @@ export default function ItemsPage() {
 
     const bpOutputIds = new Set<string>(bps.map((b: Blueprint) => b.outputItem?.id).filter((id: string | undefined): id is string => Boolean(id)));
 
-    // Loot = items sin blueprint AND no ores (raw materials) AND no outputs de descomposición
     const decompOutputIds = new Set<string>();
     decomps.forEach((d: Decomposition) => {
       if (d.outputs && Array.isArray(d.outputs)) {
@@ -73,7 +63,6 @@ export default function ItemsPage() {
     );
     const trueLootIdSet = new Set<string>(trueLoot.map((i: ItemData) => i.id));
 
-    // Build recipes map: itemId -> { factories, refineries }
     const recipes = new Map<string, { factories: string[]; refineries: string[] }>();
     for (const bp of bps) {
       const itemId = bp.outputItem?.id;
@@ -87,7 +76,6 @@ export default function ItemsPage() {
     for (const d of decomps) {
       const itemId = d.sourceItem?.id;
       if (!itemId) continue;
-      // Find all outputs of this decomposition to link them
       if (d.outputs && Array.isArray(d.outputs)) {
         for (const output of d.outputs) {
           if (!recipes.has(output.itemId)) recipes.set(output.itemId, { factories: [], refineries: [] });
@@ -114,32 +102,6 @@ export default function ItemsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
-  function openNew() {
-    setForm(emptyForm);
-    setEditId(null);
-    setError("");
-    setShowForm(true);
-  }
-
-  function openEdit(item: ItemData) {
-    setForm({ name: item.name, isRawMaterial: item.isRawMaterial, isFound: item.isFound, isFinalProduct: item.isFinalProduct, volume: item.volume });
-    setEditId(item.id);
-    setError("");
-    setShowForm(true);
-  }
-
-  async function save() {
-    if (!form.name.trim()) { setError("Name is required"); return; }
-    setSaving(true);
-    const url = editId ? `/api/items/${editId}` : "/api/items";
-    const method = editId ? "PUT" : "POST";
-    const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    if (!res.ok) { setError((await res.json()).error ?? "Error"); setSaving(false); return; }
-    setSaving(false);
-    setShowForm(false);
-    load();
-  }
-
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
@@ -149,7 +111,6 @@ export default function ItemsPage() {
             {loading ? "Loading…" : search ? `${items.length} of ${totalItems} items` : `${totalItems} items`}
           </p>
         </div>
-        {isAdmin && <button onClick={openNew} className="btn-primary">+ New Item</button>}
       </div>
 
       <div className="flex gap-3 mb-4 items-end">
@@ -192,7 +153,6 @@ export default function ItemsPage() {
               <th className="pb-2 pr-3 text-right">Volume</th>
               <th className="pb-2 pr-3">Stock</th>
               <th className="pb-2 pr-3">Recipes</th>
-              <th className="pb-2 pl-2"></th>
             </tr>
           </thead>
           <tbody>
@@ -231,88 +191,10 @@ export default function ItemsPage() {
                     );
                   })()}
                 </td>
-                {isAdmin && (
-                  <td className="py-1 pl-2 flex gap-2 justify-end whitespace-nowrap">
-                    <button onClick={() => openEdit(item)} className="btn-sm">Edit</button>
-                  </td>
-                )}
               </tr>
             ))}
           </tbody>
           </table>
-        </div>
-      )}
-
-      {showForm && (
-        <div className="modal-backdrop" onClick={() => setShowForm(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-lg font-bold mb-4">{editId ? "Edit Item" : "New Item"}</h2>
-
-            {error && <p className="text-red-400 text-sm mb-3">{error}</p>}
-
-            <label className="block mb-3">
-              <span className="label">Name</span>
-              <input
-                className="input w-full mt-1"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Item name"
-                autoFocus
-              />
-            </label>
-
-            <label className="flex items-center gap-3 mb-3 cursor-pointer">
-              <input
-                type="checkbox"
-                className="toggle"
-                checked={form.isRawMaterial}
-                onChange={(e) => setForm({ ...form, isRawMaterial: e.target.checked })}
-              />
-              <span className="label">Ore (mined, decomposed)</span>
-            </label>
-
-            <label className="flex items-center gap-3 mb-3 cursor-pointer">
-              <input
-                type="checkbox"
-                className="toggle"
-                checked={form.isFound}
-                onChange={(e) => setForm({ ...form, isFound: e.target.checked })}
-              />
-              <span className="label">Raw material (found/looted)</span>
-            </label>
-
-            <label className="flex items-center gap-3 mb-4 cursor-pointer">
-              <input
-                type="checkbox"
-                className="toggle"
-                checked={form.isFinalProduct}
-                onChange={(e) => setForm({ ...form, isFinalProduct: e.target.checked })}
-              />
-              <span className="label">Final Product (top of chain)</span>
-            </label>
-
-            <label className="block mb-6">
-              <span className="label">Volume (m³ per unit)</span>
-              <div className="flex items-center gap-2 mt-1">
-                <input
-                  type="number"
-                  min={0}
-                  step={0.01}
-                  className="input w-32"
-                  value={form.volume}
-                  onChange={(e) => setForm({ ...form, volume: Math.max(0, Number(e.target.value)) })}
-                />
-                <span className="text-gray-500 text-sm">m³</span>
-              </div>
-            </label>
-
-            <div className="flex gap-3 justify-end">
-              <button onClick={() => setShowForm(false)} className="btn-ghost">Cancel</button>
-              <button onClick={save} disabled={saving} className="btn-primary">
-                {saving ? "Saving…" : "Save"}
-              </button>
-            </div>
-          </div>
         </div>
       )}
     </div>
