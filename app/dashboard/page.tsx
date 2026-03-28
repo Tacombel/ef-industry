@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import BlueprintPacksTab from "@/components/dashboard/BlueprintPacksTab";
 import PacksTab from "@/components/dashboard/PacksTab";
@@ -17,15 +18,30 @@ const tabConfig: Record<TabType, { label: string }> = {
 };
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabType>('blueprints');
+  const [username, setUsername] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/auth/me")
       .then((r) => r.json())
-      .then((data) => setRole(data?.role ?? null))
-      .catch(() => setRole(null));
+      .then((data) => {
+        setUsername(data?.username ?? null);
+        setRole(data?.role ?? null);
+      })
+      .catch(() => {
+        setUsername(null);
+        setRole(null);
+      });
   }, []);
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUsername(null);
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <div className="flex flex-col h-full -mx-6 -my-6">
@@ -45,17 +61,37 @@ export default function DashboardPage() {
           </button>
         ))}
 
-        {/* Admin link - right side */}
-        {(role === "ADMIN" || role === "SUPERADMIN") && (
-          <div className="ml-auto">
+        {/* Admin and auth links - right side */}
+        <div className="ml-auto flex items-center gap-2">
+          {(role === "ADMIN" || role === "SUPERADMIN") && (
             <Link
               href="/admin"
               className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-gray-100 hover:bg-gray-800/30 rounded transition-colors"
             >
               ⚙️ Admin
             </Link>
-          </div>
-        )}
+          )}
+
+          {username ? (
+            <div className="flex items-center gap-2 pl-2 border-l border-gray-800">
+              <span className="text-sm text-gray-400">👤 {username}</span>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-2 text-sm font-medium text-gray-400 hover:text-gray-100 hover:bg-gray-800/30 rounded transition-colors"
+                title="Logout"
+              >
+                ⏻
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="px-4 py-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/30 rounded transition-colors border border-cyan-600/50"
+            >
+              🔐 Login / Register
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Tab content area */}
