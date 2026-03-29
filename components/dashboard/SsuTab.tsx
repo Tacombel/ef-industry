@@ -104,6 +104,7 @@ export default function SsuTab() {
   // Combined stock state
   const [combinedItems, setCombinedItems] = useState<InventoryItem[]>([]);
   const [combinedLoading, setCombinedLoading] = useState(false);
+  const [refreshTick, setRefreshTick] = useState(0);
   const fetchKeyRef = useRef(0);
 
   // Active SSU addresses (not ignored, regardless of online status)
@@ -146,7 +147,7 @@ export default function SsuTab() {
       if (fetchKeyRef.current === key) setCombinedLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSsuKey]);
+  }, [activeSsuKey, refreshTick]);
 
   // Fetch inventory of selected SSU (for detail view)
   useEffect(() => {
@@ -200,11 +201,21 @@ export default function SsuTab() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      <div>
-        <h2 className="text-xl font-bold text-gray-100">Smart Storage Units</h2>
-        <p className="text-sm text-gray-500 mt-1">
-          {activeCount} de {ssus.length} SSUs incluidos en el cálculo de stock
-        </p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h2 className="text-xl font-bold text-gray-100">Smart Storage Units</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            {activeCount} de {ssus.length} SSUs incluidos en el cálculo de stock
+          </p>
+        </div>
+        <button
+          onClick={() => setRefreshTick((t) => t + 1)}
+          disabled={combinedLoading}
+          className="btn-sm btn-secondary disabled:opacity-50"
+          title="Refresh SSU stocks"
+        >
+          {combinedLoading ? "…" : "↻ Refresh"}
+        </button>
       </div>
 
       {listLoading && <p className="text-xs text-gray-500">Buscando SSUs…</p>}

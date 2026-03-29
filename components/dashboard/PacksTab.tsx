@@ -30,7 +30,7 @@ export default function PacksTab() {
   const [error, setError] = useState("");
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
-  const [refreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -98,11 +98,20 @@ export default function PacksTab() {
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-100">Production Packs</h2>
-        {isLoggedIn ? (
-          <button onClick={openNew} className="btn-primary">+ New Pack</button>
-        ) : (
-          <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save packs.</p>
-        )}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setRefreshKey((k) => k + 1)}
+            className="btn-sm btn-secondary"
+            title="Refresh SSU stocks"
+          >
+            ↻ Refresh stock
+          </button>
+          {isLoggedIn ? (
+            <button onClick={openNew} className="btn-primary">+ New Pack</button>
+          ) : (
+            <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save packs.</p>
+          )}
+        </div>
       </div>
 
 

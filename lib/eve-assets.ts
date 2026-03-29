@@ -4,7 +4,7 @@
  */
 
 const GRAPHQL_ENDPOINT = "https://graphql.testnet.sui.io/graphql";
-const EVE_WORLD_PACKAGE = "0xf115375112eab1dcc1bb4af81a37d47ca7e95c2eb990cefa1f12f82d689e9543";
+const EVE_WORLD_PACKAGE = "0x28b497559d65ab320d9da4613bf2498d5946b2c0ae3597ccfda3072ce127448c";
 const CHARACTER_PLAYER_PROFILE_TYPE = `${EVE_WORLD_PACKAGE}::character::PlayerProfile`;
 
 async function graphql<T>(query: string, variables: Record<string, unknown>): Promise<T> {

@@ -9,6 +9,7 @@ const WalletSection = dynamic(() => import("@/components/profile/WalletSection")
 
 export default function ProfilePage() {
   const { user } = useSession();
+  const isAdmin = user?.role === "ADMIN";
 
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -67,71 +68,66 @@ export default function ProfilePage() {
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="max-w-md w-full space-y-6">
 
-      {/* Vault user info */}
-      <WalletSection username={user?.username} />
+          <WalletSection username={user?.username} />
 
-      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
-        <p className="text-sm text-gray-400 mb-4">
-          Logged in as <span className="font-medium text-gray-200">{user?.username}</span>
-          {user?.role === "ADMIN" && (
-            <span className="ml-2 text-xs text-cyan-500">ADMIN</span>
+          {isAdmin && (
+            <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+              <h2 className="text-base font-semibold text-gray-100 mb-4">Change password</h2>
+
+              {error && (
+                <div className="mb-4 rounded border border-red-800 bg-red-900/20 px-4 py-3 text-sm text-red-400">
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="mb-4 rounded border border-green-800 bg-green-900/20 px-4 py-3 text-sm text-green-400">
+                  Password changed successfully.
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Current password</label>
+                  <input
+                    type="password"
+                    value={current}
+                    onChange={(e) => setCurrent(e.target.value)}
+                    required
+                    className="input w-full"
+                    autoComplete="current-password"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">New password</label>
+                  <input
+                    type="password"
+                    value={next}
+                    onChange={(e) => setNext(e.target.value)}
+                    required
+                    minLength={6}
+                    className="input w-full"
+                    autoComplete="new-password"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Confirm new password</label>
+                  <input
+                    type="password"
+                    value={confirm}
+                    onChange={(e) => setConfirm(e.target.value)}
+                    required
+                    minLength={6}
+                    className="input w-full"
+                    autoComplete="new-password"
+                  />
+                </div>
+                <button type="submit" disabled={loading} className="btn-sm btn-primary disabled:opacity-50">
+                  {loading ? "Saving…" : "Change password"}
+                </button>
+              </form>
+            </div>
           )}
-        </p>
 
-        <h2 className="text-base font-semibold text-gray-100 mb-4">Change password</h2>
-
-        {error && (
-          <div className="mb-4 rounded border border-red-800 bg-red-900/20 px-4 py-3 text-sm text-red-400">
-            {error}
-          </div>
-        )}
-        {success && (
-          <div className="mb-4 rounded border border-green-800 bg-green-900/20 px-4 py-3 text-sm text-green-400">
-            Password changed successfully.
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">Current password</label>
-            <input
-              type="password"
-              value={current}
-              onChange={(e) => setCurrent(e.target.value)}
-              required
-              className="input w-full"
-              autoComplete="current-password"
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">New password</label>
-            <input
-              type="password"
-              value={next}
-              onChange={(e) => setNext(e.target.value)}
-              required
-              minLength={6}
-              className="input w-full"
-              autoComplete="new-password"
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">Confirm new password</label>
-            <input
-              type="password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              required
-              minLength={6}
-              className="input w-full"
-              autoComplete="new-password"
-            />
-          </div>
-          <button type="submit" disabled={loading} className="btn-sm btn-primary disabled:opacity-50">
-            {loading ? "Saving…" : "Change password"}
-          </button>
-        </form>
-      </div>
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ export default function BlueprintPacksTab() {
   const [calcItemId, setCalcItemId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [filterFactory, setFilterFactory] = useState("");
-  const [refreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -90,6 +90,13 @@ export default function BlueprintPacksTab() {
             {loading ? "Loading…" : `${filteredGrouped.length} of ${grouped.length} items`}
           </p>
         </div>
+        <button
+          onClick={() => setRefreshKey((k) => k + 1)}
+          className="btn-sm btn-secondary"
+          title="Refresh SSU stocks"
+        >
+          ↻ Refresh stock
+        </button>
       </div>
       <SsuSelector ssus={ssus} ignoredSet={ignoredSet} toggleIgnored={toggleIgnored} />
 
