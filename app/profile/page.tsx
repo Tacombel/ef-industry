@@ -3,9 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/hooks/useSession";
+import { useConnection } from "@evefrontier/dapp-kit";
 
 export default function ProfilePage() {
   const { user } = useSession();
+  const { walletAddress } = useConnection();
+
+  const [syncLoading, setSyncLoading] = useState(false);
+  const [syncMsg, setSyncMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  async function handleSyncCharacter() {
+    setSyncLoading(true);
+    setSyncMsg(null);
+    const res = await fetch("/api/auth/sync-character", { method: "POST" });
+    const data = await res.json();
+    setSyncLoading(false);
+    if (!res.ok) {
+      setSyncMsg({ ok: false, text: data.error ?? "Failed to sync" });
+    } else if (data.updated) {
+      window.location.reload();
+    } else {
+      setSyncMsg({ ok: true, text: "Already up to date" });
+    }
+  }
 
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -63,6 +83,26 @@ export default function ProfilePage() {
       {/* Content */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="max-w-md w-full space-y-6">
+
+      {/* Vault user info */}
+      {walletAddress && (
+        <div className="rounded-lg border border-gray-800 bg-gray-900 p-6 space-y-3">
+          <div>
+            <p className="text-xs text-gray-500 mb-1">Character</p>
+            <p className="text-sm font-medium text-gray-200">{user?.username}</p>
+          </div>
+          <div>
+            <p className="text-xs text-gray-500 mb-1">Wallet</p>
+            <p className="text-xs font-mono text-gray-400 break-all">{walletAddress}</p>
+          </div>
+          {syncMsg && (
+            <p className={`text-xs ${syncMsg.ok ? "text-green-400" : "text-red-400"}`}>{syncMsg.text}</p>
+          )}
+          <button onClick={handleSyncCharacter} disabled={syncLoading} className="btn-sm btn-secondary disabled:opacity-50">
+            {syncLoading ? "Syncing…" : "Sync character name"}
+          </button>
+        </div>
+      )}
 
       <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
         <p className="text-sm text-gray-400 mb-4">

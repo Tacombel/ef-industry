@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/auth";
+import { getCharacterByWallet } from "@/lib/eve-assets";
 
 function getSecret() {
   const secret = process.env.JWT_SECRET;
@@ -23,10 +24,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid or expired nonce" }, { status: 401 });
   }
 
+  // Resolve character name: server-side GraphQL (authoritative) > client hint > address fallback
+  const character = await getCharacterByWallet(walletAddress);
+  const resolvedName = character?.name?.trim() || characterName?.trim() || null;
+
   // Find or create user by wallet address
   let user = await prisma.user.findUnique({ where: { walletAddress } });
 
-  const displayName = characterName?.trim() || walletAddress.slice(0, 16);
+  const displayName = resolvedName || walletAddress.slice(0, 16);
 
   if (!user) {
     let username = displayName;
@@ -37,8 +42,8 @@ export async function POST(req: NextRequest) {
     user = await prisma.user.create({
       data: { username, walletAddress, role: "USER" },
     });
-  } else if (characterName?.trim() && user.username !== characterName.trim()) {
-    const newName = characterName.trim();
+  } else if (resolvedName && user.username !== resolvedName) {
+    const newName = resolvedName;
     const taken = await prisma.user.findFirst({
       where: { username: newName, NOT: { id: user.id } },
     });
