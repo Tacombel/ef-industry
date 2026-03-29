@@ -67,15 +67,21 @@ model BlueprintInput {
 }
 
 model User {
-  id         String   @id @default(cuid())
-  username   String   @unique
-  password   String
-  role       String   @default("USER")
-  ssuAddress String?
-  createdAt  DateTime @default(now())
+  id            String   @id @default(cuid())
+  username      String   @unique
+  password      String?
+  walletAddress String?  @unique
+  role          String   @default("USER")
+  ssuAddress    String?
+  createdAt     DateTime @default(now())
 
   stocks Stock[]
   packs  Pack[]
+}
+
+model Settings {
+  id               String  @id @default("global")
+  registrationOpen Boolean @default(true)
 }
 
 model Stock {

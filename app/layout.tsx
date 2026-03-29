@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import UpdateBanner from "@/components/layout/UpdateBanner";
 import LegalModal from "@/components/layout/LegalModal";
+import Providers from "@/components/layout/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +21,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full bg-gray-950 text-gray-100 antialiased`}>
-        <LegalModal />
-        <div className="flex h-full">
-          <Sidebar />
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <UpdateBanner />
-            <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <Providers>
+          <LegalModal />
+          <div className="flex h-full">
+            <Sidebar />
+            <div className="flex flex-1 flex-col overflow-hidden">
+              <UpdateBanner />
+              <main className="flex-1 overflow-y-auto p-6">{children}</main>
+            </div>
           </div>
-        </div>
+        </Providers>
       </body>
     </html>
   );

@@ -24,6 +24,28 @@ export default function AdminPage() {
   const [resetCopied, setResetCopied] = useState(false);
   const [resetError, setResetError] = useState("");
 
+  // Settings
+  const [registrationOpen, setRegistrationOpen] = useState<boolean | null>(null);
+  const [settingsLoading, setSettingsLoading] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/settings")
+      .then((r) => r.json())
+      .then((d) => setRegistrationOpen(d.registrationOpen ?? true))
+      .catch(() => {});
+  }, []);
+
+  async function toggleRegistration(value: boolean) {
+    setSettingsLoading(true);
+    const res = await fetch("/api/admin/settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ registrationOpen: value }),
+    });
+    if (res.ok) setRegistrationOpen(value);
+    setSettingsLoading(false);
+  }
+
   // Renormalize
   const [renormalizing, setRenormalizing] = useState(false);
   const [renormalizeResult, setRenormalizeResult] = useState<{ total: { renamed: number; duplicatesRemoved: number } } | null>(null);
@@ -120,6 +142,39 @@ export default function AdminPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-gray-100">Admin</h1>
+
+      {/* Registration settings */}
+      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+        <h2 className="text-base font-semibold text-gray-100 mb-1">Registration</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Controls whether new users can create accounts with username/password.
+          EVE Vault login is always open.
+        </p>
+        <div className="flex items-center gap-3">
+          <button
+            role="switch"
+            aria-checked={registrationOpen ?? false}
+            disabled={registrationOpen === null || settingsLoading}
+            onClick={() => toggleRegistration(!registrationOpen)}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none disabled:opacity-50 ${
+              registrationOpen ? "bg-cyan-600" : "bg-gray-700"
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                registrationOpen ? "translate-x-6" : "translate-x-1"
+              }`}
+            />
+          </button>
+          <span className="text-sm text-gray-300">
+            {registrationOpen === null
+              ? "Loading…"
+              : registrationOpen
+              ? "Open — new users can register"
+              : "Closed — registration disabled"}
+          </span>
+        </div>
+      </div>
 
       {/* Users */}
       <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">

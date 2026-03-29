@@ -4,6 +4,12 @@ import { prisma } from "@/lib/prisma";
 import { createSession } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
+  // Check if registration is open (only applies to user/password accounts)
+  const settings = await prisma.settings.findUnique({ where: { id: "global" } });
+  if (settings && !settings.registrationOpen) {
+    return NextResponse.json({ error: "Registration is currently closed" }, { status: 403 });
+  }
+
   const { username, password } = await req.json();
 
   if (!username?.trim() || !password) {

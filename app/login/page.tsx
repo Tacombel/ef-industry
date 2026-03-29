@@ -2,15 +2,145 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useConnection } from "@evefrontier/dapp-kit";
+import { useSignPersonalMessage } from "@mysten/dapp-kit-react";
+import { getWalletCharacters } from "@evefrontier/dapp-kit/graphql";
 
-function LoginForm() {
+function VaultLoginButton({ onSuccess }: { onSuccess: (from: string) => void }) {
   const searchParams = useSearchParams();
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const { isConnected, hasEveVault, walletAddress, handleConnect, handleDisconnect, currentAccount } = useConnection();
+  const { mutateAsync: signMessage } = useSignPersonalMessage();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleVaultLogin() {
+    setError(null);
+    setLoading(true);
+    try {
+      if (!isConnected) {
+        await handleConnect();
+        // Connection triggers a re-render; the button will become "Sign in" after connecting
+        setLoading(false);
+        return;
+      }
+
+      if (!walletAddress || !currentAccount) {
+        setError("No wallet account selected");
+        setLoading(false);
+        return;
+      }
+
+      // 1. Get nonce from server
+      const nonceRes = await fetch("/api/auth/nonce");
+      if (!nonceRes.ok) throw new Error("Failed to get nonce");
+      const { nonce } = await nonceRes.json();
+
+      // 2. Decode the inner nonce value to sign (the JWT payload's nonce field)
+      const payload = JSON.parse(atob(nonce.split(".")[1]));
+      const innerNonce: string = payload.nonce;
+
+      // 3. Sign the inner nonce with the wallet
+      const { signature } = await signMessage({
+        message: new TextEncoder().encode(innerNonce),
+        account: currentAccount,
+      });
+
+      // 4. Try to get character name from EVE Frontier
+      let characterName: string | undefined;
+      try {
+        const characters = await getWalletCharacters(walletAddress);
+        characterName = characters?.[0]?.name ?? undefined;
+      } catch {
+        // Not critical — fall back to wallet address
+      }
+
+      // 5. Authenticate with server
+      const authRes = await fetch("/api/auth/wallet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ walletAddress, characterName, signature, nonce }),
+      });
+
+      if (!authRes.ok) {
+        const data = await authRes.json();
+        throw new Error(data.error ?? "Authentication failed");
+      }
+
+      const from = searchParams.get("from") ?? "/dashboard";
+      onSuccess(from);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (!hasEveVault) {
+    return (
+      <div className="text-center space-y-2">
+        <p className="text-gray-400 text-sm">EVE Vault extension not detected.</p>
+        <a
+          href="https://evefrontier.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-400 text-xs hover:underline"
+        >
+          Get EVE Vault →
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {isConnected && walletAddress && (
+        <div className="flex items-center justify-between bg-gray-800 rounded px-3 py-2">
+          <span className="text-xs text-gray-400 font-mono truncate">{walletAddress.slice(0, 20)}…</span>
+          <button
+            onClick={handleDisconnect}
+            className="text-xs text-gray-500 hover:text-gray-300 ml-2 shrink-0"
+          >
+            Disconnect
+          </button>
+        </div>
+      )}
+
+      <button
+        onClick={handleVaultLogin}
+        disabled={loading}
+        className="w-full bg-cyan-700 hover:bg-cyan-600 disabled:opacity-50 text-white font-medium py-2.5 rounded text-sm transition-colors flex items-center justify-center gap-2"
+      >
+        {loading ? (
+          "..."
+        ) : isConnected ? (
+          "Sign in with EVE Vault"
+        ) : (
+          "Connect EVE Vault"
+        )}
+      </button>
+
+      {error && <p className="text-red-400 text-xs text-center">{error}</p>}
+    </div>
+  );
+}
+
+function AdminLoginForm() {
+  const searchParams = useSearchParams();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [registrationOpen, setRegistrationOpen] = useState<boolean | null>(null);
+
+  // Fetch registration status once on mount to show/hide Register tab
+  useState(() => {
+    fetch("/api/admin/settings")
+      .then((r) => r.json())
+      .then((d) => setRegistrationOpen(d.registrationOpen ?? true))
+      .catch(() => setRegistrationOpen(true));
+  });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,26 +166,30 @@ function LoginForm() {
     window.location.href = from;
   }
 
+  const showRegisterTab = registrationOpen !== false;
+
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
-      <div className="flex mb-6 bg-gray-800 rounded-md p-1">
-        <button
-          onClick={() => { setMode("login"); setError(null); }}
-          className={`flex-1 py-1.5 text-sm font-medium rounded transition-colors ${
-            mode === "login" ? "bg-gray-700 text-gray-100" : "text-gray-400 hover:text-gray-200"
-          }`}
-        >
-          Login
-        </button>
-        <button
-          onClick={() => { setMode("register"); setError(null); }}
-          className={`flex-1 py-1.5 text-sm font-medium rounded transition-colors ${
-            mode === "register" ? "bg-gray-700 text-gray-100" : "text-gray-400 hover:text-gray-200"
-          }`}
-        >
-          Register
-        </button>
-      </div>
+      {showRegisterTab && (
+        <div className="flex mb-6 bg-gray-800 rounded-md p-1">
+          <button
+            onClick={() => { setMode("login"); setError(null); }}
+            className={`flex-1 py-1.5 text-sm font-medium rounded transition-colors ${
+              mode === "login" ? "bg-gray-700 text-gray-100" : "text-gray-400 hover:text-gray-200"
+            }`}
+          >
+            Login
+          </button>
+          <button
+            onClick={() => { setMode("register"); setError(null); }}
+            className={`flex-1 py-1.5 text-sm font-medium rounded transition-colors ${
+              mode === "register" ? "bg-gray-700 text-gray-100" : "text-gray-400 hover:text-gray-200"
+            }`}
+          >
+            Register
+          </button>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -95,7 +229,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-cyan-700 hover:bg-cyan-600 disabled:opacity-50 text-white font-medium py-2 rounded text-sm transition-colors"
+          className="w-full bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white font-medium py-2 rounded text-sm transition-colors"
         >
           {loading ? "..." : mode === "login" ? "Login" : "Create account"}
         </button>
@@ -104,18 +238,46 @@ function LoginForm() {
   );
 }
 
-export default function LoginPage() {
+function LoginPage() {
+  const [redirect, setRedirect] = useState<string | null>(null);
+
+  if (redirect) {
+    window.location.href = redirect;
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
+      <div className="w-full max-w-sm space-y-6">
+        <div className="text-center">
           <h1 className="text-2xl font-bold text-cyan-400 tracking-wide">EVE Frontier</h1>
           <p className="text-gray-500 text-sm mt-1">Industry Calculator</p>
         </div>
-        <Suspense>
-          <LoginForm />
-        </Suspense>
+
+        {/* EVE Vault — primary login */}
+        <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 space-y-4">
+          <p className="text-xs text-gray-400 text-center uppercase tracking-wider">Login with EVE Vault</p>
+          <VaultLoginButton onSuccess={setRedirect} />
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-gray-800" />
+          <span className="text-xs text-gray-600">Admin access</span>
+          <div className="flex-1 h-px bg-gray-800" />
+        </div>
+
+        {/* Username/password — admin only */}
+        <AdminLoginForm />
       </div>
     </div>
+  );
+}
+
+export default function LoginPageWrapper() {
+  return (
+    <Suspense>
+      <LoginPage />
+    </Suspense>
   );
 }
