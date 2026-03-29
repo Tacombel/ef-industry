@@ -30,7 +30,7 @@ export default function PacksTab() {
   const [error, setError] = useState("");
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [refreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);

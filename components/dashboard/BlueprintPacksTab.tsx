@@ -30,7 +30,7 @@ export default function BlueprintPacksTab() {
   const [calcItemId, setCalcItemId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [filterFactory, setFilterFactory] = useState("");
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [refreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);

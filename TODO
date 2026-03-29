@@ -41,4 +41,11 @@ Sin usuario logeado, la SSU muestra Unauthorized. DEbe funcionar aunque no se gu
 REvisar BD y limpiar campos obsoletos
 Errores deprecated durant el build
 Que el mensaje legal solo aparezca la primera vez.
-claude --resume 8a479833-a1d9-46d3-97fd-e3e248f3513b
+Al hacer hover sobre la address sale change password
+La mecanica de reset password ya no hace falta
+La pantalla para meter el PN sale varias verticales
+Falta boton recargar stock
+Si miras en el BP hacer 120 foam, aparce un envio de 27 unidades de feldspar, y no hace optimizacion. Supongo qu ees porque hauy que recolocar dos raw. Hydro-->Hydrated y Silica-->Platinum
+Estudiar vias de optimizacion teniendo en cuenta las refinerias. Por ejemplo, si lo unico importante es el palladium, usar la heavy refinery ahorra trabajo al poder refinar todo en menos lotes, a costa de obtener menos silica.
+Incluir calculos de tiempo. Meter un campo para el mining rate, qu estime el tiempo de minado.
+El carbon weave tiene dos blueprints de Field printer.

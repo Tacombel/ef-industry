@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { calculate, buildItemMap } from "@/lib/calculator";
 import { fetchCalcItems, enrichAsteroids } from "@/lib/calc-helpers";
-import { fetchUserStockMap, fetchStockMapFromAddress } from "@/lib/sui";
+import { fetchUserStockMap, fetchStockMapFromAddresses } from "@/lib/sui";
 import { getSession } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
@@ -13,13 +13,10 @@ export async function GET(req: NextRequest) {
   if (!itemId) return NextResponse.json({ error: "itemId required" }, { status: 400 });
   if (!Number.isInteger(runs) || runs < 1) return NextResponse.json({ error: "runs must be a positive integer" }, { status: 400 });
 
-  const ssuAddress = req.nextUrl.searchParams.get("ssuAddress") ?? undefined;
-  const ignoreSsu = req.nextUrl.searchParams.get("ignoreSsu") === "true";
+  const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
   const session = await getSession();
-  const stockMap = ignoreSsu
-    ? new Map<string, number>()
-    : ssuAddress
-    ? await fetchStockMapFromAddress(ssuAddress)
+  const stockMap = ssuAddressesParam
+    ? await fetchStockMapFromAddresses(ssuAddressesParam.split(",").filter(Boolean))
     : session
     ? await fetchUserStockMap(session.userId)
     : new Map<string, number>();

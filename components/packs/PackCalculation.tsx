@@ -3,13 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CalculationResult } from "@/lib/calculator";
 import OreSection from "@/components/common/OreSection";
-import SsuAddressBar from "@/components/common/SsuAddressBar";
-import { useSsuAddress } from "@/hooks/useSsuAddress";
 
-export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = false }: { packId: string; refreshKey?: number; ignoreSsu?: boolean }) {
-  const { address: ssuAddress, saveAddress } = useSsuAddress();
-  const ssuAddressRef = useRef(ssuAddress);
-  useEffect(() => { ssuAddressRef.current = ssuAddress; }, [ssuAddress]);
+export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses = [] }: { packId: string; refreshKey?: number; ssuAddresses?: string[] }) {
+  const ssuAddressesRef = useRef(ssuAddresses);
+  useEffect(() => { ssuAddressesRef.current = ssuAddresses; }, [ssuAddresses]);
 
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [error, setError] = useState("");
@@ -34,11 +31,9 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
     else setLoading(true);
     setError("");
     const ignored = ignoredRef.current;
-    const addr = ignoreSsu ? "" : ssuAddressRef.current.trim();
     const params = new URLSearchParams();
     if (ignored.size > 0) params.set("ignore", [...ignored].join(","));
-    if (addr) params.set("ssuAddress", addr);
-    if (ignoreSsu) params.set("ignoreSsu", "true");
+    if (ssuAddressesRef.current.length > 0) params.set("ssuAddresses", ssuAddressesRef.current.join(","));
     const query = params.toString() ? `?${params.toString()}` : "";
     fetch(`/api/packs/${packId}/calculate${query}`)
       .then((r) => r.json())
@@ -56,7 +51,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
         setLoading(false);
         setRecalculating(false);
       });
-  }, [packId, ignoreSsu]);
+  }, [packId]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -75,9 +70,8 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ignoredItems]);
 
-  useEffect(() => { if (result !== null) load(true); }, [ssuAddress]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (result !== null) load(true); }, [ignoreSsu]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (result !== null) load(true); }, [ssuAddresses]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <p className="text-gray-500 text-sm">Calculating…</p>;
   if (error) return <p className="text-red-400 text-sm">Error: {error}</p>;
@@ -91,7 +85,6 @@ export default function PackCalculation({ packId, refreshKey = 0, ignoreSsu = fa
 
   return (
     <div className={`mt-3 space-y-4 border-t border-gray-800 pt-4 ${isRecalculating ? "opacity-60" : ""}`}>
-      <SsuAddressBar address={ssuAddress} onSave={saveAddress} onRefresh={() => load(true)} />
 
       {stockSufficient && (
         <div className="flex items-center gap-2 rounded-md bg-green-900/30 border border-green-800 px-3 py-2">

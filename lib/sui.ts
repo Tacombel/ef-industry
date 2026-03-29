@@ -3,6 +3,13 @@ import { prisma } from "@/lib/prisma";
 const SUI_RPC = "https://fullnode.testnet.sui.io:443";
 const EF_WORLD_API = "https://world-api-stillness.live.tech.evefrontier.com";
 
+export interface SsuSummary {
+  address: string;
+  name: string;
+  typeId: number;
+  status: string;
+}
+
 export interface SsuInventoryItem {
   typeId: number;
   name: string;
@@ -126,6 +133,18 @@ export async function getSsuInventory(address: string): Promise<SsuInventory> {
  * keyed by the DB item CUID, matched via typeId.
  * Returns an empty map if the user has no ssuAddress configured.
  */
+export async function fetchStockMapFromAddresses(addresses: string[]): Promise<Map<string, number>> {
+  if (addresses.length === 0) return new Map();
+  const maps = await Promise.all(addresses.map(fetchStockMapFromAddress));
+  const combined = new Map<string, number>();
+  for (const map of maps) {
+    for (const [id, qty] of map) {
+      combined.set(id, (combined.get(id) ?? 0) + qty);
+    }
+  }
+  return combined;
+}
+
 export async function fetchStockMapFromAddress(ssuAddress: string): Promise<Map<string, number>> {
   const inventory = await getSsuInventory(ssuAddress);
 
@@ -157,4 +176,64 @@ export async function fetchUserStockMap(userId: string, addressOverride?: string
   }
 
   return fetchStockMapFromAddress(address);
+}
+
+// EVE Frontier package on Sui testnet (stillness).
+const EF_PKG = "0x28b497559d65ab320d9da4613bf2498d5946b2c0ae3597ccfda3072ce127448c";
+const PLAYER_PROFILE_TYPE = `${EF_PKG}::character::PlayerProfile`;
+const OWNER_CAP_TYPE = `${EF_PKG}::access::OwnerCap<${EF_PKG}::storage_unit::StorageUnit>`;
+
+/**
+ * Discover all SSU assemblies owned by a wallet address.
+ *
+ * EVE Frontier ownership chain:
+ *   wallet → PlayerProfile (address-owned) → character_id
+ *   character_id → OwnerCap<StorageUnit> (address-owned) → SSU (Shared)
+ */
+export async function getUserSsus(walletAddress: string): Promise<SsuSummary[]> {
+  // Step 1: find the PlayerProfile owned by the wallet to get the character_id
+  const profileResult = await suiRpc("suix_getOwnedObjects", [
+    walletAddress,
+    { filter: { StructType: PLAYER_PROFILE_TYPE }, options: { showContent: true } },
+    null,
+    1,
+  ]);
+  const profileFields = profileResult.data?.[0]?.data?.content?.fields;
+  const characterId: string = profileFields?.character_id ?? walletAddress;
+
+  // Step 2: find all OwnerCap<StorageUnit> owned by the character_id
+  const ownedResult = await suiRpc("suix_getOwnedObjects", [
+    characterId,
+    { filter: { StructType: OWNER_CAP_TYPE }, options: { showContent: true } },
+    null,
+    50,
+  ]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ssuAddresses: string[] = (ownedResult.data ?? [])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((o: any) => o.data?.content?.fields?.authorized_object_id as string)
+    .filter(Boolean);
+
+  if (ssuAddresses.length === 0) return [];
+
+  // Step 2: batch-fetch the SSUs to get name + status
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fetched: any[] = await suiRpc("sui_multiGetObjects", [
+    ssuAddresses,
+    { showContent: true },
+  ]);
+
+  const results: SsuSummary[] = [];
+  for (const obj of fetched) {
+    if (obj.error || !obj.data) continue;
+    const fields = obj.data?.content?.fields;
+    if (!fields) continue;
+    const name: string = fields.metadata?.fields?.name ?? "";
+    const status: string = fields.status?.fields?.status?.variant ?? "UNKNOWN";
+    const typeId: number = parseInt(fields.type_id ?? "0");
+    results.push({ address: obj.data.objectId, name, typeId, status });
+  }
+
+  return results;
 }

@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import SsuAddressBar from "@/components/common/SsuAddressBar";
-import { useSsuAddress } from "@/hooks/useSsuAddress";
 
 interface Item { id: string; name: string }
 interface Refinery { id: string; name: string }
@@ -17,7 +15,6 @@ interface Decomposition {
 }
 
 export default function DecompositionsTab() {
-  const { address: ssuAddress, saveAddress } = useSsuAddress();
   const [decompositions, setDecompositions] = useState<Decomposition[]>([]);
   const [refineries, setRefineries] = useState<Refinery[]>([]);
   const [loading, setLoading] = useState(true);
@@ -90,15 +87,6 @@ export default function DecompositionsTab() {
             <option key={r.id} value={r.name}>{r.name}</option>
           ))}
         </select>
-      </div>
-
-      {/* SSU Address Bar */}
-      <div className="mb-6">
-        <SsuAddressBar
-          address={ssuAddress}
-          onSave={saveAddress}
-          onRefresh={() => {}}
-        />
       </div>
 
       {loading ? (

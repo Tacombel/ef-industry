@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import VaultLoginButton from "@/components/auth/VaultLoginButton";
+import dynamic from "next/dynamic";
+
+const VaultLoginButton = dynamic(() => import("@/components/auth/VaultLoginButton"), { ssr: false });
 import BlueprintPacksTab from "@/components/dashboard/BlueprintPacksTab";
 import PacksTab from "@/components/dashboard/PacksTab";
 import DecompositionsTab from "@/components/dashboard/DecompositionsTab";
