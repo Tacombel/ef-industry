@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import PackCalculation from "@/components/packs/PackCalculation";
+import ImportPackModal from "@/components/packs/ImportPackModal";
 import SsuSelector from "@/components/common/SsuSelector";
 import { useSsuList } from "@/hooks/useSsuList";
 import { useSsuIgnored } from "@/hooks/useSsuIgnored";
@@ -30,6 +31,7 @@ export default function PacksTab() {
   const [error, setError] = useState("");
   const [calcPackId, setCalcPackId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [showImport, setShowImport] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
@@ -107,7 +109,10 @@ export default function PacksTab() {
             ↻ Refresh stock
           </button>
           {isLoggedIn ? (
-            <button onClick={openNew} className="btn-primary">+ New Pack</button>
+            <>
+              <button onClick={() => setShowImport(true)} className="btn-sm btn-secondary">↑ Import fit</button>
+              <button onClick={openNew} className="btn-primary">+ New Pack</button>
+            </>
           ) : (
             <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save packs.</p>
           )}
@@ -236,6 +241,14 @@ export default function PacksTab() {
             </div>
           </div>
         </div>
+      )}
+
+      {showImport && (
+        <ImportPackModal
+          items={items}
+          onClose={() => setShowImport(false)}
+          onImported={load}
+        />
       )}
     </div>
   );
