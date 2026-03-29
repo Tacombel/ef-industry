@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function VaultLoginButton({ redirectTo = "/dashboard", compact = false }: Props) {
-  const { isConnected, hasEveVault, walletAddress, handleConnect, handleDisconnect } = useConnection();
+  const { isConnected, hasEveVault, walletAddress, handleConnect } = useConnection();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pendingAuth, setPendingAuth] = useState(false);
@@ -32,7 +32,8 @@ export default function VaultLoginButton({ redirectTo = "/dashboard", compact = 
       let characterName: string | undefined;
       try {
         const characters = await getWalletCharacters(address);
-        characterName = characters?.[0]?.name ?? undefined;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        characterName = (characters as any)?.[0]?.name ?? undefined;
       } catch {
         // Not critical — fall back to wallet address as display name
       }

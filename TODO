@@ -39,3 +39,6 @@ Si se cierra la sesion va la la pantalla login. Debe ir a l SPA
 Si no hay usuario logeado la pagina packs aparece vacia.
 Sin usuario logeado, la SSU muestra Unauthorized. DEbe funcionar aunque no se guarde la direccion
 REvisar BD y limpiar campos obsoletos
+Errores deprecated durant el build
+Que el mensaje legal solo aparezca la primera vez.
+claude --resume 8a479833-a1d9-46d3-97fd-e3e248f3513b
