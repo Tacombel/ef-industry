@@ -158,7 +158,7 @@ function SidebarContent() {
           </div>
         ) : (
           <Link href="/login" className="text-gray-500 hover:text-gray-300 transition-colors block mb-1">
-            Login
+            Admin
           </Link>
         )}
         <p>v{version}</p>

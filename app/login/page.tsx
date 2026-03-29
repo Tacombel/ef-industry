@@ -2,114 +2,12 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useConnection } from "@evefrontier/dapp-kit";
-import { getWalletCharacters } from "@evefrontier/dapp-kit/graphql";
+import VaultLoginButtonBase from "@/components/auth/VaultLoginButton";
 
 function VaultLoginButton() {
   const searchParams = useSearchParams();
-  const { isConnected, hasEveVault, walletAddress, handleConnect, handleDisconnect } = useConnection();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleVaultLogin() {
-    setError(null);
-    setLoading(true);
-    try {
-      if (!isConnected) {
-        await handleConnect();
-        // Connection triggers a re-render; the button will become "Sign in" after connecting
-        setLoading(false);
-        return;
-      }
-
-      if (!walletAddress) {
-        setError("No wallet account selected");
-        setLoading(false);
-        return;
-      }
-
-      // 1. Get fresh nonce from server (proves request is recent, 5 min TTL)
-      const nonceRes = await fetch("/api/auth/nonce");
-      if (!nonceRes.ok) throw new Error("Failed to get nonce");
-      const { nonce } = await nonceRes.json();
-
-      // 2. Try to get character name from EVE Frontier GraphQL
-      let characterName: string | undefined;
-      try {
-        const characters = await getWalletCharacters(walletAddress);
-        characterName = characters?.[0]?.name ?? undefined;
-      } catch {
-        // Not critical — fall back to wallet address as display name
-      }
-
-      // 3. Authenticate with server
-      const authRes = await fetch("/api/auth/wallet", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ walletAddress, characterName, nonce }),
-      });
-
-      if (!authRes.ok) {
-        const data = await authRes.json();
-        throw new Error(data.error ?? "Authentication failed");
-      }
-
-      const from = searchParams.get("from") ?? "/dashboard";
-      window.location.href = from;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  if (!hasEveVault) {
-    return (
-      <div className="text-center space-y-2">
-        <p className="text-gray-400 text-sm">EVE Vault extension not detected.</p>
-        <a
-          href="https://evefrontier.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-cyan-400 text-xs hover:underline"
-        >
-          Get EVE Vault →
-        </a>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-3">
-      {isConnected && walletAddress && (
-        <div className="flex items-center justify-between bg-gray-800 rounded px-3 py-2">
-          <span className="text-xs text-gray-400 font-mono truncate">{walletAddress.slice(0, 20)}…</span>
-          <button
-            onClick={handleDisconnect}
-            className="text-xs text-gray-500 hover:text-gray-300 ml-2 shrink-0"
-          >
-            Disconnect
-          </button>
-        </div>
-      )}
-
-      <button
-        onClick={handleVaultLogin}
-        disabled={loading}
-        className="w-full bg-cyan-700 hover:bg-cyan-600 disabled:opacity-50 text-white font-medium py-2.5 rounded text-sm transition-colors flex items-center justify-center gap-2"
-      >
-        {loading ? (
-          "..."
-        ) : isConnected ? (
-          "Sign in with EVE Vault"
-        ) : (
-          "Connect EVE Vault"
-        )}
-      </button>
-
-      {error && <p className="text-red-400 text-xs text-center">{error}</p>}
-    </div>
-  );
+  const from = searchParams.get("from") ?? "/dashboard";
+  return <VaultLoginButtonBase redirectTo={from} />;
 }
 
 function AdminLoginForm() {

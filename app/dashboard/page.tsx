@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import VaultLoginButton from "@/components/auth/VaultLoginButton";
 import BlueprintPacksTab from "@/components/dashboard/BlueprintPacksTab";
 import PacksTab from "@/components/dashboard/PacksTab";
 import DecompositionsTab from "@/components/dashboard/DecompositionsTab";
@@ -22,6 +23,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<TabType>('blueprints');
   const [username, setUsername] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -33,7 +35,8 @@ export default function DashboardPage() {
       .catch(() => {
         setUsername(null);
         setRole(null);
-      });
+      })
+      .finally(() => setAuthLoading(false));
   }, []);
 
   async function handleLogout() {
@@ -80,7 +83,7 @@ export default function DashboardPage() {
             </Link>
           )}
 
-          {username ? (
+          {authLoading ? null : username ? (
             <div className="flex items-center gap-2 pl-2 border-l border-gray-800">
               <Link
                 href="/profile"
@@ -98,12 +101,16 @@ export default function DashboardPage() {
               </button>
             </div>
           ) : (
-            <Link
-              href="/login"
-              className="px-4 py-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/30 rounded transition-colors border border-cyan-600/50"
-            >
-              🔐 Login / Register
-            </Link>
+            <div className="flex items-center gap-2 pl-2 border-l border-gray-800">
+              <VaultLoginButton compact redirectTo="/dashboard" />
+              <Link
+                href="/login"
+                className="px-2 py-1 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                title="Admin login"
+              >
+                Admin
+              </Link>
+            </div>
           )}
         </div>
       </div>
