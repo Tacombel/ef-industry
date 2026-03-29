@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useCallback } from "react";
 import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
-import SsuAddressBar from "@/components/common/SsuAddressBar";
-import { useSsuAddress } from "@/hooks/useSsuAddress";
-import { useSsuIgnore } from "@/hooks/useSsuIgnore";
+import SsuSelector from "@/components/common/SsuSelector";
+import { useSsuList } from "@/hooks/useSsuList";
+import { useSsuIgnored } from "@/hooks/useSsuIgnored";
 
 interface Item { id: string; name: string; isRawMaterial: boolean }
 interface BlueprintInput { id: string; itemId: string; quantity: number; item: Item }
@@ -20,8 +20,9 @@ interface Blueprint {
 type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
 export default function BlueprintPacksTab() {
-  const { address: ssuAddress, saveAddress } = useSsuAddress();
-  const { ignoreSsu, setIgnoreSsu } = useSsuIgnore();
+  const { ssus } = useSsuList();
+  const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
+  const ssuAddresses = activeSsuAddresses(ssus);
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
   const [loading, setLoading] = useState(true);
@@ -90,7 +91,9 @@ export default function BlueprintPacksTab() {
           </p>
         </div>
       </div>
-      <div className="flex gap-2 mb-4">
+      <SsuSelector ssus={ssus} ignoredSet={ignoredSet} toggleIgnored={toggleIgnored} />
+
+      <div className="flex gap-2 mb-4 mt-4">
         <div className="relative flex-1">
           <input
             placeholder="Search blueprints…"
@@ -112,33 +115,6 @@ export default function BlueprintPacksTab() {
         </select>
       </div>
 
-      {/* SSU Address Bar */}
-      <div className="mb-4 flex items-center gap-3">
-        <div className="flex-1">
-          <SsuAddressBar
-            address={ssuAddress}
-            onSave={saveAddress}
-            onRefresh={() => calcItemId && setRefreshKey(k => k + 1)}
-          />
-        </div>
-        <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer shrink-0">
-          <span>Ignore SSU</span>
-          <button
-            type="button"
-            onClick={() => setIgnoreSsu(!ignoreSsu)}
-            title={ignoreSsu ? "Click to use SSU" : "Click to ignore SSU"}
-            className={`relative inline-flex h-4 w-8 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${
-              ignoreSsu ? "bg-gray-600" : "bg-cyan-600"
-            }`}
-          >
-            <span
-              className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition duration-200 ${
-                ignoreSsu ? "translate-x-0" : "translate-x-4"
-              }`}
-            />
-          </button>
-        </label>
-      </div>
 
       {loading ? (
         <p className="text-gray-500">Loading…</p>
@@ -171,7 +147,7 @@ export default function BlueprintPacksTab() {
 
               {calcItemId === item.id && (
                 <div className="px-4 py-4 border-b border-gray-800 bg-gray-900/50">
-                  <BlueprintCalculation itemId={item.id} itemName={item.name} refreshKey={refreshKey} ignoreSsu={ignoreSsu} />
+                  <BlueprintCalculation itemId={item.id} itemName={item.name} refreshKey={refreshKey} ssuAddresses={ssuAddresses} />
                 </div>
               )}
 
