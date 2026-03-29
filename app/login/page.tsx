@@ -2,13 +2,6 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import VaultLoginButtonBase from "@/components/auth/VaultLoginButton";
-
-function VaultLoginButton() {
-  const searchParams = useSearchParams();
-  const from = searchParams.get("from") ?? "/dashboard";
-  return <VaultLoginButtonBase redirectTo={from} />;
-}
 
 function AdminLoginForm() {
   const searchParams = useSearchParams();
@@ -130,23 +123,9 @@ function LoginPage() {
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-cyan-400 tracking-wide">EVE Frontier</h1>
-          <p className="text-gray-500 text-sm mt-1">Industry Calculator</p>
+          <p className="text-gray-500 text-sm mt-1">Admin Access</p>
         </div>
 
-        {/* EVE Vault — primary login */}
-        <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 space-y-4">
-          <p className="text-xs text-gray-400 text-center uppercase tracking-wider">Login with EVE Vault</p>
-          <VaultLoginButton />
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 h-px bg-gray-800" />
-          <span className="text-xs text-gray-600">Admin access</span>
-          <div className="flex-1 h-px bg-gray-800" />
-        </div>
-
-        {/* Username/password — admin only */}
         <AdminLoginForm />
       </div>
     </div>

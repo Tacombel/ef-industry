@@ -42,7 +42,6 @@ export default function DashboardPage() {
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     setUsername(null);
-    router.push("/login");
     router.refresh();
   }
 
