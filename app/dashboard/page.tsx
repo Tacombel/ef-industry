@@ -45,6 +45,7 @@ export default function DashboardPage() {
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     localStorage.removeItem("eve-dapp-connected");
+    localStorage.removeItem("mysten-dapp-kit:selected-wallet-and-address");
     setUsername(null);
     router.refresh();
   }

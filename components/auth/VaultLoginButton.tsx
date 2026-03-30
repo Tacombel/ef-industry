@@ -49,6 +49,10 @@ export default function VaultLoginButton({ redirectTo = "/dashboard", compact = 
         throw new Error(data.error ?? "Authentication failed");
       }
 
+      // Clear wallet auto-connect keys — the server session handles auth from here on,
+      // so we don't want the vault PIN dialog on subsequent page loads.
+      localStorage.removeItem("eve-dapp-connected");
+      localStorage.removeItem("mysten-dapp-kit:selected-wallet-and-address");
       window.location.href = redirectTo;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
