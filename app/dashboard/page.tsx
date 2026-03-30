@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const VaultLoginButton = dynamic(() => import("@/components/auth/VaultLoginButton"), { ssr: false });
@@ -51,7 +52,8 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col h-full -mx-6 -my-6">
       {/* App header */}
-      <div className="px-6 py-3 bg-gray-950 border-b border-gray-800 flex-shrink-0 text-center">
+      <div className="px-6 py-3 bg-gray-950 border-b border-gray-800 flex-shrink-0 flex items-center justify-center gap-3">
+        <Image src="/EF-Industry.png" alt="EF Industry" width={36} height={36} className="rounded-lg" />
         <h1 className="text-lg font-bold text-cyan-400 tracking-wide">EF Industry</h1>
       </div>
 
