@@ -6,12 +6,12 @@ import { getSession } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
   const itemId = req.nextUrl.searchParams.get("itemId");
-  const runs = Number(req.nextUrl.searchParams.get("runs") ?? "1");
+  const units = Number(req.nextUrl.searchParams.get("units") ?? "1");
   const excludedOres = req.nextUrl.searchParams.get("excludedOres");
   const excludedOreIds = excludedOres ? new Set(excludedOres.split(",").filter(Boolean)) : undefined;
 
   if (!itemId) return NextResponse.json({ error: "itemId required" }, { status: 400 });
-  if (!Number.isInteger(runs) || runs < 1) return NextResponse.json({ error: "runs must be a positive integer" }, { status: 400 });
+  if (!Number.isInteger(units) || units < 1) return NextResponse.json({ error: "units must be a positive integer" }, { status: 400 });
 
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
   const session = await getSession();
@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
     const outputItem = itemMap.get(itemId);
     const blueprint = outputItem?.blueprints.find((b) => b.isDefault) ?? outputItem?.blueprints[0];
     const outputQty = blueprint?.outputQty ?? 1;
+    const runs = Math.ceil(units / outputQty);
     const quantity = runs * outputQty;
 
     const result = calculate([{ itemId, quantity }], itemMap, { excludedOreIds });
@@ -36,7 +37,7 @@ export async function GET(req: NextRequest) {
       {
         itemId,
         itemName: outputItem?.name ?? itemId,
-        quantityNeeded: quantity,
+        quantityNeeded: units,
         outputQty,
         blueprintRuns: runs,
         actualStock: outputItem?.stock ?? 0,

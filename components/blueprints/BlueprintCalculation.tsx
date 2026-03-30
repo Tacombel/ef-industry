@@ -42,7 +42,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
     const qty = quantityRef.current;
     const excluded = [...excludedOreIdsRef.current].join(",");
     const addrs = ssuAddressesRef.current.join(",");
-    const url = `/api/calculate?itemId=${itemId}&runs=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addrs ? `&ssuAddresses=${encodeURIComponent(addrs)}` : ""}`;
+    const url = `/api/calculate?itemId=${itemId}&units=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addrs ? `&ssuAddresses=${encodeURIComponent(addrs)}` : ""}`;
     fetch(url, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => {
@@ -105,7 +105,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
 
       {/* Quantity selector */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-gray-400">Batches to produce:</span>
+        <span className="text-xs text-gray-400">Units to produce:</span>
         <input
           type="number"
           min={1}
