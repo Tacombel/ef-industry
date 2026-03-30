@@ -6467,7 +6467,8 @@
           "typeId": 88783,
           "quantity": 8
         }
-      ]
+      ],
+      "blueprintId": 1199
     },
     {
       "sourceTypeId": 88319,
@@ -6479,7 +6480,8 @@
           "typeId": 83839,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1180
     },
     {
       "sourceTypeId": 88319,
@@ -6491,7 +6493,8 @@
           "typeId": 83839,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1180
     },
     {
       "sourceTypeId": 78435,
@@ -6503,7 +6506,8 @@
           "typeId": 78516,
           "quantity": 600
         }
-      ]
+      ],
+      "blueprintId": 1191
     },
     {
       "sourceTypeId": 77800,
@@ -6519,7 +6523,8 @@
           "typeId": 89259,
           "quantity": 15
         }
-      ]
+      ],
+      "blueprintId": 1182
     },
     {
       "sourceTypeId": 77800,
@@ -6535,7 +6540,8 @@
           "typeId": 89259,
           "quantity": 30
         }
-      ]
+      ],
+      "blueprintId": 1201
     },
     {
       "sourceTypeId": 92414,
@@ -6551,7 +6557,8 @@
           "typeId": 77728,
           "quantity": 3
         }
-      ]
+      ],
+      "blueprintId": 1481
     },
     {
       "sourceTypeId": 92414,
@@ -6567,7 +6574,8 @@
           "typeId": 77728,
           "quantity": 3
         }
-      ]
+      ],
+      "blueprintId": 1481
     },
     {
       "sourceTypeId": 92394,
@@ -6583,7 +6591,8 @@
           "typeId": 78435,
           "quantity": 3
         }
-      ]
+      ],
+      "blueprintId": 1480
     },
     {
       "sourceTypeId": 92394,
@@ -6599,7 +6608,8 @@
           "typeId": 78435,
           "quantity": 3
         }
-      ]
+      ],
+      "blueprintId": 1480
     },
     {
       "sourceTypeId": 77811,
@@ -6615,7 +6625,8 @@
           "typeId": 78423,
           "quantity": 150
         }
-      ]
+      ],
+      "blueprintId": 1183
     },
     {
       "sourceTypeId": 77811,
@@ -6631,7 +6642,8 @@
           "typeId": 78423,
           "quantity": 200
         }
-      ]
+      ],
+      "blueprintId": 1203
     },
     {
       "sourceTypeId": 89258,
@@ -6647,7 +6659,8 @@
           "typeId": 88234,
           "quantity": 20
         }
-      ]
+      ],
+      "blueprintId": 1186
     },
     {
       "sourceTypeId": 78426,
@@ -6659,7 +6672,8 @@
           "typeId": 89260,
           "quantity": 40
         }
-      ]
+      ],
+      "blueprintId": 1204
     },
     {
       "sourceTypeId": 89260,
@@ -6675,7 +6689,8 @@
           "typeId": 77805,
           "quantity": 20
         }
-      ]
+      ],
+      "blueprintId": 1192
     },
     {
       "sourceTypeId": 78446,
@@ -6695,7 +6710,8 @@
           "typeId": 78423,
           "quantity": 349
         }
-      ]
+      ],
+      "blueprintId": 1197
     },
     {
       "sourceTypeId": 88765,
@@ -6707,7 +6723,8 @@
           "typeId": 78423,
           "quantity": 7
         }
-      ]
+      ],
+      "blueprintId": 1185
     },
     {
       "sourceTypeId": 88765,
@@ -6727,7 +6744,8 @@
           "typeId": 78423,
           "quantity": 50
         }
-      ]
+      ],
+      "blueprintId": 1194
     },
     {
       "sourceTypeId": 77810,
@@ -6747,7 +6765,8 @@
           "typeId": 89259,
           "quantity": 8
         }
-      ]
+      ],
+      "blueprintId": 1184
     },
     {
       "sourceTypeId": 77810,
@@ -6767,7 +6786,8 @@
           "typeId": 89259,
           "quantity": 10
         }
-      ]
+      ],
+      "blueprintId": 1202
     },
     {
       "sourceTypeId": 78447,
@@ -6783,7 +6803,8 @@
           "typeId": 88783,
           "quantity": 16
         }
-      ]
+      ],
+      "blueprintId": 1198
     },
     {
       "sourceTypeId": 77729,
@@ -6799,7 +6820,8 @@
           "typeId": 77728,
           "quantity": 28
         }
-      ]
+      ],
+      "blueprintId": 1195
     },
     {
       "sourceTypeId": 78434,
@@ -6815,7 +6837,8 @@
           "typeId": 83839,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1196
     },
     {
       "sourceTypeId": 88764,
@@ -6827,7 +6850,8 @@
           "typeId": 84182,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1179
     },
     {
       "sourceTypeId": 88764,
@@ -6847,7 +6871,8 @@
           "typeId": 88561,
           "quantity": 2
         }
-      ]
+      ],
+      "blueprintId": 1188
     },
     {
       "sourceTypeId": 89259,
@@ -6863,7 +6888,8 @@
           "typeId": 77803,
           "quantity": 150
         }
-      ]
+      ],
+      "blueprintId": 1190
     },
     {
       "sourceTypeId": 77728,
@@ -6875,7 +6901,8 @@
           "typeId": 84868,
           "quantity": 600
         }
-      ]
+      ],
+      "blueprintId": 1193
     },
     {
       "sourceTypeId": 78449,
@@ -6891,7 +6918,8 @@
           "typeId": 88781,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1200
     },
     {
       "sourceTypeId": 78423,
@@ -6903,7 +6931,8 @@
           "typeId": 88335,
           "quantity": 75
         }
-      ]
+      ],
+      "blueprintId": 1181
     },
     {
       "sourceTypeId": 78423,
@@ -6915,7 +6944,8 @@
           "typeId": 88335,
           "quantity": 75
         }
-      ]
+      ],
+      "blueprintId": 1181
     },
     {
       "sourceTypeId": 88319,
@@ -6927,7 +6957,8 @@
           "typeId": 83839,
           "quantity": 1
         }
-      ]
+      ],
+      "blueprintId": 1180
     },
     {
       "sourceTypeId": 78423,
@@ -6939,7 +6970,8 @@
           "typeId": 88335,
           "quantity": 75
         }
-      ]
+      ],
+      "blueprintId": 1181
     },
     {
       "sourceTypeId": 88764,
@@ -6959,7 +6991,8 @@
           "typeId": 84182,
           "quantity": 6
         }
-      ]
+      ],
+      "blueprintId": 1188
     },
     {
       "sourceTypeId": 78435,
@@ -6971,7 +7004,8 @@
           "typeId": 78516,
           "quantity": 600
         }
-      ]
+      ],
+      "blueprintId": 1191
     },
     {
       "sourceTypeId": 77728,
@@ -6983,7 +7017,8 @@
           "typeId": 84868,
           "quantity": 600
         }
-      ]
+      ],
+      "blueprintId": 1193
     },
     {
       "sourceTypeId": 88765,
@@ -7003,7 +7038,8 @@
           "typeId": 78423,
           "quantity": 50
         }
-      ]
+      ],
+      "blueprintId": 1194
     },
     {
       "sourceTypeId": 77729,
@@ -7019,7 +7055,8 @@
           "typeId": 77728,
           "quantity": 28
         }
-      ]
+      ],
+      "blueprintId": 1195
     },
     {
       "sourceTypeId": 78434,
@@ -7035,7 +7072,8 @@
           "typeId": 78435,
           "quantity": 28
         }
-      ]
+      ],
+      "blueprintId": 1196
     },
     {
       "sourceTypeId": 78446,
@@ -7055,7 +7093,8 @@
           "typeId": 78423,
           "quantity": 349
         }
-      ]
+      ],
+      "blueprintId": 1197
     },
     {
       "sourceTypeId": 78447,
@@ -7071,7 +7110,8 @@
           "typeId": 88783,
           "quantity": 16
         }
-      ]
+      ],
+      "blueprintId": 1198
     },
     {
       "sourceTypeId": 78448,
@@ -7091,7 +7131,8 @@
           "typeId": 88783,
           "quantity": 8
         }
-      ]
+      ],
+      "blueprintId": 1199
     },
     {
       "sourceTypeId": 78449,
@@ -7107,7 +7148,8 @@
           "typeId": 88782,
           "quantity": 8
         }
-      ]
+      ],
+      "blueprintId": 1200
     },
     {
       "sourceTypeId": 89258,
@@ -7123,7 +7165,8 @@
           "typeId": 77804,
           "quantity": 540
         }
-      ]
+      ],
+      "blueprintId": 1205
     },
     {
       "sourceTypeId": 89259,
@@ -7139,7 +7182,8 @@
           "typeId": 77803,
           "quantity": 450
         }
-      ]
+      ],
+      "blueprintId": 1209
     },
     {
       "sourceTypeId": 89260,
@@ -7155,7 +7199,8 @@
           "typeId": 77801,
           "quantity": 594
         }
-      ]
+      ],
+      "blueprintId": 1212
     },
     {
       "sourceTypeId": 77800,
@@ -7171,7 +7216,8 @@
           "typeId": 89259,
           "quantity": 90
         }
-      ]
+      ],
+      "blueprintId": 1220
     },
     {
       "sourceTypeId": 77810,
@@ -7191,7 +7237,8 @@
           "typeId": 99001,
           "quantity": 24
         }
-      ]
+      ],
+      "blueprintId": 1221
     },
     {
       "sourceTypeId": 77811,
@@ -7207,7 +7254,8 @@
           "typeId": 78423,
           "quantity": 600
         }
-      ]
+      ],
+      "blueprintId": 1222
     },
     {
       "sourceTypeId": 78426,
@@ -7219,7 +7267,8 @@
           "typeId": 89260,
           "quantity": 120
         }
-      ]
+      ],
+      "blueprintId": 1223
     },
     {
       "sourceTypeId": 92394,
@@ -7235,7 +7284,8 @@
           "typeId": 92422,
           "quantity": 26
         }
-      ]
+      ],
+      "blueprintId": 1480
     },
     {
       "sourceTypeId": 92414,
@@ -7251,7 +7301,8 @@
           "typeId": 92422,
           "quantity": 26
         }
-      ]
+      ],
+      "blueprintId": 1481
     }
   ],
   "blueprints": [
@@ -7266,7 +7317,7 @@
           "quantity": 24
         }
       ],
-      "gameId": 1010
+      "blueprintId": 1010
     },
     {
       "outputTypeId": 83441,
@@ -7279,7 +7330,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1120
+      "blueprintId": 1120
     },
     {
       "outputTypeId": 83442,
@@ -7296,7 +7347,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1121
+      "blueprintId": 1121
     },
     {
       "outputTypeId": 83443,
@@ -7313,7 +7364,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1086
+      "blueprintId": 1086
     },
     {
       "outputTypeId": 82681,
@@ -7326,7 +7377,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1116
+      "blueprintId": 1116
     },
     {
       "outputTypeId": 83536,
@@ -7343,7 +7394,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1117
+      "blueprintId": 1117
     },
     {
       "outputTypeId": 82915,
@@ -7368,7 +7419,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1092
+      "blueprintId": 1092
     },
     {
       "outputTypeId": 91708,
@@ -7389,7 +7440,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9000
+      "blueprintId": 9000
     },
     {
       "outputTypeId": 82653,
@@ -7406,7 +7457,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1150
+      "blueprintId": 1150
     },
     {
       "outputTypeId": 83450,
@@ -7423,7 +7474,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1151
+      "blueprintId": 1151
     },
     {
       "outputTypeId": 83451,
@@ -7440,7 +7491,7 @@
           "quantity": 31
         }
       ],
-      "gameId": 1083
+      "blueprintId": 1083
     },
     {
       "outputTypeId": 81974,
@@ -7457,7 +7508,7 @@
           "quantity": 30
         }
       ],
-      "gameId": 1006
+      "blueprintId": 1006
     },
     {
       "outputTypeId": 82028,
@@ -7482,7 +7533,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1069
+      "blueprintId": 1069
     },
     {
       "outputTypeId": 81972,
@@ -7507,7 +7558,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1107
+      "blueprintId": 1107
     },
     {
       "outputTypeId": 82030,
@@ -7528,7 +7579,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1070
+      "blueprintId": 1070
     },
     {
       "outputTypeId": 82032,
@@ -7549,7 +7600,7 @@
           "quantity": 90
         }
       ],
-      "gameId": 1112
+      "blueprintId": 1112
     },
     {
       "outputTypeId": 89089,
@@ -7570,7 +7621,7 @@
           "quantity": 65
         }
       ],
-      "gameId": 1015
+      "blueprintId": 1015
     },
     {
       "outputTypeId": 82647,
@@ -7583,7 +7634,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1012
+      "blueprintId": 1012
     },
     {
       "outputTypeId": 83421,
@@ -7596,7 +7647,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1169
+      "blueprintId": 1169
     },
     {
       "outputTypeId": 83423,
@@ -7609,7 +7660,7 @@
           "quantity": 24
         }
       ],
-      "gameId": 1081
+      "blueprintId": 1081
     },
     {
       "outputTypeId": 83448,
@@ -7630,7 +7681,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1149
+      "blueprintId": 1149
     },
     {
       "outputTypeId": 83449,
@@ -7651,7 +7702,7 @@
           "quantity": 31
         }
       ],
-      "gameId": 1084
+      "blueprintId": 1084
     },
     {
       "outputTypeId": 84210,
@@ -7664,7 +7715,7 @@
           "quantity": 350
         }
       ],
-      "gameId": 1003
+      "blueprintId": 1003
     },
     {
       "outputTypeId": 84210,
@@ -7677,7 +7728,7 @@
           "quantity": 3150
         }
       ],
-      "gameId": 1020
+      "blueprintId": 1020
     },
     {
       "outputTypeId": 83497,
@@ -7694,7 +7745,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1100
+      "blueprintId": 1100
     },
     {
       "outputTypeId": 83498,
@@ -7711,7 +7762,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1145
+      "blueprintId": 1145
     },
     {
       "outputTypeId": 83499,
@@ -7728,7 +7779,7 @@
           "quantity": 14
         }
       ],
-      "gameId": 1146
+      "blueprintId": 1146
     },
     {
       "outputTypeId": 83500,
@@ -7745,7 +7796,7 @@
           "quantity": 28
         }
       ],
-      "gameId": 1147
+      "blueprintId": 1147
     },
     {
       "outputTypeId": 83501,
@@ -7762,7 +7813,7 @@
           "quantity": 56
         }
       ],
-      "gameId": 1148
+      "blueprintId": 1148
     },
     {
       "outputTypeId": 91107,
@@ -7791,7 +7842,7 @@
           "quantity": 44
         }
       ],
-      "gameId": 1471
+      "blueprintId": 1471
     },
     {
       "outputTypeId": 89979,
@@ -7824,7 +7875,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1032
+      "blueprintId": 1032
     },
     {
       "outputTypeId": 78506,
@@ -7845,7 +7896,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1178
+      "blueprintId": 1178
     },
     {
       "outputTypeId": 78507,
@@ -7870,7 +7921,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1098
+      "blueprintId": 1098
     },
     {
       "outputTypeId": 78508,
@@ -7895,7 +7946,7 @@
           "quantity": 32
         }
       ],
-      "gameId": 1068
+      "blueprintId": 1068
     },
     {
       "outputTypeId": 82648,
@@ -7908,7 +7959,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1170
+      "blueprintId": 1170
     },
     {
       "outputTypeId": 83425,
@@ -7921,7 +7972,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1171
+      "blueprintId": 1171
     },
     {
       "outputTypeId": 83426,
@@ -7934,7 +7985,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1082
+      "blueprintId": 1082
     },
     {
       "outputTypeId": 82133,
@@ -7947,7 +7998,7 @@
           "quantity": 230
         }
       ],
-      "gameId": 1030
+      "blueprintId": 1030
     },
     {
       "outputTypeId": 88887,
@@ -7964,7 +8015,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1013
+      "blueprintId": 1013
     },
     {
       "outputTypeId": 77484,
@@ -7981,7 +8032,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1115
+      "blueprintId": 1115
     },
     {
       "outputTypeId": 87599,
@@ -8006,7 +8057,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 1067
+      "blueprintId": 1067
     },
     {
       "outputTypeId": 88319,
@@ -8023,7 +8074,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1016
+      "blueprintId": 1016
     },
     {
       "outputTypeId": 83768,
@@ -8036,7 +8087,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1156
+      "blueprintId": 1156
     },
     {
       "outputTypeId": 83769,
@@ -8049,7 +8100,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1157
+      "blueprintId": 1157
     },
     {
       "outputTypeId": 83770,
@@ -8062,7 +8113,7 @@
           "quantity": 19
         }
       ],
-      "gameId": 1158
+      "blueprintId": 1158
     },
     {
       "outputTypeId": 77753,
@@ -8083,7 +8134,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1175
+      "blueprintId": 1175
     },
     {
       "outputTypeId": 83623,
@@ -8104,7 +8155,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1128
+      "blueprintId": 1128
     },
     {
       "outputTypeId": 83624,
@@ -8125,7 +8176,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1129
+      "blueprintId": 1129
     },
     {
       "outputTypeId": 83625,
@@ -8146,7 +8197,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1131
+      "blueprintId": 1131
     },
     {
       "outputTypeId": 83618,
@@ -8167,7 +8218,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1125
+      "blueprintId": 1125
     },
     {
       "outputTypeId": 83619,
@@ -8188,7 +8239,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1126
+      "blueprintId": 1126
     },
     {
       "outputTypeId": 83620,
@@ -8209,7 +8260,7 @@
           "quantity": 11
         }
       ],
-      "gameId": 1127
+      "blueprintId": 1127
     },
     {
       "outputTypeId": 83777,
@@ -8226,7 +8277,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 1163
+      "blueprintId": 1163
     },
     {
       "outputTypeId": 83778,
@@ -8243,7 +8294,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1164
+      "blueprintId": 1164
     },
     {
       "outputTypeId": 83779,
@@ -8260,7 +8311,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1165
+      "blueprintId": 1165
     },
     {
       "outputTypeId": 88889,
@@ -8285,7 +8336,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 1066
+      "blueprintId": 1066
     },
     {
       "outputTypeId": 88886,
@@ -8306,7 +8357,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1001
+      "blueprintId": 1001
     },
     {
       "outputTypeId": 91702,
@@ -8319,7 +8370,7 @@
           "quantity": 100
         }
       ],
-      "gameId": 9001
+      "blueprintId": 9001
     },
     {
       "outputTypeId": 90887,
@@ -8336,7 +8387,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1472
+      "blueprintId": 1472
     },
     {
       "outputTypeId": 72960,
@@ -8353,7 +8404,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1130
+      "blueprintId": 1130
     },
     {
       "outputTypeId": 83782,
@@ -8366,7 +8417,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1166
+      "blueprintId": 1166
     },
     {
       "outputTypeId": 83783,
@@ -8379,7 +8430,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1167
+      "blueprintId": 1167
     },
     {
       "outputTypeId": 83784,
@@ -8392,7 +8443,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1168
+      "blueprintId": 1168
     },
     {
       "outputTypeId": 83524,
@@ -8409,7 +8460,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1090
+      "blueprintId": 1090
     },
     {
       "outputTypeId": 92421,
@@ -8430,7 +8481,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1479
+      "blueprintId": 1479
     },
     {
       "outputTypeId": 83897,
@@ -8447,7 +8498,7 @@
           "quantity": 45
         }
       ],
-      "gameId": 1027
+      "blueprintId": 1027
     },
     {
       "outputTypeId": 92390,
@@ -8468,7 +8519,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1474
+      "blueprintId": 1474
     },
     {
       "outputTypeId": 83528,
@@ -8485,7 +8536,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1089
+      "blueprintId": 1089
     },
     {
       "outputTypeId": 91705,
@@ -8506,7 +8557,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9002
+      "blueprintId": 9002
     },
     {
       "outputTypeId": 91700,
@@ -8523,7 +8574,7 @@
           "quantity": 15
         }
       ],
-      "gameId": 9003
+      "blueprintId": 9003
     },
     {
       "outputTypeId": 91713,
@@ -8540,7 +8591,7 @@
           "quantity": 250
         }
       ],
-      "gameId": 9004
+      "blueprintId": 9004
     },
     {
       "outputTypeId": 88092,
@@ -8561,7 +8612,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 9005
+      "blueprintId": 9005
     },
     {
       "outputTypeId": 82650,
@@ -8578,7 +8629,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1096
+      "blueprintId": 1096
     },
     {
       "outputTypeId": 83433,
@@ -8595,7 +8646,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1174
+      "blueprintId": 1174
     },
     {
       "outputTypeId": 83434,
@@ -8612,7 +8663,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1094
+      "blueprintId": 1094
     },
     {
       "outputTypeId": 78418,
@@ -8625,7 +8676,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1005
+      "blueprintId": 1005
     },
     {
       "outputTypeId": 92165,
@@ -8638,7 +8689,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9006
+      "blueprintId": 9006
     },
     {
       "outputTypeId": 84180,
@@ -8655,7 +8706,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1002
+      "blueprintId": 1002
     },
     {
       "outputTypeId": 84180,
@@ -8672,7 +8723,7 @@
           "quantity": 22
         }
       ],
-      "gameId": 1017
+      "blueprintId": 1017
     },
     {
       "outputTypeId": 91701,
@@ -8685,7 +8736,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9007
+      "blueprintId": 9007
     },
     {
       "outputTypeId": 83895,
@@ -8702,7 +8753,7 @@
           "quantity": 45
         }
       ],
-      "gameId": 1026
+      "blueprintId": 1026
     },
     {
       "outputTypeId": 82033,
@@ -8723,7 +8774,7 @@
           "quantity": 180
         }
       ],
-      "gameId": 1072
+      "blueprintId": 1072
     },
     {
       "outputTypeId": 82130,
@@ -8740,7 +8791,7 @@
           "quantity": 400
         }
       ],
-      "gameId": 1029
+      "blueprintId": 1029
     },
     {
       "outputTypeId": 82649,
@@ -8757,7 +8808,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1172
+      "blueprintId": 1172
     },
     {
       "outputTypeId": 83429,
@@ -8774,7 +8825,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 1173
+      "blueprintId": 1173
     },
     {
       "outputTypeId": 83430,
@@ -8791,7 +8842,7 @@
           "quantity": 11
         }
       ],
-      "gameId": 1095
+      "blueprintId": 1095
     },
     {
       "outputTypeId": 87846,
@@ -8820,7 +8871,7 @@
           "quantity": 25
         }
       ],
-      "gameId": 1226
+      "blueprintId": 1226
     },
     {
       "outputTypeId": 91703,
@@ -8837,7 +8888,7 @@
           "quantity": 15
         }
       ],
-      "gameId": 9008
+      "blueprintId": 9008
     },
     {
       "outputTypeId": 87847,
@@ -8858,7 +8909,7 @@
           "quantity": 28
         }
       ],
-      "gameId": 1009
+      "blueprintId": 1009
     },
     {
       "outputTypeId": 91751,
@@ -8871,7 +8922,7 @@
           "quantity": 50
         }
       ],
-      "gameId": 9009
+      "blueprintId": 9009
     },
     {
       "outputTypeId": 84182,
@@ -8892,7 +8943,7 @@
           "quantity": 105
         }
       ],
-      "gameId": 1004
+      "blueprintId": 1004
     },
     {
       "outputTypeId": 84182,
@@ -8909,7 +8960,7 @@
           "quantity": 1050
         }
       ],
-      "gameId": 1019
+      "blueprintId": 1019
     },
     {
       "outputTypeId": 82654,
@@ -8926,7 +8977,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1152
+      "blueprintId": 1152
     },
     {
       "outputTypeId": 83456,
@@ -8943,7 +8994,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1153
+      "blueprintId": 1153
     },
     {
       "outputTypeId": 87848,
@@ -8968,7 +9019,7 @@
           "quantity": 33
         }
       ],
-      "gameId": 1224
+      "blueprintId": 1224
     },
     {
       "outputTypeId": 91717,
@@ -8989,7 +9040,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 9010
+      "blueprintId": 9010
     },
     {
       "outputTypeId": 82667,
@@ -9010,7 +9061,7 @@
           "quantity": 17
         }
       ],
-      "gameId": 1154
+      "blueprintId": 1154
     },
     {
       "outputTypeId": 83458,
@@ -9031,7 +9082,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 1155
+      "blueprintId": 1155
     },
     {
       "outputTypeId": 83459,
@@ -9056,7 +9107,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1088
+      "blueprintId": 1088
     },
     {
       "outputTypeId": 92389,
@@ -9069,7 +9120,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1473
+      "blueprintId": 1473
     },
     {
       "outputTypeId": 77852,
@@ -9086,7 +9137,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1008
+      "blueprintId": 1008
     },
     {
       "outputTypeId": 81846,
@@ -9103,7 +9154,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1011
+      "blueprintId": 1011
     },
     {
       "outputTypeId": 82683,
@@ -9124,7 +9175,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1140
+      "blueprintId": 1140
     },
     {
       "outputTypeId": 83520,
@@ -9145,7 +9196,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1141
+      "blueprintId": 1141
     },
     {
       "outputTypeId": 83521,
@@ -9166,7 +9217,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1142
+      "blueprintId": 1142
     },
     {
       "outputTypeId": 83522,
@@ -9187,7 +9238,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1143
+      "blueprintId": 1143
     },
     {
       "outputTypeId": 83523,
@@ -9208,7 +9259,7 @@
           "quantity": 6
         }
       ],
-      "gameId": 1144
+      "blueprintId": 1144
     },
     {
       "outputTypeId": 91106,
@@ -9237,7 +9288,7 @@
           "quantity": 48
         }
       ],
-      "gameId": 1470
+      "blueprintId": 1470
     },
     {
       "outputTypeId": 89978,
@@ -9262,7 +9313,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1031
+      "blueprintId": 1031
     },
     {
       "outputTypeId": 83463,
@@ -9275,7 +9326,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1007
+      "blueprintId": 1007
     },
     {
       "outputTypeId": 82651,
@@ -9292,7 +9343,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1118
+      "blueprintId": 1118
     },
     {
       "outputTypeId": 83437,
@@ -9313,7 +9364,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1119
+      "blueprintId": 1119
     },
     {
       "outputTypeId": 83438,
@@ -9334,7 +9385,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1087
+      "blueprintId": 1087
     },
     {
       "outputTypeId": 78511,
@@ -9355,7 +9406,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1177
+      "blueprintId": 1177
     },
     {
       "outputTypeId": 78510,
@@ -9380,7 +9431,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1103
+      "blueprintId": 1103
     },
     {
       "outputTypeId": 88561,
@@ -9397,7 +9448,7 @@
           "quantity": 90
         }
       ],
-      "gameId": 1000
+      "blueprintId": 1000
     },
     {
       "outputTypeId": 88561,
@@ -9418,7 +9469,7 @@
           "quantity": 1260
         }
       ],
-      "gameId": 1021
+      "blueprintId": 1021
     },
     {
       "outputTypeId": 83772,
@@ -9431,7 +9482,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1159
+      "blueprintId": 1159
     },
     {
       "outputTypeId": 83773,
@@ -9444,7 +9495,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1160
+      "blueprintId": 1160
     },
     {
       "outputTypeId": 83774,
@@ -9457,7 +9508,7 @@
           "quantity": 19
         }
       ],
-      "gameId": 1161
+      "blueprintId": 1161
     },
     {
       "outputTypeId": 83613,
@@ -9478,7 +9529,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1122
+      "blueprintId": 1122
     },
     {
       "outputTypeId": 83614,
@@ -9499,7 +9550,7 @@
           "quantity": 9
         }
       ],
-      "gameId": 1123
+      "blueprintId": 1123
     },
     {
       "outputTypeId": 83615,
@@ -9520,7 +9571,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 1124
+      "blueprintId": 1124
     },
     {
       "outputTypeId": 83628,
@@ -9541,7 +9592,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1132
+      "blueprintId": 1132
     },
     {
       "outputTypeId": 83629,
@@ -9558,7 +9609,7 @@
           "quantity": 12
         }
       ],
-      "gameId": 1133
+      "blueprintId": 1133
     },
     {
       "outputTypeId": 83630,
@@ -9575,7 +9626,7 @@
           "quantity": 24
         }
       ],
-      "gameId": 1134
+      "blueprintId": 1134
     },
     {
       "outputTypeId": 82084,
@@ -9596,7 +9647,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1110
+      "blueprintId": 1110
     },
     {
       "outputTypeId": 82092,
@@ -9621,7 +9672,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1073
+      "blueprintId": 1073
     },
     {
       "outputTypeId": 82088,
@@ -9642,7 +9693,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1108
+      "blueprintId": 1108
     },
     {
       "outputTypeId": 82098,
@@ -9663,7 +9714,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1075
+      "blueprintId": 1075
     },
     {
       "outputTypeId": 82096,
@@ -9684,7 +9735,7 @@
           "quantity": 300
         }
       ],
-      "gameId": 1076
+      "blueprintId": 1076
     },
     {
       "outputTypeId": 82086,
@@ -9705,7 +9756,7 @@
           "quantity": 150
         }
       ],
-      "gameId": 1113
+      "blueprintId": 1113
     },
     {
       "outputTypeId": 82085,
@@ -9726,7 +9777,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1111
+      "blueprintId": 1111
     },
     {
       "outputTypeId": 82093,
@@ -9747,7 +9798,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1077
+      "blueprintId": 1077
     },
     {
       "outputTypeId": 82089,
@@ -9772,7 +9823,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1109
+      "blueprintId": 1109
     },
     {
       "outputTypeId": 82099,
@@ -9793,7 +9844,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1079
+      "blueprintId": 1079
     },
     {
       "outputTypeId": 82097,
@@ -9814,7 +9865,7 @@
           "quantity": 420
         }
       ],
-      "gameId": 1080
+      "blueprintId": 1080
     },
     {
       "outputTypeId": 82087,
@@ -9835,7 +9886,7 @@
           "quantity": 210
         }
       ],
-      "gameId": 1114
+      "blueprintId": 1114
     },
     {
       "outputTypeId": 81656,
@@ -9852,7 +9903,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1104
+      "blueprintId": 1104
     },
     {
       "outputTypeId": 82090,
@@ -9869,7 +9920,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1105
+      "blueprintId": 1105
     },
     {
       "outputTypeId": 82091,
@@ -9886,7 +9937,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1106
+      "blueprintId": 1106
     },
     {
       "outputTypeId": 78490,
@@ -9907,7 +9958,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1176
+      "blueprintId": 1176
     },
     {
       "outputTypeId": 78502,
@@ -9932,7 +9983,7 @@
           "quantity": 16
         }
       ],
-      "gameId": 1102
+      "blueprintId": 1102
     },
     {
       "outputTypeId": 82682,
@@ -9953,7 +10004,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1135
+      "blueprintId": 1135
     },
     {
       "outputTypeId": 83516,
@@ -9974,7 +10025,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1136
+      "blueprintId": 1136
     },
     {
       "outputTypeId": 83517,
@@ -9995,7 +10046,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1137
+      "blueprintId": 1137
     },
     {
       "outputTypeId": 83518,
@@ -10016,7 +10067,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1138
+      "blueprintId": 1138
     },
     {
       "outputTypeId": 83519,
@@ -10037,7 +10088,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1139
+      "blueprintId": 1139
     },
     {
       "outputTypeId": 87698,
@@ -10062,7 +10113,7 @@
           "quantity": 17
         }
       ],
-      "gameId": 1227
+      "blueprintId": 1227
     },
     {
       "outputTypeId": 81657,
@@ -10079,7 +10130,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1071
+      "blueprintId": 1071
     },
     {
       "outputTypeId": 82094,
@@ -10096,7 +10147,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1074
+      "blueprintId": 1074
     },
     {
       "outputTypeId": 82095,
@@ -10113,7 +10164,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1078
+      "blueprintId": 1078
     },
     {
       "outputTypeId": 82652,
@@ -10134,7 +10185,7 @@
           "quantity": 150
         }
       ],
-      "gameId": 1014
+      "blueprintId": 1014
     },
     {
       "outputTypeId": 88780,
@@ -10155,7 +10206,7 @@
           "quantity": 105
         }
       ],
-      "gameId": 1022
+      "blueprintId": 1022
     },
     {
       "outputTypeId": 88565,
@@ -10172,7 +10223,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1023
+      "blueprintId": 1023
     },
     {
       "outputTypeId": 78515,
@@ -10189,7 +10240,7 @@
           "quantity": 600
         }
       ],
-      "gameId": 1033
+      "blueprintId": 1033
     },
     {
       "outputTypeId": 82137,
@@ -10206,7 +10257,7 @@
           "quantity": 60
         }
       ],
-      "gameId": 1034
+      "blueprintId": 1034
     },
     {
       "outputTypeId": 88843,
@@ -10219,7 +10270,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1035
+      "blueprintId": 1035
     },
     {
       "outputTypeId": 88839,
@@ -10232,7 +10283,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1037
+      "blueprintId": 1037
     },
     {
       "outputTypeId": 88841,
@@ -10245,7 +10296,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1038
+      "blueprintId": 1038
     },
     {
       "outputTypeId": 84204,
@@ -10258,7 +10309,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1039
+      "blueprintId": 1039
     },
     {
       "outputTypeId": 82411,
@@ -10275,7 +10326,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1040
+      "blueprintId": 1040
     },
     {
       "outputTypeId": 82412,
@@ -10292,7 +10343,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1042
+      "blueprintId": 1042
     },
     {
       "outputTypeId": 78416,
@@ -10313,7 +10364,7 @@
           "quantity": 128
         }
       ],
-      "gameId": 1043
+      "blueprintId": 1043
     },
     {
       "outputTypeId": 78417,
@@ -10334,7 +10385,7 @@
           "quantity": 38
         }
       ],
-      "gameId": 1044
+      "blueprintId": 1044
     },
     {
       "outputTypeId": 82413,
@@ -10351,7 +10402,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1045
+      "blueprintId": 1045
     },
     {
       "outputTypeId": 82410,
@@ -10368,7 +10419,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1046
+      "blueprintId": 1046
     },
     {
       "outputTypeId": 78420,
@@ -10389,7 +10440,7 @@
           "quantity": 38
         }
       ],
-      "gameId": 1047
+      "blueprintId": 1047
     },
     {
       "outputTypeId": 78421,
@@ -10410,7 +10461,7 @@
           "quantity": 38
         }
       ],
-      "gameId": 1048
+      "blueprintId": 1048
     },
     {
       "outputTypeId": 83896,
@@ -10427,7 +10478,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1049
+      "blueprintId": 1049
     },
     {
       "outputTypeId": 83898,
@@ -10444,7 +10495,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1050
+      "blueprintId": 1050
     },
     {
       "outputTypeId": 82127,
@@ -10457,7 +10508,7 @@
           "quantity": 230
         }
       ],
-      "gameId": 1051
+      "blueprintId": 1051
     },
     {
       "outputTypeId": 82131,
@@ -10474,7 +10525,7 @@
           "quantity": 400
         }
       ],
-      "gameId": 1052
+      "blueprintId": 1052
     },
     {
       "outputTypeId": 82126,
@@ -10487,7 +10538,7 @@
           "quantity": 230
         }
       ],
-      "gameId": 1053
+      "blueprintId": 1053
     },
     {
       "outputTypeId": 81658,
@@ -10504,7 +10555,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1054
+      "blueprintId": 1054
     },
     {
       "outputTypeId": 88844,
@@ -10517,7 +10568,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1055
+      "blueprintId": 1055
     },
     {
       "outputTypeId": 78437,
@@ -10534,7 +10585,7 @@
           "quantity": 60
         }
       ],
-      "gameId": 1056
+      "blueprintId": 1056
     },
     {
       "outputTypeId": 88840,
@@ -10547,7 +10598,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1057
+      "blueprintId": 1057
     },
     {
       "outputTypeId": 88842,
@@ -10560,7 +10611,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1058
+      "blueprintId": 1058
     },
     {
       "outputTypeId": 84206,
@@ -10573,7 +10624,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 1059
+      "blueprintId": 1059
     },
     {
       "outputTypeId": 78422,
@@ -10594,7 +10645,7 @@
           "quantity": 1347
         }
       ],
-      "gameId": 1060
+      "blueprintId": 1060
     },
     {
       "outputTypeId": 82134,
@@ -10607,7 +10658,7 @@
           "quantity": 7
         }
       ],
-      "gameId": 1061
+      "blueprintId": 1061
     },
     {
       "outputTypeId": 82132,
@@ -10640,7 +10691,7 @@
           "quantity": 100
         }
       ],
-      "gameId": 1062
+      "blueprintId": 1062
     },
     {
       "outputTypeId": 82140,
@@ -10657,7 +10708,7 @@
           "quantity": 400
         }
       ],
-      "gameId": 1063
+      "blueprintId": 1063
     },
     {
       "outputTypeId": 82137,
@@ -10674,7 +10725,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 1064
+      "blueprintId": 1064
     },
     {
       "outputTypeId": 83457,
@@ -10691,7 +10742,7 @@
           "quantity": 62
         }
       ],
-      "gameId": 1085
+      "blueprintId": 1085
     },
     {
       "outputTypeId": 83775,
@@ -10704,7 +10755,7 @@
           "quantity": 22
         }
       ],
-      "gameId": 1162
+      "blueprintId": 1162
     },
     {
       "outputTypeId": 82426,
@@ -10729,7 +10780,7 @@
           "quantity": 29
         }
       ],
-      "gameId": 1228
+      "blueprintId": 1228
     },
     {
       "outputTypeId": 81904,
@@ -10758,7 +10809,7 @@
           "quantity": 3
         }
       ],
-      "gameId": 1229
+      "blueprintId": 1229
     },
     {
       "outputTypeId": 81808,
@@ -10787,7 +10838,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1230
+      "blueprintId": 1230
     },
     {
       "outputTypeId": 82424,
@@ -10812,7 +10863,7 @@
           "quantity": 74
         }
       ],
-      "gameId": 1231
+      "blueprintId": 1231
     },
     {
       "outputTypeId": 81609,
@@ -10837,7 +10888,7 @@
           "quantity": 28
         }
       ],
-      "gameId": 1232
+      "blueprintId": 1232
     },
     {
       "outputTypeId": 82430,
@@ -10870,7 +10921,7 @@
           "quantity": 2
         }
       ],
-      "gameId": 1233
+      "blueprintId": 1233
     },
     {
       "outputTypeId": 81611,
@@ -10895,7 +10946,7 @@
           "quantity": 256
         }
       ],
-      "gameId": 1234
+      "blueprintId": 1234
     },
     {
       "outputTypeId": 91967,
@@ -10916,7 +10967,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 1475
+      "blueprintId": 1475
     },
     {
       "outputTypeId": 91968,
@@ -10949,7 +11000,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1476
+      "blueprintId": 1476
     },
     {
       "outputTypeId": 92483,
@@ -10966,7 +11017,7 @@
           "quantity": 5
         }
       ],
-      "gameId": 1482
+      "blueprintId": 1482
     },
     {
       "outputTypeId": 82425,
@@ -10995,7 +11046,7 @@
           "quantity": 4
         }
       ],
-      "gameId": 1483
+      "blueprintId": 1483
     },
     {
       "outputTypeId": 91749,
@@ -11020,7 +11071,7 @@
           "quantity": 8
         }
       ],
-      "gameId": 1487
+      "blueprintId": 1487
     },
     {
       "outputTypeId": 88070,
@@ -11036,7 +11087,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 9011
+      "blueprintId": 9011
     },
     {
       "outputTypeId": 93228,
@@ -11048,7 +11099,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9012
+      "blueprintId": 9012
     },
     {
       "outputTypeId": 91753,
@@ -11060,7 +11111,7 @@
           "quantity": 50
         }
       ],
-      "gameId": 9013
+      "blueprintId": 9013
     },
     {
       "outputTypeId": 87161,
@@ -11072,7 +11123,7 @@
           "quantity": 50
         }
       ],
-      "gameId": 9014
+      "blueprintId": 9014
     },
     {
       "outputTypeId": 91756,
@@ -11084,7 +11135,7 @@
           "quantity": 50
         }
       ],
-      "gameId": 9015
+      "blueprintId": 9015
     },
     {
       "outputTypeId": 88071,
@@ -11100,7 +11151,7 @@
           "quantity": 1
         }
       ],
-      "gameId": 9016
+      "blueprintId": 9016
     },
     {
       "outputTypeId": 91712,
@@ -11112,7 +11163,7 @@
           "quantity": 4300
         }
       ],
-      "gameId": 9017
+      "blueprintId": 9017
     },
     {
       "outputTypeId": 88064,
@@ -11124,7 +11175,7 @@
           "quantity": 100
         }
       ],
-      "gameId": 9018
+      "blueprintId": 9018
     },
     {
       "outputTypeId": 91710,
@@ -11136,7 +11187,7 @@
           "quantity": 130
         }
       ],
-      "gameId": 9019
+      "blueprintId": 9019
     },
     {
       "outputTypeId": 91715,
@@ -11148,7 +11199,7 @@
           "quantity": 120
         }
       ],
-      "gameId": 9020
+      "blueprintId": 9020
     },
     {
       "outputTypeId": 92407,
@@ -11160,7 +11211,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9021
+      "blueprintId": 9021
     },
     {
       "outputTypeId": 91711,
@@ -11172,7 +11223,7 @@
           "quantity": 430
         }
       ],
-      "gameId": 9022
+      "blueprintId": 9022
     },
     {
       "outputTypeId": 92280,
@@ -11192,7 +11243,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9023
+      "blueprintId": 9023
     },
     {
       "outputTypeId": 91718,
@@ -11204,7 +11255,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9024
+      "blueprintId": 9024
     },
     {
       "outputTypeId": 91719,
@@ -11216,7 +11267,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9025
+      "blueprintId": 9025
     },
     {
       "outputTypeId": 92166,
@@ -11228,7 +11279,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9026
+      "blueprintId": 9026
     },
     {
       "outputTypeId": 91709,
@@ -11240,7 +11291,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9027
+      "blueprintId": 9027
     },
     {
       "outputTypeId": 91714,
@@ -11252,7 +11303,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9028
+      "blueprintId": 9028
     },
     {
       "outputTypeId": 92406,
@@ -11264,7 +11315,7 @@
           "quantity": 10
         }
       ],
-      "gameId": 9029
+      "blueprintId": 9029
     },
     {
       "outputTypeId": 91720,
@@ -11276,7 +11327,7 @@
           "quantity": 20
         }
       ],
-      "gameId": 9030
+      "blueprintId": 9030
     },
     {
       "outputTypeId": 91721,
@@ -11288,10 +11339,10 @@
           "quantity": 20
         }
       ],
-      "gameId": 9031
+      "blueprintId": 9031
     },
     {
-      "gameId": 1005,
+      "blueprintId": 1005,
       "outputTypeId": 78418,
       "facilityTypeId": 87119,
       "outputQty": 1,
@@ -11304,7 +11355,7 @@
       ]
     },
     {
-      "gameId": 1007,
+      "blueprintId": 1007,
       "outputTypeId": 83463,
       "facilityTypeId": 87119,
       "outputQty": 1,
@@ -11317,7 +11368,7 @@
       ]
     },
     {
-      "gameId": 1010,
+      "blueprintId": 1010,
       "outputTypeId": 82128,
       "facilityTypeId": 87119,
       "outputQty": 100,
@@ -11330,7 +11381,7 @@
       ]
     },
     {
-      "gameId": 1013,
+      "blueprintId": 1013,
       "outputTypeId": 88887,
       "facilityTypeId": 87119,
       "outputQty": 10,
@@ -11347,7 +11398,7 @@
       ]
     },
     {
-      "gameId": 1022,
+      "blueprintId": 1022,
       "outputTypeId": 88780,
       "facilityTypeId": 87119,
       "outputQty": 1,
@@ -11368,7 +11419,7 @@
       ]
     },
     {
-      "gameId": 1023,
+      "blueprintId": 1023,
       "outputTypeId": 88565,
       "facilityTypeId": 87119,
       "outputQty": 1,
@@ -11385,7 +11436,7 @@
       ]
     },
     {
-      "gameId": 1482,
+      "blueprintId": 1482,
       "outputTypeId": 92483,
       "facilityTypeId": 87119,
       "outputQty": 1,
@@ -11402,7 +11453,7 @@
       ]
     },
     {
-      "gameId": 1001,
+      "blueprintId": 1001,
       "outputTypeId": 88886,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11423,7 +11474,7 @@
       ]
     },
     {
-      "gameId": 1006,
+      "blueprintId": 1006,
       "outputTypeId": 81974,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11440,7 +11491,7 @@
       ]
     },
     {
-      "gameId": 1008,
+      "blueprintId": 1008,
       "outputTypeId": 77852,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11457,7 +11508,7 @@
       ]
     },
     {
-      "gameId": 1009,
+      "blueprintId": 1009,
       "outputTypeId": 87847,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11478,7 +11529,7 @@
       ]
     },
     {
-      "gameId": 1011,
+      "blueprintId": 1011,
       "outputTypeId": 81846,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11495,7 +11546,7 @@
       ]
     },
     {
-      "gameId": 1012,
+      "blueprintId": 1012,
       "outputTypeId": 82647,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11508,7 +11559,7 @@
       ]
     },
     {
-      "gameId": 1014,
+      "blueprintId": 1014,
       "outputTypeId": 82652,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11529,7 +11580,7 @@
       ]
     },
     {
-      "gameId": 1472,
+      "blueprintId": 1472,
       "outputTypeId": 90887,
       "facilityTypeId": 87162,
       "outputQty": 1,
@@ -11546,7 +11597,7 @@
       ]
     },
     {
-      "gameId": 1116,
+      "blueprintId": 1116,
       "outputTypeId": 82681,
       "facilityTypeId": 87162,
       "outputQty": 1,

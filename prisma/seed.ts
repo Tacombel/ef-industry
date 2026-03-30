@@ -114,8 +114,8 @@ async function main() {
     const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
     const decomp = await prisma.decomposition.upsert({
       where: { sourceItemId_refinery: { sourceItemId: sourceId, refinery: refineryName } },
-      update: { inputQty: d.inputQty, runTime: d.runTime },
-      create: { sourceItemId: sourceId, refinery: refineryName, inputQty: d.inputQty, runTime: d.runTime },
+      update: { inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null },
+      create: { sourceItemId: sourceId, refinery: refineryName, inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null },
     });
     for (const out of d.outputs) {
       const outItemId = itemIdByTypeId.get(out.typeId);
@@ -130,7 +130,22 @@ async function main() {
       }
     }
   }
-  console.log(`  ✓ ${data.decompositions.length} decompositions`);
+  // Delete orphan decompositions (in DB but not in seed)
+  const validDecompKeys = new Set(
+    data.decompositions.map((d) => {
+      const sourceId = itemIdByTypeId.get(d.sourceTypeId);
+      const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
+      return `${sourceId}__${refineryName}`;
+    })
+  );
+  const allDbDecomps = await prisma.decomposition.findMany({ select: { id: true, sourceItemId: true, refinery: true } });
+  const orphanDecompIds = allDbDecomps
+    .filter((d) => !validDecompKeys.has(`${d.sourceItemId}__${d.refinery}`))
+    .map((d) => d.id);
+  if (orphanDecompIds.length > 0) {
+    await prisma.decomposition.deleteMany({ where: { id: { in: orphanDecompIds } } });
+  }
+  console.log(`  ✓ ${data.decompositions.length} decompositions (${orphanDecompIds.length} huérfanos eliminados)`);
 
   // Blueprints
   for (const bp of data.blueprints) {
@@ -139,8 +154,8 @@ async function main() {
     const factoryName = factoryNameByTypeId.get(bp.facilityTypeId) ?? String(bp.facilityTypeId);
     const upserted = await prisma.blueprint.upsert({
       where: { outputItemId_factory: { outputItemId, factory: factoryName } },
-      update: { outputQty: bp.outputQty, runTime: bp.runTime, gameId: bp.gameId ?? null },
-      create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, gameId: bp.gameId ?? null },
+      update: { outputQty: bp.outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null },
+      create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null },
     });
     for (const inp of bp.inputs) {
       const inpItemId = itemIdByTypeId.get(inp.typeId);
@@ -155,7 +170,12 @@ async function main() {
       }
     }
   }
-  console.log(`  ✓ ${data.blueprints.length} blueprints`);
+  // Delete orphan blueprints (in DB but not in seed)
+  const seedBlueprintIds = data.blueprints.map((bp) => bp.blueprintId).filter((id): id is number => id !== null && id !== undefined);
+  const deleted = await prisma.blueprint.deleteMany({
+    where: { OR: [{ blueprintId: { notIn: seedBlueprintIds } }, { blueprintId: null }] },
+  });
+  console.log(`  ✓ ${data.blueprints.length} blueprints (${deleted.count} huérfanos eliminados)`);
 
   console.log("Done.");
 }
