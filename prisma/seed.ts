@@ -114,8 +114,8 @@ async function main() {
     const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
     const decomp = await prisma.decomposition.upsert({
       where: { sourceItemId_refinery_blueprintId: { sourceItemId: sourceId, refinery: refineryName, blueprintId: d.blueprintId ?? null } },
-      update: { inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null },
-      create: { sourceItemId: sourceId, refinery: refineryName, inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null },
+      update: { inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null, maxInputRuns: d.maxInputRuns ?? null, maxOutputRuns: d.maxOutputRuns ?? null },
+      create: { sourceItemId: sourceId, refinery: refineryName, inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null, maxInputRuns: d.maxInputRuns ?? null, maxOutputRuns: d.maxOutputRuns ?? null },
     });
     for (const out of d.outputs) {
       const outItemId = itemIdByTypeId.get(out.typeId);
@@ -154,8 +154,8 @@ async function main() {
     const factoryName = factoryNameByTypeId.get(bp.facilityTypeId) ?? String(bp.facilityTypeId);
     const upserted = await prisma.blueprint.upsert({
       where: { outputItemId_factory: { outputItemId, factory: factoryName } },
-      update: { outputQty: bp.outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null },
-      create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null },
+      update: { outputQty: bp.outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
+      create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
     });
     for (const inp of bp.inputs) {
       const inpItemId = itemIdByTypeId.get(inp.typeId);

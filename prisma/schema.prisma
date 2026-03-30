@@ -45,6 +45,8 @@ model Blueprint {
   factory      String   @default("")
   outputQty    Int      @default(1)
   runTime      Int      @default(0)
+  maxInputRuns Int?
+  maxOutputRuns Int?
   isDefault    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -107,6 +109,8 @@ model Decomposition {
   refinery     String   @default("")
   inputQty     Int      @default(1)
   runTime      Int      @default(0)
+  maxInputRuns Int?
+  maxOutputRuns Int?
   isDefault    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
