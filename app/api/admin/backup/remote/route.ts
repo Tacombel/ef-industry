@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { name as appName } from "@/package.json";
+import pkg from "@/package.json";
+const appName = pkg.name;
 
 function resolveRemoteConfigPath(): string {
   const base = existsSync("/data") ? "/data" : resolve(process.cwd(), "prisma");

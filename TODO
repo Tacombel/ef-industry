@@ -1,7 +1,5 @@
 ## Bugs / Fixes urgentes
 
-- Errores deprecated durante el build.
-
 ## UX / UI
 
 - En el listado de items mostrar el typeId.
@@ -11,8 +9,6 @@
 ## Features
 
 - Que los usuarios puedan marcar packs como públicos → biblioteca pública consultable.
-- Añadir cálculos de tiempo de proceso.
-- Incluir cálculo de tiempo de minado (campo mining rate).
 - Estudiar vías de optimización teniendo en cuenta las refinerías (ej: Heavy Refinery ahorra lotes a costa de menos silica).
 
 ## Features (futuro)

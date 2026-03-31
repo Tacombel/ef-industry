@@ -3,7 +3,8 @@ import { requireAdmin } from "@/lib/auth";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { spawn } from "child_process";
-import { name as appName } from "@/package.json";
+import pkg from "@/package.json";
+const appName = pkg.name;
 
 function resolveSSHDir(): string {
   const dir = existsSync("/data") ? "/data/ssh" : resolve(process.cwd(), "prisma/ssh");
