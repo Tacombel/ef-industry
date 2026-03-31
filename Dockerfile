@@ -33,8 +33,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-# Static game data
-COPY --from=builder --chown=nextjs:nodejs /app/data ./data
 
 # Prisma: schema, migrations, CLI and compiled seed for startup
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
