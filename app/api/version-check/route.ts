@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import { execSync } from "child_process";
+import { readFileSync } from "fs";
+import path from "path";
 
 const REPO = "Tacombel/ef-industry";
 const BRANCH = "main";
 
 function getLocalCommit(): string | null {
+  // Try git first (dev environment)
   try {
     return execSync("git rev-parse HEAD", { encoding: "utf8" }).trim();
   } catch {
-    return null;
+    // Fall back to baked-in file (Docker production image)
+    try {
+      const sha = readFileSync(path.join(process.cwd(), ".commit-sha"), "utf8").trim();
+      return sha && sha !== "unknown" ? sha : null;
+    } catch {
+      return null;
+    }
   }
 }
 
@@ -34,20 +43,14 @@ export async function GET() {
     const data = await res.json();
     const remoteCommit: string = data.sha;
 
-    if (localCommit === remoteCommit) {
-      return NextResponse.json({ upToDate: true, localCommit: localCommit.slice(0, 7), remoteCommit: remoteCommit.slice(0, 7) });
-    }
+    // In Docker we can't run git merge-base, so compare SHAs directly
+    const upToDate = localCommit === remoteCommit || localCommit.startsWith(remoteCommit) || remoteCommit.startsWith(localCommit);
 
-    // Check if remote is an ancestor of local (local is ahead → no update needed)
-    let localIsAhead = false;
-    try {
-      execSync(`git merge-base --is-ancestor ${remoteCommit} ${localCommit}`, { encoding: "utf8" });
-      localIsAhead = true;
-    } catch {
-      localIsAhead = false;
-    }
-
-    return NextResponse.json({ upToDate: localIsAhead, localCommit: localCommit.slice(0, 7), remoteCommit: remoteCommit.slice(0, 7) });
+    return NextResponse.json({
+      upToDate,
+      localCommit: localCommit.slice(0, 7),
+      remoteCommit: remoteCommit.slice(0, 7),
+    });
   } catch {
     return NextResponse.json({ error: "Network error reaching GitHub" }, { status: 502 });
   }

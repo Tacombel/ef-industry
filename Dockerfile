@@ -7,12 +7,13 @@ RUN npm ci
 
 # ─── builder ───────────────────────────────────────────────────────────────────
 FROM node:22-alpine AS builder
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl git
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate
 RUN npm run build
+RUN git rev-parse HEAD > /app/.commit-sha 2>/dev/null || echo "unknown" > /app/.commit-sha
 RUN node_modules/.bin/esbuild prisma/seed.ts \
     --bundle --platform=node --target=node22 --format=cjs \
     --outfile=prisma/seed.cjs \
@@ -35,6 +36,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 
 # Prisma: schema, migrations, CLI and compiled seed for startup
+COPY --from=builder --chown=nextjs:nodejs /app/.commit-sha ./.commit-sha
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
 RUN mkdir -p /app/node_modules/.bin && ln -sf /app/node_modules/prisma/build/index.js /app/node_modules/.bin/prisma
