@@ -357,3 +357,87 @@ describe("calculate", () => {
     expect(decomp!.unitsToDecompose).toBeGreaterThan(0);
   });
 });
+
+// ── Factory overrides ──────────────────────────────────────────────────────────
+
+describe("factory overrides", () => {
+  const rawC = makeItem({ id: "rawC", name: "Raw C", isRawMaterial: true });
+  const multiItem = makeItem({
+    id: "multiItem",
+    name: "Multi Item",
+    blueprints: [
+      { id: "bp-a", outputQty: 1, factory: "Factory A", isDefault: true,
+        inputs: [{ itemId: "rawA", quantity: 3 }, { itemId: "rawB", quantity: 1 }] },
+      { id: "bp-b", outputQty: 1, factory: "Factory B", isDefault: false,
+        inputs: [{ itemId: "rawC", quantity: 5 }] },
+    ],
+  });
+  const topProduct = makeItem({
+    id: "topProduct",
+    name: "Top Product",
+    blueprints: [{ id: "bp-top", outputQty: 1, factory: "Factory A", isDefault: true,
+      inputs: [{ itemId: "multiItem", quantity: 1 }] }],
+  });
+  const itemMap = buildItemMap([rawA, rawB, rawC, multiItem, topProduct]);
+
+  it("selects default blueprint without override", () => {
+    const result = calculate([{ itemId: "topProduct", quantity: 1 }], itemMap);
+    expect(result.rawMaterials.find(r => r.itemId === "rawA")?.toBuy).toBe(3);
+    expect(result.rawMaterials.find(r => r.itemId === "rawB")?.toBuy).toBe(1);
+    expect(result.rawMaterials.find(r => r.itemId === "rawC")).toBeUndefined();
+  });
+
+  it("override switches to alternative blueprint and changes raw materials", () => {
+    const overrides = new Map([["multiItem", "Factory B"]]);
+    const result = calculate([{ itemId: "topProduct", quantity: 1 }], itemMap, { factoryOverrides: overrides });
+    expect(result.rawMaterials.find(r => r.itemId === "rawA")).toBeUndefined();
+    expect(result.rawMaterials.find(r => r.itemId === "rawB")).toBeUndefined();
+    expect(result.rawMaterials.find(r => r.itemId === "rawC")?.toBuy).toBe(5);
+  });
+
+  it("availableFactories populated for multi-blueprint intermediates, undefined for single", () => {
+    const result = calculate([{ itemId: "topProduct", quantity: 1 }], itemMap);
+    const inter = result.intermediates.find(i => i.itemId === "multiItem");
+    expect(inter?.availableFactories).toEqual(["Factory A", "Factory B"]);
+
+    const interTop = result.intermediates.find(i => i.itemId === "topProduct");
+    expect(interTop?.availableFactories).toBeUndefined();
+  });
+
+  it("two-level found chain: ore decompositions appear at both levels", () => {
+    const ore = makeItem({
+      id: "ore2", name: "Ore2", isRawMaterial: true, volume: 1,
+      decompositions: [{ id: "d_ore", refinery: "", inputQty: 10, isDefault: true,
+        outputs: [{ itemId: "foundA", quantity: 5 }] }],
+    });
+    const foundA = makeItem({
+      id: "foundA", name: "Found A", isFound: true,
+      decompositions: [{ id: "d_foundA", refinery: "", inputQty: 2, isDefault: true,
+        outputs: [{ itemId: "foundB", quantity: 3 }] }],
+    });
+    const foundB = makeItem({ id: "foundB", name: "Found B", isFound: true });
+    const product = makeItem({
+      id: "product2", name: "Product2",
+      blueprints: [{ id: "bp2", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "foundB", quantity: 6 }] }],
+    });
+
+    const localMap = buildItemMap([ore, foundA, foundB, product]);
+    const result = calculate([{ itemId: "product2", quantity: 1 }], localMap);
+
+    // foundB: toBuy=6 (not satisfied from stock)
+    expect(result.rawMaterials.find(r => r.itemId === "foundB")?.toBuy).toBe(6);
+
+    // level-1 decomp: foundA (isFound) → foundB — 2 runs (6 foundB needed, 3/run)
+    const foundADecomp = result.decompositions.find(d => d.sourceItemId === "foundA");
+    expect(foundADecomp).toBeDefined();
+    expect(foundADecomp!.sourceIsFound).toBe(true);
+    expect(foundADecomp!.runs).toBe(2);
+
+    // level-2 decomp: ore → foundA — 1 run (4 foundA needed, 5/run)
+    const oreDecomp = result.decompositions.find(d => d.sourceItemId === "ore2");
+    expect(oreDecomp).toBeDefined();
+    expect(oreDecomp!.sourceIsFound).toBeFalsy();
+    expect(oreDecomp!.runs).toBe(1);
+  });
+});

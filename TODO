@@ -1,6 +1,34 @@
+- Boton refrescar stock en la parte de abajo
+- Recetas duplicadas en las refinerias
+- Hacer que recuerde la pagina en la que estabas al cerrar la sesion
+- Algunos textos se superponen al usarlo ingame
+- Ver como añadir descomposiciones a los packs. Permitiria incluir combustibles de descomposicion o minerales a transportar
+- En la refineria, las recetas de silica grains e hydrated piden 60 por lote, pero solo son de 20.
+- Modo anonimo: dejar que se pueda grabar los packs, y quiza el stock en local.
+- Añadir volumen de los materiales, para saber si caben en el field storage.
+- Invertir el orden. Ore el primero.
+- Añadir leyendas sobre lo que se debe hacer
+- En los raw, intermedios y finales, sugerir la proxima cosa y sus necesidades.
+- El BP de reinforced alloy, le pido 34, y con 26 en el stock me dice que faltan 40?
+- Considerar el loot intermediate o darle su propia categoría
+- Algunos módulos, como la reineria y el mini storage, duplicados.
+- Parece qu eno haya datos en algunos BP, como el mini storage o el refuge.
+-Al añadir un nuevo SSU no ha aparecido en la página de BP hasta que eh ido a la página SSU.
+- No parece que el boton de borrar pack funcione. Falla solo in-game. Probablemente no soporta el pop-up.
+- Los packs siguen diciendo que hace falta piezas aunque esten en stock. Probablemente solo es la represetnacion en el primer bloque. Los materiales parece que si que lo tienen en cuenta
+- La receta de iron-rich nodules en la refineria esta mal. Tanto en el tamaño de lote (opone 60 cuando son 10), com oen la salida. 10xiron-->188xnickel+20xplatinum
+- En la recurve, los still nodes necesitan Tholin kernels, peo no salen en la lista de raw.
+- Si algo, como construir un mini storage, usa directamente ores, los interpreta como raw materials y no calcula las necesidades de minado.
+-Switch para mostrar solo los SSU con fuel.
+- El espacio libre en esto no signigfica nada. Reescribir esta linea "Hydrated Sulfide Matrix has 770.00 m³ free in its last trip (220.00 m³ of 990 m³ used). Its materials can be covered by redistributing"
+- Incluir un tip en el mining rate sobre como calcularlo usando EF-map.
+- Decompose --> Refine
+- Poner un enlace a Discord
+
 ## Bugs / Fixes urgentes
 
-- Errores deprecated durante el build (en producción ARM — pendiente de log para diagnóstico).
+- Errores deprecated durante el build: deps transitivas (rimraf@3, inflight, glob@7/10, eslint@8) — requieren actualizar Next.js/ESLint para resolverlas.
+- Revisar `npm audit` — 6 vulnerabilidades detectadas en build de producción (1 moderate, 5 high).
 
 ## UX / UI
 
@@ -35,6 +63,7 @@
 - Ver si la parte de asteroides se puede eliminar. Alternativa: usar el grupo del material y mostrarlo directamente.
 - Repaso general de código.
 - `Blueprint.factory String` → `facilityTypeId Int?` y `Decomposition.refinery String` → `facilityTypeId Int?` (diferido).
+- Migrar a Next.js 15 (breaking changes: fetch cache por defecto desactivado, params como Promise — revisar todas las route handlers).
 
 ## Infraestructura
 

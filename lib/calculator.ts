@@ -518,16 +518,24 @@ export function calculate(
   // Build the true effective need for each output item (already accounts for stock):
   //   - Items only in initialRemaining: their toBuy value
   //   - Dual-role items (also decomp sources): combined direct + decomp need minus stock
+  //   - Intermediate found items (decomp sources not in rawMaterials): their decomp need minus stock
   const effectiveNeedsForOutput = new Map<string, number>();
   for (const [id, need] of initialRemaining) {
     effectiveNeedsForOutput.set(id, need);
   }
   for (const [sourceId, unitsForDecomp] of decompUnits) {
-    const raw = rawByItemId.get(sourceId);
-    if (!raw) continue;
     const source = itemMap.get(sourceId)!;
-    const combinedNeed = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock);
-    effectiveNeedsForOutput.set(sourceId, combinedNeed);
+    const raw = rawByItemId.get(sourceId);
+    if (raw) {
+      // Dual-role: in rawMaterials AND a decomp source
+      const combinedNeed = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock);
+      effectiveNeedsForOutput.set(sourceId, combinedNeed);
+    } else if (!source.isRawMaterial) {
+      // Intermediate found item: only a decomp source, not a direct raw material need.
+      // Register its need so the cleanup pass preserves ores that produce it.
+      const existing = effectiveNeedsForOutput.get(sourceId) ?? 0;
+      effectiveNeedsForOutput.set(sourceId, Math.max(existing, Math.max(0, unitsForDecomp - source.stock)));
+    }
   }
 
   // Iteratively reduce each ore's runs to the minimum required given coverage from other ores.
