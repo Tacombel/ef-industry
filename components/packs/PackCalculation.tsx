@@ -23,6 +23,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [recalculating, setRecalculating] = useState(false);
+  const factoryOverridesRef = useRef<Map<string, string>>(new Map());
   const [cargoCapacity, setCargoCapacity] = useState<number>(() => {
     if (typeof window === "undefined") return 0;
     return Number(localStorage.getItem("cargoVolume") ?? 0);
@@ -58,6 +59,8 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
     if (ignored.size > 0) params.set("ignore", [...ignored].join(","));
     if (ssuAddressesRef.current.length > 0) params.set("ssuAddresses", ssuAddressesRef.current.join(","));
     if (packsCountRef.current > 1) params.set("packs", String(packsCountRef.current));
+    const overrides = [...factoryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
+    if (overrides) params.set("factoryOverrides", overrides);
     const query = params.toString() ? `?${params.toString()}` : "";
     fetch(`/api/packs/${packId}/calculate${query}`)
       .then((r) => r.json())
@@ -102,6 +105,11 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
     const t = setTimeout(() => load(true), 400);
     return () => clearTimeout(t);
   }, [packsCount]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function selectFactory(itemId: string, factory: string) {
+    factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
+    load(true);
+  }
 
   if (loading) return <p className="text-gray-500 text-sm">Calculating…</p>;
   if (error) return <p className="text-red-400 text-sm">Error: {error}</p>;
@@ -178,7 +186,16 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
                   <tr key={row.itemId} className={`border-b border-gray-800/40 ${ignored ? "opacity-40" : ""}`}>
                     <td className="py-1 pr-4 text-gray-200">
                       {row.itemName}
-                      {row.factory && <span className="badge badge-blue ml-1.5">{row.factory}</span>}
+                      {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
+                        (row.availableFactories?.length ?? 0) > 1 ? (
+                          <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
+                            className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                            {factory}
+                          </button>
+                        ) : (
+                          <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                        )
+                      )}
                     </td>
                     <td className="py-1 pr-4 text-right text-gray-400">{row.quantityNeeded}</td>
                     <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>
@@ -237,7 +254,16 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
                 <tr key={row.itemId} className="border-b border-gray-800/40">
                   <td className="py-1 pr-4 text-gray-200">
                     <span>{row.itemName}</span>
-                    {row.factory && <span className="badge badge-blue ml-1.5">{row.factory}</span>}
+                    {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
+                      (row.availableFactories?.length ?? 0) > 1 ? (
+                        <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
+                          className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                          {factory}
+                        </button>
+                      ) : (
+                        <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                      )
+                    )}
                   </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>

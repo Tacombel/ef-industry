@@ -15,6 +15,11 @@ export async function GET(req: NextRequest) {
   if (!itemId) return NextResponse.json({ error: "itemId required" }, { status: 400 });
   if (!Number.isInteger(units) || units < 1) return NextResponse.json({ error: "units must be a positive integer" }, { status: 400 });
 
+  const factoryOverridesParam = req.nextUrl.searchParams.get("factoryOverrides");
+  const factoryOverrides = factoryOverridesParam
+    ? new Map(factoryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
+    : undefined;
+
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
   const session = await getSession();
   const stockMap = ssuAddressesParam
@@ -26,12 +31,15 @@ export async function GET(req: NextRequest) {
 
   try {
     const outputItem = itemMap.get(itemId);
-    const blueprint = outputItem?.blueprints.find((b) => b.isDefault) ?? outputItem?.blueprints[0];
+    const overrideFactory = factoryOverrides?.get(itemId);
+    const blueprint = overrideFactory
+      ? (outputItem?.blueprints.find(b => b.factory === overrideFactory) ?? outputItem?.blueprints.find(b => b.isDefault) ?? outputItem?.blueprints[0])
+      : (outputItem?.blueprints.find((b) => b.isDefault) ?? outputItem?.blueprints[0]);
     const outputQty = blueprint?.outputQty ?? 1;
     const runs = Math.ceil(units / outputQty);
     const quantity = runs * outputQty;
 
-    const result = calculate([{ itemId, quantity }], itemMap, { excludedOreIds });
+    const result = calculate([{ itemId, quantity }], itemMap, { excludedOreIds, factoryOverrides });
 
     // Move the output item from intermediates to finalProducts
     result.intermediates = result.intermediates.filter((i) => i.itemId !== itemId);
@@ -44,6 +52,7 @@ export async function GET(req: NextRequest) {
         blueprintRuns: runs,
         actualStock: outputItem?.stock ?? 0,
         factory: blueprint?.factory || undefined,
+        availableFactories: (outputItem?.blueprints.length ?? 0) > 1 ? outputItem!.blueprints.map(b => b.factory) : undefined,
         ignored: false,
       },
     ];

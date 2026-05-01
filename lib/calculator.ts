@@ -65,6 +65,7 @@ export interface IntermediateResult {
   toProduce: number;
   blueprintRuns: number;
   factory: string;
+  availableFactories?: string[];
   runTime?: number;
 }
 
@@ -104,6 +105,7 @@ export interface FinalProductResult {
   blueprintRuns: number;
   actualStock: number;
   factory?: string;
+  availableFactories?: string[];
   ignored?: boolean;
 }
 
@@ -128,8 +130,10 @@ type DemandMap = Map<string, number>;
 type StockUsed = Map<string, number>;
 type FactoryMap = Map<string, string>;
 
-function pickBlueprint(item: CalcItem): CalcBlueprint | null {
+function pickBlueprint(item: CalcItem, overrides?: Map<string, string>): CalcBlueprint | null {
   if (item.blueprints.length === 0) return null;
+  const override = overrides?.get(item.id);
+  if (override) return item.blueprints.find(b => b.factory === override) ?? item.blueprints.find(b => b.isDefault) ?? item.blueprints[0];
   return item.blueprints.find((b) => b.isDefault) ?? item.blueprints[0];
 }
 
@@ -153,7 +157,8 @@ function resolve(
   factoryMap: FactoryMap,
   visiting: Set<string>,
   stockSatisfied: Set<string>,
-  secondaryDecompRuns: Map<string, number>
+  secondaryDecompRuns: Map<string, number>,
+  factoryOverrides?: Map<string, string>
 ): void {
   if (visiting.has(itemId)) {
     throw new Error(`Circular blueprint dependency on item "${itemId}"`);
@@ -165,7 +170,7 @@ function resolve(
   // Raw/found items are always leaves in the resolve tree — the post-process
   // greedy handles their ore decompositions. Never follow their blueprints
   // (purification blueprints have input=output and would cause circular deps).
-  const blueprint = (item.isRawMaterial || item.isFound) ? null : pickBlueprint(item);
+  const blueprint = (item.isRawMaterial || item.isFound) ? null : pickBlueprint(item, factoryOverrides);
   const producedBy = (item.isRawMaterial || item.isFound) ? null : pickProducedBy(item);
 
   // Leaf: no production path — accumulate raw demand
@@ -200,7 +205,7 @@ function resolve(
 
     visiting.add(itemId);
     for (const input of blueprint.inputs) {
-      resolve(input.itemId, input.quantity * runs, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns);
+      resolve(input.itemId, input.quantity * runs, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns, factoryOverrides);
     }
     visiting.delete(itemId);
   } else {
@@ -216,7 +221,7 @@ function resolve(
 
     if (additionalRuns > 0) {
       visiting.add(itemId);
-      resolve(producedBy!.sourceItemId, additionalRuns * producedBy!.inputQty, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns);
+      resolve(producedBy!.sourceItemId, additionalRuns * producedBy!.inputQty, itemMap, demand, grossDemand, stockUsed, factoryMap, visiting, stockSatisfied, secondaryDecompRuns, factoryOverrides);
       visiting.delete(itemId);
     }
   }
@@ -225,7 +230,7 @@ function resolve(
 export function calculate(
   packItems: { itemId: string; quantity: number }[],
   itemMap: ItemMap,
-  options?: { excludedOreIds?: Set<string> }
+  options?: { excludedOreIds?: Set<string>; factoryOverrides?: Map<string, string> }
 ): CalculationResult {
   const demand: DemandMap = new Map();
   const grossDemand: DemandMap = new Map();
@@ -235,7 +240,7 @@ export function calculate(
   const secondaryDecompRuns: Map<string, number> = new Map();
 
   for (const pi of packItems) {
-    resolve(pi.itemId, pi.quantity, itemMap, demand, grossDemand, stockUsed, factoryMap, new Set(), stockSatisfied, secondaryDecompRuns);
+    resolve(pi.itemId, pi.quantity, itemMap, demand, grossDemand, stockUsed, factoryMap, new Set(), stockSatisfied, secondaryDecompRuns, options?.factoryOverrides);
   }
 
   const rawMaterials: RawMaterialResult[] = [];
@@ -243,7 +248,7 @@ export function calculate(
 
   for (const [itemId, needed] of demand) {
     const item = itemMap.get(itemId)!;
-    const blueprint = pickBlueprint(item);
+    const blueprint = pickBlueprint(item, options?.factoryOverrides);
     const producedBy = item.isFound ? null : pickProducedBy(item);
 
     // Raw materials are shown in rawMaterials section (including those with producedBy secondary decomps)
@@ -276,6 +281,7 @@ export function calculate(
         toProduce: needed,
         blueprintRuns: runs,
         factory: factoryMap.get(itemId) ?? blueprint.factory,
+        availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
         runTime: blueprint.runTime,
       });
     }
@@ -287,7 +293,7 @@ export function calculate(
   for (const itemId of stockSatisfied) {
     if (demand.has(itemId)) continue;
     const item = itemMap.get(itemId)!;
-    const blueprint = pickBlueprint(item);
+    const blueprint = pickBlueprint(item, options?.factoryOverrides);
     if (!blueprint) continue;
     const inStock = stockUsed.get(itemId) ?? 0;
     intermediates.push({
@@ -299,6 +305,7 @@ export function calculate(
       toProduce: 0,
       blueprintRuns: 0,
       factory: factoryMap.get(itemId) ?? blueprint.factory,
+      availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
     });
   }
 
@@ -429,6 +436,17 @@ export function calculate(
         remaining.delete(source.id);
       } else {
         remaining.set(source.id, newSourceNeed);
+      }
+    } else if (!source.isRawMaterial) {
+      // Source is a found/intermediate item — it must be acquired, not mined directly.
+      // Schedule its own production by adding it to remaining so the greedy can find its ore sources.
+      const surplusAvail = surplus.get(source.id) ?? 0;
+      const stillNeeded = Math.max(0, unitsConsumed - source.stock - surplusAvail);
+      if (stillNeeded > 0) {
+        remaining.set(source.id, stillNeeded);
+      } else {
+        // Stock + surplus cover it — consume from surplus first
+        surplus.set(source.id, Math.max(0, surplusAvail - Math.max(0, unitsConsumed - source.stock)));
       }
     }
 

@@ -15,6 +15,10 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const ignoredIds = new Set(ignoreParam ? ignoreParam.split(",").filter(Boolean) : []);
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
   const packsCount = Math.max(1, Number(req.nextUrl.searchParams.get("packs") ?? "1") || 1);
+  const factoryOverridesParam = req.nextUrl.searchParams.get("factoryOverrides");
+  const factoryOverrides = factoryOverridesParam
+    ? new Map(factoryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
+    : undefined;
 
   const pack = await prisma.pack.findUnique({
     where: { id: params.id },
@@ -37,13 +41,17 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const activeItems = pack.items.filter((pi) => !ignoredIds.has(pi.itemId));
     const result = calculate(
       activeItems.map((pi) => ({ itemId: pi.itemId, quantity: pi.quantity * packsCount })),
-      itemMap
+      itemMap,
+      { factoryOverrides }
     );
 
     result.intermediates = result.intermediates.filter((i) => !packItemIds.has(i.itemId));
     result.finalProducts = pack.items.map((pi) => {
       const item = itemMap.get(pi.itemId);
-      const blueprint = item?.blueprints.find((b) => b.isDefault) ?? item?.blueprints[0];
+      const overrideFactory = factoryOverrides?.get(pi.itemId);
+      const blueprint = overrideFactory
+        ? (item?.blueprints.find(b => b.factory === overrideFactory) ?? item?.blueprints.find(b => b.isDefault) ?? item?.blueprints[0])
+        : (item?.blueprints.find((b) => b.isDefault) ?? item?.blueprints[0]);
       const outputQty = blueprint?.outputQty ?? 1;
       const totalQty = pi.quantity * packsCount;
       return {
@@ -54,6 +62,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         blueprintRuns: Math.ceil(totalQty / outputQty),
         actualStock: item?.stock ?? 0,
         factory: blueprint?.factory || undefined,
+        availableFactories: (item?.blueprints.length ?? 0) > 1 ? item!.blueprints.map(b => b.factory) : undefined,
         ignored: ignoredIds.has(pi.itemId),
       };
     });
