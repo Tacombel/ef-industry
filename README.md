@@ -5,11 +5,11 @@ A tool to manage blueprints, calculate required materials, and track stock in EV
 ## Features
 
 - **Items** — Catalogue of raw materials, intermediates, and final products
-- **Blueprints** — Crafting recipes with direct material calculation
-- **Packs** — Group multiple blueprints to calculate and execute in batch
+- **Blueprints** — Crafting recipes with direct material calculation; items craftable in multiple facilities show all factory badges — clicking one switches the recipe and recalculates
+- **Collections** — Group multiple blueprints to calculate and execute in batch
 - **Stock** — Inventory tracking with inline editing
 - **Factories** — Production factory management
-- **Decompositions** — Ore decomposition rules
+- **Decompositions** — Ore decomposition rules, including two-level found-item chains; each decomposition row shows the refinery badge (amber for found items, purple for ores)
 - **Asteroids** — Asteroid type locations per ore
 
 ---

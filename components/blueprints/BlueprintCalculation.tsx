@@ -204,8 +204,11 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                 <tr key={row.itemId} className="border-b border-gray-800/40">
                   <td className="py-1 pr-4 text-gray-200">
                     {row.itemName}
-                    {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
-                      (row.availableFactories?.length ?? 0) > 1 ? (
+                    {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory => {
+                      const factoryData = row.blueprintsByFactory?.[factory];
+                      const inputs = (factoryData?.inputs ?? row.blueprintInputs ?? []).map(i => ({ name: i.itemName, qty: i.quantity }));
+                      const outQty = factoryData?.outputQty ?? row.outputQty;
+                      return (row.availableFactories?.length ?? 0) > 1 ? (
                         <span key={factory} className="relative inline-block"
                           onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
                           onMouseLeave={() => setHoveredBadge(null)}
@@ -214,11 +217,8 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                             className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
                             {factory}
                           </button>
-                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
-                            <RecipeTooltip
-                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
-                              outputs={[{ name: row.itemName, qty: row.outputQty }]}
-                            />
+                          {hoveredBadge === `${row.itemId}:${factory}` && inputs.length > 0 && (
+                            <RecipeTooltip inputs={inputs} outputs={[{ name: row.itemName, qty: outQty }]} />
                           )}
                         </span>
                       ) : (
@@ -227,15 +227,12 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                           onMouseLeave={() => setHoveredBadge(null)}
                         >
                           <span className="badge badge-blue ml-1.5">{factory}</span>
-                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
-                            <RecipeTooltip
-                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
-                              outputs={[{ name: row.itemName, qty: row.outputQty }]}
-                            />
+                          {hoveredBadge === `${row.itemId}:${factory}` && inputs.length > 0 && (
+                            <RecipeTooltip inputs={inputs} outputs={[{ name: row.itemName, qty: outQty }]} />
                           )}
                         </span>
-                      )
-                    )}
+                      );
+                    })}
                   </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.quantityNeeded}</td>
                   <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>
@@ -276,8 +273,11 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                 <tr key={row.itemId} className="border-b border-gray-800/40">
                   <td className="py-1 pr-4 text-gray-200">
                     <span>{row.itemName}</span>
-                    {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
-                      (row.availableFactories?.length ?? 0) > 1 ? (
+                    {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory => {
+                      const factoryData = row.blueprintsByFactory?.[factory];
+                      const inputs = (factoryData?.inputs ?? row.blueprintInputs ?? []).map(i => ({ name: i.itemName, qty: i.quantity }));
+                      const outQty = factoryData?.outputQty ?? row.blueprintOutputQty;
+                      return (row.availableFactories?.length ?? 0) > 1 ? (
                         <span key={factory} className="relative inline-block"
                           onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
                           onMouseLeave={() => setHoveredBadge(null)}
@@ -286,11 +286,8 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                             className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
                             {factory}
                           </button>
-                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
-                            <RecipeTooltip
-                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
-                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
-                            />
+                          {hoveredBadge === `${row.itemId}:${factory}` && inputs.length > 0 && (
+                            <RecipeTooltip inputs={inputs} outputs={[{ name: row.itemName, qty: outQty }]} />
                           )}
                         </span>
                       ) : (
@@ -299,15 +296,12 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                           onMouseLeave={() => setHoveredBadge(null)}
                         >
                           <span className="badge badge-blue ml-1.5">{factory}</span>
-                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
-                            <RecipeTooltip
-                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
-                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
-                            />
+                          {hoveredBadge === `${row.itemId}:${factory}` && inputs.length > 0 && (
+                            <RecipeTooltip inputs={inputs} outputs={[{ name: row.itemName, qty: outQty }]} />
                           )}
                         </span>
-                      )
-                    )}
+                      );
+                    })}
                   </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>

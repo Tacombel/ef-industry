@@ -69,6 +69,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         factory: blueprint?.factory || undefined,
         availableFactories: (item?.blueprints.length ?? 0) > 1 ? item!.blueprints.map(b => b.factory) : undefined,
         blueprintInputs: blueprint?.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
+        blueprintsByFactory: (item?.blueprints.length ?? 0) > 1 ? Object.fromEntries(item!.blueprints.map(b => [b.factory, { inputs: b.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })), outputQty: b.outputQty }])) : undefined,
         ignored: ignoredIds.has(ci.itemId),
       };
     });

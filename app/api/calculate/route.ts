@@ -59,6 +59,7 @@ export async function GET(req: NextRequest) {
         factory: blueprint?.factory || undefined,
         availableFactories: (outputItem?.blueprints.length ?? 0) > 1 ? outputItem!.blueprints.map(b => b.factory) : undefined,
         blueprintInputs: blueprint?.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
+        blueprintsByFactory: (outputItem?.blueprints.length ?? 0) > 1 ? Object.fromEntries(outputItem!.blueprints.map(b => [b.factory, { inputs: b.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })), outputQty: b.outputQty }])) : undefined,
         ignored: false,
       },
     ];

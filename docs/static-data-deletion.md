@@ -5,7 +5,7 @@ Los botones de borrado han sido eliminados intencionalmente de la UI para todos 
 
 ## Por qué no hay borrado desde la UI
 
-Los datos estáticos están interrelacionados con datos de usuario (stocks, packs). Borrar un item,
+Los datos estáticos están interrelacionados con datos de usuario (stocks, collections). Borrar un item,
 por ejemplo, puede destruir silenciosamente el inventario de todos los usuarios que lo tengan.
 El seed tampoco borra — solo actualiza mediante upsert — así que un item eliminado de `seed.json`
 simplemente se queda huérfano en la BD sin que nadie lo detecte.

@@ -66,6 +66,7 @@ export interface IntermediateResult {
   blueprintRuns: number;
   blueprintOutputQty: number;
   blueprintInputs?: { itemId: string; itemName: string; quantity: number }[];
+  blueprintsByFactory?: Record<string, { inputs: { itemId: string; itemName: string; quantity: number }[]; outputQty: number }>;
   factory: string;
   availableFactories?: string[];
   runTime?: number;
@@ -84,6 +85,7 @@ export interface DecompositionResult {
   runTime?: number;
   actualStock: number;
   outputs: { itemId: string; itemName: string; quantityObtained: number }[];
+  recipeByRefinery?: Record<string, { inputQty: number; outputs: { itemId: string; itemName: string; qty: number }[] }>;
   asteroids?: AsteroidInfo[];
   isUnrefined?: boolean; // True if material is used directly without refining
   sourceIsFound?: boolean; // True if source is a found/looted item (not a mined ore)
@@ -111,6 +113,7 @@ export interface FinalProductResult {
   factory?: string;
   availableFactories?: string[];
   blueprintInputs?: { itemId: string; itemName: string; quantity: number }[];
+  blueprintsByFactory?: Record<string, { inputs: { itemId: string; itemName: string; quantity: number }[]; outputQty: number }>;
   ignored?: boolean;
 }
 
@@ -290,6 +293,7 @@ export function calculate(
         blueprintRuns: runs,
         blueprintOutputQty: blueprint.outputQty,
         blueprintInputs: blueprint.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
+        blueprintsByFactory: item.blueprints.length > 1 ? Object.fromEntries(item.blueprints.map(b => [b.factory, { inputs: b.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })), outputQty: b.outputQty }])) : undefined,
         factory: factoryMap.get(itemId) ?? blueprint.factory,
         availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
         runTime: blueprint.runTime,
@@ -316,6 +320,7 @@ export function calculate(
       blueprintRuns: 0,
       blueprintOutputQty: blueprint.outputQty,
       blueprintInputs: blueprint.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
+      blueprintsByFactory: item.blueprints.length > 1 ? Object.fromEntries(item.blueprints.map(b => [b.factory, { inputs: b.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })), outputQty: b.outputQty }])) : undefined,
       factory: factoryMap.get(itemId) ?? blueprint.factory,
       availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
     });
@@ -615,6 +620,7 @@ export function calculate(
           quantityObtained: o.quantity * runs,
         };
       }),
+      recipeByRefinery: source.decompositions.length > 1 ? Object.fromEntries(source.decompositions.map(d => [d.refinery, { inputQty: d.inputQty, outputs: d.outputs.map(o => ({ itemId: o.itemId, itemName: itemMap.get(o.itemId)?.name ?? o.itemId, qty: o.quantity })) }])) : undefined,
     });
     includedDecomps.add(sourceItemId);
   }
@@ -640,8 +646,9 @@ export function calculate(
       inputQty: dec.inputQty,
       runs: 0,
       actualStock: source.stock,
-      isUnrefined: true, // Mark as "consumed without refining"
-      outputs: [], // No outputs shown for unrefined materials
+      isUnrefined: true,
+      outputs: [],
+      recipeByRefinery: source.decompositions.length > 1 ? Object.fromEntries(source.decompositions.map(d => [d.refinery, { inputQty: d.inputQty, outputs: d.outputs.map(o => ({ itemId: o.itemId, itemName: itemMap.get(o.itemId)?.name ?? o.itemId, qty: o.quantity })) }])) : undefined,
     });
   }
 
