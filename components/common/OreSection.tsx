@@ -82,7 +82,10 @@ export default function OreSection({
               return (
                 <div key={d.sourceItemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-medium text-gray-200 flex-1">{d.sourceItemName}</span>
+                    <span className="text-xs font-medium text-gray-200 flex-1">
+                    {d.sourceItemName}
+                    {d.refinery && <span className="badge ml-1.5 bg-amber-900/50 text-amber-400">{d.refinery}</span>}
+                  </span>
                     <div className="flex flex-col gap-0.5 text-xs text-gray-500">
                       {d.directNeed ? (
                         <span><span className="text-gray-300 font-semibold">{d.directNeed}</span> · for use in blueprints</span>
@@ -243,6 +246,7 @@ export default function OreSection({
                     onMouseLeave={() => setHoveredItemId(null)}
                   >
                     {d.sourceItemName}
+                    {d.refinery && <span className="badge ml-1.5 bg-purple-900/50 text-purple-400">{d.refinery}</span>}
                     {d.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
                     {isTarget && <span className="ml-1.5 text-yellow-500 text-xs">⚠ optimization candidate</span>}
                     {hoveredItemId === d.sourceItemId && d.asteroids?.length && (

@@ -5,6 +5,7 @@ import type { DecompositionResult } from "./calculator";
 function makeDecomp(overrides: Partial<DecompositionResult> & { sourceItemId: string }): DecompositionResult {
   return {
     sourceItemName: overrides.sourceItemId,
+    refinery: "Refinery",
     unitsToDecompose: 100,
     volumePerUnit: 1,
     inputQty: 10,

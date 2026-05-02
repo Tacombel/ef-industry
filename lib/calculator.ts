@@ -72,6 +72,7 @@ export interface IntermediateResult {
 export interface DecompositionResult {
   sourceItemId: string;
   sourceItemName: string;
+  refinery: string;
   unitsToDecompose: number;   // units that go into the refinery
   directNeed?: number;         // units needed directly (not decomposed) — consolidated from rawMaterials
   volumePerUnit: number;
@@ -586,6 +587,7 @@ export function calculate(
     decompositions.push({
       sourceItemId,
       sourceItemName: source.name,
+      refinery: dec.refinery,
       unitsToDecompose,
       volumePerUnit: source.volume,
       inputQty: dec.inputQty,
@@ -619,6 +621,7 @@ export function calculate(
     decompositions.push({
       sourceItemId: row.itemId,
       sourceItemName: row.itemName,
+      refinery: dec.refinery,
       unitsToDecompose: 0,
       volumePerUnit: source.volume,
       inputQty: dec.inputQty,
