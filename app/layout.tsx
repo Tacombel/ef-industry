@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import UpdateBanner from "@/components/layout/UpdateBanner";
 import LegalModal from "@/components/layout/LegalModal";
 import Providers from "@/components/layout/Providers";
+import TrackPageView from "@/app/components/TrackPageView";
 import { getSession } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,6 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full bg-gray-950 text-gray-100 antialiased`}>
         <Providers>
+          <TrackPageView />
           <LegalModal />
           <div className="flex h-full">
             <Sidebar />

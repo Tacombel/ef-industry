@@ -5,6 +5,7 @@ import { fetchCalcItems, enrichAsteroids } from "@/lib/calc-helpers";
 import { fetchUserStockMap, fetchStockMapFromAddresses } from "@/lib/sui";
 import { getSession } from "@/lib/auth";
 import { recordRequest } from "@/lib/metrics";
+import { trackEvent } from "@/lib/track";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const t0 = Date.now();
@@ -69,10 +70,14 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 
     await enrichAsteroids(result);
 
-    recordRequest("collections/calculate", Date.now() - t0, true);
+    const ms = Date.now() - t0;
+    recordRequest("collections/calculate", ms, true);
+    trackEvent({ type: "api", path: "/api/collections/calculate", method: "GET", userId: session.userId, role: session.role, statusCode: 200, ms });
     return NextResponse.json(result);
   } catch (err: unknown) {
-    recordRequest("collections/calculate", Date.now() - t0, false);
+    const ms = Date.now() - t0;
+    recordRequest("collections/calculate", ms, false);
+    trackEvent({ type: "api", path: "/api/collections/calculate", method: "GET", userId: session.userId, role: session.role, statusCode: 422, ms });
     const message = err instanceof Error ? err.message : "Calculation error";
     return NextResponse.json({ error: message }, { status: 422 });
   }

@@ -3,6 +3,15 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/hooks/useSession";
 
+const DB_WARN_BYTES = 50 * 1024 * 1024;   // 50 MB
+const DB_DANGER_BYTES = 100 * 1024 * 1024; // 100 MB
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
 interface User {
   id: string;
   username: string;
@@ -126,6 +135,16 @@ export default function AdminPage() {
   }, []);
   useEffect(() => { loadMetrics(); const id = setInterval(loadMetrics, 10_000); return () => clearInterval(id); }, [loadMetrics]);
 
+  // Usage
+  type DailyEntry = { date: string; registered: number; anonymous: number };
+  type PathEntry = { path: string; type: string; registered: number; anonymous: number; total: number };
+  type UsageData = { daily: DailyEntry[]; topPaths: PathEntry[]; totals: { registered: number; anonymous: number }; dbSizeBytes: number };
+  const [usage, setUsage] = useState<UsageData | null>(null);
+  const loadUsage = useCallback(() => {
+    fetch("/api/admin/usage").then((r) => r.ok ? r.json() : null).then((d) => d && setUsage(d)).catch(() => {});
+  }, []);
+  useEffect(() => { loadUsage(); }, [loadUsage]);
+
   const selfId = useMemo(
     () => users.find((x) => x.username === me?.username)?.id,
     [users, me]
@@ -166,6 +185,121 @@ export default function AdminPage() {
               : "Closed — registration disabled"}
           </span>
         </div>
+      </div>
+
+      {/* Usage */}
+      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-gray-100">Usage — last 30 days</h2>
+            <p className="text-xs text-gray-500 mt-0.5">Page views and API calls. Admin interactions excluded.</p>
+          </div>
+          <button onClick={loadUsage} className="btn-sm btn-secondary">↻</button>
+        </div>
+
+        {!usage ? (
+          <p className="text-sm text-gray-500">Loading…</p>
+        ) : (
+          <div className="space-y-5">
+            {/* DB size */}
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-400">Database size:</span>
+              <span className={`text-sm font-mono font-semibold ${
+                usage.dbSizeBytes >= DB_DANGER_BYTES
+                  ? "text-red-400"
+                  : usage.dbSizeBytes >= DB_WARN_BYTES
+                  ? "text-yellow-400"
+                  : "text-gray-300"
+              }`}>
+                {formatBytes(usage.dbSizeBytes)}
+              </span>
+              {usage.dbSizeBytes >= DB_DANGER_BYTES && (
+                <span className="badge badge-red text-xs">Warning: DB large</span>
+              )}
+              {usage.dbSizeBytes >= DB_WARN_BYTES && usage.dbSizeBytes < DB_DANGER_BYTES && (
+                <span className="badge badge-amber text-xs">DB growing</span>
+              )}
+            </div>
+
+            {/* Totals */}
+            <div className="flex gap-6 text-sm">
+              <div>
+                <span className="text-gray-500">Total events: </span>
+                <span className="text-gray-200 font-semibold">{usage.totals.registered + usage.totals.anonymous}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">Registered users: </span>
+                <span className="text-cyan-400 font-semibold">{usage.totals.registered}</span>
+              </div>
+              <div>
+                <span className="text-gray-500">Anonymous: </span>
+                <span className="text-gray-400 font-semibold">{usage.totals.anonymous}</span>
+              </div>
+            </div>
+
+            {/* Daily — last 7 days */}
+            {usage.daily.length > 0 && (
+              <div>
+                <p className="text-xs text-gray-500 mb-2">Daily activity (last 7 days)</p>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-gray-500 border-b border-gray-800 text-left">
+                      <th className="pb-2 pr-4">Date</th>
+                      <th className="pb-2 pr-4 text-right">Registered</th>
+                      <th className="pb-2 pr-4 text-right">Anonymous</th>
+                      <th className="pb-2 text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usage.daily.slice(-7).map((d) => (
+                      <tr key={d.date} className="border-b border-gray-800/50">
+                        <td className="py-1.5 pr-4 font-mono text-xs text-gray-400">{d.date}</td>
+                        <td className="py-1.5 pr-4 text-right text-cyan-400">{d.registered}</td>
+                        <td className="py-1.5 pr-4 text-right text-gray-500">{d.anonymous}</td>
+                        <td className="py-1.5 text-right text-gray-300 font-semibold">{d.registered + d.anonymous}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Top paths */}
+            {usage.topPaths.length > 0 && (
+              <div>
+                <p className="text-xs text-gray-500 mb-2">Top pages & endpoints</p>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-gray-500 border-b border-gray-800 text-left">
+                      <th className="pb-2 pr-4">Path</th>
+                      <th className="pb-2 pr-2 text-center">Type</th>
+                      <th className="pb-2 pr-4 text-right">Registered</th>
+                      <th className="pb-2 pr-4 text-right">Anonymous</th>
+                      <th className="pb-2 text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usage.topPaths.map((p) => (
+                      <tr key={p.path} className="border-b border-gray-800/50">
+                        <td className="py-1.5 pr-4 font-mono text-xs text-gray-300">{p.path}</td>
+                        <td className="py-1.5 pr-2 text-center">
+                          <span className={`text-xs ${p.type === "api" ? "text-amber-500" : "text-gray-500"}`}>{p.type}</span>
+                        </td>
+                        <td className="py-1.5 pr-4 text-right text-cyan-400">{p.registered}</td>
+                        <td className="py-1.5 pr-4 text-right text-gray-500">{p.anonymous}</td>
+                        <td className="py-1.5 text-right text-gray-300 font-semibold">{p.total}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {usage.totals.registered + usage.totals.anonymous === 0 && (
+              <p className="text-sm text-gray-500">No usage data yet — activity will appear here as users interact with the app.</p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Metrics */}
