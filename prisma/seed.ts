@@ -107,45 +107,43 @@ async function main() {
   }
   console.log(`  ✓ ${data.asteroidTypes.length} asteroid types`);
 
-  // Decompositions
+  // Decompositions: wipe and recreate to avoid duplicates with NULL blueprintId
+  // (SQLite unique constraints don't treat NULL=NULL, so upsert creates duplicates on each run)
+  const existingDefaults = await prisma.decomposition.findMany({
+    where: { isDefault: true },
+    select: { sourceItemId: true, refinery: true, blueprintId: true },
+  });
+  const defaultKeys = new Set(existingDefaults.map((d) => `${d.sourceItemId}||${d.refinery}||${String(d.blueprintId)}`));
+
+  await prisma.decomposition.deleteMany({});
+
   for (const d of data.decompositions) {
     const sourceId = itemIdByTypeId.get(d.sourceTypeId);
     if (!sourceId) { console.warn(`  ⚠ Item typeId ${d.sourceTypeId} not found for decomposition`); continue; }
     const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
-    const decomp = await prisma.decomposition.upsert({
-      where: { sourceItemId_refinery_blueprintId: { sourceItemId: sourceId, refinery: refineryName, blueprintId: d.blueprintId ?? null } },
-      update: { inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null, maxInputRuns: d.maxInputRuns ?? null, maxOutputRuns: d.maxOutputRuns ?? null },
-      create: { sourceItemId: sourceId, refinery: refineryName, inputQty: d.inputQty, runTime: d.runTime, blueprintId: d.blueprintId ?? null, maxInputRuns: d.maxInputRuns ?? null, maxOutputRuns: d.maxOutputRuns ?? null },
+    const key = `${sourceId}||${refineryName}||${String(d.blueprintId ?? null)}`;
+    const decomp = await prisma.decomposition.create({
+      data: {
+        sourceItemId: sourceId,
+        refinery: refineryName,
+        inputQty: d.inputQty,
+        runTime: d.runTime,
+        blueprintId: d.blueprintId ?? null,
+        isDefault: defaultKeys.has(key),
+        maxInputRuns: d.maxInputRuns ?? null,
+        maxOutputRuns: d.maxOutputRuns ?? null,
+        outputs: {
+          create: d.outputs.flatMap((out) => {
+            const outItemId = itemIdByTypeId.get(out.typeId);
+            if (!outItemId) { console.warn(`  ⚠ Output typeId ${out.typeId} not found in decomposition of typeId ${d.sourceTypeId}`); return []; }
+            return [{ itemId: outItemId, quantity: out.quantity }];
+          }),
+        },
+      },
     });
-    for (const out of d.outputs) {
-      const outItemId = itemIdByTypeId.get(out.typeId);
-      if (outItemId) {
-        await prisma.decompositionOutput.upsert({
-          where: { decompositionId_itemId: { decompositionId: decomp.id, itemId: outItemId } },
-          update: { quantity: out.quantity },
-          create: { decompositionId: decomp.id, itemId: outItemId, quantity: out.quantity },
-        });
-      } else {
-        console.warn(`  ⚠ Output typeId ${out.typeId} not found in decomposition of typeId ${d.sourceTypeId}`);
-      }
-    }
+    void decomp;
   }
-  // Delete orphan decompositions (in DB but not in seed)
-  const validDecompKeys = new Set(
-    data.decompositions.map((d) => {
-      const sourceId = itemIdByTypeId.get(d.sourceTypeId);
-      const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
-      return `${sourceId}__${refineryName}`;
-    })
-  );
-  const allDbDecomps = await prisma.decomposition.findMany({ select: { id: true, sourceItemId: true, refinery: true } });
-  const orphanDecompIds = allDbDecomps
-    .filter((d) => !validDecompKeys.has(`${d.sourceItemId}__${d.refinery}`))
-    .map((d) => d.id);
-  if (orphanDecompIds.length > 0) {
-    await prisma.decomposition.deleteMany({ where: { id: { in: orphanDecompIds } } });
-  }
-  console.log(`  ✓ ${data.decompositions.length} decompositions (${orphanDecompIds.length} huérfanos eliminados)`);
+  console.log(`  ✓ ${data.decompositions.length} decompositions`);
 
   // Blueprints
   for (const bp of data.blueprints) {
