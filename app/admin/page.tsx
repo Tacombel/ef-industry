@@ -355,7 +355,14 @@ export default function AdminPage() {
 
       {/* Users */}
       <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
-        <h2 className="text-base font-semibold text-gray-100 mb-4">Users</h2>
+        <div className="flex items-center gap-3 mb-4">
+          <h2 className="text-base font-semibold text-gray-100">Users</h2>
+          {!usersLoading && (
+            <span className="text-sm text-gray-500">
+              {users.filter((u) => u.role === "USER").length} registered
+            </span>
+          )}
+        </div>
 
         {userError && (
           <div className="mb-4 rounded border border-red-800 bg-red-900/20 px-4 py-3 text-sm text-red-400">{userError}</div>
