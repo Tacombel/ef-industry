@@ -14,20 +14,20 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const ignoreParam = req.nextUrl.searchParams.get("ignore");
   const ignoredIds = new Set(ignoreParam ? ignoreParam.split(",").filter(Boolean) : []);
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
-  const packsCount = Math.max(1, Number(req.nextUrl.searchParams.get("packs") ?? "1") || 1);
+  const collectionsCount = Math.max(1, Number(req.nextUrl.searchParams.get("collections") ?? "1") || 1);
   const factoryOverridesParam = req.nextUrl.searchParams.get("factoryOverrides");
   const factoryOverrides = factoryOverridesParam
     ? new Map(factoryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
     : undefined;
 
-  const pack = await prisma.pack.findUnique({
+  const collection = await prisma.collection.findUnique({
     where: { id: params.id },
     include: { items: true },
   });
 
-  if (!pack) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  if (pack.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  if (pack.items.length === 0) {
+  if (!collection) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (collection.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (collection.items.length === 0) {
     return NextResponse.json({ rawMaterials: [], intermediates: [], decompositions: [], finalProducts: [], totalRunTime: 0 });
   }
 
@@ -37,42 +37,42 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const itemMap = buildItemMap(await fetchCalcItems(stockMap));
 
   try {
-    const packItemIds = new Set(pack.items.map((pi) => pi.itemId));
-    const activeItems = pack.items.filter((pi) => !ignoredIds.has(pi.itemId));
+    const collectionItemIds = new Set(collection.items.map((ci) => ci.itemId));
+    const activeItems = collection.items.filter((ci) => !ignoredIds.has(ci.itemId));
     const result = calculate(
-      activeItems.map((pi) => ({ itemId: pi.itemId, quantity: pi.quantity * packsCount })),
+      activeItems.map((ci) => ({ itemId: ci.itemId, quantity: ci.quantity * collectionsCount })),
       itemMap,
       { factoryOverrides }
     );
 
-    result.intermediates = result.intermediates.filter((i) => !packItemIds.has(i.itemId));
-    result.finalProducts = pack.items.map((pi) => {
-      const item = itemMap.get(pi.itemId);
-      const overrideFactory = factoryOverrides?.get(pi.itemId);
+    result.intermediates = result.intermediates.filter((i) => !collectionItemIds.has(i.itemId));
+    result.finalProducts = collection.items.map((ci) => {
+      const item = itemMap.get(ci.itemId);
+      const overrideFactory = factoryOverrides?.get(ci.itemId);
       const blueprint = overrideFactory
         ? (item?.blueprints.find(b => b.factory === overrideFactory) ?? item?.blueprints.find(b => b.isDefault) ?? item?.blueprints[0])
         : (item?.blueprints.find((b) => b.isDefault) ?? item?.blueprints[0]);
       const outputQty = blueprint?.outputQty ?? 1;
-      const totalQty = pi.quantity * packsCount;
+      const totalQty = ci.quantity * collectionsCount;
       return {
-        itemId: pi.itemId,
-        itemName: item?.name ?? pi.itemId,
+        itemId: ci.itemId,
+        itemName: item?.name ?? ci.itemId,
         quantityNeeded: totalQty,
         outputQty,
         blueprintRuns: Math.ceil(totalQty / outputQty),
         actualStock: item?.stock ?? 0,
         factory: blueprint?.factory || undefined,
         availableFactories: (item?.blueprints.length ?? 0) > 1 ? item!.blueprints.map(b => b.factory) : undefined,
-        ignored: ignoredIds.has(pi.itemId),
+        ignored: ignoredIds.has(ci.itemId),
       };
     });
 
     await enrichAsteroids(result);
 
-    recordRequest("packs/calculate", Date.now() - t0, true);
+    recordRequest("collections/calculate", Date.now() - t0, true);
     return NextResponse.json(result);
   } catch (err: unknown) {
-    recordRequest("packs/calculate", Date.now() - t0, false);
+    recordRequest("collections/calculate", Date.now() - t0, false);
     const message = err instanceof Error ? err.message : "Calculation error";
     return NextResponse.json({ error: message }, { status: 422 });
   }

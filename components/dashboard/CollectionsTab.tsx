@@ -1,25 +1,25 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import PackCalculation from "@/components/packs/PackCalculation";
-import ImportPackModal from "@/components/packs/ImportPackModal";
+import CollectionCalculation from "@/components/collections/CollectionCalculation";
+import ImportCollectionModal from "@/components/collections/ImportCollectionModal";
 import SsuSelector from "@/components/common/SsuSelector";
 import { useSsuList } from "@/hooks/useSsuList";
 import { useSsuIgnored } from "@/hooks/useSsuIgnored";
 import { useSession } from "@/hooks/useSession";
 
 interface Item { id: string; name: string; isRawMaterial: boolean; isFound: boolean; blueprints: { factory: string }[] }
-interface PackItem { id: string; itemId: string; quantity: number; item: Item }
-interface Pack { id: string; name: string; description?: string; items: PackItem[] }
+interface CollectionItem { id: string; itemId: string; quantity: number; item: Item }
+interface Collection { id: string; name: string; description?: string; items: CollectionItem[] }
 
 const emptyRow = () => ({ itemId: "", quantity: 1 });
 
-export default function PacksTab() {
+export default function CollectionsTab() {
   const { ssus } = useSsuList();
   const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
   const ssuAddresses = activeSsuAddresses(ssus);
   const { isLoggedIn } = useSession();
-  const [packs, setPacks] = useState<Pack[]>([]);
+  const [collections, setCollections] = useState<Collection[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -29,16 +29,16 @@ export default function PacksTab() {
   const [rows, setRows] = useState([emptyRow()]);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-  const [calcPackId, setCalcPackId] = useState<string | null>(null);
-  const [packsCount, setPacksCount] = useState(1);
+  const [calcCollectionId, setCalcCollectionId] = useState<string | null>(null);
+  const [collectionsCount, setCollectionsCount] = useState(1);
   const [search, setSearch] = useState("");
   const [showImport, setShowImport] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [packRes, itemRes] = await Promise.all([fetch("/api/packs"), fetch("/api/items")]);
-    setPacks(packRes.ok ? await packRes.json() : []);
+    const [collectionRes, itemRes] = await Promise.all([fetch("/api/collections"), fetch("/api/items")]);
+    setCollections(collectionRes.ok ? await collectionRes.json() : []);
     setItems(itemRes.ok ? await itemRes.json() : []);
     setLoading(false);
   }, []);
@@ -50,11 +50,11 @@ export default function PacksTab() {
     setShowForm(true);
   }
 
-  function openEdit(pack: Pack) {
-    setEditId(pack.id);
-    setName(pack.name);
-    setDescription(pack.description ?? "");
-    setRows(pack.items.map((i) => ({ itemId: i.itemId, quantity: i.quantity })));
+  function openEdit(collection: Collection) {
+    setEditId(collection.id);
+    setName(collection.name);
+    setDescription(collection.description ?? "");
+    setRows(collection.items.map((i) => ({ itemId: i.itemId, quantity: i.quantity })));
     setError(""); setShowForm(true);
   }
 
@@ -69,7 +69,7 @@ export default function PacksTab() {
     if (rows.some((r) => !r.itemId)) { setError("All rows need an item"); return; }
     setSaving(true);
     try {
-      const url = editId ? `/api/packs/${editId}` : "/api/packs";
+      const url = editId ? `/api/collections/${editId}` : "/api/collections";
       const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
@@ -91,16 +91,16 @@ export default function PacksTab() {
     }
   }
 
-  async function remove(id: string, packName: string) {
-    if (!confirm(`Delete pack "${packName}"?`)) return;
-    await fetch(`/api/packs/${id}`, { method: "DELETE" });
+  async function remove(id: string, collectionName: string) {
+    if (!confirm(`Delete collection "${collectionName}"?`)) return;
+    await fetch(`/api/collections/${id}`, { method: "DELETE" });
     load();
   }
 
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-100">Production Packs</h2>
+        <h2 className="text-xl font-bold text-gray-100">Production Collections</h2>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setRefreshKey((k) => k + 1)}
@@ -112,10 +112,10 @@ export default function PacksTab() {
           {isLoggedIn ? (
             <>
               <button onClick={() => setShowImport(true)} className="btn-sm btn-secondary">↑ Import fit</button>
-              <button onClick={openNew} className="btn-primary">+ New Pack</button>
+              <button onClick={openNew} className="btn-primary">+ New Collection</button>
             </>
           ) : (
-            <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save packs.</p>
+            <p className="text-sm text-yellow-400">🔐 You need to <a href="/login" className="underline hover:text-yellow-300">log in</a> to save collections.</p>
           )}
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function PacksTab() {
       {/* Search */}
       <div className="relative flex-1 max-w-xs mb-4 mt-4">
         <input
-          placeholder="Search packs…"
+          placeholder="Search collections…"
           className="input w-full"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -136,44 +136,44 @@ export default function PacksTab() {
 
       {loading ? (
         <p className="text-gray-500">Loading…</p>
-      ) : packs.length === 0 ? (
-        <p className="text-gray-500">No packs yet.</p>
+      ) : collections.length === 0 ? (
+        <p className="text-gray-500">No collections yet.</p>
       ) : (
         (() => {
-          const filtered = packs.filter((pack) => {
-            if (search && !pack.name.toLowerCase().includes(search.toLowerCase())) return false;
-            if (calcPackId && pack.id !== calcPackId) return false;
+          const filtered = collections.filter((collection) => {
+            if (search && !collection.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (calcCollectionId && collection.id !== calcCollectionId) return false;
             return true;
           });
           return (
         <div className="space-y-4">
           {filtered.length === 0 && search && (
-            <p className="text-gray-500">No packs match &quot;{search}&quot;.</p>
+            <p className="text-gray-500">No collections match &quot;{search}&quot;.</p>
           )}
-          {filtered.map((pack) => (
-            <div key={pack.id} className="rounded-lg border border-gray-800 bg-gray-900 p-4">
+          {filtered.map((collection) => (
+            <div key={collection.id} className="rounded-lg border border-gray-800 bg-gray-900 p-4">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   <div>
-                    <h3 className="font-semibold text-gray-100">{pack.name}</h3>
-                    {pack.description && <p className="text-sm text-gray-500 mt-0.5">{pack.description}</p>}
+                    <h3 className="font-semibold text-gray-100">{collection.name}</h3>
+                    {collection.description && <p className="text-sm text-gray-500 mt-0.5">{collection.description}</p>}
                   </div>
-                  {calcPackId === pack.id && (
+                  {calcCollectionId === collection.id && (
                     <label className="flex items-center gap-1.5 text-xs text-gray-500 shrink-0">
-                      <span>Packs:</span>
+                      <span>Collections:</span>
                       <input
                         type="number"
                         min={1}
                         step={1}
                         className="input w-16 text-right py-0.5 text-xs"
-                        value={packsCount}
-                        onChange={(e) => setPacksCount(Math.max(1, Math.floor(Number(e.target.value) || 1)))}
+                        value={collectionsCount}
+                        onChange={(e) => setCollectionsCount(Math.max(1, Math.floor(Number(e.target.value) || 1)))}
                       />
                     </label>
                   )}
                 </div>
                 {(() => {
-                    const missing = pack.items.filter((pi) => !pi.item.isRawMaterial && !pi.item.isFound && pi.item.blueprints.length === 0);
+                    const missing = collection.items.filter((pi) => !pi.item.isRawMaterial && !pi.item.isFound && pi.item.blueprints.length === 0);
                     return missing.length > 0 ? (
                       <div className="flex items-center gap-1.5 rounded bg-yellow-900/30 border border-yellow-700/50 px-2 py-1 text-xs text-yellow-400">
                         <span>⚠</span>
@@ -183,17 +183,17 @@ export default function PacksTab() {
                   })()}
                 <div className="flex gap-2 shrink-0">
                   <button
-                    onClick={() => { setCalcPackId(calcPackId === pack.id ? null : pack.id); setPacksCount(1); }}
-                    className={`btn-sm ${calcPackId === pack.id ? "btn-primary" : ""}`}
+                    onClick={() => { setCalcCollectionId(calcCollectionId === collection.id ? null : collection.id); setCollectionsCount(1); }}
+                    className={`btn-sm ${calcCollectionId === collection.id ? "btn-primary" : ""}`}
                   >
-                    {calcPackId === pack.id ? "Hide Calc" : "Calculate"}
+                    {calcCollectionId === collection.id ? "Hide Calc" : "Calculate"}
                   </button>
-                  <button onClick={() => openEdit(pack)} className="btn-sm">Edit</button>
-                  <button onClick={() => remove(pack.id, pack.name)} className="btn-sm btn-danger">Del</button>
+                  <button onClick={() => openEdit(collection)} className="btn-sm">Edit</button>
+                  <button onClick={() => remove(collection.id, collection.name)} className="btn-sm btn-danger">Del</button>
                 </div>
               </div>
 
-              {calcPackId === pack.id && <PackCalculation packId={pack.id} refreshKey={refreshKey} ssuAddresses={ssuAddresses} packsCount={packsCount} />}
+              {calcCollectionId === collection.id && <CollectionCalculation collectionId={collection.id} refreshKey={refreshKey} ssuAddresses={ssuAddresses} collectionsCount={collectionsCount} />}
             </div>
           ))}
         </div>
@@ -204,11 +204,11 @@ export default function PacksTab() {
       {showForm && (
         <div className="modal-backdrop" onClick={() => setShowForm(false)}>
           <div className="modal w-full max-w-lg" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-lg font-bold mb-4">{editId ? "Edit Pack" : "New Pack"}</h2>
+            <h2 className="text-lg font-bold mb-4">{editId ? "Edit Collection" : "New Collection"}</h2>
             {error && <p className="text-red-400 text-sm mb-3">{error}</p>}
 
             <label className="block mb-3">
-              <span className="label">Pack Name</span>
+              <span className="label">Collection Name</span>
               <input className="input w-full mt-1" value={name} onChange={(e) => setName(e.target.value)} autoFocus />
             </label>
 
@@ -260,7 +260,7 @@ export default function PacksTab() {
       )}
 
       {showImport && (
-        <ImportPackModal
+        <ImportCollectionModal
           items={items}
           onClose={() => setShowImport(false)}
           onImported={load}

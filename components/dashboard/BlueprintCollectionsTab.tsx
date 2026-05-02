@@ -19,7 +19,7 @@ interface Blueprint {
 
 type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
-export default function BlueprintPacksTab() {
+export default function BlueprintCollectionsTab() {
   const { ssus } = useSsuList();
   const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
   const ssuAddresses = activeSsuAddresses(ssus);

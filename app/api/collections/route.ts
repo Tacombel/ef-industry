@@ -6,12 +6,12 @@ export async function GET() {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const packs = await prisma.pack.findMany({
+  const collections = await prisma.collection.findMany({
     where: { userId: session.userId },
     include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { select: { factory: true }, take: 1 } } } } } },
     orderBy: { name: "asc" },
   });
-  return NextResponse.json(packs);
+  return NextResponse.json(collections);
 }
 
 export async function POST(req: NextRequest) {
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const pack = await prisma.pack.create({
+    const collection = await prisma.collection.create({
       data: {
         name: name.trim(),
         description,
@@ -40,9 +40,9 @@ export async function POST(req: NextRequest) {
       },
       include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { select: { factory: true }, take: 1 } } } } } },
     });
-    return NextResponse.json(pack, { status: 201 });
+    return NextResponse.json(collection, { status: 201 });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Failed to create pack";
+    const message = err instanceof Error ? err.message : "Failed to create collection";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

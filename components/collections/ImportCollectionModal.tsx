@@ -12,7 +12,7 @@ interface ParsedRow {
 }
 
 interface Parsed {
-  packName: string;
+  collectionName: string;
   rows: ParsedRow[];
 }
 
@@ -24,7 +24,7 @@ function parseFit(text: string, items: Item[]): Parsed | null {
   if (!header) return null;
 
   const shipName = header[1].trim();
-  const packName = header[2].trim();
+  const collectionName = header[2].trim();
 
   const itemMap = new Map<string, Item>();
   for (const item of items) {
@@ -54,7 +54,7 @@ function parseFit(text: string, items: Item[]): Parsed | null {
     rows.push({ name, quantity, itemId: item?.id ?? "", found: !!item });
   }
 
-  return { packName, rows };
+  return { collectionName, rows };
 }
 
 interface Props {
@@ -63,7 +63,7 @@ interface Props {
   onImported: () => void;
 }
 
-export default function ImportPackModal({ items, onClose, onImported }: Props) {
+export default function ImportCollectionModal({ items, onClose, onImported }: Props) {
   const [text, setText] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -77,18 +77,18 @@ export default function ImportPackModal({ items, onClose, onImported }: Props) {
     if (!parsed || validRows.length === 0) return;
     setSaving(true);
     setError("");
-    const res = await fetch("/api/packs", {
+    const res = await fetch("/api/collections", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: parsed.packName,
+        name: parsed.collectionName,
         items: validRows.map((r) => ({ itemId: r.itemId, quantity: r.quantity })),
       }),
     });
     setSaving(false);
     if (!res.ok) {
       const data = await res.json();
-      setError(data.error ?? "Failed to create pack");
+      setError(data.error ?? "Failed to create collection");
       return;
     }
     onImported();
@@ -98,7 +98,7 @@ export default function ImportPackModal({ items, onClose, onImported }: Props) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal w-full max-w-lg" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-lg font-bold mb-4">Import pack from fit</h2>
+        <h2 className="text-lg font-bold mb-4">Import collection from fit</h2>
 
         <textarea
           className="input w-full font-mono text-xs h-48 resize-none mb-4"
@@ -111,7 +111,7 @@ export default function ImportPackModal({ items, onClose, onImported }: Props) {
         {parsed && (
           <div className="mb-4 space-y-2">
             <p className="text-sm text-gray-300">
-              Pack: <span className="font-medium text-gray-100">{parsed.packName}</span>
+              Collection: <span className="font-medium text-gray-100">{parsed.collectionName}</span>
             </p>
 
             {validRows.length > 0 && (
@@ -137,7 +137,7 @@ export default function ImportPackModal({ items, onClose, onImported }: Props) {
         )}
 
         {!parsed && text.trim() && (
-          <p className="text-xs text-red-400 mb-4">Could not parse fit. Make sure the first line is <code>[Ship, Pack name]</code></p>
+          <p className="text-xs text-red-400 mb-4">Could not parse fit. Make sure the first line is <code>[Ship, Collection name]</code></p>
         )}
 
         {error && <p className="text-red-400 text-sm mb-3">{error}</p>}

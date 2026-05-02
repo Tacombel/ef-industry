@@ -6,21 +6,21 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const pack = await prisma.pack.findUnique({
+  const collection = await prisma.collection.findUnique({
     where: { id: params.id },
     include: { items: { include: { item: true } } },
   });
 
-  if (!pack) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  if (pack.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  return NextResponse.json(pack);
+  if (!collection) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (collection.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  return NextResponse.json(collection);
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const existing = await prisma.pack.findUnique({ where: { id: params.id }, select: { userId: true } });
+  const existing = await prisma.collection.findUnique({ where: { id: params.id }, select: { userId: true } });
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
   if (existing.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
@@ -28,12 +28,12 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const { name, description, items } = body;
 
   try {
-    const pack = await prisma.$transaction(async (tx) => {
+    const collection = await prisma.$transaction(async (tx) => {
       if (items !== undefined) {
-        await tx.packItem.deleteMany({ where: { packId: params.id } });
+        await tx.collectionItem.deleteMany({ where: { packId: params.id } });
       }
 
-      return tx.pack.update({
+      return tx.collection.update({
         where: { id: params.id },
         data: {
           ...(name !== undefined && { name: name.trim() }),
@@ -50,9 +50,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
         include: { items: { include: { item: { include: { blueprints: { select: { factory: true }, take: 1 } } } } } },
       });
     });
-    return NextResponse.json(pack);
+    return NextResponse.json(collection);
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Failed to update pack";
+    const message = err instanceof Error ? err.message : "Failed to update collection";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
@@ -61,10 +61,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const existing = await prisma.pack.findUnique({ where: { id: params.id }, select: { userId: true } });
+  const existing = await prisma.collection.findUnique({ where: { id: params.id }, select: { userId: true } });
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
   if (existing.userId !== session.userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  await prisma.pack.delete({ where: { id: params.id } });
+  await prisma.collection.delete({ where: { id: params.id } });
   return NextResponse.json({ ok: true });
 }

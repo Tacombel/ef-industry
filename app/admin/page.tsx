@@ -70,7 +70,7 @@ export default function AdminPage() {
   }
 
   async function deleteUser(user: User) {
-    if (!confirm(`Delete user "${user.username}"? This will also delete all their stock and packs.`)) return;
+    if (!confirm(`Delete user "${user.username}"? This will also delete all their stock and collections.`)) return;
     setUserError("");
     const res = await fetch(`/api/admin/users/${user.id}`, { method: "DELETE" });
     if (!res.ok) {

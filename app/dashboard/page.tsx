@@ -7,16 +7,16 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const VaultLoginButton = dynamic(() => import("@/components/auth/VaultLoginButton"), { ssr: false });
-import BlueprintPacksTab from "@/components/dashboard/BlueprintPacksTab";
-import PacksTab from "@/components/dashboard/PacksTab";
+import BlueprintCollectionsTab from "@/components/dashboard/BlueprintCollectionsTab";
+import CollectionsTab from "@/components/dashboard/CollectionsTab";
 import DecompositionsTab from "@/components/dashboard/DecompositionsTab";
 import SsuTab from "@/components/dashboard/SsuTab";
 
-type TabType = 'blueprints' | 'packs' | 'decompositions' | 'ssu';
+type TabType = 'blueprints' | 'collections' | 'decompositions' | 'ssu';
 
 const tabConfig: Record<TabType, { label: string }> = {
   blueprints: { label: '📐 Blueprints' },
-  packs: { label: '🗃️ Packs' },
+  collections: { label: '🗃️ Collections' },
   decompositions: { label: '🔩 Decompositions' },
   ssu: { label: '🛰️ SSU Inventory' },
 };
@@ -160,8 +160,8 @@ export default function DashboardPage() {
 
       {/* Tab content area */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
-        {activeTab === 'blueprints' && <BlueprintPacksTab />}
-        {activeTab === 'packs' && <PacksTab />}
+        {activeTab === 'blueprints' && <BlueprintCollectionsTab />}
+        {activeTab === 'collections' && <CollectionsTab />}
         {activeTab === 'decompositions' && <DecompositionsTab />}
         {activeTab === 'ssu' && <SsuTab />}
       </div>

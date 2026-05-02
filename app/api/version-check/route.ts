@@ -43,8 +43,26 @@ export async function GET() {
     const data = await res.json();
     const remoteCommit: string = data.sha;
 
-    // In Docker we can't run git merge-base, so compare SHAs directly
-    const upToDate = localCommit === remoteCommit || localCommit.startsWith(remoteCommit) || remoteCommit.startsWith(localCommit);
+    if (localCommit === remoteCommit || localCommit.startsWith(remoteCommit) || remoteCommit.startsWith(localCommit)) {
+      return NextResponse.json({ upToDate: true, localCommit: localCommit.slice(0, 7), remoteCommit: remoteCommit.slice(0, 7) });
+    }
+
+    // Use GitHub compare to distinguish "local ahead" (no update) from "local behind" (update available)
+    const cmpRes = await fetch(
+      `https://api.github.com/repos/${REPO}/compare/${localCommit}...${remoteCommit}`,
+      { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 300 } }
+    );
+
+    let upToDate = false;
+    if (cmpRes.ok) {
+      const cmp = await cmpRes.json();
+      // status "ahead" means remote has commits local doesn't → update available
+      // status "behind" means local is ahead of remote → no update needed
+      upToDate = cmp.status !== "ahead";
+    } else if (cmpRes.status === 404) {
+      // localCommit not found on GitHub → local has unpushed commits → no update needed
+      upToDate = true;
+    }
 
     return NextResponse.json({
       upToDate,

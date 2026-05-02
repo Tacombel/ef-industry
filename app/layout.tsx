@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import UpdateBanner from "@/components/layout/UpdateBanner";
 import LegalModal from "@/components/layout/LegalModal";
 import Providers from "@/components/layout/Providers";
+import { getSession } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await getSession();
+  const isAdmin = session?.role === "ADMIN" || session?.role === "SUPERADMIN";
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full bg-gray-950 text-gray-100 antialiased`}>
@@ -26,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex h-full">
             <Sidebar />
             <div className="flex flex-1 flex-col overflow-hidden">
-              <UpdateBanner />
+              {isAdmin && <UpdateBanner />}
               <main className="flex-1 overflow-y-auto p-6">{children}</main>
             </div>
           </div>

@@ -15,7 +15,7 @@ function formatDuration(seconds: number): string {
   return `${s}s`;
 }
 
-export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses = [], packsCount = 1 }: { packId: string; refreshKey?: number; ssuAddresses?: string[]; packsCount?: number }) {
+export default function CollectionCalculation({ collectionId, refreshKey = 0, ssuAddresses = [], collectionsCount = 1 }: { collectionId: string; refreshKey?: number; ssuAddresses?: string[]; collectionsCount?: number }) {
   const ssuAddressesRef = useRef(ssuAddresses);
   useEffect(() => { ssuAddressesRef.current = ssuAddresses; }, [ssuAddresses]);
 
@@ -45,7 +45,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
     else localStorage.removeItem("miningRate");
   }
 
-  const packsCountRef = useRef(packsCount);
+  const collectionsCountRef = useRef(collectionsCount);
 
   const [ignoredItems, setIgnoredItems] = useState<Set<string>>(new Set());
   const ignoredRef = useRef(ignoredItems);
@@ -58,11 +58,11 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
     const params = new URLSearchParams();
     if (ignored.size > 0) params.set("ignore", [...ignored].join(","));
     if (ssuAddressesRef.current.length > 0) params.set("ssuAddresses", ssuAddressesRef.current.join(","));
-    if (packsCountRef.current > 1) params.set("packs", String(packsCountRef.current));
+    if (collectionsCountRef.current > 1) params.set("collections", String(collectionsCountRef.current));
     const overrides = [...factoryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
     if (overrides) params.set("factoryOverrides", overrides);
     const query = params.toString() ? `?${params.toString()}` : "";
-    fetch(`/api/packs/${packId}/calculate${query}`)
+    fetch(`/api/collections/${collectionId}/calculate${query}`)
       .then((r) => r.json())
       .then((data) => {
         if (data.error) {
@@ -78,7 +78,7 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
         setLoading(false);
         setRecalculating(false);
       });
-  }, [packId]);
+  }, [collectionId]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -100,11 +100,11 @@ export default function PackCalculation({ packId, refreshKey = 0, ssuAddresses =
   useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (result !== null) load(true); }, [ssuAddresses]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    packsCountRef.current = packsCount;
+    collectionsCountRef.current = collectionsCount;
     if (result === null) return;
     const t = setTimeout(() => load(true), 400);
     return () => clearTimeout(t);
-  }, [packsCount]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [collectionsCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function selectFactory(itemId: string, factory: string) {
     factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
