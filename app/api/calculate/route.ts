@@ -20,6 +20,10 @@ export async function GET(req: NextRequest) {
   const factoryOverrides = factoryOverridesParam
     ? new Map(factoryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
     : undefined;
+  const refineryOverridesParam = req.nextUrl.searchParams.get("refineryOverrides");
+  const refineryOverrides = refineryOverridesParam
+    ? new Map(refineryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
+    : undefined;
 
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
   const session = await getSession();
@@ -40,7 +44,7 @@ export async function GET(req: NextRequest) {
     const runs = Math.ceil(units / outputQty);
     const quantity = runs * outputQty;
 
-    const result = calculate([{ itemId, quantity }], itemMap, { excludedOreIds, factoryOverrides });
+    const result = calculate([{ itemId, quantity }], itemMap, { excludedOreIds, factoryOverrides, refineryOverrides });
 
     // Move the output item from intermediates to finalProducts
     result.intermediates = result.intermediates.filter((i) => i.itemId !== itemId);
@@ -54,6 +58,7 @@ export async function GET(req: NextRequest) {
         actualStock: outputItem?.stock ?? 0,
         factory: blueprint?.factory || undefined,
         availableFactories: (outputItem?.blueprints.length ?? 0) > 1 ? outputItem!.blueprints.map(b => b.factory) : undefined,
+        blueprintInputs: blueprint?.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
         ignored: false,
       },
     ];

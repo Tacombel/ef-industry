@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CalculationResult } from "@/lib/calculator";
 import OreSection from "@/components/common/OreSection";
+import RecipeTooltip from "@/components/common/RecipeTooltip";
 
 function formatDuration(seconds: number): string {
   const total = Math.round(seconds);
@@ -27,6 +28,8 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
   const [excludedOreIds, setExcludedOreIds] = useState<Set<string>>(new Set());
   const excludedOreIdsRef = useRef<Set<string>>(new Set());
   const factoryOverridesRef = useRef<Map<string, string>>(new Map());
+  const refineryOverridesRef = useRef<Map<string, string>>(new Map());
+  const [hoveredBadge, setHoveredBadge] = useState<string | null>(null);
   const [excludedOreNames, setExcludedOreNames] = useState<Map<string, string>>(new Map());
   const [cargoCapacity, setCargoCapacity] = useState<number>(() => {
     if (typeof window === "undefined") return 0;
@@ -64,7 +67,8 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
     const excluded = [...excludedOreIdsRef.current].join(",");
     const addrs = ssuAddressesRef.current.join(",");
     const overrides = [...factoryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
-    const url = `/api/calculate?itemId=${itemId}&units=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addrs ? `&ssuAddresses=${encodeURIComponent(addrs)}` : ""}${overrides ? `&factoryOverrides=${encodeURIComponent(overrides)}` : ""}`;
+    const refineryOverrides = [...refineryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
+    const url = `/api/calculate?itemId=${itemId}&units=${qty}${excluded ? `&excludedOres=${excluded}` : ""}${addrs ? `&ssuAddresses=${encodeURIComponent(addrs)}` : ""}${overrides ? `&factoryOverrides=${encodeURIComponent(overrides)}` : ""}${refineryOverrides ? `&refineryOverrides=${encodeURIComponent(refineryOverrides)}` : ""}`;
     fetch(url, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => {
@@ -114,6 +118,11 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
 
   function selectFactory(itemId: string, factory: string) {
     factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
+    load(true);
+  }
+
+  function selectRefinery(sourceItemId: string, refinery: string) {
+    refineryOverridesRef.current = new Map(refineryOverridesRef.current).set(sourceItemId, refinery);
     load(true);
   }
 
@@ -197,12 +206,34 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                     {row.itemName}
                     {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
                       (row.availableFactories?.length ?? 0) > 1 ? (
-                        <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
-                          className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
-                          {factory}
-                        </button>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <button onClick={() => selectFactory(row.itemId, factory)}
+                            className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                            {factory}
+                          </button>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.outputQty }]}
+                            />
+                          )}
+                        </span>
                       ) : (
-                        <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <span className="badge badge-blue ml-1.5">{factory}</span>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.outputQty }]}
+                            />
+                          )}
+                        </span>
                       )
                     )}
                   </td>
@@ -247,12 +278,34 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
                     <span>{row.itemName}</span>
                     {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
                       (row.availableFactories?.length ?? 0) > 1 ? (
-                        <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
-                          className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
-                          {factory}
-                        </button>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <button onClick={() => selectFactory(row.itemId, factory)}
+                            className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                            {factory}
+                          </button>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
+                            />
+                          )}
+                        </span>
                       ) : (
-                        <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <span className="badge badge-blue ml-1.5">{factory}</span>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
+                            />
+                          )}
+                        </span>
                       )
                     )}
                   </td>
@@ -352,6 +405,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
         miningRate={miningRate}
         onMiningRateChange={updateMiningRate}
         onExcludeOre={excludeOre}
+        onSelectRefinery={selectRefinery}
       />
 
       {result.rawMaterials.length === 0 && result.intermediates.length === 0 && (

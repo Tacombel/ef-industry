@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { DecompositionResult, RawMaterialResult } from "@/lib/calculator";
 import { computeOreSubstitution, type OreWithPico } from "@/lib/ore-optimization";
 import AsteroidTooltip from "@/components/common/AsteroidTooltip";
+import RecipeTooltip from "@/components/common/RecipeTooltip";
 
 interface OreSectionProps {
   decomps: DecompositionResult[];
@@ -14,6 +15,7 @@ interface OreSectionProps {
   miningRate: number;
   onMiningRateChange: (v: number) => void;
   onExcludeOre?: (id: string, name: string) => void;
+  onSelectRefinery?: (sourceItemId: string, refinery: string) => void;
 }
 
 function formatDuration(seconds: number): string {
@@ -36,8 +38,10 @@ export default function OreSection({
   miningRate,
   onMiningRateChange,
   onExcludeOre,
+  onSelectRefinery,
 }: OreSectionProps) {
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+  const [hoveredRefineryId, setHoveredRefineryId] = useState<string | null>(null);
 
   const foundDecomps = decomps.filter(d => !d.isUnrefined && d.sourceIsFound);
   const oreDecomps = decomps.filter(d => !d.isUnrefined && !d.sourceIsFound);
@@ -84,7 +88,30 @@ export default function OreSection({
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-xs font-medium text-gray-200 flex-1">
                     {d.sourceItemName}
-                    {d.refinery && <span className="badge ml-1.5 bg-amber-900/50 text-amber-400">{d.refinery}</span>}
+                    {d.refinery && (
+                      <span
+                        className="relative inline-block"
+                        onMouseEnter={() => setHoveredRefineryId(d.sourceItemId)}
+                        onMouseLeave={() => setHoveredRefineryId(null)}
+                      >
+                        {(d.availableRefineries ?? [d.refinery]).map(refinery =>
+                          (d.availableRefineries?.length ?? 0) > 1 ? (
+                            <button key={refinery} onClick={() => onSelectRefinery?.(d.sourceItemId, refinery)}
+                              className={`badge ml-1.5 ${refinery === d.refinery ? "bg-amber-900/50 text-amber-400" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-amber-900/30 hover:text-amber-400 transition-colors"}`}>
+                              {refinery}
+                            </button>
+                          ) : (
+                            <span key={refinery} className="badge ml-1.5 bg-amber-900/50 text-amber-400">{refinery}</span>
+                          )
+                        )}
+                        {hoveredRefineryId === d.sourceItemId && d.outputs.length > 0 && (
+                          <RecipeTooltip
+                            inputs={[{ name: d.sourceItemName, qty: d.inputQty }]}
+                            outputs={d.outputs.map(o => ({ name: o.itemName, qty: d.runs > 0 ? o.quantityObtained / d.runs : 0 }))}
+                          />
+                        )}
+                      </span>
+                    )}
                   </span>
                     <div className="flex flex-col gap-0.5 text-xs text-gray-500">
                       {d.directNeed ? (
@@ -246,7 +273,30 @@ export default function OreSection({
                     onMouseLeave={() => setHoveredItemId(null)}
                   >
                     {d.sourceItemName}
-                    {d.refinery && <span className="badge ml-1.5 bg-purple-900/50 text-purple-400">{d.refinery}</span>}
+                    {d.refinery && (
+                      <span
+                        className="relative inline-block"
+                        onMouseEnter={() => setHoveredRefineryId(d.sourceItemId)}
+                        onMouseLeave={() => setHoveredRefineryId(null)}
+                      >
+                        {(d.availableRefineries ?? [d.refinery]).map(refinery =>
+                          (d.availableRefineries?.length ?? 0) > 1 ? (
+                            <button key={refinery} onClick={() => onSelectRefinery?.(d.sourceItemId, refinery)}
+                              className={`badge ml-1.5 ${refinery === d.refinery ? "bg-purple-900/50 text-purple-400" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-purple-900/30 hover:text-purple-400 transition-colors"}`}>
+                              {refinery}
+                            </button>
+                          ) : (
+                            <span key={refinery} className="badge ml-1.5 bg-purple-900/50 text-purple-400">{refinery}</span>
+                          )
+                        )}
+                        {hoveredRefineryId === d.sourceItemId && d.outputs.length > 0 && (
+                          <RecipeTooltip
+                            inputs={[{ name: d.sourceItemName, qty: d.inputQty }]}
+                            outputs={d.outputs.map(o => ({ name: o.itemName, qty: d.runs > 0 ? o.quantityObtained / d.runs : 0 }))}
+                          />
+                        )}
+                      </span>
+                    )}
                     {d.asteroids?.length && <span className="ml-1 text-purple-400 text-xs">🪨</span>}
                     {isTarget && <span className="ml-1.5 text-yellow-500 text-xs">⚠ optimization candidate</span>}
                     {hoveredItemId === d.sourceItemId && d.asteroids?.length && (

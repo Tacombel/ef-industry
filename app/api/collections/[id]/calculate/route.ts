@@ -20,6 +20,10 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const factoryOverrides = factoryOverridesParam
     ? new Map(factoryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
     : undefined;
+  const refineryOverridesParam = req.nextUrl.searchParams.get("refineryOverrides");
+  const refineryOverrides = refineryOverridesParam
+    ? new Map(refineryOverridesParam.split("|").filter(Boolean).map(s => { const i = s.indexOf(":"); return [s.slice(0, i), s.slice(i + 1)] as [string, string]; }))
+    : undefined;
 
   const collection = await prisma.collection.findUnique({
     where: { id: params.id },
@@ -43,7 +47,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const result = calculate(
       activeItems.map((ci) => ({ itemId: ci.itemId, quantity: ci.quantity * collectionsCount })),
       itemMap,
-      { factoryOverrides }
+      { factoryOverrides, refineryOverrides }
     );
 
     result.intermediates = result.intermediates.filter((i) => !collectionItemIds.has(i.itemId));
@@ -64,6 +68,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         actualStock: item?.stock ?? 0,
         factory: blueprint?.factory || undefined,
         availableFactories: (item?.blueprints.length ?? 0) > 1 ? item!.blueprints.map(b => b.factory) : undefined,
+        blueprintInputs: blueprint?.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
         ignored: ignoredIds.has(ci.itemId),
       };
     });

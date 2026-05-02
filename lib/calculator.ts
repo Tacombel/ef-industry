@@ -64,6 +64,8 @@ export interface IntermediateResult {
   inStock: number;
   toProduce: number;
   blueprintRuns: number;
+  blueprintOutputQty: number;
+  blueprintInputs?: { itemId: string; itemName: string; quantity: number }[];
   factory: string;
   availableFactories?: string[];
   runTime?: number;
@@ -73,6 +75,7 @@ export interface DecompositionResult {
   sourceItemId: string;
   sourceItemName: string;
   refinery: string;
+  availableRefineries?: string[];
   unitsToDecompose: number;   // units that go into the refinery
   directNeed?: number;         // units needed directly (not decomposed) — consolidated from rawMaterials
   volumePerUnit: number;
@@ -107,6 +110,7 @@ export interface FinalProductResult {
   actualStock: number;
   factory?: string;
   availableFactories?: string[];
+  blueprintInputs?: { itemId: string; itemName: string; quantity: number }[];
   ignored?: boolean;
 }
 
@@ -138,8 +142,10 @@ function pickBlueprint(item: CalcItem, overrides?: Map<string, string>): CalcBlu
   return item.blueprints.find((b) => b.isDefault) ?? item.blueprints[0];
 }
 
-function pickDecomposition(item: CalcItem): CalcDecomposition | null {
+function pickDecomposition(item: CalcItem, overrides?: Map<string, string>): CalcDecomposition | null {
   if (item.decompositions.length === 0) return null;
+  const override = overrides?.get(item.id);
+  if (override) return item.decompositions.find(d => d.refinery === override) ?? item.decompositions.find(d => d.isDefault) ?? item.decompositions[0];
   return item.decompositions.find((d) => d.isDefault) ?? item.decompositions[0];
 }
 
@@ -231,7 +237,7 @@ function resolve(
 export function calculate(
   packItems: { itemId: string; quantity: number }[],
   itemMap: ItemMap,
-  options?: { excludedOreIds?: Set<string>; factoryOverrides?: Map<string, string> }
+  options?: { excludedOreIds?: Set<string>; factoryOverrides?: Map<string, string>; refineryOverrides?: Map<string, string> }
 ): CalculationResult {
   const demand: DemandMap = new Map();
   const grossDemand: DemandMap = new Map();
@@ -239,6 +245,7 @@ export function calculate(
   const factoryMap: FactoryMap = new Map();
   const stockSatisfied: Set<string> = new Set();
   const secondaryDecompRuns: Map<string, number> = new Map();
+  const pd = (item: CalcItem) => pickDecomposition(item, options?.refineryOverrides);
 
   for (const pi of packItems) {
     resolve(pi.itemId, pi.quantity, itemMap, demand, grossDemand, stockUsed, factoryMap, new Set(), stockSatisfied, secondaryDecompRuns, options?.factoryOverrides);
@@ -281,6 +288,8 @@ export function calculate(
         inStock,
         toProduce: needed,
         blueprintRuns: runs,
+        blueprintOutputQty: blueprint.outputQty,
+        blueprintInputs: blueprint.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
         factory: factoryMap.get(itemId) ?? blueprint.factory,
         availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
         runTime: blueprint.runTime,
@@ -305,6 +314,8 @@ export function calculate(
       inStock,
       toProduce: 0,
       blueprintRuns: 0,
+      blueprintOutputQty: blueprint.outputQty,
+      blueprintInputs: blueprint.inputs.map(i => ({ itemId: i.itemId, itemName: itemMap.get(i.itemId)?.name ?? i.itemId, quantity: i.quantity })),
       factory: factoryMap.get(itemId) ?? blueprint.factory,
       availableFactories: item.blueprints.length > 1 ? item.blueprints.map(b => b.factory) : undefined,
     });
@@ -358,7 +369,7 @@ export function calculate(
   const decompByOutput = new Map<string, CalcItem[]>();
   for (const item of itemMap.values()) {
     if (options?.excludedOreIds?.has(item.id)) continue;
-    const dec = pickDecomposition(item);
+    const dec = pd(item);
     if (!dec) continue;
     for (const out of dec.outputs) {
       const list = decompByOutput.get(out.itemId) ?? [];
@@ -383,11 +394,11 @@ export function calculate(
     const sources = decompByOutput.get(id) ?? [];
     if (sources.length === 0) return 0;
     const best = sources.reduce((b, s) => {
-      const bY = pickDecomposition(b)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
-      const sY = pickDecomposition(s)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      const bY = pd(b)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      const sY = pd(s)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
       return sY > bY ? s : b;
     });
-    const dec = pickDecomposition(best);
+    const dec = pd(best);
     if (!dec) return 0;
     return dec.outputs.filter((o) => o.itemId !== id && remaining.has(o.itemId)).length;
   };
@@ -415,12 +426,12 @@ export function calculate(
     const sources = decompByOutput.get(matId)!;
 
     const source = sources.reduce((best, s) => {
-      const bYield = pickDecomposition(best)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      const sYield = pickDecomposition(s)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const bYield = pd(best)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const sYield = pd(s)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
       return sYield > bYield ? s : best;
     });
 
-    const dec = pickDecomposition(source)!;
+    const dec = pd(source)!;
     const yieldPerRun = dec.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
     if (yieldPerRun <= 0) { remaining.delete(matId); continue; }
     const runsNeeded = Math.ceil(need / yieldPerRun);
@@ -471,7 +482,7 @@ export function calculate(
 
   const decompUnits = new Map<string, number>();
   for (const [sourceId, runs] of decompRuns) {
-    decompUnits.set(sourceId, runs * pickDecomposition(itemMap.get(sourceId)!)!.inputQty);
+    decompUnits.set(sourceId, runs * pd(itemMap.get(sourceId)!)!.inputQty);
   }
 
   // Second pass: items that appear in both rawMaterials (direct use) and decompUnits (decomp source)
@@ -486,7 +497,7 @@ export function calculate(
     // Subtract any of sourceId already produced as byproduct by existing ore runs
     let alreadyProduced = 0;
     for (const [oreId, oreRuns] of decompRuns) {
-      const oreDec = pickDecomposition(itemMap.get(oreId)!);
+      const oreDec = pd(itemMap.get(oreId)!);
       if (!oreDec) continue;
       const out = oreDec.outputs.find(o => o.itemId === sourceId);
       if (out) alreadyProduced += out.quantity * oreRuns;
@@ -497,11 +508,11 @@ export function calculate(
     const producers = decompByOutput.get(sourceId) ?? [];
     if (producers.length === 0) continue;
     const bestProducer = producers.reduce((best, s) => {
-      const bY = pickDecomposition(best)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
-      const sY = pickDecomposition(s)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
+      const bY = pd(best)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
+      const sY = pd(s)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
       return sY > bY ? s : best;
     });
-    const dec = pickDecomposition(bestProducer)!;
+    const dec = pd(bestProducer)!;
     const yieldPerRun = dec.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
     if (yieldPerRun <= 0) continue;
     const existingRuns = decompRuns.get(bestProducer.id) ?? 0;
@@ -511,7 +522,7 @@ export function calculate(
     const additionalRuns = Math.ceil(remainingShortfall / yieldPerRun);
     decompRuns.set(bestProducer.id, existingRuns + additionalRuns);
     decompUnits.set(bestProducer.id,
-      decompRuns.get(bestProducer.id)! * pickDecomposition(bestProducer)!.inputQty
+      decompRuns.get(bestProducer.id)! * pd(bestProducer)!.inputQty
     );
   }
 
@@ -546,7 +557,7 @@ export function calculate(
     for (const [oreId, currentRuns] of new Map(decompRuns)) {
       if (currentRuns === 0) { decompRuns.delete(oreId); continue; }
       const oreItem = itemMap.get(oreId)!;
-      const oreDec = pickDecomposition(oreItem)!;
+      const oreDec = pd(oreItem)!;
       let minRunsRequired = 0;
       for (const out of oreDec.outputs) {
         const effectiveNeed = effectiveNeedsForOutput.get(out.itemId) ?? 0;
@@ -555,7 +566,7 @@ export function calculate(
         let otherCoverage = 0;
         for (const [otherOreId, otherRuns] of decompRuns) {
           if (otherOreId === oreId) continue;
-          const otherDec = pickDecomposition(itemMap.get(otherOreId)!);
+          const otherDec = pd(itemMap.get(otherOreId)!);
           if (!otherDec) continue;
           const otherOut = otherDec.outputs.find(o => o.itemId === out.itemId);
           if (otherOut) otherCoverage += otherOut.quantity * otherRuns;
@@ -582,12 +593,13 @@ export function calculate(
 
   for (const [sourceItemId, unitsToDecompose] of decompUnits) {
     const source = itemMap.get(sourceItemId)!;
-    const dec = pickDecomposition(source)!;
+    const dec = pd(source)!;
     const runs = Math.ceil(unitsToDecompose / dec.inputQty);
     decompositions.push({
       sourceItemId,
       sourceItemName: source.name,
       refinery: dec.refinery,
+      availableRefineries: source.decompositions.length > 1 ? source.decompositions.map(d => d.refinery) : undefined,
       unitsToDecompose,
       volumePerUnit: source.volume,
       inputQty: dec.inputQty,
@@ -614,7 +626,7 @@ export function calculate(
     if (includedDecomps.has(row.itemId)) continue; // Already included
     const source = itemMap.get(row.itemId);
     if (!source) continue;
-    const dec = pickDecomposition(source);
+    const dec = pd(source);
     if (!dec) continue; // No decomposition available
 
     // Mark as unrefined: material is consumed directly without refining
@@ -622,6 +634,7 @@ export function calculate(
       sourceItemId: row.itemId,
       sourceItemName: row.itemName,
       refinery: dec.refinery,
+      availableRefineries: source.decompositions.length > 1 ? source.decompositions.map(d => d.refinery) : undefined,
       unitsToDecompose: 0,
       volumePerUnit: source.volume,
       inputQty: dec.inputQty,

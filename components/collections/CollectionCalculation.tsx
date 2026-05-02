@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CalculationResult } from "@/lib/calculator";
 import OreSection from "@/components/common/OreSection";
+import RecipeTooltip from "@/components/common/RecipeTooltip";
 
 function formatDuration(seconds: number): string {
   const total = Math.round(seconds);
@@ -24,6 +25,8 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
   const [loading, setLoading] = useState(true);
   const [recalculating, setRecalculating] = useState(false);
   const factoryOverridesRef = useRef<Map<string, string>>(new Map());
+  const refineryOverridesRef = useRef<Map<string, string>>(new Map());
+  const [hoveredBadge, setHoveredBadge] = useState<string | null>(null);
   const [cargoCapacity, setCargoCapacity] = useState<number>(() => {
     if (typeof window === "undefined") return 0;
     return Number(localStorage.getItem("cargoVolume") ?? 0);
@@ -61,6 +64,8 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
     if (collectionsCountRef.current > 1) params.set("collections", String(collectionsCountRef.current));
     const overrides = [...factoryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
     if (overrides) params.set("factoryOverrides", overrides);
+    const refineryOverrides = [...refineryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
+    if (refineryOverrides) params.set("refineryOverrides", refineryOverrides);
     const query = params.toString() ? `?${params.toString()}` : "";
     fetch(`/api/collections/${collectionId}/calculate${query}`)
       .then((r) => r.json())
@@ -108,6 +113,11 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
 
   function selectFactory(itemId: string, factory: string) {
     factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
+    load(true);
+  }
+
+  function selectRefinery(sourceItemId: string, refinery: string) {
+    refineryOverridesRef.current = new Map(refineryOverridesRef.current).set(sourceItemId, refinery);
     load(true);
   }
 
@@ -188,12 +198,34 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
                       {row.itemName}
                       {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
                         (row.availableFactories?.length ?? 0) > 1 ? (
-                          <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
-                            className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
-                            {factory}
-                          </button>
+                          <span key={factory} className="relative inline-block"
+                            onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                            onMouseLeave={() => setHoveredBadge(null)}
+                          >
+                            <button onClick={() => selectFactory(row.itemId, factory)}
+                              className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                              {factory}
+                            </button>
+                            {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                              <RecipeTooltip
+                                inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                                outputs={[{ name: row.itemName, qty: row.outputQty }]}
+                              />
+                            )}
+                          </span>
                         ) : (
-                          <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                          <span key={factory} className="relative inline-block"
+                            onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                            onMouseLeave={() => setHoveredBadge(null)}
+                          >
+                            <span className="badge badge-blue ml-1.5">{factory}</span>
+                            {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                              <RecipeTooltip
+                                inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                                outputs={[{ name: row.itemName, qty: row.outputQty }]}
+                              />
+                            )}
+                          </span>
                         )
                       )}
                     </td>
@@ -256,12 +288,34 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
                     <span>{row.itemName}</span>
                     {(row.availableFactories ?? (row.factory ? [row.factory] : [])).map(factory =>
                       (row.availableFactories?.length ?? 0) > 1 ? (
-                        <button key={factory} onClick={() => selectFactory(row.itemId, factory)}
-                          className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
-                          {factory}
-                        </button>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <button onClick={() => selectFactory(row.itemId, factory)}
+                            className={`badge ml-1.5 ${factory === row.factory ? "badge-blue" : "cursor-pointer bg-gray-700/60 text-gray-400 hover:bg-blue-900/50 hover:text-blue-400 transition-colors"}`}>
+                            {factory}
+                          </button>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
+                            />
+                          )}
+                        </span>
                       ) : (
-                        <span key={factory} className="badge badge-blue ml-1.5">{factory}</span>
+                        <span key={factory} className="relative inline-block"
+                          onMouseEnter={() => setHoveredBadge(`${row.itemId}:${factory}`)}
+                          onMouseLeave={() => setHoveredBadge(null)}
+                        >
+                          <span className="badge badge-blue ml-1.5">{factory}</span>
+                          {hoveredBadge === `${row.itemId}:${factory}` && row.blueprintInputs && (
+                            <RecipeTooltip
+                              inputs={row.blueprintInputs.map(i => ({ name: i.itemName, qty: i.quantity }))}
+                              outputs={[{ name: row.itemName, qty: row.blueprintOutputQty }]}
+                            />
+                          )}
+                        </span>
                       )
                     )}
                   </td>
@@ -332,6 +386,7 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         onCargoChange={updateCargoCapacity}
         miningRate={miningRate}
         onMiningRateChange={updateMiningRate}
+        onSelectRefinery={selectRefinery}
       />
 
       {result.rawMaterials.length === 0 && result.intermediates.length === 0 && (
