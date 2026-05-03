@@ -663,6 +663,22 @@ export function calculate(
     rawMaterials.splice(rawIdx, 1);
   }
 
+  // Update toBuy for raw materials that are covered as byproducts of scheduled ore decomps.
+  // The greedy resolves these in `remaining` but never writes back to rawMaterials[].toBuy.
+  for (const row of rawMaterials) {
+    if (row.toBuy <= 0) continue;
+    let byproductCoverage = 0;
+    for (const [oreId, runs] of decompRuns) {
+      const oreDec = pd(itemMap.get(oreId)!);
+      if (!oreDec) continue;
+      const out = oreDec.outputs.find(o => o.itemId === row.itemId);
+      if (out) byproductCoverage += out.quantity * runs;
+    }
+    if (byproductCoverage > 0) {
+      row.toBuy = Math.max(0, row.toBuy - byproductCoverage);
+    }
+  }
+
   decompositions.sort((a, b) => a.sourceItemName.localeCompare(b.sourceItemName));
   rawMaterials.sort((a, b) => a.itemName.localeCompare(b.itemName));
   intermediates.sort((a, b) => a.itemName.localeCompare(b.itemName));

@@ -425,8 +425,8 @@ describe("factory overrides", () => {
     const localMap = buildItemMap([ore, foundA, foundB, product]);
     const result = calculate([{ itemId: "product2", quantity: 1 }], localMap);
 
-    // foundB: toBuy=6 (not satisfied from stock)
-    expect(result.rawMaterials.find(r => r.itemId === "foundB")?.toBuy).toBe(6);
+    // foundB: fully produced by foundA decomp (2 runs × 3 = 6) → toBuy=0
+    expect(result.rawMaterials.find(r => r.itemId === "foundB")?.toBuy).toBe(0);
 
     // level-1 decomp: foundA (isFound) → foundB — 2 runs (6 foundB needed, 3/run)
     const foundADecomp = result.decompositions.find(d => d.sourceItemId === "foundA");
@@ -440,4 +440,34 @@ describe("factory overrides", () => {
     expect(oreDecomp!.sourceIsFound).toBeFalsy();
     expect(oreDecomp!.runs).toBe(1);
   });
+
+  // ── Stale toBuy after greedy ──────────────────────────────────────────────
+
+  it("raw material covered as ore byproduct shows toBuy=0, not stale", () => {
+    // oreB decomposes: 1 run → matA×10 + matC×3
+    // Product needs matA×10 + matC×6 → 2 runs of oreB → byproduct matA×20 ≥ 10 needed
+    // matA.toBuy must be 0 after greedy (not stale 10)
+    const oreB = makeItem({
+      id: "oreB", name: "Ore B", isRawMaterial: true,
+      decompositions: [{ id: "dec_B", refinery: "Refinery", inputQty: 1, isDefault: true,
+        outputs: [{ itemId: "matA", quantity: 10 }, { itemId: "matC", quantity: 3 }],
+      }],
+    });
+    const matA = makeItem({ id: "matA", name: "Mat A", isRawMaterial: true });
+    const matC = makeItem({ id: "matC", name: "Mat C", isRawMaterial: true });
+    const product = makeItem({
+      id: "product", name: "Product",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "matA", quantity: 10 }, { itemId: "matC", quantity: 6 }],
+      }],
+    });
+    const itemMap = buildItemMap([oreB, matA, matC, product]);
+    const result = calculate([{ itemId: "product", quantity: 1 }], itemMap);
+
+    // matC drives 2 runs of oreB → byproduct matA×20 covers matA's need of 10
+    const a = result.rawMaterials.find(r => r.itemId === "matA");
+    expect(a?.totalNeeded).toBe(10);
+    expect(a?.toBuy).toBe(0);
+  });
+
 });
