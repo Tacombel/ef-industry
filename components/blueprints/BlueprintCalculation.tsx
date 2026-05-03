@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { CalculationResult } from "@/lib/calculator";
 import OreSection from "@/components/common/OreSection";
 import RecipeTooltip from "@/components/common/RecipeTooltip";
+import { useSession } from "@/hooks/useSession";
 
 function formatDuration(seconds: number): string {
   const total = Math.round(seconds);
@@ -52,6 +53,9 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
     else localStorage.removeItem("miningRate");
   }
 
+  const { isLoggedIn, isLoading: sessionLoading } = useSession();
+  const [prefsReady, setPrefsReady] = useState(false);
+
   const quantityRef = useRef(quantity);
   const abortRef = useRef<AbortController | null>(null);
 
@@ -88,7 +92,20 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
       });
   }, [itemId]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    if (sessionLoading) return;
+    if (!isLoggedIn) { setPrefsReady(true); return; }
+    fetch("/api/preferences")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.factory) factoryOverridesRef.current = new Map(Object.entries(data.factory));
+        if (data?.refinery) refineryOverridesRef.current = new Map(Object.entries(data.refinery));
+      })
+      .catch(() => {})
+      .finally(() => setPrefsReady(true));
+  }, [sessionLoading, isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => { if (prefsReady) load(); }, [prefsReady]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (result !== null) load(true); }, [ssuAddresses]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -119,11 +136,25 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
   function selectFactory(itemId: string, factory: string) {
     factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
     load(true);
+    if (isLoggedIn) {
+      fetch("/api/preferences", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId, preferenceType: "factory", value: factory }),
+      }).catch(() => {});
+    }
   }
 
   function selectRefinery(sourceItemId: string, refinery: string) {
     refineryOverridesRef.current = new Map(refineryOverridesRef.current).set(sourceItemId, refinery);
     load(true);
+    if (isLoggedIn) {
+      fetch("/api/preferences", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId: sourceItemId, preferenceType: "refinery", value: refinery }),
+      }).catch(() => {});
+    }
   }
 
   if (loading) return <p className="text-gray-500 text-sm">Calculating…</p>;
