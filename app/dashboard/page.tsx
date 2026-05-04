@@ -48,6 +48,15 @@ export default function DashboardPage() {
         setUsername(data?.username ?? null);
         setCharacterName(data?.characterName ?? null);
         setRole(data?.role ?? null);
+        if (data?.username) {
+          fetch("/api/preferences")
+            .then((r) => r.ok ? r.json() : null)
+            .then((prefs) => {
+              const saved = prefs?.ui?.activeTab;
+              if (saved && saved in tabConfig) setActiveTab(saved as TabType);
+            })
+            .catch(() => {});
+        }
       })
       .catch(() => {
         setUsername(null);
@@ -119,7 +128,16 @@ export default function DashboardPage() {
           {(Object.keys(tabConfig) as TabType[]).map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => {
+                setActiveTab(tab);
+                if (username) {
+                  fetch("/api/preferences", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ itemId: "activeTab", preferenceType: "ui", value: tab }),
+                  }).catch(() => {});
+                }
+              }}
               className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
                 activeTab === tab
                   ? 'text-cyan-300 border-cyan-400 bg-cyan-900/30'

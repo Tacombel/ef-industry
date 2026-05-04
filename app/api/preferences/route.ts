@@ -13,12 +13,14 @@ export async function GET() {
 
   const factory: Record<string, string> = {};
   const refinery: Record<string, string> = {};
+  const ui: Record<string, string> = {};
   for (const row of rows) {
     if (row.preferenceType === "factory") factory[row.itemId] = row.value;
     else if (row.preferenceType === "refinery") refinery[row.itemId] = row.value;
+    else if (row.preferenceType === "ui") ui[row.itemId] = row.value;
   }
 
-  return NextResponse.json({ factory, refinery });
+  return NextResponse.json({ factory, refinery, ui });
 }
 
 export async function POST(req: NextRequest) {
@@ -30,8 +32,8 @@ export async function POST(req: NextRequest) {
 
   if (typeof itemId !== "string" || !itemId)
     return NextResponse.json({ error: "itemId required" }, { status: 400 });
-  if (preferenceType !== "factory" && preferenceType !== "refinery")
-    return NextResponse.json({ error: "preferenceType must be factory or refinery" }, { status: 400 });
+  if (preferenceType !== "factory" && preferenceType !== "refinery" && preferenceType !== "ui")
+    return NextResponse.json({ error: "preferenceType must be factory, refinery or ui" }, { status: 400 });
   if (typeof value !== "string" || !value)
     return NextResponse.json({ error: "value required" }, { status: 400 });
 

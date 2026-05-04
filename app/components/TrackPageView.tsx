@@ -7,7 +7,7 @@ export default function TrackPageView() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith("/admin")) return;
+    if (pathname === "/" || pathname.startsWith("/admin")) return;
 
     fetch("/api/track", {
       method: "POST",
