@@ -257,6 +257,41 @@ export default function OreSection({
       )}
 
       <div className="space-y-2">
+        {directOres.filter((r) => r.toBuy > 0).map((r) => (
+          <div key={r.itemId} className="rounded border border-gray-800 bg-gray-800/40 p-3">
+            <div className="flex items-center gap-3">
+              <span
+                className="relative flex items-center gap-1 flex-1"
+                onMouseEnter={() => r.asteroids?.length && setHoveredItemId(r.itemId)}
+                onMouseLeave={() => setHoveredItemId(null)}
+              >
+                <span className={`text-xs font-medium text-gray-200 ${r.asteroids?.length ? "cursor-help" : ""}`}>
+                  {r.itemName}
+                </span>
+                {r.asteroids?.length && <span className="text-purple-400 text-xs">🪨</span>}
+                {hoveredItemId === r.itemId && r.asteroids?.length && (
+                  <AsteroidTooltip asteroids={r.asteroids} />
+                )}
+              </span>
+              <span className="text-xs text-gray-500">
+                Mine <span className="text-purple-300 font-semibold">{r.totalNeeded}</span> units
+              </span>
+              <span className="text-xs text-gray-300 font-medium w-24 text-right">{r.actualStock}</span>
+              <span className="text-xs text-gray-600">in stock</span>
+              <div className="flex flex-col items-end w-32">
+                <span className="text-xs font-semibold text-red-400">⛏ {r.toBuy}</span>
+                {cargoCapacity > 0 && r.volume > 0 && (() => {
+                  const trips = Math.ceil((r.toBuy * r.volume) / cargoCapacity);
+                  return <span className="text-xs text-blue-400">{trips} trip{trips !== 1 ? "s" : ""}</span>;
+                })()}
+                {miningRate > 0 && r.volume > 0 && (() => {
+                  const secs = (r.toBuy * r.volume) / miningRate;
+                  return <span className="text-xs text-cyan-400">{formatDuration(secs)}</span>;
+                })()}
+              </div>
+            </div>
+          </div>
+        ))}
         {oreDecomps.map((d) => {
           const op = picoMap.get(d.sourceItemId);
           const isTarget = suggestion?.target.d.sourceItemId === d.sourceItemId;
