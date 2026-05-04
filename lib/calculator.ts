@@ -430,10 +430,16 @@ export function calculate(
 
     const sources = decompByOutput.get(matId)!;
 
+    // Pick the source that requires the fewest ore units to cover `need`.
+    // ceil(need / yieldPerRun) * inputQty gives the actual units to mine — lower is better.
     const source = sources.reduce((best, s) => {
-      const bYield = pd(best)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      const sYield = pd(s)?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      return sYield > bYield ? s : best;
+      const bDec = pd(best);
+      const sDec = pd(s);
+      const bYield = bDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const sYield = sDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const bUnits = bYield > 0 ? Math.ceil(need / bYield) * (bDec?.inputQty ?? 1) : Infinity;
+      const sUnits = sYield > 0 ? Math.ceil(need / sYield) * (sDec?.inputQty ?? 1) : Infinity;
+      return sUnits < bUnits ? s : best;
     });
 
     const dec = pd(source)!;

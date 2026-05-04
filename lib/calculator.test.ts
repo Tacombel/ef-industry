@@ -441,6 +441,38 @@ describe("factory overrides", () => {
     expect(oreDecomp!.runs).toBe(1);
   });
 
+  // ── Greedy picks ore with fewest units to mine, not highest yield/run ────
+
+  it("greedy picks ore with fewer units to mine even if it has lower yield/run", () => {
+    // oreHigh: inputQty=100, yields matX×10/run → need 3 matX → ceil(3/10)*100 = 100 units
+    // oreLow:  inputQty=20,  yields matX×4/run  → need 3 matX → ceil(3/4)*20  = 20 units
+    // Greedy must pick oreLow (20 < 100), NOT oreHigh (higher yield but more units)
+    const oreHigh = makeItem({
+      id: "oreHigh", name: "Ore High", isRawMaterial: true,
+      decompositions: [{ id: "dec_high", refinery: "R", inputQty: 100, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 10 }] }],
+    });
+    const oreLow = makeItem({
+      id: "oreLow", name: "Ore Low", isRawMaterial: true,
+      decompositions: [{ id: "dec_low", refinery: "R", inputQty: 20, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 4 }] }],
+    });
+    const matX = makeItem({ id: "matX", name: "Mat X", isRawMaterial: true });
+    const product = makeItem({
+      id: "product", name: "Product",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "matX", quantity: 3 }] }],
+    });
+    const itemMap = buildItemMap([oreHigh, oreLow, matX, product]);
+    const result = calculate([{ itemId: "product", quantity: 1 }], itemMap);
+
+    const high = result.decompositions.find(d => d.sourceItemId === "oreHigh");
+    const low  = result.decompositions.find(d => d.sourceItemId === "oreLow");
+    // oreLow should be chosen (20 units) — oreHigh should not appear
+    expect(low?.unitsToDecompose).toBeGreaterThan(0);
+    expect(high?.unitsToDecompose ?? 0).toBe(0);
+  });
+
   // ── Stale toBuy after greedy ──────────────────────────────────────────────
 
   it("raw material covered as ore byproduct shows toBuy=0, not stale", () => {
