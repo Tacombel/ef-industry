@@ -386,8 +386,8 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
                   <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>
-                  <td className={`py-1 text-right font-semibold ${row.toBuy > 0 ? "text-red-400" : "text-green-400"}`}>
-                    {row.toBuy > 0 ? row.toBuy : "✓"}
+                  <td className={`py-1 text-right font-semibold ${row.toBuy > 0 ? "text-red-400" : row.actualStock >= row.totalNeeded ? "text-green-400" : "text-cyan-400"}`}>
+                    {row.toBuy > 0 ? row.toBuy : row.actualStock >= row.totalNeeded ? "✓" : row.totalNeeded - row.actualStock}
                   </td>
                   <td />
                 </tr>
