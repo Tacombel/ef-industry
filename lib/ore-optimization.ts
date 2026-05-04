@@ -1,7 +1,5 @@
 import type { DecompositionResult } from "./calculator";
 
-const EPSILON = 0.0001;
-
 /**
  * Computes trip count, pico (volume used in last partial trip), and spare
  * (volume of additional same-ore units that could fit in that last trip)
