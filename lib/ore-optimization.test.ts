@@ -87,6 +87,50 @@ describe("computeOreSubstitution", () => {
     expect(result!.target.trips).toBe(2);
   });
 
+  it("neededIds must use totalNeeded (not toBuy) to avoid false 'remove all trips' suggestion", () => {
+    // Scenario (regression for v1.51.1 / af3f1f1):
+    //   ore1: 232 units × 1m³ = 232m³, cargo=100 → 3 trips, pico=32m³, spare=68m³
+    //         outputs matA×232
+    //   ore2: 200 units × 1m³ = 200m³, cargo=100 → 2 full trips, pico=0, spare=0
+    //         outputs matA×200
+    //
+    // ore1 is the only candidate (ore2 has no pico/spare).
+    //
+    // With neededIds = {matA} (totalNeeded>0 — correct):
+    //   remaining = {matA: 232}; provider = ore2 (no spare) → extraTrips=3; net=0 → null ✓
+    //
+    // With neededIds = {} (toBuy=0 — the bug: matA had toBuy=0 because ore1 was covering it):
+    //   remaining = {}; feasible trivially; adjustments=[]; net=3 → false suggestion to remove
+    //   all 3 trips from ore1 with zero redistribution cost.
+    const decomps = [
+      makeDecomp({
+        sourceItemId: "ore1",
+        unitsToDecompose: 232,
+        volumePerUnit: 1,
+        inputQty: 1,
+        runs: 232,
+        outputs: [{ itemId: "matA", itemName: "Mat A", quantityObtained: 232 }],
+      }),
+      makeDecomp({
+        sourceItemId: "ore2",
+        unitsToDecompose: 200,
+        volumePerUnit: 1,
+        inputQty: 1,
+        runs: 200,
+        outputs: [{ itemId: "matA", itemName: "Mat A", quantityObtained: 200 }],
+      }),
+    ];
+
+    // Correct: neededIds contains matA (totalNeeded > 0) → no beneficial optimization
+    expect(computeOreSubstitution(decomps, 100, undefined, new Set(["matA"]))).toBeNull();
+
+    // Bug: neededIds empty (toBuy=0 because ore1 already covers matA) → false positive
+    const bug = computeOreSubstitution(decomps, 100, undefined, new Set());
+    expect(bug).not.toBeNull();
+    expect(bug!.adjustments).toHaveLength(0); // no real redistribution — cost is fiction
+    expect(bug!.target.trips).toBe(3);        // all 3 trips, not just the partial one
+  });
+
   it("respects toMineMap for trip calculations", () => {
     // ore1 has 75 total but 50 in stock → only 25 to mine → 1 trip (25/50 < 1, ceil=1)
     // ore2 has 200 total, 0 stock → 4 trips
