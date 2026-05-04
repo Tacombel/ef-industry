@@ -46,3 +46,8 @@ next-env.d.ts
 prisma/ssh/
 prisma/backup_remote.json
 prisma/backups/
+
+# project notes & session logs
+mejoras.md
+resumen.md
+docs/sesiones/
