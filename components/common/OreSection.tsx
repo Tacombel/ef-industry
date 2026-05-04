@@ -404,41 +404,45 @@ export default function OreSection({
         })}
       </div>
 
-      {oreDecomps.length > 0 && (
-        <div className="mt-2 flex flex-col items-end gap-0.5">
-          <span className="text-sm text-gray-400">
-            Total ore to decompose:{" "}
-            <span className="text-purple-300 font-bold">
-              {oreDecomps.reduce((sum, d) => sum + d.unitsToDecompose, 0).toLocaleString()}
-            </span>{" "}
-            units
-          </span>
-          {cargoCapacity > 0 && (() => {
-            const totalTrips = oreDecomps.reduce((sum, d) => {
+      {oreDecomps.length > 0 && (() => {
+        const totalVolume = oreDecomps.reduce((sum, d) => {
+          const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
+          return sum + unitsToMine * d.volumePerUnit;
+        }, 0);
+        const totalTrips = cargoCapacity > 0
+          ? oreDecomps.reduce((sum, d) => {
               const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
               if (unitsToMine === 0) return sum;
               return sum + Math.ceil((unitsToMine * d.volumePerUnit) / cargoCapacity);
-            }, 0);
-            return (
+            }, 0)
+          : null;
+        return (
+          <div className="mt-2 flex flex-col items-end gap-0.5">
+            <span className="text-sm text-gray-400">
+              Total ore to decompose:{" "}
+              <span className="text-purple-300 font-bold">
+                {oreDecomps.reduce((sum, d) => sum + d.unitsToDecompose, 0).toLocaleString()}
+              </span>{" "}
+              units
+            </span>
+            <span className="text-sm text-gray-400">
+              Total volume to transport:{" "}
+              <span className="text-purple-300 font-bold">{totalVolume.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>{" "}
+              m³
+            </span>
+            {totalTrips !== null && (
               <span className="text-sm text-gray-400">
                 Total trips: <span className="text-blue-400 font-bold">{totalTrips}</span>
               </span>
-            );
-          })()}
-          {miningRate > 0 && (() => {
-            const totalVolume = oreDecomps.reduce((sum, d) => {
-              const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
-              return sum + unitsToMine * d.volumePerUnit;
-            }, 0);
-            const miningSeconds = totalVolume / miningRate;
-            return (
+            )}
+            {miningRate > 0 && (
               <span className="text-sm text-gray-400">
-                Mining time: <span className="text-cyan-300 font-bold">{formatDuration(miningSeconds)}</span>
+                Mining time: <span className="text-cyan-300 font-bold">{formatDuration(totalVolume / miningRate)}</span>
               </span>
-            );
-          })()}
-        </div>
-      )}
+            )}
+          </div>
+        );
+      })()}
       </div>
       )}
     </div>
