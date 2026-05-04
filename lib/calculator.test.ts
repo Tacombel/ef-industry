@@ -506,6 +506,40 @@ describe("factory overrides", () => {
     expect(a?.unitsToDecompose ?? 0).toBe(0);
   });
 
+  it("greedy prefers ore with more valuable byproducts when mining costs are similar", () => {
+    // oreA: 10 runs → 100 matX + 40 matY. Cost 1000 m³. Still need 10 matY from another source.
+    // oreB: 10 runs → 100 matX + 60 matY. Cost 1000 m³. Byproducts cover all matY (60 ≥ 50).
+    // Both cost the same for matX alone, but oreB's byproducts cover more matY → must be chosen.
+    const oreA = makeItem({
+      id: "oreA", name: "Ore A", isRawMaterial: true, volume: 1,
+      decompositions: [{ id: "decA", refinery: "R", inputQty: 100, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 10 }, { itemId: "matY", quantity: 4 }],
+      }],
+    });
+    const oreB = makeItem({
+      id: "oreB", name: "Ore B", isRawMaterial: true, volume: 1,
+      decompositions: [{ id: "decB", refinery: "R", inputQty: 100, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 10 }, { itemId: "matY", quantity: 6 }],
+      }],
+    });
+    const matX = makeItem({ id: "matX", name: "Mat X", isRawMaterial: true, volume: 1 });
+    const matY = makeItem({ id: "matY", name: "Mat Y", isRawMaterial: true, volume: 1 });
+    const product = makeItem({
+      id: "product", name: "Product",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "matX", quantity: 100 }, { itemId: "matY", quantity: 50 }],
+      }],
+    });
+    const itemMap = buildItemMap([oreA, oreB, matX, matY, product]);
+    const result = calculate([{ itemId: "product", quantity: 1 }], itemMap);
+
+    const a = result.decompositions.find(d => d.sourceItemId === "oreA");
+    const b = result.decompositions.find(d => d.sourceItemId === "oreB");
+    // oreB must be chosen — its byproducts cover all matY, single ore solution
+    expect(b?.unitsToDecompose).toBeGreaterThan(0);
+    expect(a?.unitsToDecompose ?? 0).toBe(0);
+  });
+
   // ── Stale toBuy after greedy ──────────────────────────────────────────────
 
   it("raw material covered as ore byproduct shows toBuy=0, not stale", () => {

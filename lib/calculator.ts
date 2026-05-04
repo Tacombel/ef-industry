@@ -237,6 +237,239 @@ function resolve(
   }
 }
 
+/**
+ * Run the greedy ore decomposition algorithm and return the scheduled ore runs.
+ * Extractable so it can be re-run with different exclusion sets for optimization.
+ */
+function runGreedyDecomp(
+  itemMap: ItemMap,
+  rawMaterials: RawMaterialResult[],
+  pd: (item: CalcItem) => CalcDecomposition | null,
+  excludedOreIds: Set<string>
+): Map<string, number> {
+  const decompByOutput = new Map<string, CalcItem[]>();
+  for (const item of itemMap.values()) {
+    if (excludedOreIds.has(item.id)) continue;
+    const dec = pd(item);
+    if (!dec) continue;
+    for (const out of dec.outputs) {
+      const list = decompByOutput.get(out.itemId) ?? [];
+      list.push(item);
+      decompByOutput.set(out.itemId, list);
+    }
+  }
+
+  const remaining = new Map<string, number>();
+  for (const row of rawMaterials) {
+    if (row.toBuy > 0) remaining.set(row.itemId, row.toBuy);
+  }
+  const initialRemaining = new Map(remaining);
+
+  const decompRuns = new Map<string, number>();
+  const surplus = new Map<string, number>();
+
+  const getBestSourceCoverage = (id: string) => {
+    const sources = decompByOutput.get(id) ?? [];
+    if (sources.length === 0) return 0;
+    const best = sources.reduce((b, s) => {
+      const bY = pd(b)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      const sY = pd(s)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
+      return sY > bY ? s : b;
+    });
+    const dec = pd(best);
+    if (!dec) return 0;
+    return dec.outputs.filter((o) => o.itemId !== id && remaining.has(o.itemId)).length;
+  };
+
+  while (remaining.size > 0) {
+    let matId = "";
+    let fewest = Infinity;
+    let bestCoverage = -1;
+    for (const id of remaining.keys()) {
+      const count = (decompByOutput.get(id) ?? []).length;
+      if (count === 0) { remaining.delete(id); continue; }
+      const coverage = getBestSourceCoverage(id);
+      if (count < fewest || (count === fewest && coverage > bestCoverage)) {
+        fewest = count; matId = id; bestCoverage = coverage;
+      }
+    }
+    if (!matId || !remaining.has(matId)) break;
+
+    const available = surplus.get(matId) ?? 0;
+    const need = Math.max(0, remaining.get(matId)! - available);
+    if (available > 0) surplus.set(matId, Math.max(0, available - remaining.get(matId)!));
+    if (need <= 0) { remaining.delete(matId); continue; }
+
+    const sources = decompByOutput.get(matId)!;
+
+    const source = sources.reduce((best, s) => {
+      const bDec = pd(best);
+      const sDec = pd(s);
+      const bYield = bDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const sYield = sDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+      const bRuns = Math.ceil(need / bYield);
+      const sRuns = Math.ceil(need / sYield);
+      const bVol = bYield > 0 ? bRuns * (bDec?.inputQty ?? 1) * best.volume : Infinity;
+      const sVol = sYield > 0 ? sRuns * (sDec?.inputQty ?? 1) * s.volume : Infinity;
+
+      let bNet = bVol, sNet = sVol;
+      for (const o of (bDec?.outputs ?? [])) {
+        if (o.itemId === matId) continue;
+        const rem = remaining.get(o.itemId);
+        if (rem) bNet -= Math.min(rem, o.quantity * bRuns) * (itemMap.get(o.itemId)?.volume ?? 0);
+      }
+      for (const o of (sDec?.outputs ?? [])) {
+        if (o.itemId === matId) continue;
+        const rem = remaining.get(o.itemId);
+        if (rem) sNet -= Math.min(rem, o.quantity * sRuns) * (itemMap.get(o.itemId)?.volume ?? 0);
+      }
+
+      return sNet < bNet ? s : best;
+    });
+
+    const dec = pd(source)!;
+    const yieldPerRun = dec.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
+    if (yieldPerRun <= 0) { remaining.delete(matId); continue; }
+    const runsNeeded = Math.ceil(need / yieldPerRun);
+
+    decompRuns.set(source.id, (decompRuns.get(source.id) ?? 0) + runsNeeded);
+    remaining.delete(matId);
+
+    const unitsConsumed = runsNeeded * dec.inputQty;
+    if (remaining.has(source.id)) {
+      const newSourceNeed = remaining.get(source.id)! - unitsConsumed;
+      if (newSourceNeed <= 0) {
+        surplus.set(source.id, (surplus.get(source.id) ?? 0) + Math.abs(newSourceNeed));
+        remaining.delete(source.id);
+      } else {
+        remaining.set(source.id, newSourceNeed);
+      }
+    } else if (!source.isRawMaterial) {
+      const surplusAvail = surplus.get(source.id) ?? 0;
+      const stillNeeded = Math.max(0, unitsConsumed - source.stock - surplusAvail);
+      if (stillNeeded > 0) {
+        remaining.set(source.id, stillNeeded);
+      } else {
+        surplus.set(source.id, Math.max(0, surplusAvail - Math.max(0, unitsConsumed - source.stock)));
+      }
+    }
+
+    for (const out of dec.outputs) {
+      if (out.itemId === matId) continue;
+      const produced = out.quantity * runsNeeded;
+      if (remaining.has(out.itemId)) {
+        const newNeed = remaining.get(out.itemId)! - produced;
+        if (newNeed <= 0) {
+          surplus.set(out.itemId, (surplus.get(out.itemId) ?? 0) + Math.abs(newNeed));
+          remaining.delete(out.itemId);
+        } else {
+          remaining.set(out.itemId, newNeed);
+        }
+      } else {
+        surplus.set(out.itemId, (surplus.get(out.itemId) ?? 0) + produced);
+      }
+    }
+  }
+
+  const decompUnits = new Map<string, number>();
+  for (const [sourceId, runs] of decompRuns) {
+    decompUnits.set(sourceId, runs * pd(itemMap.get(sourceId)!)!.inputQty);
+  }
+
+  // Second pass: combined shortfalls
+  const rawByItemId = new Map(rawMaterials.map(r => [r.itemId, r]));
+  for (const [sourceId, unitsForDecomp] of new Map(decompUnits)) {
+    const raw = rawByItemId.get(sourceId);
+    if (!raw) continue;
+    const source = itemMap.get(sourceId)!;
+
+    let alreadyProduced = 0;
+    for (const [oreId, oreRuns] of decompRuns) {
+      const oreDec = pd(itemMap.get(oreId)!);
+      if (!oreDec) continue;
+      const out = oreDec.outputs.find(o => o.itemId === sourceId);
+      if (out) alreadyProduced += out.quantity * oreRuns;
+    }
+
+    const shortfall = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock - alreadyProduced);
+    if (shortfall <= 0) continue;
+    const producers = decompByOutput.get(sourceId) ?? [];
+    if (producers.length === 0) continue;
+    const bestProducer = producers.reduce((best, s) => {
+      const bY = pd(best)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
+      const sY = pd(s)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
+      return sY > bY ? s : best;
+    });
+    const dec = pd(bestProducer)!;
+    const yieldPerRun = dec.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
+    if (yieldPerRun <= 0) continue;
+    const existingRuns = decompRuns.get(bestProducer.id) ?? 0;
+    const alreadyCoveredByProducer = existingRuns * yieldPerRun;
+    const remainingShortfall = Math.max(0, shortfall - alreadyCoveredByProducer);
+    if (remainingShortfall <= 0) continue;
+    const additionalRuns = Math.ceil(remainingShortfall / yieldPerRun);
+    decompRuns.set(bestProducer.id, existingRuns + additionalRuns);
+    decompUnits.set(bestProducer.id,
+      decompRuns.get(bestProducer.id)! * pd(bestProducer)!.inputQty
+    );
+  }
+
+  // Cleanup pass: reduce over-scheduled ores
+  const effectiveNeedsForOutput = new Map<string, number>();
+  for (const [id, need] of initialRemaining) {
+    effectiveNeedsForOutput.set(id, need);
+  }
+  for (const [sourceId, unitsForDecomp] of decompUnits) {
+    const source = itemMap.get(sourceId)!;
+    const raw = rawByItemId.get(sourceId);
+    if (raw) {
+      const combinedNeed = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock);
+      effectiveNeedsForOutput.set(sourceId, combinedNeed);
+    } else if (!source.isRawMaterial) {
+      const existing = effectiveNeedsForOutput.get(sourceId) ?? 0;
+      effectiveNeedsForOutput.set(sourceId, Math.max(existing, Math.max(0, unitsForDecomp - source.stock)));
+    }
+  }
+
+  let cleanupChanged = true;
+  while (cleanupChanged) {
+    cleanupChanged = false;
+    for (const [oreId, currentRuns] of new Map(decompRuns)) {
+      if (currentRuns === 0) { decompRuns.delete(oreId); continue; }
+      const oreItem = itemMap.get(oreId)!;
+      const oreDec = pd(oreItem)!;
+      let minRunsRequired = 0;
+      for (const out of oreDec.outputs) {
+        const effectiveNeed = effectiveNeedsForOutput.get(out.itemId) ?? 0;
+        if (effectiveNeed <= 0) continue;
+        let otherCoverage = 0;
+        for (const [otherOreId, otherRuns] of decompRuns) {
+          if (otherOreId === oreId) continue;
+          const otherDec = pd(itemMap.get(otherOreId)!);
+          if (!otherDec) continue;
+          const otherOut = otherDec.outputs.find(o => o.itemId === out.itemId);
+          if (otherOut) otherCoverage += otherOut.quantity * otherRuns;
+        }
+        const deficit = Math.max(0, effectiveNeed - otherCoverage);
+        const runsForThis = out.quantity > 0 ? Math.ceil(deficit / out.quantity) : 0;
+        minRunsRequired = Math.max(minRunsRequired, runsForThis);
+      }
+      if (minRunsRequired < currentRuns) {
+        if (minRunsRequired === 0) {
+          decompRuns.delete(oreId);
+          decompUnits.delete(oreId);
+        } else {
+          decompRuns.set(oreId, minRunsRequired);
+          decompUnits.set(oreId, minRunsRequired * oreDec.inputQty);
+        }
+        cleanupChanged = true;
+      }
+    }
+  }
+
+  return decompRuns;
+}
+
 export function calculate(
   packItems: { itemId: string; quantity: number }[],
   itemMap: ItemMap,
@@ -370,10 +603,12 @@ export function calculate(
       allDecompByOutput.set(out.itemId, list);
     }
   }
-  // Filtered map (exclusions applied) — used by greedy
+
+  // Filtered map (exclusions applied) — used by warnings
   const decompByOutput = new Map<string, CalcItem[]>();
+  const initialExcluded = options?.excludedOreIds ?? new Set<string>();
   for (const item of itemMap.values()) {
-    if (options?.excludedOreIds?.has(item.id)) continue;
+    if (initialExcluded.has(item.id)) continue;
     const dec = pd(item);
     if (!dec) continue;
     for (const out of dec.outputs) {
@@ -383,220 +618,114 @@ export function calculate(
     }
   }
 
-  const remaining = new Map<string, number>();
-  for (const row of rawMaterials) {
-    if (row.toBuy > 0) remaining.set(row.itemId, row.toBuy);
+  let finalRuns = runGreedyDecomp(itemMap, rawMaterials, pd, initialExcluded);
+
+  // ── Auto-exclude post-process ─────────────────────────────────────────────
+  // The greedy algorithm makes locally-optimal choices for each material,
+  // but the global optimum may require a different ore combination. We
+  // discovered this empirically: in the "100 building foam + mini printer"
+  // scenario, the greedy picks Iridosmine Nodules (66,940 m³) but manually
+  // excluding it reveals that Platinum-Palladium Matrix (66,840 m³) is
+  // actually 100 m³ cheaper — a ~0.15% improvement invisible to the greedy.
+  //
+  // To automate discovery of these cases, after the initial greedy run we
+  // iterate over every non-basic ore in the solution, re-run the greedy
+  // with that ore excluded, and adopt the alternative if it has lower
+  // total mining volume AND covers all material needs.
+  //
+  // "Basic" ores are the three always-available commodities that are never
+  // worth iterating over: Feldspar Crystals, Hydrated Sulfide Matrix,
+  // and Platinum-Palladium Matrix. Only secondary ores that appear as
+  // alternatives (e.g. Iridosmine Nodules) are tried for exclusion.
+  //
+  // The coversAllNeeds() guard prevents the optimizer from selecting a
+  // solution with lower volume but unsatisfied intermediate needs — when
+  // a key ore is excluded, materials further up the chain may lose their
+  // only source, producing a cheaper but invalid partial solution.
+  const BASIC_ORE_NAMES = new Set([
+    "Feldspar Crystals",
+    "Hydrated Sulfide Matrix",
+    "Platinum-Palladium Matrix",
+  ]);
+
+  function computeTotalVol(runs: Map<string, number>): number {
+    let vol = 0;
+    for (const [oreId, r] of runs) {
+      const it = itemMap.get(oreId)!;
+      const d = pd(it);
+      if (!d) continue;
+      vol += r * d.inputQty * it.volume;
+    }
+    return vol;
   }
-  const initialRemaining = new Map(remaining); // snapshot before greedy modifies it
 
-
-  const decompRuns = new Map<string, number>();
-  // Track surplus byproducts already committed by prior greedy steps
-  const surplus = new Map<string, number>();
-
-  // Byproduct coverage: how many remaining items does an item's best-yield source also produce?
-  const getBestSourceCoverage = (id: string) => {
-    const sources = decompByOutput.get(id) ?? [];
-    if (sources.length === 0) return 0;
-    const best = sources.reduce((b, s) => {
-      const bY = pd(b)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
-      const sY = pd(s)?.outputs.find((o) => o.itemId === id)?.quantity ?? 0;
-      return sY > bY ? s : b;
-    });
-    const dec = pd(best);
-    if (!dec) return 0;
-    return dec.outputs.filter((o) => o.itemId !== id && remaining.has(o.itemId)).length;
-  };
-
-  while (remaining.size > 0) {
-    let matId = "";
-    let fewest = Infinity;
-    let bestCoverage = -1;
-    for (const id of remaining.keys()) {
-      const count = (decompByOutput.get(id) ?? []).length;
-      if (count === 0) { remaining.delete(id); continue; }
-      const coverage = getBestSourceCoverage(id);
-      if (count < fewest || (count === fewest && coverage > bestCoverage)) {
-        fewest = count; matId = id; bestCoverage = coverage;
+  /** Verify that a decomposition run-map covers all needs.
+   *  Phase 1: raw material demands (toBuy from the blueprint chain).
+   *  Phase 2: source items that are NOT raw materials must be acquirable —
+   *    either from stock or produced as byproducts of other scheduled decomps.
+   *    Without this guard, excluding a key ore can produce a "solution"
+   *    that schedules found-item decompositions but leaves them unsatisfied. */
+  function coversAllNeeds(runs: Map<string, number>): boolean {
+    // Track what each scheduled decomposition produces
+    const covered = new Map<string, number>();
+    for (const [oreId, r] of runs) {
+      const d = pd(itemMap.get(oreId)!);
+      if (!d) continue;
+      for (const out of d.outputs) {
+        covered.set(out.itemId, (covered.get(out.itemId) ?? 0) + out.quantity * r);
       }
     }
-    if (!matId || !remaining.has(matId)) break;
-
-    // Apply any surplus already produced for this material
-    const available = surplus.get(matId) ?? 0;
-    const need = Math.max(0, remaining.get(matId)! - available);
-    if (available > 0) surplus.set(matId, Math.max(0, available - remaining.get(matId)!));
-    if (need <= 0) { remaining.delete(matId); continue; }
-
-    const sources = decompByOutput.get(matId)!;
-
-    // Pick the source that minimises total mining volume (units × m³/unit), which directly
-    // minimises hauling trips. Minimising raw units is wrong when ores differ in volume.
-    const source = sources.reduce((best, s) => {
-      const bDec = pd(best);
-      const sDec = pd(s);
-      const bYield = bDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      const sYield = sDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      const bVol = bYield > 0 ? Math.ceil(need / bYield) * (bDec?.inputQty ?? 1) * best.volume : Infinity;
-      const sVol = sYield > 0 ? Math.ceil(need / sYield) * (sDec?.inputQty ?? 1) * s.volume : Infinity;
-      return sVol < bVol ? s : best;
-    });
-
-    const dec = pd(source)!;
-    const yieldPerRun = dec.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-    if (yieldPerRun <= 0) { remaining.delete(matId); continue; }
-    const runsNeeded = Math.ceil(need / yieldPerRun);
-
-    decompRuns.set(source.id, (decompRuns.get(source.id) ?? 0) + runsNeeded);
-    remaining.delete(matId);
-
-    // Deduct the source units consumed from remaining (source item may also be a raw material)
-    const unitsConsumed = runsNeeded * dec.inputQty;
-    if (remaining.has(source.id)) {
-      const newSourceNeed = remaining.get(source.id)! - unitsConsumed;
-      if (newSourceNeed <= 0) {
-        surplus.set(source.id, (surplus.get(source.id) ?? 0) + Math.abs(newSourceNeed));
-        remaining.delete(source.id);
-      } else {
-        remaining.set(source.id, newSourceNeed);
-      }
-    } else if (!source.isRawMaterial) {
-      // Source is a found/intermediate item — it must be acquired, not mined directly.
-      // Schedule its own production by adding it to remaining so the greedy can find its ore sources.
-      const surplusAvail = surplus.get(source.id) ?? 0;
-      const stillNeeded = Math.max(0, unitsConsumed - source.stock - surplusAvail);
-      if (stillNeeded > 0) {
-        remaining.set(source.id, stillNeeded);
-      } else {
-        // Stock + surplus cover it — consume from surplus first
-        surplus.set(source.id, Math.max(0, surplusAvail - Math.max(0, unitsConsumed - source.stock)));
-      }
+    // Check raw material demands are met
+    for (const row of rawMaterials) {
+      if (row.toBuy <= 0) continue;
+      if ((covered.get(row.itemId) ?? 0) < row.toBuy) return false;
     }
+    // Check that each non-raw-material source item can be acquired
+    for (const [sourceId, r] of runs) {
+      const source = itemMap.get(sourceId)!;
+      if (source.isRawMaterial) continue;
+      const consumed = r * (pd(source)?.inputQty ?? 1);
+      // Stock + what other scheduled decomps produce for this source
+      let acquired = Math.min(source.stock, consumed) + (covered.get(sourceId) ?? 0);
+      if (acquired >= consumed) continue;
+      return false;
+    }
+    return true;
+  }
 
-    for (const out of dec.outputs) {
-      if (out.itemId === matId) continue;
-      const produced = out.quantity * runsNeeded;
-      if (remaining.has(out.itemId)) {
-        const newNeed = remaining.get(out.itemId)! - produced;
-        if (newNeed <= 0) {
-          surplus.set(out.itemId, (surplus.get(out.itemId) ?? 0) + Math.abs(newNeed));
-          remaining.delete(out.itemId);
-        } else {
-          remaining.set(out.itemId, newNeed);
+  let bestVol = computeTotalVol(finalRuns);
+  for (const [oreId, runs] of new Map(finalRuns)) {
+    if (runs === 0) continue;
+    const oreItem = itemMap.get(oreId)!;
+    if (BASIC_ORE_NAMES.has(oreItem.name)) continue;
+    if (initialExcluded.has(oreId)) continue;
+
+    const altExcluded = new Set(initialExcluded);
+    altExcluded.add(oreId);
+    const altRuns = runGreedyDecomp(itemMap, rawMaterials, pd, altExcluded);
+    const altVol = computeTotalVol(altRuns);
+
+    if (altRuns.size > 0 && coversAllNeeds(altRuns) && altVol < bestVol) {
+      finalRuns = altRuns;
+      bestVol = altVol;
+      // Rebuild decompByOutput to match the winning exclusions (used for warnings)
+      decompByOutput.clear();
+      for (const item of itemMap.values()) {
+        if (altExcluded.has(item.id)) continue;
+        const dec = pd(item);
+        if (!dec) continue;
+        for (const out of dec.outputs) {
+          const list = decompByOutput.get(out.itemId) ?? [];
+          list.push(item);
+          decompByOutput.set(out.itemId, list);
         }
-      } else {
-        // Track byproducts that may reduce future needs
-        surplus.set(out.itemId, (surplus.get(out.itemId) ?? 0) + produced);
       }
     }
   }
 
   const decompUnits = new Map<string, number>();
-  for (const [sourceId, runs] of decompRuns) {
+  for (const [sourceId, runs] of finalRuns) {
     decompUnits.set(sourceId, runs * pd(itemMap.get(sourceId)!)!.inputQty);
-  }
-
-  // Second pass: items that appear in both rawMaterials (direct use) and decompUnits (decomp source)
-  // may have a combined shortfall not visible to the first greedy pass.
-  // Resolve by finding what ores produce those items and scheduling additional decompositions.
-  const rawByItemId = new Map(rawMaterials.map(r => [r.itemId, r]));
-  for (const [sourceId, unitsForDecomp] of new Map(decompUnits)) {
-    const raw = rawByItemId.get(sourceId);
-    if (!raw) continue;
-    const source = itemMap.get(sourceId)!;
-
-    // Subtract any of sourceId already produced as byproduct by existing ore runs
-    let alreadyProduced = 0;
-    for (const [oreId, oreRuns] of decompRuns) {
-      const oreDec = pd(itemMap.get(oreId)!);
-      if (!oreDec) continue;
-      const out = oreDec.outputs.find(o => o.itemId === sourceId);
-      if (out) alreadyProduced += out.quantity * oreRuns;
-    }
-
-    const shortfall = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock - alreadyProduced);
-    if (shortfall <= 0) continue;
-    const producers = decompByOutput.get(sourceId) ?? [];
-    if (producers.length === 0) continue;
-    const bestProducer = producers.reduce((best, s) => {
-      const bY = pd(best)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
-      const sY = pd(s)?.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
-      return sY > bY ? s : best;
-    });
-    const dec = pd(bestProducer)!;
-    const yieldPerRun = dec.outputs.find(o => o.itemId === sourceId)?.quantity ?? 0;
-    if (yieldPerRun <= 0) continue;
-    const existingRuns = decompRuns.get(bestProducer.id) ?? 0;
-    const alreadyCoveredByProducer = existingRuns * yieldPerRun;
-    const remainingShortfall = Math.max(0, shortfall - alreadyCoveredByProducer);
-    if (remainingShortfall <= 0) continue;
-    const additionalRuns = Math.ceil(remainingShortfall / yieldPerRun);
-    decompRuns.set(bestProducer.id, existingRuns + additionalRuns);
-    decompUnits.set(bestProducer.id,
-      decompRuns.get(bestProducer.id)! * pd(bestProducer)!.inputQty
-    );
-  }
-
-  // ── Cleanup pass: reduce over-scheduled ores ─────────────────────────────
-  // Build the true effective need for each output item (already accounts for stock):
-  //   - Items only in initialRemaining: their toBuy value
-  //   - Dual-role items (also decomp sources): combined direct + decomp need minus stock
-  //   - Intermediate found items (decomp sources not in rawMaterials): their decomp need minus stock
-  const effectiveNeedsForOutput = new Map<string, number>();
-  for (const [id, need] of initialRemaining) {
-    effectiveNeedsForOutput.set(id, need);
-  }
-  for (const [sourceId, unitsForDecomp] of decompUnits) {
-    const source = itemMap.get(sourceId)!;
-    const raw = rawByItemId.get(sourceId);
-    if (raw) {
-      // Dual-role: in rawMaterials AND a decomp source
-      const combinedNeed = Math.max(0, raw.totalNeeded + unitsForDecomp - source.stock);
-      effectiveNeedsForOutput.set(sourceId, combinedNeed);
-    } else if (!source.isRawMaterial) {
-      // Intermediate found item: only a decomp source, not a direct raw material need.
-      // Register its need so the cleanup pass preserves ores that produce it.
-      const existing = effectiveNeedsForOutput.get(sourceId) ?? 0;
-      effectiveNeedsForOutput.set(sourceId, Math.max(existing, Math.max(0, unitsForDecomp - source.stock)));
-    }
-  }
-
-  // Iteratively reduce each ore's runs to the minimum required given coverage from other ores.
-  let cleanupChanged = true;
-  while (cleanupChanged) {
-    cleanupChanged = false;
-    for (const [oreId, currentRuns] of new Map(decompRuns)) {
-      if (currentRuns === 0) { decompRuns.delete(oreId); continue; }
-      const oreItem = itemMap.get(oreId)!;
-      const oreDec = pd(oreItem)!;
-      let minRunsRequired = 0;
-      for (const out of oreDec.outputs) {
-        const effectiveNeed = effectiveNeedsForOutput.get(out.itemId) ?? 0;
-        if (effectiveNeed <= 0) continue;
-        // Coverage for this output from every OTHER ore currently scheduled
-        let otherCoverage = 0;
-        for (const [otherOreId, otherRuns] of decompRuns) {
-          if (otherOreId === oreId) continue;
-          const otherDec = pd(itemMap.get(otherOreId)!);
-          if (!otherDec) continue;
-          const otherOut = otherDec.outputs.find(o => o.itemId === out.itemId);
-          if (otherOut) otherCoverage += otherOut.quantity * otherRuns;
-        }
-        const deficit = Math.max(0, effectiveNeed - otherCoverage);
-        const runsForThis = out.quantity > 0 ? Math.ceil(deficit / out.quantity) : 0;
-        minRunsRequired = Math.max(minRunsRequired, runsForThis);
-      }
-      if (minRunsRequired < currentRuns) {
-        if (minRunsRequired === 0) {
-          decompRuns.delete(oreId);
-          decompUnits.delete(oreId);
-        } else {
-          decompRuns.set(oreId, minRunsRequired);
-          decompUnits.set(oreId, minRunsRequired * oreDec.inputQty);
-        }
-        cleanupChanged = true;
-      }
-    }
   }
 
   const decompositions: DecompositionResult[] = [];
@@ -674,7 +803,7 @@ export function calculate(
   for (const row of rawMaterials) {
     if (row.toBuy <= 0) continue;
     let byproductCoverage = 0;
-    for (const [oreId, runs] of decompRuns) {
+    for (const [oreId, runs] of finalRuns) {
       const oreDec = pd(itemMap.get(oreId)!);
       if (!oreDec) continue;
       const out = oreDec.outputs.find(o => o.itemId === row.itemId);
