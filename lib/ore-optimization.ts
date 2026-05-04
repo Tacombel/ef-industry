@@ -2,6 +2,33 @@ import type { DecompositionResult } from "./calculator";
 
 const EPSILON = 0.0001;
 
+/**
+ * Computes trip count, pico (volume used in last partial trip), and spare
+ * (volume of additional same-ore units that could fit in that last trip)
+ * using integer unit quantization.
+ *
+ * Naive ceil(totalVolume / cargoCapacity) underestimates trips when
+ * volumePerUnit does not divide evenly into cargoCapacity, because it assumes
+ * perfect packing. The correct formula is ceil(units / floor(cargo / volPerUnit)).
+ */
+export function oreTrips(
+  unitsToMine: number,
+  volumePerUnit: number,
+  cargoCapacity: number,
+): { trips: number; pico: number; spare: number; unitsPerTrip: number } {
+  const unitsPerTrip = volumePerUnit > 0 ? Math.floor(cargoCapacity / volumePerUnit) : 0;
+  if (unitsPerTrip <= 0 || unitsToMine <= 0) {
+    return { trips: 0, pico: 0, spare: 0, unitsPerTrip };
+  }
+  const remainder = unitsToMine % unitsPerTrip;
+  return {
+    trips: Math.ceil(unitsToMine / unitsPerTrip),
+    pico: remainder * volumePerUnit,
+    spare: remainder === 0 ? 0 : (unitsPerTrip - remainder) * volumePerUnit,
+    unitsPerTrip,
+  };
+}
+
 export interface OreWithPico {
   d: DecompositionResult;
   trips: number;
@@ -35,14 +62,8 @@ export function computeOreSubstitution(
   const ores: OreWithPico[] = decomps.map((d) => {
     const unitsToMine = toMineMap?.get(d.sourceItemId) ?? d.unitsToDecompose;
     const totalVolume = unitsToMine * d.volumePerUnit;
-    const pico = totalVolume % cargoCapacity;
-    return {
-      d,
-      totalVolume,
-      trips: Math.ceil(totalVolume / cargoCapacity),
-      pico,
-      spare: pico < EPSILON ? 0 : cargoCapacity - pico,
-    };
+    const { trips, pico, spare } = oreTrips(unitsToMine, d.volumePerUnit, cargoCapacity);
+    return { d, totalVolume, trips, pico, spare };
   });
 
   const withPico = ores.filter((o) => o.pico > 0);
@@ -106,10 +127,12 @@ export function computeOreSubstitution(
 
     const adjustments: OreAdjustment[] = Array.from(extraPerOre.entries()).map(([oreId, extraUnits]) => {
       const ore = ores.find((o) => o.d.sourceItemId === oreId)!;
-      const extraVolume = extraUnits * ore.d.volumePerUnit;
-      const fitsInSpare = extraVolume <= ore.spare + EPSILON;
-      const overSpare = Math.max(0, extraVolume - ore.spare);
-      const extraTrips = fitsInSpare ? 0 : Math.ceil(overSpare / cargoCapacity);
+      const { unitsPerTrip } = oreTrips(ore.d.unitsToDecompose, ore.d.volumePerUnit, cargoCapacity);
+      // spare is already an exact multiple of volumePerUnit, so division is integer-exact
+      const spareUnits = ore.d.volumePerUnit > 0 ? Math.round(ore.spare / ore.d.volumePerUnit) : 0;
+      const fitsInSpare = extraUnits <= spareUnits;
+      const overUnits = Math.max(0, extraUnits - spareUnits);
+      const extraTrips = fitsInSpare || unitsPerTrip <= 0 ? 0 : Math.ceil(overUnits / unitsPerTrip);
       return { ore, extraUnits, newTotal: ore.d.unitsToDecompose + extraUnits, fitsInSpare, extraTrips };
     });
 

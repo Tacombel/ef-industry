@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { DecompositionResult, RawMaterialResult } from "@/lib/calculator";
-import { computeOreSubstitution, type OreWithPico } from "@/lib/ore-optimization";
+import { computeOreSubstitution, oreTrips, type OreWithPico } from "@/lib/ore-optimization";
 import AsteroidTooltip from "@/components/common/AsteroidTooltip";
 import RecipeTooltip from "@/components/common/RecipeTooltip";
 
@@ -62,14 +62,8 @@ export default function OreSection({
     for (const d of oreDecomps) {
       const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
       const totalVolume = unitsToMine * d.volumePerUnit;
-      const pico = totalVolume % cargoCapacity;
-      picoMap.set(d.sourceItemId, {
-        d,
-        totalVolume,
-        trips: unitsToMine > 0 ? Math.ceil(totalVolume / cargoCapacity) : 0,
-        pico,
-        spare: pico < 0.0001 ? 0 : cargoCapacity - pico,
-      });
+      const { trips, pico, spare } = oreTrips(unitsToMine, d.volumePerUnit, cargoCapacity);
+      picoMap.set(d.sourceItemId, { d, totalVolume, trips, pico, spare });
     }
   }
 
@@ -225,9 +219,9 @@ export default function OreSection({
           </div>
           {(() => {
             const totalTrips = oreDecomps.reduce((s, d) => {
-                    const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
-                    return unitsToMine > 0 ? s + Math.ceil((unitsToMine * d.volumePerUnit) / cargoCapacity) : s;
-                  }, 0);
+              const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
+              return s + oreTrips(unitsToMine, d.volumePerUnit, cargoCapacity).trips;
+            }, 0);
             const extraTripsTotal = suggestion.adjustments.reduce((s, a) => s + a.extraTrips, 0);
             const saved = suggestion.target.trips - extraTripsTotal;
             const optimized = totalTrips - saved;
@@ -280,7 +274,7 @@ export default function OreSection({
               <div className="flex flex-col items-end w-32">
                 <span className="text-xs font-semibold text-red-400">⛏ {r.toBuy}</span>
                 {cargoCapacity > 0 && r.volume > 0 && (() => {
-                  const trips = Math.ceil((r.toBuy * r.volume) / cargoCapacity);
+                  const trips = oreTrips(r.toBuy, r.volume, cargoCapacity).trips;
                   return <span className="text-xs text-blue-400">{trips} trip{trips !== 1 ? "s" : ""}</span>;
                 })()}
                 {miningRate > 0 && r.volume > 0 && (() => {
@@ -412,8 +406,7 @@ export default function OreSection({
         const totalTrips = cargoCapacity > 0
           ? oreDecomps.reduce((sum, d) => {
               const unitsToMine = toMineMap.get(d.sourceItemId) ?? 0;
-              if (unitsToMine === 0) return sum;
-              return sum + Math.ceil((unitsToMine * d.volumePerUnit) / cargoCapacity);
+              return sum + oreTrips(unitsToMine, d.volumePerUnit, cargoCapacity).trips;
             }, 0)
           : null;
         return (

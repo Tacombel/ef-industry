@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeOreSubstitution } from "./ore-optimization";
+import { computeOreSubstitution, oreTrips } from "./ore-optimization";
 import type { DecompositionResult } from "./calculator";
 
 function makeDecomp(overrides: Partial<DecompositionResult> & { sourceItemId: string }): DecompositionResult {
@@ -15,6 +15,34 @@ function makeDecomp(overrides: Partial<DecompositionResult> & { sourceItemId: st
     ...overrides,
   };
 }
+
+describe("oreTrips", () => {
+  it("counts trips correctly when volumePerUnit divides cargoCapacity evenly", () => {
+    // 10 units × 5m³ = 50m³, cargo=10 → 5 full trips, no pico
+    expect(oreTrips(10, 5, 10)).toEqual({ trips: 5, pico: 0, spare: 0, unitsPerTrip: 2 });
+  });
+
+  it("counts trips correctly when volumePerUnit does NOT divide cargoCapacity evenly", () => {
+    // volumePerUnit=4, cargoCapacity=10 → floor(10/4)=2 units/trip (8m³, 2m³ wasted per trip)
+    // 5 units: ceil(5/2)=3 trips; last trip=1 unit (4m³ pico, 4m³ spare)
+    // naive ceil(5*4/10)=ceil(2)=2 trips — WRONG
+    expect(oreTrips(5, 4, 10)).toEqual({ trips: 3, pico: 4, spare: 4, unitsPerTrip: 2 });
+  });
+
+  it("returns 0 trips when unitsToMine is 0", () => {
+    expect(oreTrips(0, 4, 10)).toEqual({ trips: 0, pico: 0, spare: 0, unitsPerTrip: 2 });
+  });
+
+  it("returns 0 trips when ore does not fit in cargo at all", () => {
+    // volumePerUnit=20 > cargoCapacity=10 → unitsPerTrip=0
+    expect(oreTrips(5, 20, 10)).toEqual({ trips: 0, pico: 0, spare: 0, unitsPerTrip: 0 });
+  });
+
+  it("last trip is full (no pico) when units divide evenly into trips", () => {
+    // 4 units × 4m³ = 16m³, cargo=10 → 2 units/trip → 2 full trips, no pico
+    expect(oreTrips(4, 4, 10)).toEqual({ trips: 2, pico: 0, spare: 0, unitsPerTrip: 2 });
+  });
+});
 
 describe("computeOreSubstitution", () => {
   it("returns null when cargoCapacity is 0", () => {
