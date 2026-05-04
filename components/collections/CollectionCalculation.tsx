@@ -402,7 +402,9 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         decomps={result.decompositions ?? []}
         directOres={result.rawMaterials.filter((r) => r.isRawMaterial)}
         neededIds={new Set([
-          ...result.rawMaterials.filter((r) => r.toBuy > 0).map((r) => r.itemId),
+          // Use totalNeeded (not toBuy) so materials already covered by the target ore itself
+          // are still considered "needed" — toBuy=0 just means they're currently covered, not that they're optional.
+          ...result.rawMaterials.filter((r) => r.totalNeeded > 0).map((r) => r.itemId),
           ...(result.decompositions ?? [])
             .filter((d) => !d.isUnrefined && d.sourceIsFound && (d.unitsToDecompose + (d.directNeed ?? 0)) > d.actualStock)
             .map((d) => d.sourceItemId),

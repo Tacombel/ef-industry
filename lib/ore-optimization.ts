@@ -54,7 +54,9 @@ export function computeOreSubstitution(
 
     const remaining = new Map<string, number>();
     for (const out of target.d.outputs) {
-      // Only cover outputs that are actually needed by the recipe
+      // Skip byproducts not in the recipe. neededIds must be built from totalNeeded>0 (not toBuy>0):
+      // materials fully covered by the target ore itself have toBuy=0 and would be absent from
+      // neededIds, making remaining empty and causing a false "remove all trips for free" suggestion.
       if (neededIds && !neededIds.has(out.itemId)) continue;
       remaining.set(out.itemId, out.quantityObtained);
     }

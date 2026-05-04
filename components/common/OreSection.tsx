@@ -203,10 +203,9 @@ export default function OreSection({
             💡 Trip optimization
           </p>
           <p className="text-gray-400 mb-2">
-            <span className="text-yellow-300">{suggestion.target.d.sourceItemName}</span> has{" "}
-            <span className="font-semibold text-yellow-400">{suggestion.target.spare.toFixed(2)}</span> m³ free in its last trip
-            ({suggestion.target.pico.toFixed(2)} m³ of {cargoCapacity} m³ used).
-            Its materials can be covered by redistributing:
+            <span className="text-yellow-300">{suggestion.target.d.sourceItemName}</span> uses only{" "}
+            <span className="font-semibold text-yellow-400">{suggestion.target.pico.toFixed(2)} m³</span> in its last trip.
+            Redistributing it could save that trip:
           </p>
           <div className="space-y-1">
             {suggestion.adjustments.map((adj) => (
