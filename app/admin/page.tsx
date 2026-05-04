@@ -41,7 +41,7 @@ export default function AdminPage() {
     fetch("/api/admin/settings")
       .then((r) => r.json())
       .then((d) => setRegistrationOpen(d.registrationOpen ?? true))
-      .catch(() => {});
+      .catch((err) => console.error("Failed to fetch admin settings:", err));
   }, []);
 
   async function toggleRegistration(value: boolean) {
@@ -131,7 +131,7 @@ export default function AdminPage() {
   type EndpointMetrics = { total: number; rpm: number; errors: number; p50: number; p95: number; lastMs: number };
   const [metrics, setMetrics] = useState<Record<string, EndpointMetrics> | null>(null);
   const loadMetrics = useCallback(() => {
-    fetch("/api/admin/metrics").then((r) => r.ok ? r.json() : null).then((d) => d && setMetrics(d)).catch(() => {});
+    fetch("/api/admin/metrics").then((r) => r.ok ? r.json() : null).then((d) => d && setMetrics(d)).catch((err) => console.error("Failed to load metrics:", err));
   }, []);
   useEffect(() => { loadMetrics(); const id = setInterval(loadMetrics, 10_000); return () => clearInterval(id); }, [loadMetrics]);
 
@@ -141,7 +141,7 @@ export default function AdminPage() {
   type UsageData = { daily: DailyEntry[]; topPaths: PathEntry[]; totals: { registered: number; anonymous: number }; dbSizeBytes: number };
   const [usage, setUsage] = useState<UsageData | null>(null);
   const loadUsage = useCallback(() => {
-    fetch("/api/admin/usage").then((r) => r.ok ? r.json() : null).then((d) => d && setUsage(d)).catch(() => {});
+    fetch("/api/admin/usage").then((r) => r.ok ? r.json() : null).then((d) => d && setUsage(d)).catch((err) => console.error("Failed to load usage:", err));
   }, []);
   useEffect(() => { loadUsage(); }, [loadUsage]);
 

@@ -35,9 +35,12 @@ export async function POST(req: NextRequest) {
 
   if (!user) {
     let username = displayName;
-    const existing = await prisma.user.findUnique({ where: { username } });
-    if (existing) {
-      username = `${displayName}_${walletAddress.slice(-6)}`;
+    let suffix = 0;
+    while (await prisma.user.findUnique({ where: { username } })) {
+      suffix++;
+      username = suffix === 1
+        ? `${displayName}_${walletAddress.slice(-6)}`
+        : `${displayName}_${walletAddress.slice(-6)}_${suffix}`;
     }
     user = await prisma.user.create({
       data: { username, walletAddress, role: "USER", characterName: resolvedName ?? null },

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 import data from "./seed.json";
 
 type SeedItem = {
@@ -174,6 +175,22 @@ async function main() {
     where: { OR: [{ blueprintId: { notIn: seedBlueprintIds } }, { blueprintId: null }] },
   });
   console.log(`  ✓ ${data.blueprints.length} blueprints (${deleted.count} huérfanos eliminados)`);
+
+  // Initial SUPERADMIN — only created on first deploy when DB has no users.
+  // Subsequent seed runs skip this. Set INITIAL_SUPERADMIN_PASSWORD in env.
+  const userCount = await prisma.user.count();
+  if (userCount === 0) {
+    const username = process.env.INITIAL_SUPERADMIN_USERNAME || "admin";
+    const password = process.env.INITIAL_SUPERADMIN_PASSWORD;
+    if (!password) {
+      console.warn("  ⚠ INITIAL_SUPERADMIN_PASSWORD not set — no SUPERADMIN created");
+      console.warn("    Register via wallet or set the env var and re-run seed.");
+    } else {
+      const hashed = await bcrypt.hash(password, 12);
+      await prisma.user.create({ data: { username, password: hashed, role: "SUPERADMIN" } });
+      console.log(`  ✓ Initial SUPERADMIN created: ${username}`);
+    }
+  }
 
   console.log("Done.");
 }

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
-const SUI_RPC = "https://fullnode.testnet.sui.io:443";
-const EF_WORLD_API = "https://world-api-stillness.live.tech.evefrontier.com";
+const SUI_RPC = process.env.SUI_RPC_URL || "https://fullnode.testnet.sui.io:443";
+const EF_WORLD_API = process.env.EF_WORLD_API_URL || "https://world-api-stillness.live.tech.evefrontier.com";
 
 export interface SsuSummary {
   address: string;
@@ -179,7 +179,7 @@ export async function fetchUserStockMap(userId: string, addressOverride?: string
 }
 
 // EVE Frontier package on Sui testnet (stillness).
-const EF_PKG = "0x28b497559d65ab320d9da4613bf2498d5946b2c0ae3597ccfda3072ce127448c";
+const EF_PKG = process.env.EF_PACKAGE_ID || "0x28b497559d65ab320d9da4613bf2498d5946b2c0ae3597ccfda3072ce127448c";
 const PLAYER_PROFILE_TYPE = `${EF_PKG}::character::PlayerProfile`;
 const OWNER_CAP_TYPE = `${EF_PKG}::access::OwnerCap<${EF_PKG}::storage_unit::StorageUnit>`;
 

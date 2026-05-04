@@ -7,6 +7,12 @@ services:
     environment:
       DATABASE_URL: "file:/data/dev.db"
       JWT_SECRET: "${JWT_SECRET}"
+      SUI_RPC_URL: "${SUI_RPC_URL:-https://fullnode.testnet.sui.io:443}"
+      EF_WORLD_API_URL: "${EF_WORLD_API_URL:-https://world-api-stillness.live.tech.evefrontier.com}"
+      EF_PACKAGE_ID: "${EF_PACKAGE_ID:-0x28b497559d65ab320d9da4613bf2498d5946b2c0ae3597ccfda3072ce127448c}"
+      ALLOW_DATA_MUTATIONS: "${ALLOW_DATA_MUTATIONS:-}"
+      INITIAL_SUPERADMIN_USERNAME: "${INITIAL_SUPERADMIN_USERNAME:-admin}"
+      INITIAL_SUPERADMIN_PASSWORD: "${INITIAL_SUPERADMIN_PASSWORD:?INITIAL_SUPERADMIN_PASSWORD is required for first deploy}"
     volumes:
       - eve_data:/data
     restart: unless-stopped

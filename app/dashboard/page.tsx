@@ -55,7 +55,7 @@ export default function DashboardPage() {
               const saved = prefs?.ui?.activeTab;
               if (saved && saved in tabConfig) setActiveTab(saved as TabType);
             })
-            .catch(() => {});
+            .catch((err) => console.error("Failed to load tab preference:", err));
         }
       })
       .catch(() => {
@@ -135,7 +135,7 @@ export default function DashboardPage() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ itemId: "activeTab", preferenceType: "ui", value: tab }),
-                  }).catch(() => {});
+                  }).catch((err) => console.error("Failed to save tab preference:", err));
                 }
               }}
               className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${

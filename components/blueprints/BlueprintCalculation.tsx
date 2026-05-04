@@ -101,19 +101,19 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
         if (data?.factory) factoryOverridesRef.current = new Map(Object.entries(data.factory));
         if (data?.refinery) refineryOverridesRef.current = new Map(Object.entries(data.refinery));
       })
-      .catch(() => {})
+      .catch((err) => console.error("Failed to fetch preferences:", err))
       .finally(() => setPrefsReady(true));
-  }, [sessionLoading, isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [sessionLoading, isLoggedIn]);
 
-  useEffect(() => { if (prefsReady) load(); }, [prefsReady]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (result !== null) load(true); }, [ssuAddresses]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (prefsReady) load(); }, [prefsReady, load]);
+  useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
+  useEffect(() => { if (result !== null) load(true); }, [ssuAddresses, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
   useEffect(() => {
     quantityRef.current = quantity;
     if (result === null) return;
     const t = setTimeout(() => load(true), 400);
     return () => clearTimeout(t);
-  }, [quantity]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [quantity, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
 
   function excludeOre(oreId: string, oreName: string) {
     const next = new Set(excludedOreIdsRef.current);
@@ -141,7 +141,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId, preferenceType: "factory", value: factory }),
-      }).catch(() => {});
+      }).catch((err) => console.error("Failed to save factory preference:", err));
     }
   }
 
@@ -153,7 +153,7 @@ export default function BlueprintCalculation({ itemId, refreshKey = 0, ssuAddres
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId: sourceItemId, preferenceType: "refinery", value: refinery }),
-      }).catch(() => {});
+      }).catch((err) => console.error("Failed to save refinery preference:", err));
     }
   }
 

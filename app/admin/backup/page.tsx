@@ -51,7 +51,7 @@ export default function AdminBackupPage() {
         setSavedRemoteHost(d.host ?? null);
         setSavedRemotePort(d.port ? String(d.port) : null);
       })
-      .catch(() => {})
+      .catch((err) => console.error("Failed to load remote backup config:", err))
       .finally(() => setRemoteLoading(false));
   }, []);
 

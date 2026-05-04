@@ -4,13 +4,18 @@ import { normalizeName } from "@/lib/normalize";
 import { requireAdmin } from "@/lib/auth";
 import { requireDev } from "@/lib/dev-guard";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const limit = Number(searchParams.get("limit") ?? "0") || 0;
+  const offset = Number(searchParams.get("offset") ?? "0");
+
   const blueprints = await prisma.blueprint.findMany({
     include: {
       outputItem: true,
       inputs: { include: { item: true } },
     },
     orderBy: [{ outputItem: { name: "asc" } }, { factory: "asc" }],
+    ...(limit > 0 ? { take: Math.min(limit, 500), skip: offset } : {}),
   });
   return NextResponse.json(blueprints);
 }

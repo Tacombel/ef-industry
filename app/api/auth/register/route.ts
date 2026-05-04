@@ -24,16 +24,16 @@ export async function POST(req: NextRequest) {
 
   const trimmed = username.trim();
 
-  const existing = await prisma.$queryRaw<{ id: string }[]>`
-    SELECT id FROM "User" WHERE LOWER(username) = LOWER(${trimmed}) LIMIT 1
-  `;
-  if (existing.length > 0) {
+  const existing = await prisma.user.findFirst({
+    where: { username: { equals: trimmed, mode: "insensitive" } },
+    select: { id: true },
+  });
+  if (existing) {
     return NextResponse.json({ error: "Username already taken" }, { status: 409 });
   }
 
   const hashed = await bcrypt.hash(password, 12);
-  const userCount = await prisma.user.count();
-  const role = userCount === 0 ? "SUPERADMIN" : "USER";
+  const role = "USER";
 
   const user = await prisma.user.create({
     data: { username: trimmed, password: hashed, role },

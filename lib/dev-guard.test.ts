@@ -6,13 +6,13 @@ describe("requireDev", () => {
     vi.unstubAllEnvs();
   });
 
-  it("returns null in development mode", () => {
-    vi.stubEnv("NODE_ENV", "development");
+  it("returns null when ALLOW_DATA_MUTATIONS=1", () => {
+    vi.stubEnv("ALLOW_DATA_MUTATIONS", "1");
     expect(requireDev()).toBeNull();
   });
 
-  it("returns a 403 response in production mode", async () => {
-    vi.stubEnv("NODE_ENV", "production");
+  it("returns a 403 response when ALLOW_DATA_MUTATIONS is not set", async () => {
+    vi.stubEnv("ALLOW_DATA_MUTATIONS", "");
     const res = requireDev();
     expect(res).not.toBeNull();
     expect(res!.status).toBe(403);
@@ -20,8 +20,8 @@ describe("requireDev", () => {
     expect(body).toHaveProperty("error");
   });
 
-  it("returns a 403 response outside development (test env)", () => {
-    // vitest sets NODE_ENV=test by default — must also be blocked
+  it("returns a 403 response when ALLOW_DATA_MUTATIONS is 0", () => {
+    vi.stubEnv("ALLOW_DATA_MUTATIONS", "0");
     const res = requireDev();
     expect(res).not.toBeNull();
     expect(res!.status).toBe(403);

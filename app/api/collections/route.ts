@@ -2,14 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { searchParams } = new URL(req.url);
+  const limit = Number(searchParams.get("limit") ?? "0") || 0;
+  const offset = Number(searchParams.get("offset") ?? "0");
 
   const collections = await prisma.collection.findMany({
     where: { userId: session.userId },
     include: { items: { include: { item: { select: { id: true, name: true, isRawMaterial: true, isFound: true, blueprints: { select: { factory: true }, take: 1 } } } } } },
     orderBy: { name: "asc" },
+    ...(limit > 0 ? { take: Math.min(limit, 500), skip: offset } : {}),
   });
   return NextResponse.json(collections);
 }

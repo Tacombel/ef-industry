@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 
 /**
- * Returns a 403 response if not running in development mode.
+ * Returns a 403 response if data mutations are not explicitly enabled.
  * Use in API route mutations for static game data (items, blueprints, etc.)
  * to prevent accidental changes in production.
+ *
+ * Set ALLOW_DATA_MUTATIONS=1 to enable.
  */
 export function requireDev(): NextResponse | null {
-  if (process.env.NODE_ENV !== "development") {
+  if (process.env.ALLOW_DATA_MUTATIONS !== "1") {
     return NextResponse.json(
-      { error: "This operation is only available in development mode" },
+      { error: "Data mutations are disabled. Set ALLOW_DATA_MUTATIONS=1 to enable." },
       { status: 403 }
     );
   }

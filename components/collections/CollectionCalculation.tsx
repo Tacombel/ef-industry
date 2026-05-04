@@ -98,11 +98,11 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         if (data?.factory) factoryOverridesRef.current = new Map(Object.entries(data.factory));
         if (data?.refinery) refineryOverridesRef.current = new Map(Object.entries(data.refinery));
       })
-      .catch(() => {})
+      .catch((err) => console.error("Failed to fetch preferences:", err))
       .finally(() => setPrefsReady(true));
-  }, [sessionLoading, isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [sessionLoading, isLoggedIn]);
 
-  useEffect(() => { if (prefsReady) load(); }, [prefsReady]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (prefsReady) load(); }, [prefsReady, load]);
 
   function toggleIgnore(itemId: string) {
     setIgnoredItems((prev) => {
@@ -116,17 +116,17 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
 
   useEffect(() => {
     if (result !== null) load(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ignoredItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
+  }, [ignoredItems, load]);
 
-  useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (result !== null) load(true); }, [ssuAddresses]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (result !== null && refreshKey > 0) load(true); }, [refreshKey, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
+  useEffect(() => { if (result !== null) load(true); }, [ssuAddresses, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
   useEffect(() => {
     collectionsCountRef.current = collectionsCount;
     if (result === null) return;
     const t = setTimeout(() => load(true), 400);
     return () => clearTimeout(t);
-  }, [collectionsCount]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [collectionsCount, load]); // eslint-disable-line react-hooks/exhaustive-deps -- result deliberately excluded to avoid recalc loop
 
   function selectFactory(itemId: string, factory: string) {
     factoryOverridesRef.current = new Map(factoryOverridesRef.current).set(itemId, factory);
@@ -136,7 +136,7 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId, preferenceType: "factory", value: factory }),
-      }).catch(() => {});
+      }).catch((err) => console.error("Failed to save factory preference:", err));
     }
   }
 
@@ -148,7 +148,7 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId: sourceItemId, preferenceType: "refinery", value: refinery }),
-      }).catch(() => {});
+      }).catch((err) => console.error("Failed to save refinery preference:", err));
     }
   }
 

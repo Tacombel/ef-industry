@@ -54,7 +54,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       .then((data) => {
         if (data?.username) clearWalletAutoConnect();
       })
-      .catch(() => {});
+      .catch((err) => console.error("Failed to fetch /api/auth/me:", err));
 
     // Suppress "Vault unlock was cancelled or timed out" unhandled rejections.
     // React error boundaries don't catch promise rejections from the chrome
