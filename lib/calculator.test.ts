@@ -441,12 +441,12 @@ describe("factory overrides", () => {
     expect(oreDecomp!.runs).toBe(1);
   });
 
-  // ── Greedy picks ore with fewest units to mine, not highest yield/run ────
+  // ── Greedy picks ore minimising hauling volume (units × m³), not raw unit count ────
 
   it("greedy picks ore with fewer units to mine even if it has lower yield/run", () => {
-    // oreHigh: inputQty=100, yields matX×10/run → need 3 matX → ceil(3/10)*100 = 100 units
-    // oreLow:  inputQty=20,  yields matX×4/run  → need 3 matX → ceil(3/4)*20  = 20 units
-    // Greedy must pick oreLow (20 < 100), NOT oreHigh (higher yield but more units)
+    // oreHigh: inputQty=100, yields matX×10/run → need 3 matX → ceil(3/10)*100 = 100 units (volume=1 → 100m³)
+    // oreLow:  inputQty=20,  yields matX×4/run  → need 3 matX → ceil(3/4)*20  = 20 units  (volume=1 →  20m³)
+    // Greedy must pick oreLow (20m³ < 100m³), NOT oreHigh (higher yield but more volume)
     const oreHigh = makeItem({
       id: "oreHigh", name: "Ore High", isRawMaterial: true,
       decompositions: [{ id: "dec_high", refinery: "R", inputQty: 100, isDefault: true,
@@ -471,6 +471,39 @@ describe("factory overrides", () => {
     // oreLow should be chosen (20 units) — oreHigh should not appear
     expect(low?.unitsToDecompose).toBeGreaterThan(0);
     expect(high?.unitsToDecompose ?? 0).toBe(0);
+  });
+
+  it("greedy picks ore with less total volume even if it requires more units", () => {
+    // oreA (iridosmine analog): inputQty=1, yield=10/run, volume=5m³
+    //   → for need=15: ceil(15/10)*1 = 2 units × 5m³ = 10m³
+    // oreB (palladium analog):  inputQty=1, yield=3/run,  volume=1m³
+    //   → for need=15: ceil(15/3)*1  = 5 units × 1m³ = 5m³
+    // Greedy must pick oreB (5m³ < 10m³) despite needing more units.
+    // The old "minimise units" criterion would wrongly pick oreA (2 < 5).
+    const oreA = makeItem({
+      id: "oreA", name: "Ore A", isRawMaterial: true, volume: 5,
+      decompositions: [{ id: "dec_A", refinery: "R", inputQty: 1, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 10 }] }],
+    });
+    const oreB = makeItem({
+      id: "oreB", name: "Ore B", isRawMaterial: true, volume: 1,
+      decompositions: [{ id: "dec_B", refinery: "R", inputQty: 1, isDefault: true,
+        outputs: [{ itemId: "matX", quantity: 3 }] }],
+    });
+    const matX = makeItem({ id: "matX", name: "Mat X", isRawMaterial: true });
+    const product = makeItem({
+      id: "product", name: "Product",
+      blueprints: [{ id: "bp1", outputQty: 1, factory: "", isDefault: true,
+        inputs: [{ itemId: "matX", quantity: 15 }] }],
+    });
+    const itemMap = buildItemMap([oreA, oreB, matX, product]);
+    const result = calculate([{ itemId: "product", quantity: 1 }], itemMap);
+
+    const a = result.decompositions.find(d => d.sourceItemId === "oreA");
+    const b = result.decompositions.find(d => d.sourceItemId === "oreB");
+    // oreB must be chosen (5m³ total) — oreA must not be used
+    expect(b?.unitsToDecompose).toBeGreaterThan(0);
+    expect(a?.unitsToDecompose ?? 0).toBe(0);
   });
 
   // ── Stale toBuy after greedy ──────────────────────────────────────────────

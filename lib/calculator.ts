@@ -430,16 +430,16 @@ export function calculate(
 
     const sources = decompByOutput.get(matId)!;
 
-    // Pick the source that requires the fewest ore units to cover `need`.
-    // ceil(need / yieldPerRun) * inputQty gives the actual units to mine — lower is better.
+    // Pick the source that minimises total mining volume (units × m³/unit), which directly
+    // minimises hauling trips. Minimising raw units is wrong when ores differ in volume.
     const source = sources.reduce((best, s) => {
       const bDec = pd(best);
       const sDec = pd(s);
       const bYield = bDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
       const sYield = sDec?.outputs.find((o) => o.itemId === matId)?.quantity ?? 0;
-      const bUnits = bYield > 0 ? Math.ceil(need / bYield) * (bDec?.inputQty ?? 1) : Infinity;
-      const sUnits = sYield > 0 ? Math.ceil(need / sYield) * (sDec?.inputQty ?? 1) : Infinity;
-      return sUnits < bUnits ? s : best;
+      const bVol = bYield > 0 ? Math.ceil(need / bYield) * (bDec?.inputQty ?? 1) * best.volume : Infinity;
+      const sVol = sYield > 0 ? Math.ceil(need / sYield) * (sDec?.inputQty ?? 1) * s.volume : Infinity;
+      return sVol < bVol ? s : best;
     });
 
     const dec = pd(source)!;
