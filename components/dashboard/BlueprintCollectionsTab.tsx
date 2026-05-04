@@ -106,7 +106,7 @@ export default function BlueprintCollectionsTab() {
             placeholder="Search blueprints…"
             className="input w-full"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setCalcItemId(null); }}
           />
           {search && <button onClick={() => setSearch("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">✕</button>}
         </div>
