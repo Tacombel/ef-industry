@@ -161,13 +161,13 @@ function main() {
   // Pre-populate knownFacInfo with refineries from curated decompositions
   for (const tid of decompositions.map((d) => d.facilityTypeId)) {
     if (!knownFacInfo.has(tid)) {
-      knownFacInfo.set(tid, { name: `Refinery ${tid}`, type: "refinery" });
+      knownFacInfo.set(tid, { name: `Refinery`, type: "refinery" });
     }
   }
   for (const [tidStr, fac] of Object.entries(rawFacilities)) {
     const tid = Number(tidStr);
     const existing = knownFacInfo.get(tid);
-    const name = existing?.name ?? rawTypes.find((t) => t.id === tid)?.name ?? `Facility ${tid}`;
+    const name = rawTypes.find((t) => t.id === tid)?.name ?? existing?.name ?? `Facility ${tid}`;
     const type = existing?.type ?? "factory";
     knownFacInfo.set(tid, { name, type });
     facilities.push({ name, type, typeId: tid });

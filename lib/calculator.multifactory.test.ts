@@ -16,7 +16,7 @@ describe("multi-factory items (real DB)", () => {
   });
 
   it("seed contains the expected number of multi-factory items", () => {
-    expect(multiFactoryItems.length).toBe(21);
+    expect(multiFactoryItems.length).toBe(23);
   });
 
   it("availableFactories populated correctly for all multi-factory items", () => {

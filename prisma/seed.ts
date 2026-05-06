@@ -156,13 +156,12 @@ async function main() {
       update: { outputQty: bp.outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
       create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
     });
+    await prisma.blueprintInput.deleteMany({ where: { blueprintId: upserted.id } });
     for (const inp of bp.inputs) {
       const inpItemId = itemIdByTypeId.get(inp.typeId);
       if (inpItemId) {
-        await prisma.blueprintInput.upsert({
-          where: { blueprintId_itemId: { blueprintId: upserted.id, itemId: inpItemId } },
-          update: { quantity: inp.quantity },
-          create: { blueprintId: upserted.id, itemId: inpItemId, quantity: inp.quantity },
+        await prisma.blueprintInput.create({
+          data: { blueprintId: upserted.id, itemId: inpItemId, quantity: inp.quantity },
         });
       } else {
         console.warn(`  ⚠ Input typeId ${inp.typeId} not found in blueprint for typeId ${bp.outputTypeId}`);
