@@ -147,7 +147,7 @@ function main() {
   const asteroids: AsteroidType[] = loadCurated("asteroids.json");
   const decompositions: Decomposition[] = loadCurated("decompositions.json");
   const customFacilities: Facility[] = loadCurated("custom-facilities.json");
-  const customItems: FlagsEntry[] = loadCurated("custom-items.json");
+  const customItems: (FlagsEntry & { name?: string })[] = loadCurated("custom-items.json");
   const customBlueprints: Blueprint[] = loadCurated("custom-blueprints.json");
 
   // 3. Build facility info map from ALL known facilities (curated data has correct types)
