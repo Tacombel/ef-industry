@@ -7488,7 +7488,7 @@
         },
         {
           "typeId": 77728,
-          "quantity": 3
+          "quantity": 6
         }
       ],
       "blueprintId": 1481,
@@ -7507,7 +7507,7 @@
         },
         {
           "typeId": 77728,
-          "quantity": 3
+          "quantity": 6
         }
       ],
       "blueprintId": 1481,
@@ -7526,7 +7526,7 @@
         },
         {
           "typeId": 78435,
-          "quantity": 3
+          "quantity": 6
         }
       ],
       "blueprintId": 1480,
@@ -7545,7 +7545,7 @@
         },
         {
           "typeId": 78435,
-          "quantity": 3
+          "quantity": 6
         }
       ],
       "blueprintId": 1480,
@@ -8297,7 +8297,7 @@
       "outputs": [
         {
           "typeId": 78435,
-          "quantity": 3
+          "quantity": 6
         },
         {
           "typeId": 92422,
@@ -8316,7 +8316,7 @@
       "outputs": [
         {
           "typeId": 77728,
-          "quantity": 3
+          "quantity": 6
         },
         {
           "typeId": 92422,
