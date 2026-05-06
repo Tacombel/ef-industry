@@ -298,11 +298,6 @@
         "blueprintID": 1116,
         "maxInputRuns": 50,
         "maxOutputRuns": 30
-      },
-      {
-        "blueprintID": 1100,
-        "maxInputRuns": 8,
-        "maxOutputRuns": 1
       }
     ],
     "inputCapacity": 1200,
@@ -646,11 +641,6 @@
         "blueprintID": 1482,
         "maxInputRuns": 4000,
         "maxOutputRuns": 800
-      },
-      {
-        "blueprintID": 1062,
-        "maxInputRuns": 34,
-        "maxOutputRuns": 62
       }
     ],
     "inputCapacity": 4000,

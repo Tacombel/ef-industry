@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Large Cutting Laser",
+    "typeId": 83524,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": true,
+    "volume": 0
+  },
+  {
+    "name": "Thermal Field Array V",
+    "typeId": 83775,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": true,
+    "volume": 0
+  },
+  {
+    "name": "Stride Stack",
+    "typeId": 89978,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Carom Stack",
+    "typeId": 89979,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 31P",
+    "typeId": 89980,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 31F",
+    "typeId": 89981,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5C0",
+    "typeId": 89982,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 31Q",
+    "typeId": 89983,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5DK",
+    "typeId": 89984,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 31V",
+    "typeId": 89985,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5DZ",
+    "typeId": 89986,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5C1",
+    "typeId": 89987,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5DE",
+    "typeId": 89988,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Stack Slice 5DW",
+    "typeId": 89989,
+    "isRawMaterial": false,
+    "isFound": true,
+    "isFinalProduct": false,
+    "volume": 0
+  },
+  {
+    "name": "Shell 1",
+    "typeId": 91749,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": true,
+    "volume": 0
+  },
+  {
+    "name": "Shell 2",
+    "typeId": 91967,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": true,
+    "volume": 0
+  },
+  {
+    "name": "Shell 3",
+    "typeId": 91968,
+    "isRawMaterial": false,
+    "isFound": false,
+    "isFinalProduct": true,
+    "volume": 0
+  }
+]

@@ -213,7 +213,7 @@
       }
     ],
     "primaryTypeID": 82128,
-    "runTime": 6
+    "runTime": 3
   },
   "1011": {
     "inputs": [
@@ -269,7 +269,7 @@
       }
     ],
     "primaryTypeID": 88887,
-    "runTime": 10
+    "runTime": 3
   },
   "1014": {
     "inputs": [
@@ -506,11 +506,11 @@
   "1029": {
     "inputs": [
       {
-        "quantity": 360,
+        "quantity": 400,
         "typeID": 77805
       },
       {
-        "quantity": 360,
+        "quantity": 400,
         "typeID": 88234
       }
     ],
@@ -521,7 +521,7 @@
       }
     ],
     "primaryTypeID": 82130,
-    "runTime": 15
+    "runTime": 5
   },
   "1030": {
     "inputs": [
@@ -537,7 +537,7 @@
       }
     ],
     "primaryTypeID": 82133,
-    "runTime": 10
+    "runTime": 5
   },
   "1031": {
     "inputs": [
@@ -621,7 +621,7 @@
       }
     ],
     "primaryTypeID": 78515,
-    "runTime": 55
+    "runTime": 35
   },
   "1034": {
     "inputs": [
@@ -641,7 +641,7 @@
       }
     ],
     "primaryTypeID": 82137,
-    "runTime": 10
+    "runTime": 3
   },
   "1035": {
     "inputs": [
@@ -937,16 +937,16 @@
       }
     ],
     "primaryTypeID": 82127,
-    "runTime": 10
+    "runTime": 5
   },
   "1052": {
     "inputs": [
       {
-        "quantity": 360,
+        "quantity": 400,
         "typeID": 77805
       },
       {
-        "quantity": 360,
+        "quantity": 400,
         "typeID": 88234
       }
     ],
@@ -957,7 +957,7 @@
       }
     ],
     "primaryTypeID": 82131,
-    "runTime": 15
+    "runTime": 5
   },
   "1053": {
     "inputs": [
@@ -973,7 +973,7 @@
       }
     ],
     "primaryTypeID": 82126,
-    "runTime": 10
+    "runTime": 5
   },
   "1054": {
     "inputs": [
@@ -993,7 +993,7 @@
       }
     ],
     "primaryTypeID": 81658,
-    "runTime": 8
+    "runTime": 3
   },
   "1055": {
     "inputs": [
@@ -1029,7 +1029,7 @@
       }
     ],
     "primaryTypeID": 78437,
-    "runTime": 55
+    "runTime": 35
   },
   "1057": {
     "inputs": [
@@ -1126,20 +1126,24 @@
         "typeID": 84182
       },
       {
-        "quantity": 1080,
+        "quantity": 800,
         "typeID": 88234
       },
       {
-        "quantity": 900,
+        "quantity": 1000,
         "typeID": 77801
       },
       {
-        "quantity": 630,
+        "quantity": 400,
+        "typeID": 88234
+      },
+      {
+        "quantity": 700,
         "typeID": 99001
       },
       {
-        "quantity": 43,
-        "typeID": 89258
+        "quantity": 100,
+        "typeID": 77811
       }
     ],
     "outputs": [
@@ -1149,7 +1153,7 @@
       }
     ],
     "primaryTypeID": 82132,
-    "runTime": 25
+    "runTime": 13
   },
   "1063": {
     "inputs": [
@@ -1169,7 +1173,7 @@
       }
     ],
     "primaryTypeID": 82140,
-    "runTime": 25
+    "runTime": 13
   },
   "1064": {
     "inputs": [
@@ -1189,7 +1193,7 @@
       }
     ],
     "primaryTypeID": 82137,
-    "runTime": 10
+    "runTime": 3
   },
   "1066": {
     "inputs": [
@@ -3597,7 +3601,7 @@
       }
     ],
     "primaryTypeID": 78423,
-    "runTime": 8
+    "runTime": 3
   },
   "1182": {
     "inputs": [
@@ -3757,7 +3761,7 @@
       }
     ],
     "primaryTypeID": 78435,
-    "runTime": 25
+    "runTime": 18
   },
   "1192": {
     "inputs": [
@@ -3793,7 +3797,7 @@
       }
     ],
     "primaryTypeID": 77728,
-    "runTime": 25
+    "runTime": 18
   },
   "1194": {
     "inputs": [
@@ -3976,7 +3980,7 @@
     ],
     "outputs": [
       {
-        "quantity": 16,
+        "quantity": 10,
         "typeID": 89259
       },
       {
@@ -4004,7 +4008,7 @@
         "typeID": 89258
       },
       {
-        "quantity": 300,
+        "quantity": 200,
         "typeID": 78423
       }
     ],
@@ -4076,11 +4080,11 @@
     ],
     "outputs": [
       {
-        "quantity": 120,
+        "quantity": 60,
         "typeID": 77805
       },
       {
-        "quantity": 1188,
+        "quantity": 594,
         "typeID": 77801
       }
     ],
@@ -4116,7 +4120,7 @@
     ],
     "outputs": [
       {
-        "quantity": 48,
+        "quantity": 30,
         "typeID": 89259
       },
       {
@@ -4144,7 +4148,7 @@
         "typeID": 89258
       },
       {
-        "quantity": 900,
+        "quantity": 600,
         "typeID": 78423
       }
     ],
@@ -4290,19 +4294,19 @@
         "typeID": 78421
       },
       {
-        "quantity": 123,
+        "quantity": 88,
         "typeID": 84204
       },
       {
-        "quantity": 67,
+        "quantity": 48,
         "typeID": 88841
       },
       {
-        "quantity": 67,
+        "quantity": 48,
         "typeID": 88843
       },
       {
-        "quantity": 4,
+        "quantity": 3,
         "typeID": 92483
       }
     ],
@@ -4313,7 +4317,7 @@
       }
     ],
     "primaryTypeID": 81904,
-    "runTime": 59126
+    "runTime": 79200
   },
   "1230": {
     "inputs": [
@@ -4322,19 +4326,19 @@
         "typeID": 78416
       },
       {
-        "quantity": 211,
+        "quantity": 124,
         "typeID": 84204
       },
       {
-        "quantity": 123,
+        "quantity": 72,
         "typeID": 88841
       },
       {
-        "quantity": 123,
+        "quantity": 72,
         "typeID": 88843
       },
       {
-        "quantity": 7,
+        "quantity": 4,
         "typeID": 92483
       }
     ],
@@ -4345,7 +4349,7 @@
       }
     ],
     "primaryTypeID": 81808,
-    "runTime": 99136
+    "runTime": 151200
   },
   "1231": {
     "inputs": [
@@ -4354,15 +4358,15 @@
         "typeID": 78421
       },
       {
-        "quantity": 181,
+        "quantity": 160,
         "typeID": 84204
       },
       {
-        "quantity": 84,
+        "quantity": 74,
         "typeID": 88841
       },
       {
-        "quantity": 83,
+        "quantity": 74,
         "typeID": 88843
       }
     ],
@@ -4373,7 +4377,7 @@
       }
     ],
     "primaryTypeID": 82424,
-    "runTime": 72472
+    "runTime": 82800
   },
   "1232": {
     "inputs": [
@@ -4410,15 +4414,15 @@
         "typeID": 78416
       },
       {
-        "quantity": 49,
+        "quantity": 46,
         "typeID": 84206
       },
       {
-        "quantity": 32,
+        "quantity": 30,
         "typeID": 88842
       },
       {
-        "quantity": 31,
+        "quantity": 30,
         "typeID": 88844
       },
       {
@@ -4437,7 +4441,7 @@
       }
     ],
     "primaryTypeID": 82430,
-    "runTime": 230063
+    "runTime": 244800
   },
   "1234": {
     "inputs": [
@@ -4684,7 +4688,7 @@
     ],
     "outputs": [
       {
-        "quantity": 6,
+        "quantity": 3,
         "typeID": 78435
       },
       {
@@ -4692,7 +4696,7 @@
         "typeID": 92422
       }
     ],
-    "primaryTypeID": 92394,
+    "primaryTypeID": 78435,
     "runTime": 20
   },
   "1481": {
@@ -4704,7 +4708,7 @@
     ],
     "outputs": [
       {
-        "quantity": 6,
+        "quantity": 3,
         "typeID": 77728
       },
       {
@@ -4712,7 +4716,7 @@
         "typeID": 92422
       }
     ],
-    "primaryTypeID": 92414,
+    "primaryTypeID": 77728,
     "runTime": 20
   },
   "1482": {
@@ -4722,8 +4726,8 @@
         "typeID": 92422
       },
       {
-        "quantity": 1,
-        "typeID": 88782
+        "quantity": 5,
+        "typeID": 78449
       }
     ],
     "outputs": [
@@ -4742,19 +4746,19 @@
         "typeID": 78421
       },
       {
-        "quantity": 101,
+        "quantity": 80,
         "typeID": 84204
       },
       {
-        "quantity": 89,
+        "quantity": 70,
         "typeID": 88841
       },
       {
-        "quantity": 88,
+        "quantity": 70,
         "typeID": 88843
       },
       {
-        "quantity": 5,
+        "quantity": 4,
         "typeID": 92483
       }
     ],
@@ -4765,7 +4769,7 @@
       }
     ],
     "primaryTypeID": 82425,
-    "runTime": 62228
+    "runTime": 78000
   },
   "1487": {
     "inputs": [

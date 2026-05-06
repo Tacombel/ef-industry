@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Char",
+    "locations": [
+      "Inner ancient cluster",
+      "Inner derelict bay",
+      "Inner derelict quarry",
+      "Inner stone cluster",
+      "Trojan drifting annex",
+      "Trojan garden"
+    ],
+    "items": [
+      77800
+    ]
+  },
+  {
+    "name": "Comet",
+    "locations": [
+      "Outer abandoned foundry",
+      "Outer blue rift",
+      "Outer grove"
+    ],
+    "items": [
+      77811
+    ]
+  },
+  {
+    "name": "Dewdrop",
+    "locations": [
+      "Outer grove"
+    ],
+    "items": [
+      78446
+    ]
+  },
+  {
+    "name": "Ember",
+    "locations": [
+      "Outer abandoned foundry",
+      "Outer grove",
+      "Trojan drifting annex",
+      "Trojan garden"
+    ],
+    "items": [
+      78447
+    ]
+  },
+  {
+    "name": "Glint",
+    "locations": [
+      "Outer abandoned foundry",
+      "Trojan garden"
+    ],
+    "items": [
+      78448
+    ]
+  },
+  {
+    "name": "Ingot",
+    "locations": [
+      "Inner ancient cluster",
+      "Inner derelict quarry",
+      "Inner stone cluster",
+      "Trojan drifting annex",
+      "Trojan garden"
+    ],
+    "items": [
+      78426
+    ]
+  },
+  {
+    "name": "Slag",
+    "locations": [
+      "Inner ancient cluster",
+      "Inner derelict bay",
+      "Inner derelict quarry",
+      "Inner stone cluster",
+      "Trojan drifting annex",
+      "Trojan garden"
+    ],
+    "items": [
+      77810
+    ]
+  },
+  {
+    "name": "Soot",
+    "locations": [
+      "Outer grove",
+      "Trojan garden"
+    ],
+    "items": [
+      78449
+    ]
+  }
+]

@@ -148,11 +148,88 @@ npm start
 - **Sui blockchain** (`@mysten/sui` / JSON-RPC) — wallet auth, SSU inventory, on-chain data
 - **Docker** — multi-stage build, non-root user, healthcheck
 - **Vitest** — test suite (42 tests, calculator + dev-guard coverage)
+---
+
+## Data sources
+
+### Industry blueprints & facilities
+
+Extracted from the **EVE Frontier game client** using [Phobos](https://github.com/ProtoDroidBot/Phobos/tree/fsdbinary-t1)
+(fork `fsdbinary-t1`, requires Python 3.12):
+
+```bash
+python run.py -e "C:\CCP\EVE Frontier" -s stillness -j <output_dir> -l "industry_blueprints,industry_facilities"
+```
+
+The tool reads FSD binary files from the client's `ResFiles/` via the `.pyd` loaders
+in `stillness/bin64/` and `stillness/code.ccp`. Output is written to
+`<output_dir>/fsd_built/` and then copied to `EF-static/`.
+
+| File | Type | Records | Current |
+|------|------|---------|---------|
+| `industry_blueprints.json` | Blueprint recipes (inputs, outputs, runTime) | 221 | `EF-static/industry_blueprints.json` |
+| `industry_facilities.json` | Facility definitions (capacity, allowed blueprints) | 12 | `EF-static/industry_facilities.json` |
+
+**Last extracted:** 2026-05-06 via Phobos (commit `e10cd9f`).
+
+### Types
+
+Retrieved from the **EVE Frontier World API** at `EF_WORLD_API_URL`:
+
+```
+GET /v2/types?limit=500&offset=0
+```
+
+Returns item type definitions (id, name, group, category, mass, volume, etc.).
+Only published types available in the API are included (~392 records).
+
+Some TypeIDs referenced in blueprints may not appear in this API response
+(typically unpublished or expansion items). These are included automatically
+during seed generation because the transformation script pulls in any TypeID
+referenced as a blueprint input/output, regardless of whether it exists in
+`types.json`.
+
+| File | Type | Records | Current |
+|------|------|---------|---------|
+| `types.json` | Item type definitions | ~392 | `EF-static/types.json` |
+
+### Seed data
+
+The application does **not** read `EF-static/` files directly. All game data is
+consolidated into `prisma/seed.json`, which is loaded into SQLite via:
+
+```bash
+npx tsx prisma/seed.ts
+```
+
+The seed format is a curated superset of the three source files above. Most
+content is sourced directly from the game data, with the following additions:
+
+- **Asteroids** — ore locations and their contents (curated from game knowledge)
+- **Decompositions** — refinery recipes (ore → minerals), derived from the extraction data
+- **Boolean flags** — `isRawMaterial`, `isFound`, `isFinalProduct` per item (curated)
+- **Cross-referenced types** — any TypeID that appears as a blueprint input/output
+  but is absent from the API's `types.json` is included automatically (17 known cases)
+- **Manually added blueprints** — some factories/recipes don't exist in the game
+  client data and are added by hand, e.g. the **Build** factory (`typeId: 10000014`)
+  with 32 blueprints of its own
+
+---
+
+## BP classification by primaryTypeID
+
+Each blueprint in `industry_blueprints.json` has a `primaryTypeID` field. There's a pattern:
+
+- **Blueprint** (factory recipe): `primaryTypeID` matches one of the **outputs** (e.g. BP 1100 → Cargo Grid II)
+- **Decomposition** (refinery recipe): `primaryTypeID` matches one of the **inputs** (e.g. BP 1202 → Platinum-Palladium Matrix)
+
+This could potentially replace the hardcoded facility-type distinction (factory vs refinery) in the future.
+
+> TODO: Investigate whether we can classify facilities automatically based on their BPs' primaryTypeID vs inputs/outputs, eliminating the need to define factory/refinery roles explicitly.
 
 ---
 
 ## Session diary
-
 This project uses OpenCode's `/cierrate` custom command to generate a per-session diary in `docs/sesiones/`. At the end of each working session, running `/cierrate` produces a narrative summary of what was done, decisions made, problems encountered, and pending TODOs.
 
 ---
