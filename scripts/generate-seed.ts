@@ -42,15 +42,6 @@ type FlagsEntry = {
   isFinalProduct: boolean;
   isAsteroid: boolean;
   volume: number;
-  description?: string;
-  mass?: number;
-  radius?: number;
-  portionSize?: number;
-  groupName?: string;
-  groupId?: number;
-  categoryName?: string;
-  categoryId?: number;
-  iconUrl?: string;
 };
 
 type SeedItem = FlagsEntry & { name: string };
@@ -182,15 +173,6 @@ function main() {
       isFinalProduct: curated?.isFinalProduct ?? false,
       isAsteroid: curated?.isAsteroid ?? false,
       volume: curated?.volume ?? t.volume ?? 0,
-      description: curated?.description ?? t.description,
-      mass: curated?.mass ?? t.mass,
-      radius: curated?.radius ?? t.radius,
-      portionSize: curated?.portionSize ?? t.portionSize,
-      groupName: curated?.groupName ?? t.groupName,
-      groupId: curated?.groupId ?? t.groupId,
-      categoryName: curated?.categoryName ?? t.categoryName,
-      categoryId: curated?.categoryId ?? t.categoryId,
-      iconUrl: curated?.iconUrl ?? t.iconUrl,
     });
   }
 
@@ -205,15 +187,6 @@ function main() {
         isFinalProduct: ci.isFinalProduct,
         isAsteroid: ci.isAsteroid,
         volume: ci.volume,
-        description: ci.description,
-        mass: ci.mass,
-        radius: ci.radius,
-        portionSize: ci.portionSize,
-        groupName: ci.groupName,
-        groupId: ci.groupId,
-        categoryName: ci.categoryName,
-        categoryId: ci.categoryId,
-        iconUrl: ci.iconUrl,
       });
     }
   }

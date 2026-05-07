@@ -11,15 +11,6 @@ type SeedItem = {
   isFinalProduct: boolean;
   isAsteroid?: boolean;
   volume?: number;
-  description?: string | null;
-  mass?: number | null;
-  radius?: number | null;
-  portionSize?: number | null;
-  groupName?: string | null;
-  groupId?: number | null;
-  categoryName?: string | null;
-  categoryId?: number | null;
-  iconUrl?: string | null;
 };
 
 const prisma = new PrismaClient();
@@ -55,15 +46,6 @@ async function main() {
         isFinalProduct: item.isFinalProduct,
         isAsteroid: item.isAsteroid ?? false,
         volume: item.volume ?? 0,
-        description: item.description ?? null,
-        mass: item.mass ?? null,
-        radius: item.radius ?? null,
-        portionSize: item.portionSize ?? null,
-        groupName: item.groupName ?? null,
-        groupId: item.groupId ?? null,
-        categoryName: item.categoryName ?? null,
-        categoryId: item.categoryId ?? null,
-        iconUrl: item.iconUrl ?? null,
       },
       create: { ...item, volume: item.volume ?? 0 },
     });

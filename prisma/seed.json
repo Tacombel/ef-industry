@@ -88,16 +88,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Rogue Drone Analysis Data",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 72960,
@@ -106,16 +97,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hull Repair Unit",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 73192,
@@ -124,16 +106,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0,
-      "radius": 0,
-      "portionSize": 0,
-      "groupName": "License",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 73210,
@@ -142,16 +115,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 0,
-      "portionSize": 0,
-      "groupName": "Commodities",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 73264,
@@ -160,16 +124,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 0,
-      "portionSize": 0,
-      "groupName": "Commodities",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 73314,
@@ -178,16 +133,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Hostile rogue drones hunt and scavenge every system in this constellation we call Phoenix. They grow stronger as you move away from Angelice. They are reported more commonly near planets but sightings occur almost anywhere.\r\n\r\nLarge asteroid clusters have been cataloged in each system. In some, a large rogue drone structure appears to be devouring the raw ore and so the Settlers have begun calling the clusters 'Moon Eater'. Another location with dense resources has been found, but exploration attempts have failed due to an infested Abaddon who sits on watch. Ophidia Operations, based in Serpentis, are working on a technology to provide concealment.\r\n\r\nYour starter pack contains a blueprint we believe will provide access to the system Askur, which is currently locked by sophisticated encryption. We don't know what Askur has in store.\r\n\r\nSettler security forces have not yet been established, guard yourself. However, should your ship be destroyed, starter packs can be purchased from the market here in Angelice.",
-      "mass": 0.10000000149011612,
-      "radius": 0,
-      "portionSize": 0,
-      "groupName": "General",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77484,
@@ -196,16 +142,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Module used in the extraction of crude matter required for all types of fuel by drawing exotic material through a crude rift.",
-      "mass": 100000,
-      "radius": 25,
-      "portionSize": 2000,
-      "groupName": "Crude Extractor",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77518,
@@ -214,16 +151,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "For use with Crude Extractors only.",
-      "mass": 38020,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Mining Lens",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77728,
@@ -232,16 +160,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77729,
@@ -250,16 +169,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Braids of serenity and power entwine and disperse across the surface. Within, they dance as if begging to be set free. From this rhythm, the dreams of those long passed and those newly awoken may spring forth.\r\n\r\nA quiet fragility eminates from the matter’s movements, the ethereal beauty of transience. Practicality has no need of such things.",
-      "mass": 1100,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Rift",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77753,
@@ -268,16 +178,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Extra small hydrogen engine. Runs exclusively on <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 150000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hydrogen Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77800,
@@ -286,16 +187,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Calcium-sodium aluminosilicate feldspar crystals from basaltic crust of differentiated asteroids.\r\n\r\nFeldspar Crystals are commonly found in <a href=\"showinfo:91374\">Char </a>asteroids.",
-      "mass": 2850,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Char Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77801,
@@ -304,16 +196,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Nickel-bearing alloys commonly intermixed with iron in metallic asteroids. \r\n\r\nNickel-Iron Veins is commonly refined from Platinum-Palladium Matrix.",
-      "mass": 800,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77803,
@@ -322,16 +205,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Abundant non-metal hosted in silicate minerals throughout asteroids. \r\n\r\nSilicon Dust is commonly refined from Silica Grains.",
-      "mass": 300,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77804,
@@ -340,16 +214,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Prebiotic tar-like organics produced by long-term radiation chemistry. \r\n\r\nTholin Aggregates is commonly refined from Hydrocarbon Residue.",
-      "mass": 200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77805,
@@ -358,16 +223,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Rare platinum-group metals concentrated in differentiated asteroid cores. \r\n\r\nPlatinum-Group Veins is commonly refined from Platinum-Palladium Matrix.",
-      "mass": 200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77810,
@@ -376,16 +232,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Platinum and palladium concentrated in nickel-rich metallic grains from intermediate core zones. Forms during slow cooling of differentiated asteroid cores.\r\n\r\nPlatinum-Palladium Matrix is commonly found in  <a href=\"showinfo:91375\">Slag</a> asteroids. ",
-      "mass": 6925,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Slag Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77811,
@@ -394,16 +241,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Water-bearing sulfide-rich material common in carbonaceous chondrites. Represents aqueous alteration of metal sulfides in the early solar system.\r\n\r\nHydrated Sulfide Matrix is commonly found in <a href=\"showinfo:91377\">Comet</a> asteroids. ",
-      "mass": 1550,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Comet Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 77818,
@@ -412,16 +250,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Long abandoned and left to the mercy of the Static Shear, little energy or even structure remains. This lingering dross provides barely enough of a spark to power a vessel. Even the best refinery processes cannot prevent the decay of time from claiming their product.",
-      "mass": 42,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Hydrogen Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77852,
@@ -430,16 +259,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A direct energy tool useful for breaking apart solid matter. Like many of its forebearers, it can serve needs beyond its intended purpose. Adaptation is necessary for survival.",
-      "mass": 60000,
-      "radius": 25,
-      "portionSize": 2000,
-      "groupName": "Asteroid Mining Laser",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 77917,
@@ -448,16 +268,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A programmable storage unit.",
-      "mass": 740000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Storage",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/77917.png"
+      "volume": 0
     },
     {
       "typeId": 78416,
@@ -466,16 +277,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1080000,
-      "radius": 1,
-      "portionSize": 278,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78417,
@@ -484,16 +286,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 360000,
-      "radius": 1,
-      "portionSize": 834,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78418,
@@ -502,16 +295,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 90000,
-      "radius": 1,
-      "portionSize": 3334,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78420,
@@ -520,16 +304,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 360000,
-      "radius": 1,
-      "portionSize": 834,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78421,
@@ -538,16 +313,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 360000,
-      "radius": 1,
-      "portionSize": 834,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78422,
@@ -556,16 +322,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 21600000,
-      "radius": 1,
-      "portionSize": 14,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78423,
@@ -574,16 +331,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Essential volatile preserved in cold outer-belt environments. \r\n\r\nHydrated Sulfide Matrix and Methane Ice Shards are common sources of Water Ice.",
-      "mass": 100,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78426,
@@ -592,16 +340,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Dense iridium-osmium-ruthenium alloy nodules from the deepest, hottest core regions. Among the most refractory materials in the solar system.\r\n\r\nIridosmine Nodules are commonly found in <a href=\"showinfo:91376\">Ingot asteroids</a>.",
-      "mass": 8200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Ingot Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78429,
@@ -610,16 +349,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 2000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Deep-Core Carbon Asteroid",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78434,
@@ -628,16 +358,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Currents of energy flicker almost playfully just beneath the surface. Deeper, the flows meld, forming a sea of emotion. The hue surrounding the matter changes with these internal tides, reflecting whichever passion dominates in the moment.\r\n\r\nIt is this mercurial nature which entices, which promises the ability to shape the future. So sweet is the call that danger, no matter how apparent, is easily ignored.",
-      "mass": 812,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Rift",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78435,
@@ -646,16 +367,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 800,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78437,
@@ -664,16 +376,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 30,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Crude Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/78437.png"
+      "volume": 0
     },
     {
       "typeId": 78446,
@@ -682,16 +385,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Pure methane ice preserved at cryogenic temperatures in outer asteroid belt regions.\r\n\r\nMethane Ice Shards are commonly found in <a href=\"showinfo:91378\">Dewdrop</a> asteroids.",
-      "mass": 1500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Dewdrop Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78447,
@@ -700,16 +394,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Unaltered complex organic polymer preserved from early solar system formation, less processed than C-type kerogen.\r\n\r\nPrimitive Kerogen Matrix is commonly found in <a href=\"showinfo:91379\">Ember</a> asteroids.",
-      "mass": 2000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Ember Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78448,
@@ -718,16 +403,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Concentrated deposits of complex aromatic hydrocarbons formed through extended space weathering and radiation processing of organic ices.\r\n\r\nAromatic Carbon Veins are commonly found in <a href=\"showinfo:91380\">Glint</a> asteroids.",
-      "mass": 3500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Glint Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78449,
@@ -736,16 +412,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Prebiotic tar-like organics formed from radiation-driven chemistry.\r\n\r\nTholin Nodules are commonly found in <a href=\"showinfo:91381\">Soot</a> asteroids.",
-      "mass": 3000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Soot Ores",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 78450,
@@ -754,16 +421,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 4000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Synthetic Hermetite",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78451,
@@ -772,16 +430,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 4500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Synthetic Hermetite",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78452,
@@ -790,16 +439,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 6000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Synthetic Hermetite",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78453,
@@ -808,16 +448,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 5500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Synthetic Hermetite",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78490,
@@ -826,16 +457,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with high performance and high power requirments.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 300000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78502,
@@ -844,16 +466,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with high performance and high power requirments.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 417280,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78504,
@@ -862,16 +475,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with a balance of performance and power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 834540,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78506,
@@ -880,16 +484,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with low performance but low power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 300000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78507,
@@ -898,16 +493,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with low performance but low power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 417280,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78508,
@@ -916,16 +502,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with low performance but low power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 834540,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78510,
@@ -934,16 +511,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with a balance of performance and power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 417280,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78511,
@@ -952,16 +520,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Engine with a balance of performance and power requirements.\r\n\r\nRequires any kind of refined Crude fuel such as <a href=showinfo:78516>EU-40</a> to operate.\r\nWill not function using <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 300000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 78515,
@@ -970,16 +529,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 30,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Crude Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/78515.png"
+      "volume": 0
     },
     {
       "typeId": 78516,
@@ -988,16 +538,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 25,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Crude Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/78516.png"
+      "volume": 1
     },
     {
       "typeId": 81609,
@@ -1006,16 +547,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A light vessel optimized for resource extraction (placeholder).",
-      "mass": 30266600,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Frigate",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81611,
@@ -1024,16 +556,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large hauler with extensive cargo capacity. (placeholder)",
-      "mass": 1739489536,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Combat Battlecruiser",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81656,
@@ -1042,16 +565,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81657,
@@ -1060,16 +574,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 49190,
-      "radius": 1,
-      "portionSize": 1250,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81658,
@@ -1078,16 +583,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 24,
-      "radius": 1,
-      "portionSize": 16666667,
-      "groupName": "EM Disintegrator Charge ",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81808,
@@ -1096,16 +592,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A medium-sized and flexible combat vessel. (placeholder)",
-      "mass": 74655480,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Destroyer",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81846,
@@ -1114,16 +601,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Small hydrogen engine. Runs exclusively on <a href=showinfo:88335>hydrogen fuel</a>.",
-      "mass": 150000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hydrogen Engines",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81904,
@@ -1132,16 +610,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A lightweight combat vessel designed focused on evading fire. (placeholder)",
-      "mass": 52313760,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Frigate",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81972,
@@ -1150,16 +619,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 81974,
@@ -1168,16 +628,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82028,
@@ -1186,16 +637,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 67980,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82030,
@@ -1204,16 +646,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 56750,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82032,
@@ -1222,16 +655,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 10,
-      "portionSize": 5000,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82033,
@@ -1240,16 +664,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 66720,
-      "radius": 10,
-      "portionSize": 1250,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82084,
@@ -1258,16 +673,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 70000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82085,
@@ -1276,16 +682,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82086,
@@ -1294,16 +691,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 70000,
-      "radius": 10,
-      "portionSize": 5000,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82087,
@@ -1312,16 +700,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 10,
-      "portionSize": 5000,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82088,
@@ -1330,16 +709,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 70000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82089,
@@ -1348,16 +718,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82090,
@@ -1366,16 +727,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 70000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82091,
@@ -1384,16 +736,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82092,
@@ -1402,16 +745,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 69080,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82093,
@@ -1420,16 +754,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 70190,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Mass Driver Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82094,
@@ -1438,16 +763,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 50290,
-      "radius": 1,
-      "portionSize": 1250,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82095,
@@ -1456,16 +772,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 51390,
-      "radius": 1,
-      "portionSize": 1250,
-      "groupName": "Energy Lance",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82096,
@@ -1474,16 +781,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 67820,
-      "radius": 10,
-      "portionSize": 1250,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82097,
@@ -1492,16 +790,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 68920,
-      "radius": 10,
-      "portionSize": 1250,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82098,
@@ -1510,16 +799,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 57850,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82099,
@@ -1528,16 +808,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 58950,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82126,
@@ -1546,16 +817,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Gyrojet Ammunition",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82127,
@@ -1564,16 +826,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Gyrojet Ammunition",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82128,
@@ -1582,16 +835,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Gyrojet Ammunition",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82130,
@@ -1600,16 +844,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Plasma Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82131,
@@ -1618,16 +853,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Plasma Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82132,
@@ -1636,16 +862,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 2456,
-      "radius": 1,
-      "portionSize": 153847,
-      "groupName": "Plasma Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82133,
@@ -1654,16 +871,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1200,
-      "radius": 1,
-      "portionSize": 333334,
-      "groupName": "Coilgun Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82134,
@@ -1672,16 +880,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 2456,
-      "radius": 1,
-      "portionSize": 153847,
-      "groupName": "Coilgun Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82137,
@@ -1690,16 +889,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 48,
-      "radius": 1,
-      "portionSize": 8333334,
-      "groupName": "EM Disintegrator Charge ",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82140,
@@ -1708,16 +898,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 2456,
-      "radius": 1,
-      "portionSize": 153847,
-      "groupName": "Projectile Ammo",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82410,
@@ -1726,16 +907,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Nanitic Armor Weave Sequencer",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82411,
@@ -1744,16 +916,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Nanitic Armor Weave Sequencer",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82412,
@@ -1762,16 +925,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Nanitic Armor Weave Sequencer",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82413,
@@ -1780,16 +934,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 5000,
-      "groupName": "Nanitic Armor Weave Sequencer",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82424,
@@ -1798,16 +943,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small but durable combat vessel. (placeholder)",
-      "mass": 81883000,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Frigate",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82425,
@@ -1816,16 +952,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "An ultra-lightweight combat vessel designed to focus on striking fast. (placeholder)",
-      "mass": 18929160,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Frigate",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82426,
@@ -1834,16 +961,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small hauler designed to travel through combat zones. (placeholder)",
-      "mass": 31369320,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Frigate",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82430,
@@ -1852,16 +970,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "An assault cruiser platform. (Placeholder)",
-      "mass": 548435904,
-      "radius": 30,
-      "portionSize": 1,
-      "groupName": "Cruiser",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82647,
@@ -1870,16 +979,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 224000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82648,
@@ -1888,16 +988,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 80000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82649,
@@ -1906,16 +997,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 100000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82650,
@@ -1924,16 +1006,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 100000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82651,
@@ -1942,16 +1015,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 750000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Armor Repair Unit",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82652,
@@ -1960,16 +1024,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 180000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82653,
@@ -1978,16 +1033,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 180000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82654,
@@ -1996,16 +1042,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 180000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82667,
@@ -2014,16 +1051,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Improves the recharge rate of the shield.",
-      "mass": 450000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Shield Recharger",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82681,
@@ -2032,16 +1060,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Propulsion Module",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82682,
@@ -2050,16 +1069,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily prevents a ship from warping.",
-      "mass": 150000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Scrambler",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82683,
@@ -2068,16 +1078,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily reduces the maximum speed of a ship.",
-      "mass": 150000,
-      "radius": 500,
-      "portionSize": 1,
-      "groupName": "Stasis Web",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 82915,
@@ -2086,16 +1087,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 23072.80078125,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Propulsion Module",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83421,
@@ -2104,16 +1096,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 448000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83423,
@@ -2122,16 +1105,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 346370,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83425,
@@ -2140,16 +1114,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 160000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83426,
@@ -2158,16 +1123,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 173180,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83429,
@@ -2176,16 +1132,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83430,
@@ -2194,16 +1141,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 173180,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83433,
@@ -2212,16 +1150,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83434,
@@ -2230,16 +1159,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 173180,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83437,
@@ -2248,16 +1168,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 750000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Armor Repair Unit",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83438,
@@ -2266,16 +1177,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder",
-      "mass": 251280,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Armor Repair Unit",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83441,
@@ -2284,16 +1186,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder.",
-      "mass": 70000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Flex Armor Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83442,
@@ -2302,16 +1195,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder.",
-      "mass": 140000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Flex Armor Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83443,
@@ -2320,16 +1204,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Placeholder.",
-      "mass": 11430,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Flex Armor Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83448,
@@ -2338,16 +1213,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 600000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83449,
@@ -2356,16 +1222,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 1002770,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83450,
@@ -2374,16 +1231,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 600000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83451,
@@ -2392,16 +1240,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 1002770,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83456,
@@ -2410,16 +1249,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 600000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83457,
@@ -2428,16 +1258,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Grants shields to a ship.",
-      "mass": 1002770,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83458,
@@ -2446,16 +1267,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Improves the recharge rate of the shield.",
-      "mass": 525000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Shield Recharger",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83459,
@@ -2464,16 +1276,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Improves the recharge rate of the shield.",
-      "mass": 251280,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Shield Recharger",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83463,
@@ -2482,16 +1285,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 4000,
-      "radius": 1,
-      "portionSize": 50000,
-      "groupName": "Asteroid Mining Crystal",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83497,
@@ -2500,16 +1294,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 286000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Expanded Cargohold",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83498,
@@ -2518,16 +1303,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 572000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Expanded Cargohold",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83499,
@@ -2536,16 +1312,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1144000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Expanded Cargohold",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83500,
@@ -2554,16 +1321,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 2288000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Expanded Cargohold",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83501,
@@ -2572,16 +1330,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 4576000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Expanded Cargohold",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83516,
@@ -2590,16 +1339,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily prevents a ship from warping. ( copy )",
-      "mass": 175000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Scrambler",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83517,
@@ -2608,16 +1348,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily prevents a ship from warping. ( copy )",
-      "mass": 200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Scrambler",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83518,
@@ -2626,16 +1357,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily prevents a ship from warping. ( copy )",
-      "mass": 225000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Scrambler",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83519,
@@ -2644,16 +1366,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily prevents a ship from warping. ( copy )",
-      "mass": 250000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Scrambler",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83520,
@@ -2662,16 +1375,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily reduces the maximum speed of a ship. ( copy )",
-      "mass": 175000,
-      "radius": 500,
-      "portionSize": 1,
-      "groupName": "Stasis Web",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83521,
@@ -2680,16 +1384,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily reduces the maximum speed of a ship. ( copy )",
-      "mass": 200000,
-      "radius": 500,
-      "portionSize": 1,
-      "groupName": "Stasis Web",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83522,
@@ -2698,16 +1393,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily reduces the maximum speed of a ship. ( copy )",
-      "mass": 225000,
-      "radius": 500,
-      "portionSize": 1,
-      "groupName": "Stasis Web",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83523,
@@ -2716,16 +1402,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Momentarily reduces the maximum speed of a ship. ( copy )",
-      "mass": 250000,
-      "radius": 500,
-      "portionSize": 1,
-      "groupName": "Stasis Web",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83525,
@@ -2734,16 +1411,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "The violence necessary to obtain such a trophy has reduced its functionality to a fraction of its potential. Yet, this laser remains operational in the face of all the Frontier’s hostilities, natural and computational alike. Fitting a feralized component, even one with its protocols exorcised and rebuilt, can be considered an act of hubris.",
-      "mass": 240000,
-      "radius": 25,
-      "portionSize": 910,
-      "groupName": "Asteroid Mining Laser",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83528,
@@ -2752,16 +1420,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A direct energy tool useful for breaking apart solid matter. Like many of its forebearers, it can serve needs beyond its intended purpose. Flexibility has served the denizens of the Frontier well.",
-      "mass": 41840,
-      "radius": 25,
-      "portionSize": 1334,
-      "groupName": "Asteroid Mining Laser",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83536,
@@ -2770,16 +1429,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 120000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Propulsion Module",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83613,
@@ -2788,16 +1438,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 140000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83614,
@@ -2806,16 +1447,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 280000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83615,
@@ -2824,16 +1456,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 560000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83618,
@@ -2842,16 +1465,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83619,
@@ -2860,16 +1474,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 160000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83620,
@@ -2878,16 +1483,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 320000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83623,
@@ -2896,16 +1492,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83624,
@@ -2914,16 +1501,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 120000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83625,
@@ -2932,16 +1510,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 240000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83628,
@@ -2950,16 +1519,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 140000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83629,
@@ -2968,16 +1528,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 280000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83630,
@@ -2986,16 +1537,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 560000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Nanitic Brace",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83768,
@@ -3004,16 +1546,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83769,
@@ -3022,16 +1555,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 120000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83770,
@@ -3040,16 +1564,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 240000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83772,
@@ -3058,16 +1573,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 6250,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83773,
@@ -3076,16 +1582,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 7500,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83774,
@@ -3094,16 +1591,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 8750,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83777,
@@ -3112,16 +1600,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 100000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83778,
@@ -3130,16 +1609,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83779,
@@ -3148,16 +1618,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 400000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83782,
@@ -3166,16 +1627,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 100000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83783,
@@ -3184,16 +1636,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83784,
@@ -3202,16 +1645,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 400000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Shield Hardener",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83818,
@@ -3220,16 +1654,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "The Null and Static Shears wreak havoc on most traditional forms of computation, rendering them nigh unusable in the Frontier. Exotronic technology's extreme adaptability and durability thus effectively make it the only option for automation in this environment. Faint remnants of activity in this debris suggest the potential for reclamation. Within these dull impulses of fragmented information, a hint of familiarity calls out.",
-      "mass": 12500,
-      "radius": 1,
-      "portionSize": 20000,
-      "groupName": "Exotronic Frames",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83839,
@@ -3238,16 +1663,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 83891,
@@ -3256,16 +1672,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 100000,
-      "groupName": "Rogue Drone Components",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83892,
@@ -3274,16 +1681,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 100000,
-      "groupName": "Rogue Drone Components",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83893,
@@ -3292,16 +1690,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 100000,
-      "groupName": "Rogue Drone Components",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83894,
@@ -3310,16 +1699,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 100000,
-      "groupName": "Rogue Drone Components",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83895,
@@ -3328,16 +1708,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 7410,
-      "radius": 1,
-      "portionSize": 33334,
-      "groupName": "Asteroid Mining Crystal",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83896,
@@ -3346,16 +1717,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 10000,
-      "radius": 1,
-      "portionSize": 20000,
-      "groupName": "Asteroid Mining Crystal",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83897,
@@ -3364,16 +1726,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 7410,
-      "radius": 1,
-      "portionSize": 33334,
-      "groupName": "Asteroid Mining Crystal",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83898,
@@ -3382,16 +1735,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 10000,
-      "radius": 1,
-      "portionSize": 20000,
-      "groupName": "Asteroid Mining Crystal",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83899,
@@ -3400,16 +1744,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 200,
-      "radius": 1,
-      "portionSize": 1000000,
-      "groupName": "Rogue Drone Components",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83978,
@@ -3418,16 +1753,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83979,
@@ -3436,16 +1762,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83980,
@@ -3454,16 +1771,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83981,
@@ -3472,16 +1780,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83982,
@@ -3490,16 +1789,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83983,
@@ -3508,16 +1798,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83984,
@@ -3526,16 +1807,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83985,
@@ -3544,16 +1816,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83986,
@@ -3562,16 +1825,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83987,
@@ -3580,16 +1834,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 83988,
@@ -3598,16 +1843,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84180,
@@ -3616,16 +1852,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Cheap and modular basic electronics computing system.",
-      "mass": 10500,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84182,
@@ -3634,16 +1861,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A frontier standard alloy with versatile use cases.",
-      "mass": 56000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84204,
@@ -3652,16 +1870,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Durable structural component.",
-      "mass": 560000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84206,
@@ -3670,16 +1879,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Large and durable structural component.",
-      "mass": 5600000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84210,
@@ -3688,16 +1888,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Strong material for products requiring lower weight.",
-      "mass": 30000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84556,
@@ -3706,16 +1897,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A structure with a turret slot which you can equip with any turret.",
-      "mass": 265000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defense",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/84556.png"
+      "volume": 0
     },
     {
       "typeId": 84810,
@@ -3724,16 +1906,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": " ( copy )",
-      "mass": 11100000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 84868,
@@ -3742,16 +1915,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 25,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Crude Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/84868.png"
+      "volume": 1
     },
     {
       "typeId": 84955,
@@ -3760,16 +1924,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establish your own stargate by connecting two long distance Smart Gates together.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Gates",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/84955.png"
+      "volume": 0
     },
     {
       "typeId": 85291,
@@ -3778,16 +1933,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 10000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Deployable Beacon",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86465,
@@ -3796,16 +1942,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86466,
@@ -3814,16 +1951,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86467,
@@ -3832,16 +1960,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86615,
@@ -3850,16 +1969,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86616,
@@ -3868,16 +1978,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86617,
@@ -3886,16 +1987,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86618,
@@ -3904,16 +1996,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86619,
@@ -3922,16 +2005,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86620,
@@ -3940,16 +2014,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86621,
@@ -3958,16 +2023,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86622,
@@ -3976,16 +2032,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86623,
@@ -3994,16 +2041,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86624,
@@ -4012,16 +2050,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86625,
@@ -4030,16 +2059,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86626,
@@ -4048,16 +2068,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86627,
@@ -4066,16 +2077,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86634,
@@ -4084,16 +2086,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86635,
@@ -4102,16 +2095,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86636,
@@ -4120,16 +2104,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86637,
@@ -4138,16 +2113,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86638,
@@ -4156,16 +2122,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86657,
@@ -4174,16 +2131,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86658,
@@ -4192,16 +2140,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86659,
@@ -4210,16 +2149,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86681,
@@ -4228,16 +2158,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86682,
@@ -4246,16 +2167,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86683,
@@ -4264,16 +2176,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86684,
@@ -4282,16 +2185,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86685,
@@ -4300,16 +2194,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86686,
@@ -4318,16 +2203,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86687,
@@ -4336,16 +2212,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86688,
@@ -4354,16 +2221,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86689,
@@ -4372,16 +2230,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86690,
@@ -4390,16 +2239,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86691,
@@ -4408,16 +2248,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86692,
@@ -4426,16 +2257,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86693,
@@ -4444,16 +2266,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86694,
@@ -4462,16 +2275,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86695,
@@ -4480,16 +2284,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86696,
@@ -4498,16 +2293,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86697,
@@ -4516,16 +2302,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86698,
@@ -4534,16 +2311,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86699,
@@ -4552,16 +2320,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86700,
@@ -4570,16 +2329,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86702,
@@ -4588,16 +2338,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86765,
@@ -4606,16 +2347,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86766,
@@ -4624,16 +2356,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86767,
@@ -4642,16 +2365,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 86798,
@@ -4660,16 +2374,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87119,
@@ -4678,16 +2383,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Offers small scale industry services.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/87119.png"
+      "volume": 0
     },
     {
       "typeId": 87120,
@@ -4696,16 +2392,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Industrial printer that handles materials in large quantities.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/87120.png"
+      "volume": 0
     },
     {
       "typeId": 87160,
@@ -4714,16 +2401,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Offers a respite after a long journey. Offers fitting services.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/87160.png"
+      "volume": 0
     },
     {
       "typeId": 87161,
@@ -4732,16 +2410,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Cheap and portable refinery that goes anywhere with you.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87162,
@@ -4750,16 +2419,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Portable printer that can produce basic survival items.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/87162.png"
+      "volume": 0
     },
     {
       "typeId": 87375,
@@ -4768,16 +2428,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1201,
-      "radius": 1,
-      "portionSize": 10,
-      "groupName": "Natural Resources",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87566,
@@ -4786,16 +2437,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small storage unit to store your resources.",
-      "mass": 740000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87595,
@@ -4804,16 +2446,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": true,
-      "volume": 0,
-      "description": "The glowing crystalline structure hums",
-      "mass": 2521.00830078125,
-      "radius": 1,
-      "portionSize": 10,
-      "groupName": "Natural Resources",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87599,
@@ -4822,16 +2455,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 240000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Heat Ejector",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87698,
@@ -4840,16 +2464,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A vessel able to complete basic tasks. Provided by Keep as a springboard for Project Awakening (placeholder)",
-      "mass": 6800000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Shuttle",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87846,
@@ -4858,16 +2473,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small hard hitting combat vessel emphasizing firepower over hull strength. (Placeholder)",
-      "mass": 10400000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Corvette",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87847,
@@ -4876,16 +2482,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Created for efficient, long distance travel. Records suggest the structure of this vessel has been repurposed numerous times as automated processes sought to adapt to an increasingly hostile environment. \r\n\r\nAs a result, the original intention behind this hull design has been lost to the millennia and data corruption has obscured even whether this design originates from a human or artificial mind. However, the data streams which led to this vessel's development have their origins in the K4T-Y region. (placeholder)",
-      "mass": 9750000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Corvette",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 87848,
@@ -4894,16 +2491,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small, durable combat vessel. (Placeholder)",
-      "mass": 10200000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Corvette",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88063,
@@ -4912,16 +2500,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A refinery capable of extracting main minerals from all ores.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88063.png"
+      "volume": 0
     },
     {
       "typeId": 88064,
@@ -4930,16 +2509,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Industrial refinery capable of extracting most of the minerals from all ores.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88064.png"
+      "volume": 0
     },
     {
       "typeId": 88067,
@@ -4948,16 +2518,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A printer that handles materials in bulk.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88067.png"
+      "volume": 0
     },
     {
       "typeId": 88068,
@@ -4966,16 +2527,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Assembles materials into end products like modules.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88068.png"
+      "volume": 0
     },
     {
       "typeId": 88069,
@@ -4984,16 +2536,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Small shipyard for building shuttles and corvettes.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88069.png"
+      "volume": 0
     },
     {
       "typeId": 88070,
@@ -5002,16 +2545,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A shipyard for building frigates, destroyers and cruisers.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88070.png"
+      "volume": 0
     },
     {
       "typeId": 88071,
@@ -5020,16 +2554,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large shipyard for building battleships and battlecruisers.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88071.png"
+      "volume": 0
     },
     {
       "typeId": 88082,
@@ -5038,16 +2563,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small programmable storage unit.",
-      "mass": 740000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Storage",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88082.png"
+      "volume": 0
     },
     {
       "typeId": 88083,
@@ -5056,16 +2572,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A programmable storage unit.",
-      "mass": 740000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Storage",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88083.png"
+      "volume": 0
     },
     {
       "typeId": 88086,
@@ -5074,16 +2581,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establish your own stargate by connecting two short range Small Gates together.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Gates",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88086.png"
+      "volume": 0
     },
     {
       "typeId": 88092,
@@ -5092,16 +2590,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establish your base with a Network Node. Stabilizes and fuels other structures in its range. Must be placed at an unclaimed Anchor point.\r\n\r\nOnce built you can set it as a home base.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88092.png"
+      "volume": 0
     },
     {
       "typeId": 88093,
@@ -5110,16 +2599,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A hangar for ship sizes up to and including frigates.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hangars",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88093.png"
+      "volume": 0
     },
     {
       "typeId": 88094,
@@ -5128,16 +2608,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large hangar for ship sizes up to and including battlecruisers.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hangars",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88094.png"
+      "volume": 0
     },
     {
       "typeId": 88098,
@@ -5146,16 +2617,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A decorative structure.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88098.png"
+      "volume": 0
     },
     {
       "typeId": 88099,
@@ -5164,16 +2626,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A decorative structure.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88099.png"
+      "volume": 0
     },
     {
       "typeId": 88100,
@@ -5182,16 +2635,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large structure used to create a physical obstacle for defensive purposes.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88100.png"
+      "volume": 0
     },
     {
       "typeId": 88101,
@@ -5200,16 +2644,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large structure used to create a physical obstacle for defensive purposes.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88101.png"
+      "volume": 0
     },
     {
       "typeId": 88234,
@@ -5218,16 +2653,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Iron sulfide mineral characteristic of primitive carbonaceous asteroids. \r\n\r\nHydrated Sulfide Matrix is a common source of Troilite Sulfide Grains.",
-      "mass": 263.29998779296875,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 88235,
@@ -5236,16 +2662,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Fractured aluminum tectosilicate minerals common in rocky and differentiated asteroids, typically formed through magmatic cooling processes.\r\n\r\nFeldspar Crystal Shards are commonly refined from Feldspar Crystals. ",
-      "mass": 320,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 88319,
@@ -5254,16 +2671,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Even the most mundane matter can be improved through synthesis with byproducts of Crude extraction. Plentiful and inefficient on the Frontier, hydrogen too may be uplifted through this process, breathing new life into reactors which would otherwise be left behind. A question remains: are these efforts efficient?",
-      "mass": 30,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Hydrogen Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88319.png"
+      "volume": 0
     },
     {
       "typeId": 88335,
@@ -5272,16 +2680,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "The allure of Crude Matter brought computation and humanity to the Frontier. As life reawakens, so too does the thirst for power in all its forms, including from the most mundane sources. Even in the face of the Static Shear, ice still litters the heavens. From its crystals, hydrogen may be extracted, reprocessed, and refined into fuel. This product, inefficient as it is, still drives the smallest vessels of the Frontier via its abundance and minimal cost. ",
-      "mass": 20,
-      "radius": 1,
-      "portionSize": 357143,
-      "groupName": "Hydrogen Fuel",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": "https://artifacts.evefrontier.com/types/88335.png"
+      "volume": 1
     },
     {
       "typeId": 88561,
@@ -5290,16 +2689,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Layered ceramics and metals that results in heat resistant manufacturing material.",
-      "mass": 24200,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88564,
@@ -5308,16 +2698,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 0,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88565,
@@ -5326,16 +2707,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88764,
@@ -5344,16 +2716,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 21000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Salvage",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88765,
@@ -5362,16 +2725,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "An air of reverence lingers around this corpse. Marks of age and violence cannot fully conceal the care given to this body, long abandoned by its original owner. The time for remembrance, however, has passed.",
-      "mass": 500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Salvage",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88780,
@@ -5380,16 +2734,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Strong material for products requiring lower weight. ( copy )",
-      "mass": 94299,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88781,
@@ -5398,16 +2743,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Carbon-based polymer residues structurally analogous to chitin, indicative of complex prebiotic or biologically processed compounds.\r\n\r\nAromatic Carbon Veins, Methane Ice Shards, Primitive Kerogen Matrix and Tholin Nodules are a common source of Chitinous Organics. ",
-      "mass": 14000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 88782,
@@ -5416,16 +2752,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Polycyclic aromatic hydrocarbons formed by radiation processing of carbon-rich ices. \r\n\r\nAromatic Carbon Veins is a common source of Aromatic Carbon Weave.",
-      "mass": 24000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 88783,
@@ -5434,16 +2761,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Complex organic polymer preserved from the early solar system. \r\n\r\nKerogen Tar is commonly refined from Primitive Kerogen Matrix.",
-      "mass": 12000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 88839,
@@ -5452,16 +2770,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Cheap and modular basic electronics computing system. ( copy )",
-      "mass": 105000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88840,
@@ -5470,16 +2779,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Cheap and modular basic electronics computing system. ( copy )",
-      "mass": 1050000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88841,
@@ -5488,16 +2788,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Strong material for products requiring lower weight. ( copy )",
-      "mass": 300000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88842,
@@ -5506,16 +2797,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Strong material for products requiring lower weight. ( copy )",
-      "mass": 3000000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88843,
@@ -5524,16 +2806,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Layered ceramics and metals that results in heat resistant manufacturing material. ( copy )",
-      "mass": 242000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88844,
@@ -5542,16 +2815,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Layered ceramics and metals that results in heat resistant manufacturing material. ( copy )",
-      "mass": 2420000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88886,
@@ -5560,16 +2824,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Increases the rate at which internal temperature reaches equilibrium with external temperature  ",
-      "mass": 120000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Heat Ejector",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88887,
@@ -5578,16 +2833,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80,
-      "radius": 1,
-      "portionSize": 10,
-      "groupName": "Heat Sink Charge",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 88889,
@@ -5596,16 +2842,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Increases the rate at which internal temperature reaches equilibrium with external temperature  ",
-      "mass": 240000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Heat Ejector",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89087,
@@ -5614,16 +2851,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 94299,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89088,
@@ -5632,16 +2860,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 94299,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89089,
@@ -5650,16 +2869,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 147980,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89258,
@@ -5668,16 +2878,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Complex organic compounds formed from carbonaceous ices and dust. \r\n\r\nTholin Nodules and Aromatic Carbon Veins are common sources of Hydrocarbon Residue.",
-      "mass": 2064,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 89259,
@@ -5686,16 +2887,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Silicon dioxide grains that dominate many stony asteroid crusts. \r\n\r\nSilica Grains is commonly refined from Feldspar Crystals.",
-      "mass": 3050,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 89260,
@@ -5704,16 +2896,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Most common structural metal in asteroids. \r\n\r\nPlatinum-Palladium Matrix is a common source of Iron-Rich Nodules.",
-      "mass": 8120,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 89775,
@@ -5722,16 +2905,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Sate the hunger for the arcane. This monolith resonates with long-forgotten knowledge.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89776,
@@ -5740,16 +2914,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Sate the hunger for the arcane. This monolith resonates with long-forgotten knowledge.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89777,
@@ -5758,16 +2923,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Gnaw on the bones of the lost world. Monuments like this one have once sat at the eyes of the Feral storms.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89778,
@@ -5776,16 +2932,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Gnaw on the bones of the lost world. Monuments like this one have once sat at the eyes of the Feral storms.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89779,
@@ -5794,16 +2941,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Follow the slipstream towards the source of world's blood. This sculpture is imprinted with Frontier's primal forces.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89780,
@@ -5812,16 +2950,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Follow the slipstream towards the source of world's blood. This sculpture is imprinted with Frontier's primal forces.",
-      "mass": 10000000,
-      "radius": 3000,
-      "portionSize": 1,
-      "groupName": "Misc.",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 89794,
@@ -5830,16 +2959,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": true,
-      "volume": 0,
-      "description": "Human greed carves gashes into the surface. Past sins bind to the structures within, transforming the promised bounty into a twisted relic. It enters this universe broken and scarred, carrying only a fraction of its potential.\r\n\r\nYet it is still Crude. It can still rouse dreams thought long extinct. Perhaps even the accursed dream responsible for its creation.",
-      "mass": 20000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Rift",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 90184,
@@ -5848,16 +2968,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establishes a connection to EVE Net, allowing the purchase of data, thus enabling the fabrication <a href=showinfo:77518>Crude mining lenses</a>, as well as the sale of feral data.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/90184.png"
+      "volume": 0
     },
     {
       "typeId": 90887,
@@ -5866,16 +2977,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A transit module for covering ground. Once engaged, the vessel holds its heading and is carried forward until the burn completes. An ancient choice for hopping between adjacent points of interest.\r\n\r\nAmong the oldest schemata found in the Frontier. It is simulated that countless variants have descended from a theorised original pattern, each adapted to different hulls and purposes, yet the core principle remains unchanged. The first makers understood something fundamental about motion that later work has only decorated.",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Accelerator",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91106,
@@ -5884,16 +2986,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A frame stripped for range, built to leap between stars.\r\nThe design bears apparent alterations — conduits rerouted through spaces that seem improvised, geometries bent into configurations that defy intuition.\r\nNo signature remains to mark its maker.",
-      "mass": 7900000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Corvette",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91107,
@@ -5902,16 +2995,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A hull shaped for distance and solitude. The proportions are spare, stripped of anything not essential to the crossing. The drive assembly carries unexpected mass — bracing layered over bracing, housings reinforced beyond apparent need, structure filling spaces the original geometry left hollow. What necessity shaped these adaptations remains unclear.",
-      "mass": 7200000,
-      "radius": 13.5,
-      "portionSize": 1,
-      "groupName": "Corvette",
-      "groupId": 0,
-      "categoryName": "Ship",
-      "categoryId": 6,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91205,
@@ -5920,16 +3004,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A fragment of endless growth, stripped of purpose yet stubbornly persistent.",
-      "mass": 180000,
-      "radius": 1000,
-      "portionSize": 1,
-      "groupName": "Propulsion Module",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91206,
@@ -5938,16 +3013,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A lingering trace of chaotic growth, the remnants of energy that once fueled a self-propagating anomaly.",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91209,
@@ -5956,16 +3022,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Small but potent, it pulses with the force that drives endless growth.",
-      "mass": 500,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defensive System",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91210,
@@ -5974,16 +3031,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Shards born from the collapse of unstable matter, whispering of relentless expansion and unseen forces.",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91374,
@@ -5992,16 +3040,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": true,
-      "volume": 0,
-      "description": "Charred remnants of volcanic crust, these fire-scarred asteroids contain crystalline feldspar minerals forged in the intense heat of differentiated parent bodies. Their burnt, weathered surfaces hide valuable aluminum and silicon-rich crystals beneath layers of space-weathered rock.\r\n\r\nChar asteroids are a common source of <a href=\"showinfo:77800\">Feldspar Crystals</a>  and can typically be found in Inner Belts.  ",
-      "mass": 2850,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Char",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91375,
@@ -6010,16 +3049,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": true,
-      "volume": 0,
-      "description": "Industrial waste from the cosmos—metallic slag asteroids are the leftover cores of shattered worlds. Rich in platinum and palladium, these slowly-cooled metallic matrices represent the most precious remnants of planetary formation, concentrated in dense nickel-rich grains.\r\n\r\nSlag asteroids are a common source of  <a href=\"showinfo:77810\">Platinum-Palladium Matrix</a> and can typically be found in Inner Belts. ",
-      "mass": 6925,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Slag",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91376,
@@ -6028,16 +3058,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Pure metallic ingots drifting through space, these asteroids are nature's own refined metal bars. Containing the densest materials known—iridium, osmium, and ruthenium—they're the treasure vaults of the asteroid belt, forged in the deepest, hottest cores of primordial worlds.\r\n\r\nIngot asteroids are a common source of <a href=\"showinfo:78426\">Iridosmine Nodules</a>.",
-      "mass": 8200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Ingot",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91377,
@@ -6046,16 +3067,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": true,
-      "volume": 0,
-      "description": "Primitive water-bearers from stellar formation, these comet-like asteroids hold preserved secrets in their hydrated sulfide cores. Part ice, part metal, they're time capsules of aqueous chemistry now frozen in the void.\r\n\r\nComet asteroids are a common source of <a href=\"showinfo:77811\">Hydrated Sulfide Matrix</a> and can typically be found in Outer Belts. ",
-      "mass": 1550,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Comet",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91378,
@@ -6064,16 +3076,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Delicate spheres of frozen volatiles, dewdrop asteroids glisten with crystalline methane ice preserved at near-absolute-zero temperatures. These fragile outer belt wanderers are reservoirs of pure cryogenic fuel, waiting to be harvested from the cold reaches of space.\r\n\r\nDewdrop asteroids are a common source of <a href=\"showinfo:78446\">Methane Ice Shards</a>.",
-      "mass": 1500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Dewdrop",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91379,
@@ -6082,16 +3085,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Still glowing with primordial organic heat, ember asteroids contain pristine kerogen—complex carbon polymers that have remained unaltered since formation. These dark, coal-like bodies hold valuable chemical building blocks.\r\n\r\nEmber asteroids are a common source of <a href=\"showinfo:78447\">Primitive Kerogen Matrix</a>.",
-      "mass": 2000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Ember",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91380,
@@ -6100,16 +3094,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Shimmering with rainbow-like iridescence, glint asteroids sparkle with veins of complex aromatic hydrocarbons. Radiation-forged through extended exposure, their surfaces gleam with polycyclic organic compounds—the cosmic equivalent of liquid crystal displays, beautiful and chemically exotic.\r\n\r\nGlint asteroids are a common source of <a href=\"showinfo:78448\">Aromatic Hydrocarbon Veins</a>.",
-      "mass": 3500,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Glint",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91381,
@@ -6118,16 +3103,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Dark as coal dust and deeply primordial, soot asteroids are coated in prebiotic tholin nodules—tar-like organic compounds formed through radiation chemistry. These sooty spheres are laboratories of cosmic chemistry, their surfaces slowly processing in the radiation of deep space.\r\n\r\nSoot asteroids are a common source of <a href=\"showinfo:78449\">Tholin Nodules</a>.",
-      "mass": 3000,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Soot",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91700,
@@ -6136,16 +3112,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Offers small scale industry services.",
-      "mass": 22200000,
-      "radius": 83,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91701,
@@ -6154,16 +3121,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A printer that handles materials in bulk.",
-      "mass": 22200000,
-      "radius": 204,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91702,
@@ -6172,16 +3130,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Industrial printer that handles materials in large quantities.",
-      "mass": 22200000,
-      "radius": 354,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91703,
@@ -6190,16 +3139,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A refinery capable of extracting main minerals from all ores.",
-      "mass": 22200000,
-      "radius": 265,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91704,
@@ -6208,16 +3148,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Industrial refinery capable of extracting most of the minerals from all ores.",
-      "mass": 22200000,
-      "radius": 534,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91705,
@@ -6226,16 +3157,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Small shipyard for building shuttles and corvettes.",
-      "mass": 22200000,
-      "radius": 172,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91706,
@@ -6244,16 +3166,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A shipyard for building frigates, destroyers and cruisers.",
-      "mass": 22200000,
-      "radius": 311,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91707,
@@ -6262,16 +3175,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large shipyard for building battleships and battlecruisers.",
-      "mass": 22200000,
-      "radius": 608,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91708,
@@ -6280,16 +3184,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Assembles materials into end products like modules.",
-      "mass": 22200000,
-      "radius": 168,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91709,
@@ -6298,16 +3193,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A hangar for ship sizes up to and including frigates.",
-      "mass": 22200000,
-      "radius": 396,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91710,
@@ -6316,16 +3202,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large hangar for ship sizes up to and including battlecruisers.",
-      "mass": 22200000,
-      "radius": 753,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91711,
@@ -6334,16 +3211,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establish your own stargate by connecting two short range Small Gates together.",
-      "mass": 22200000,
-      "radius": 3850,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91712,
@@ -6352,16 +3220,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establish your own stargate by connecting two long distance Smart Gates together.",
-      "mass": 22200000,
-      "radius": 21307,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91713,
@@ -6370,16 +3229,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small programmable storage unit.",
-      "mass": 740000,
-      "radius": 50,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91714,
@@ -6388,16 +3238,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A programmable storage unit.",
-      "mass": 740000,
-      "radius": 185,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91715,
@@ -6406,16 +3247,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A programmable storage unit.",
-      "mass": 740000,
-      "radius": 3869,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91717,
@@ -6424,16 +3256,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Establishes a connection to EVE Net, allowing the purchase of data, thus enabling the fabrication <a href=showinfo:77518>Crude mining lenses</a>, as well as the sale of feral data.",
-      "mass": 22200000,
-      "radius": 128,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91718,
@@ -6442,16 +3265,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A decorative structure.",
-      "mass": 22200000,
-      "radius": 469,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91719,
@@ -6460,16 +3274,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A decorative structure.",
-      "mass": 22200000,
-      "radius": 635,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91720,
@@ -6478,16 +3283,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large structure used to create a physical obstacle for defensive purposes.",
-      "mass": 22200000,
-      "radius": 345,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91721,
@@ -6496,16 +3292,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large structure used to create a physical obstacle for defensive purposes.",
-      "mass": 22200000,
-      "radius": 345,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91722,
@@ -6514,16 +3301,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Follow the slipstream towards the source of world's blood. This sculpture is imprinted with Frontier's primal forces.",
-      "mass": 10000000,
-      "radius": 1018,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91723,
@@ -6532,16 +3310,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Follow the slipstream towards the source of world's blood. This sculpture is imprinted with Frontier's primal forces.",
-      "mass": 10000000,
-      "radius": 1115,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91724,
@@ -6550,16 +3319,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Gnaw on the bones of the lost world. Monuments like this one have once sat at the eyes of the Feral storms.",
-      "mass": 10000000,
-      "radius": 1776,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91725,
@@ -6568,16 +3328,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Gnaw on the bones of the lost world. Monuments like this one have once sat at the eyes of the Feral storms.",
-      "mass": 10000000,
-      "radius": 1774,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91726,
@@ -6586,16 +3337,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Sate the hunger for the arcane. This monolith resonates with long-forgotten knowledge.",
-      "mass": 10000000,
-      "radius": 2501,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91727,
@@ -6604,16 +3346,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Sate the hunger for the arcane. This monolith resonates with long-forgotten knowledge.",
-      "mass": 10000000,
-      "radius": 1854,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91751,
@@ -6622,16 +3355,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Offers a respite after a long journey. Offers fitting services.",
-      "mass": 22200000,
-      "radius": 169,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91752,
@@ -6640,16 +3364,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Cheap and portable refinery that goes anywhere with you.",
-      "mass": 22200000,
-      "radius": 146,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91753,
@@ -6658,16 +3373,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Portable printer that can produce basic survival items.",
-      "mass": 22200000,
-      "radius": 83,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91756,
@@ -6676,16 +3382,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small storage unit to store your resources.",
-      "mass": 740000,
-      "radius": 50,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91871,
@@ -6694,16 +3391,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A facility for storing Shells and transferring between them.",
-      "mass": 2000000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Hangars",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/91871.png"
+      "volume": 0
     },
     {
       "typeId": 91937,
@@ -6712,16 +3400,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "Chaos permeates the Frontier at all scales, converting stabilizing forces into agents of transformation. The evolutionary havoc pulsing through the trabeculae of this substance tantalizes with the possibilities it may unlock. Its desirable qualities, in turn, ensure its rarity, for the conditions which lead to its creation are impossible to replicate.",
-      "mass": 0.10000000149011612,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Miscellaneous",
-      "groupId": 0,
-      "categoryName": "Commodity",
-      "categoryId": 17,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 91978,
@@ -6730,16 +3409,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A facility for growing synthetic Shells.",
-      "mass": 22200000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Industry",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/91978.png"
+      "volume": 0
     },
     {
       "typeId": 91997,
@@ -6748,16 +3418,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "For use with Crude Extractors only. ",
-      "mass": 38020,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Crude Mining Lens",
-      "groupId": 0,
-      "categoryName": "Charge",
-      "categoryId": 8,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92165,
@@ -6766,16 +3427,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A facility for growing synthetic Shells.",
-      "mass": 22200000,
-      "radius": 320,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92166,
@@ -6784,16 +3436,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A facility for storing Shells an transferring between them.",
-      "mass": 2000000,
-      "radius": 161,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92279,
@@ -6802,16 +3445,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small base defence turret. Especially effective against smaller targets.",
-      "mass": 132500,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defense",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/92279.png"
+      "volume": 0
     },
     {
       "typeId": 92280,
@@ -6820,16 +3454,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A small base defence turret. Especially effective against smaller targets.",
-      "mass": 265000,
-      "radius": 127,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92389,
@@ -6838,16 +3463,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A transit module for covering ground. Once engaged, the vessel holds its heading and is carried forward until the burn completes. An ancient choice for hopping between adjacent points of interest.\r\n\r\nAmong the oldest schemata found in the Frontier. It is simulated that countless variants have descended from a theorised original pattern, each adapted to different hulls and purposes, yet the core principle remains unchanged. The first makers understood something fundamental about motion that later work has only decorated. ( copy )",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Accelerator",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92390,
@@ -6856,16 +3472,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A transit module for covering ground. Once engaged, the vessel holds its heading and is carried forward until the burn completes. An ancient choice for hopping between adjacent points of interest.\r\n\r\nAmong the oldest schemata found in the Frontier. It is simulated that countless variants have descended from a theorised original pattern, each adapted to different hulls and purposes, yet the core principle remains unchanged. The first makers understood something fundamental about motion that later work has only decorated. ( copy )",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Accelerator",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92394,
@@ -6874,16 +3481,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Tight weaves of energetic currents tangle and dissipate beneath the surface. Deeper, they merge so seamlessly as to appear singular in nature, concealing the true chaos seething within. The hue surrounding the matter subtly reflects this hidden truth, oscillating wildly between wave forms.\r\n\r\nIt is chaos which offers potential, enticing all who might stumble upon its power. So tempting is the possibility that risks may be easily ignored.",
-      "mass": 812,
-      "radius": 1000,
-      "portionSize": 10000,
-      "groupName": "Rift",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 92401,
@@ -6892,16 +3490,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A medium base defence turret. Especially effective against mid sized ships.",
-      "mass": 198750,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defense",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/92401.png"
+      "volume": 0
     },
     {
       "typeId": 92402,
@@ -6910,16 +3499,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 80000,
-      "radius": 2000,
-      "portionSize": 5000,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92403,
@@ -6928,16 +3508,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 68920,
-      "radius": 10,
-      "portionSize": 1250,
-      "groupName": "Plasma Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92404,
@@ -6946,16 +3517,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large base defence turret. Especially effective against larger ships.",
-      "mass": 265000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Defense",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": "https://artifacts.evefrontier.com/types/92404.png"
+      "volume": 0
     },
     {
       "typeId": 92406,
@@ -6964,16 +3526,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A medium base defence turret. Especially effective against mid sized ships.",
-      "mass": 265000,
-      "radius": 127,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92407,
@@ -6982,16 +3535,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A large base defence turret. Especially effective against larger ships.",
-      "mass": 265000,
-      "radius": 127,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92414,
@@ -7000,16 +3544,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "Dense braids of tranquil, potent energy dance across the surface. Within, they ply together as if seeking to become one. From this unmet desire, the fuel of dreams might be extracted, as practiced by those long passed.\r\n\r\nThe ethereal beauty of transience emanates from compacting, ever-shifting weaves of sinew. Appreciation goes beyond immediate need and can therefore be discarded.",
-      "mass": 812,
-      "radius": 1000,
-      "portionSize": 10000,
-      "groupName": "Rift",
-      "groupId": 0,
-      "categoryName": "Asteroid",
-      "categoryId": 25,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 92421,
@@ -7018,16 +3553,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A transit module for covering ground. Once engaged, the vessel holds its heading and is carried forward until the burn completes. An ancient choice for hopping between adjacent points of interest.\r\n\r\nAmong the oldest schemata found in the Frontier. It is simulated that countless variants have descended from a theorised original pattern, each adapted to different hulls and purposes, yet the core principle remains unchanged. The first makers understood something fundamental about motion that later work has only decorated. ( copy ) ( copy )",
-      "mass": 60000,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Warp Accelerator",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92422,
@@ -7036,16 +3562,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "",
-      "mass": 200,
-      "radius": 1,
-      "portionSize": 10000,
-      "groupName": "Mineral",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 92483,
@@ -7054,16 +3571,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": " ( copy )",
-      "mass": 1000,
-      "radius": 1,
-      "portionSize": 2000,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 92511,
@@ -7072,16 +3580,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "",
-      "mass": 58950,
-      "radius": 2000,
-      "portionSize": 1250,
-      "groupName": "Projectile Weapon",
-      "groupId": 0,
-      "categoryName": "Module",
-      "categoryId": 7,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 93141,
@@ -7090,16 +3589,7 @@
       "isFound": false,
       "isFinalProduct": true,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A Field Cairn is deployable anchor that fixes a signature to an exact point in space for those intending to return.\r\n\r\nCairns lack stabilizing thrusters and are inherently unstable, gradually degrading and drifting out of orbit within 24 hours.",
-      "mass": 10000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Core",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 93228,
@@ -7108,16 +3598,7 @@
       "isFound": false,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 0,
-      "description": "A Field Cairn is deployable anchor that fixes a signature to an exact point in space for those intending to return.\r\n\r\nCairns lack stabilizing thrusters and are inherently unstable, gradually degrading and drifting out of orbit within 24 hours.",
-      "mass": 10000,
-      "radius": 10,
-      "portionSize": 1,
-      "groupName": "Construction site",
-      "groupId": 0,
-      "categoryName": "Deployable",
-      "categoryId": 22,
-      "iconUrl": ""
+      "volume": 0
     },
     {
       "typeId": 99001,
@@ -7126,16 +3607,7 @@
       "isFound": true,
       "isFinalProduct": false,
       "isAsteroid": false,
-      "volume": 1,
-      "description": "A rare platinum-group metal used in high-grade alloys and electronics.\r\n\r\nPlatinum-Palladium Matrix is a common source of Palladium. ",
-      "mass": 500,
-      "radius": 1,
-      "portionSize": 1,
-      "groupName": "Manufacturing Component",
-      "groupId": 0,
-      "categoryName": "Material",
-      "categoryId": 4,
-      "iconUrl": ""
+      "volume": 1
     },
     {
       "typeId": 83524,
