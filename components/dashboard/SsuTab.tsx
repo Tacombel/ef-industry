@@ -200,7 +200,7 @@ export default function SsuTab() {
     ? Math.round((detailData.usedCapacity / detailData.maxCapacity) * 100) : 0;
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-xl font-bold text-gray-100">Smart Storage Units</h2>

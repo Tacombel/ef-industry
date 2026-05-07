@@ -98,7 +98,7 @@ export default function CollectionsTab() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-100">Production Collections</h2>
         <div className="flex items-center gap-2">
