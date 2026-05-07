@@ -787,6 +787,13 @@ export function calculate(
     });
   }
 
+  // Snapshot initial needs (pre-consolidation) so warnings can verify coverage
+  // against the exact data the greedy algorithm received.
+  const initialNeeds = new Map<string, number>();
+  for (const row of rawMaterials) {
+    if (row.toBuy > 0) initialNeeds.set(row.itemId, row.toBuy);
+  }
+
   // Consolidate: if an item appears in both rawMaterials and decompositions (as source),
   // absorb its direct need into the decomp entry and remove it from rawMaterials.
   for (const decomp of decompositions) {
@@ -818,23 +825,33 @@ export function calculate(
   rawMaterials.sort((a, b) => a.itemName.localeCompare(b.itemName));
   intermediates.sort((a, b) => a.itemName.localeCompare(b.itemName));
 
-  // Detect materials blocked by exclusions (have ore sources, but all are excluded)
-  const warnings: CalculationWarning[] = [];
-  if (options?.excludedOreIds?.size) {
-    for (const row of rawMaterials) {
-      if (row.toBuy <= 0) continue;
-      const allSources = allDecompByOutput.get(row.itemId) ?? [];
-      const availableSources = decompByOutput.get(row.itemId) ?? [];
-      if (allSources.length > 0 && availableSources.length === 0) {
-        warnings.push({
-          materialId: row.itemId,
-          materialName: row.itemName,
-          excludedSources: allSources
-            .filter((s) => options.excludedOreIds!.has(s.id))
-            .map((s) => s.name),
-        });
-      }
+  // Compute total production from the final decomposition runs
+  const produced = new Map<string, number>();
+  for (const [oreId, runs] of finalRuns) {
+    const item = itemMap.get(oreId)!;
+    const d = pd(item);
+    if (!d) continue;
+    for (const out of d.outputs) {
+      produced.set(out.itemId, (produced.get(out.itemId) ?? 0) + out.quantity * runs);
     }
+  }
+
+  // Verify the final solution covers every need the greedy algorithm was asked to satisfy.
+  // initialNeeds captures rawMaterials[].toBuy pre-consolidation — exactly what the greedy received.
+  const warnings: CalculationWarning[] = [];
+  for (const [itemId, needed] of initialNeeds) {
+    const cov = produced.get(itemId) ?? 0;
+    if (cov >= needed) continue;
+    const materialName = itemMap.get(itemId)?.name ?? itemId;
+    const allSources = allDecompByOutput.get(itemId) ?? [];
+    const excluded = options?.excludedOreIds;
+    warnings.push({
+      materialId: itemId,
+      materialName,
+      excludedSources: excluded
+        ? allSources.filter((s) => excluded.has(s.id)).map((s) => s.name)
+        : [],
+    });
   }
 
   const totalRunTime =
