@@ -1,5 +1,13 @@
 # AGENTS.md — Project notes for OpenCode
 
+## ✅ Refactor completado: carga de JSON unificada
+
+- `primaryTypeID` distingue BP (output) vs decomposition (input) — NO más datos curados de descomposición
+- Refinerías detectadas automáticamente (facilities cuyos blueprints son descomposiciones)
+- `maxInputRuns`/`maxOutputRuns` se incorporan desde `industry_facilities.json`
+- `Decomposition` ahora usa `primaryTypeId`, `inputs[]` y `outputs[]` (formato espejo del juego)
+- Solo lo curado (custom items, custom blueprints, flags, asteroids) está fuera de los JSON
+
 ## Dev server
 
 ```bash

@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     where,
     include: {
       blueprints: { select: { id: true, factory: true, outputQty: true, isDefault: true } },
-      decompositions: { select: { id: true, refinery: true, inputQty: true, isDefault: true, outputs: { select: { itemId: true, quantity: true } } } },
+      decompositions: { select: { id: true, refinery: true, primaryTypeId: true, isDefault: true, inputs: { select: { itemId: true, quantity: true } }, outputs: { select: { itemId: true, quantity: true } } } },
     },
     orderBy: { name: "asc" },
     ...(limit > 0 ? { take: Math.min(limit, 500), skip: offset } : {}),
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     data: { name: normalizeName(name), isRawMaterial, isFound, isFinalProduct, volume },
     include: {
       blueprints: { select: { id: true, factory: true, outputQty: true, isDefault: true } },
-      decompositions: { select: { id: true, refinery: true, inputQty: true, isDefault: true, outputs: { select: { itemId: true, quantity: true } } } },
+      decompositions: { select: { id: true, refinery: true, primaryTypeId: true, isDefault: true, inputs: { select: { itemId: true, quantity: true } }, outputs: { select: { itemId: true, quantity: true } } } },
     },
   });
 

@@ -4,13 +4,15 @@ import { useEffect, useState, useCallback } from "react";
 
 interface Item { id: string; name: string }
 interface Refinery { id: string; name: string }
+interface DecompositionInput { id: string; itemId: string; quantity: number; item: Item }
 interface DecompositionOutput { id: string; itemId: string; quantity: number; item: Item }
 interface Decomposition {
   id: string;
   refinery: string;
-  inputQty: number;
+  primaryTypeId: number | null;
   isDefault: boolean;
   sourceItem: Item;
+  inputs: DecompositionInput[];
   outputs: DecompositionOutput[];
 }
 
@@ -117,7 +119,7 @@ export default function DecompositionsTab() {
                       </button>
                       {d.refinery ? <span className="badge badge-blue">{d.refinery}</span> : <span className="text-gray-600 italic text-xs">No refinery</span>}
                       <span className="text-sm text-gray-300">
-                        <span className="text-yellow-400">{d.inputQty}×</span> {entries[0].sourceItem.name}
+                        <span className="text-yellow-400">{d.inputs.find(i => i.itemId === d.sourceItem.id)?.quantity ?? 1}×</span> {entries[0].sourceItem.name}
                       </span>
                       <span className="text-gray-600">→</span>
                       <div className="flex flex-wrap gap-1">

@@ -7371,78 +7371,122 @@
   ],
   "decompositions": [
     {
-      "sourceTypeId": 78448,
-      "facilityTypeId": 88063,
-      "inputQty": 100,
-      "runTime": 15,
-      "outputs": [
+      "primaryTypeId": 77810,
+      "facilityTypeId": 87161,
+      "inputs": [
         {
-          "typeId": 88782,
-          "quantity": 4
-        },
-        {
-          "typeId": 88781,
-          "quantity": 1
-        },
-        {
-          "typeId": 88783,
-          "quantity": 8
+          "typeId": 77810,
+          "quantity": 20
         }
       ],
-      "blueprintId": 1199,
-      "maxInputRuns": 40,
-      "maxOutputRuns": 45
+      "outputs": [
+        {
+          "typeId": 89259,
+          "quantity": 8
+        },
+        {
+          "typeId": 89260,
+          "quantity": 15
+        },
+        {
+          "typeId": 99001,
+          "quantity": 4
+        }
+      ],
+      "runTime": 3,
+      "blueprintId": 1184,
+      "maxInputRuns": 25,
+      "maxOutputRuns": 25
     },
     {
-      "sourceTypeId": 88319,
+      "primaryTypeId": 88765,
       "facilityTypeId": 87161,
-      "inputQty": 200,
+      "inputs": [
+        {
+          "typeId": 88765,
+          "quantity": 1
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 78423,
+          "quantity": 7
+        }
+      ],
       "runTime": 3,
+      "blueprintId": 1185,
+      "maxInputRuns": 2500,
+      "maxOutputRuns": 715
+    },
+    {
+      "primaryTypeId": 88764,
+      "facilityTypeId": 87161,
+      "inputs": [
+        {
+          "typeId": 88764,
+          "quantity": 3
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 84182,
+          "quantity": 1
+        }
+      ],
+      "runTime": 3,
+      "blueprintId": 1179,
+      "maxInputRuns": 34,
+      "maxOutputRuns": 50
+    },
+    {
+      "primaryTypeId": 88319,
+      "facilityTypeId": 87161,
+      "inputs": [
+        {
+          "typeId": 88319,
+          "quantity": 200
+        }
+      ],
       "outputs": [
         {
           "typeId": 83839,
           "quantity": 1
         }
       ],
+      "runTime": 3,
       "blueprintId": 1180,
       "maxInputRuns": 9,
       "maxOutputRuns": 5000
     },
     {
-      "sourceTypeId": 88319,
-      "facilityTypeId": 88063,
-      "inputQty": 200,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 83839,
-          "quantity": 1
-        }
-      ],
-      "blueprintId": 1180,
-      "maxInputRuns": 72,
-      "maxOutputRuns": 40000
-    },
-    {
-      "sourceTypeId": 78435,
-      "facilityTypeId": 88063,
-      "inputQty": 10,
-      "runTime": 18,
-      "outputs": [
-        {
-          "typeId": 78516,
-          "quantity": 600
-        }
-      ],
-      "blueprintId": 1191,
-      "maxInputRuns": 400,
-      "maxOutputRuns": 24
-    },
-    {
-      "sourceTypeId": 77800,
+      "primaryTypeId": 78423,
       "facilityTypeId": 87161,
-      "inputQty": 20,
-      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 78423,
+          "quantity": 275
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88335,
+          "quantity": 75
+        }
+      ],
+      "runTime": 8,
+      "blueprintId": 1181,
+      "maxInputRuns": 9,
+      "maxOutputRuns": 12
+    },
+    {
+      "primaryTypeId": 77800,
+      "facilityTypeId": 87161,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 20
+        }
+      ],
       "outputs": [
         {
           "typeId": 89258,
@@ -7453,110 +7497,20 @@
           "quantity": 15
         }
       ],
+      "runTime": 3,
       "blueprintId": 1182,
       "maxInputRuns": 25,
       "maxOutputRuns": 25
     },
     {
-      "sourceTypeId": 77800,
-      "facilityTypeId": 88063,
-      "inputQty": 40,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 89258,
-          "quantity": 10
-        },
-        {
-          "typeId": 89259,
-          "quantity": 30
-        }
-      ],
-      "blueprintId": 1201,
-      "maxInputRuns": 100,
-      "maxOutputRuns": 100
-    },
-    {
-      "sourceTypeId": 92414,
+      "primaryTypeId": 77811,
       "facilityTypeId": 87161,
-      "inputQty": 30,
-      "runTime": 20,
-      "outputs": [
+      "inputs": [
         {
-          "typeId": 92422,
-          "quantity": 26
-        },
-        {
-          "typeId": 77728,
-          "quantity": 6
+          "typeId": 77811,
+          "quantity": 20
         }
       ],
-      "blueprintId": 1481,
-      "maxInputRuns": 100,
-      "maxOutputRuns": 100
-    },
-    {
-      "sourceTypeId": 92414,
-      "facilityTypeId": 88063,
-      "inputQty": 30,
-      "runTime": 20,
-      "outputs": [
-        {
-          "typeId": 92422,
-          "quantity": 26
-        },
-        {
-          "typeId": 77728,
-          "quantity": 6
-        }
-      ],
-      "blueprintId": 1481,
-      "maxInputRuns": 100,
-      "maxOutputRuns": 100
-    },
-    {
-      "sourceTypeId": 92394,
-      "facilityTypeId": 87161,
-      "inputQty": 30,
-      "runTime": 20,
-      "outputs": [
-        {
-          "typeId": 92422,
-          "quantity": 26
-        },
-        {
-          "typeId": 78435,
-          "quantity": 6
-        }
-      ],
-      "blueprintId": 1480,
-      "maxInputRuns": 100,
-      "maxOutputRuns": 100
-    },
-    {
-      "sourceTypeId": 92394,
-      "facilityTypeId": 88063,
-      "inputQty": 30,
-      "runTime": 20,
-      "outputs": [
-        {
-          "typeId": 92422,
-          "quantity": 26
-        },
-        {
-          "typeId": 78435,
-          "quantity": 6
-        }
-      ],
-      "blueprintId": 1480,
-      "maxInputRuns": 100,
-      "maxOutputRuns": 100
-    },
-    {
-      "sourceTypeId": 77811,
-      "facilityTypeId": 87161,
-      "inputQty": 20,
-      "runTime": 3,
       "outputs": [
         {
           "typeId": 89258,
@@ -7567,15 +7521,480 @@
           "quantity": 150
         }
       ],
+      "runTime": 3,
       "blueprintId": 1183,
       "maxInputRuns": 25,
       "maxOutputRuns": 25
     },
     {
-      "sourceTypeId": 77811,
+      "primaryTypeId": 92394,
+      "facilityTypeId": 87161,
+      "inputs": [
+        {
+          "typeId": 92394,
+          "quantity": 30
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 78435,
+          "quantity": 6
+        },
+        {
+          "typeId": 92422,
+          "quantity": 26
+        }
+      ],
+      "runTime": 20,
+      "blueprintId": 1480,
+      "maxInputRuns": 100,
+      "maxOutputRuns": 100
+    },
+    {
+      "primaryTypeId": 92414,
+      "facilityTypeId": 87161,
+      "inputs": [
+        {
+          "typeId": 92414,
+          "quantity": 30
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 77728,
+          "quantity": 6
+        },
+        {
+          "typeId": 92422,
+          "quantity": 26
+        }
+      ],
+      "runTime": 20,
+      "blueprintId": 1481,
+      "maxInputRuns": 100,
+      "maxOutputRuns": 100
+    },
+    {
+      "primaryTypeId": 88319,
       "facilityTypeId": 88063,
-      "inputQty": 40,
+      "inputs": [
+        {
+          "typeId": 88319,
+          "quantity": 200
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 83839,
+          "quantity": 1
+        }
+      ],
       "runTime": 3,
+      "blueprintId": 1180,
+      "maxInputRuns": 72,
+      "maxOutputRuns": 40000
+    },
+    {
+      "primaryTypeId": 78423,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78423,
+          "quantity": 275
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88335,
+          "quantity": 75
+        }
+      ],
+      "runTime": 8,
+      "blueprintId": 1181,
+      "maxInputRuns": 67,
+      "maxOutputRuns": 96
+    },
+    {
+      "primaryTypeId": 89258,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 89258,
+          "quantity": 20
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88234,
+          "quantity": 20
+        },
+        {
+          "typeId": 77804,
+          "quantity": 180
+        }
+      ],
+      "runTime": 9,
+      "blueprintId": 1186,
+      "maxInputRuns": 200,
+      "maxOutputRuns": 200
+    },
+    {
+      "primaryTypeId": 88764,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 88764,
+          "quantity": 10
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 84210,
+          "quantity": 1
+        },
+        {
+          "typeId": 88561,
+          "quantity": 2
+        },
+        {
+          "typeId": 84182,
+          "quantity": 6
+        }
+      ],
+      "runTime": 4,
+      "blueprintId": 1188,
+      "maxInputRuns": 80,
+      "maxOutputRuns": 44
+    },
+    {
+      "primaryTypeId": 89259,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 89259,
+          "quantity": 20
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88235,
+          "quantity": 50
+        },
+        {
+          "typeId": 77803,
+          "quantity": 150
+        }
+      ],
+      "runTime": 9,
+      "blueprintId": 1190,
+      "maxInputRuns": 200,
+      "maxOutputRuns": 200
+    },
+    {
+      "primaryTypeId": 78435,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78435,
+          "quantity": 10
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 78516,
+          "quantity": 600
+        }
+      ],
+      "runTime": 25,
+      "blueprintId": 1191,
+      "maxInputRuns": 400,
+      "maxOutputRuns": 24
+    },
+    {
+      "primaryTypeId": 89260,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 89260,
+          "quantity": 10
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 77805,
+          "quantity": 20
+        },
+        {
+          "typeId": 77801,
+          "quantity": 198
+        }
+      ],
+      "runTime": 9,
+      "blueprintId": 1192,
+      "maxInputRuns": 400,
+      "maxOutputRuns": 200
+    },
+    {
+      "primaryTypeId": 77728,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 77728,
+          "quantity": 10
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 84868,
+          "quantity": 600
+        }
+      ],
+      "runTime": 25,
+      "blueprintId": 1193,
+      "maxInputRuns": 400,
+      "maxOutputRuns": 24
+    },
+    {
+      "primaryTypeId": 88765,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 88765,
+          "quantity": 5
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88782,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 1
+        },
+        {
+          "typeId": 78423,
+          "quantity": 50
+        }
+      ],
+      "runTime": 3,
+      "blueprintId": 1194,
+      "maxInputRuns": 4000,
+      "maxOutputRuns": 200
+    },
+    {
+      "primaryTypeId": 77729,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 77729,
+          "quantity": 30
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 83839,
+          "quantity": 16
+        },
+        {
+          "typeId": 77728,
+          "quantity": 28
+        }
+      ],
+      "runTime": 20,
+      "blueprintId": 1195,
+      "maxInputRuns": 136,
+      "maxOutputRuns": 136
+    },
+    {
+      "primaryTypeId": 78434,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78434,
+          "quantity": 30
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 83839,
+          "quantity": 1
+        },
+        {
+          "typeId": 78435,
+          "quantity": 28
+        }
+      ],
+      "runTime": 20,
+      "blueprintId": 1196,
+      "maxInputRuns": 140,
+      "maxOutputRuns": 140
+    },
+    {
+      "primaryTypeId": 78446,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78446,
+          "quantity": 100
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88781,
+          "quantity": 1
+        },
+        {
+          "typeId": 77804,
+          "quantity": 126
+        },
+        {
+          "typeId": 78423,
+          "quantity": 349
+        }
+      ],
+      "runTime": 15,
+      "blueprintId": 1197,
+      "maxInputRuns": 40,
+      "maxOutputRuns": 70
+    },
+    {
+      "primaryTypeId": 78447,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78447,
+          "quantity": 100
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88781,
+          "quantity": 1
+        },
+        {
+          "typeId": 88783,
+          "quantity": 16
+        }
+      ],
+      "runTime": 15,
+      "blueprintId": 1198,
+      "maxInputRuns": 40,
+      "maxOutputRuns": 45
+    },
+    {
+      "primaryTypeId": 78448,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78448,
+          "quantity": 100
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88781,
+          "quantity": 1
+        },
+        {
+          "typeId": 88782,
+          "quantity": 4
+        },
+        {
+          "typeId": 88783,
+          "quantity": 8
+        }
+      ],
+      "runTime": 15,
+      "blueprintId": 1199,
+      "maxInputRuns": 40,
+      "maxOutputRuns": 45
+    },
+    {
+      "primaryTypeId": 78449,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 78449,
+          "quantity": 100
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 88781,
+          "quantity": 1
+        },
+        {
+          "typeId": 88782,
+          "quantity": 8
+        }
+      ],
+      "runTime": 15,
+      "blueprintId": 1200,
+      "maxInputRuns": 40,
+      "maxOutputRuns": 45
+    },
+    {
+      "primaryTypeId": 77800,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 40
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 89258,
+          "quantity": 10
+        },
+        {
+          "typeId": 89259,
+          "quantity": 30
+        }
+      ],
+      "runTime": 3,
+      "blueprintId": 1201,
+      "maxInputRuns": 100,
+      "maxOutputRuns": 100
+    },
+    {
+      "primaryTypeId": 77810,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 77810,
+          "quantity": 40
+        }
+      ],
+      "outputs": [
+        {
+          "typeId": 89259,
+          "quantity": 16
+        },
+        {
+          "typeId": 89260,
+          "quantity": 30
+        },
+        {
+          "typeId": 99001,
+          "quantity": 8
+        }
+      ],
+      "runTime": 3,
+      "blueprintId": 1202,
+      "maxInputRuns": 100,
+      "maxOutputRuns": 100
+    },
+    {
+      "primaryTypeId": 77811,
+      "facilityTypeId": 88063,
+      "inputs": [
+        {
+          "typeId": 77811,
+          "quantity": 40
+        }
+      ],
       "outputs": [
         {
           "typeId": 89258,
@@ -7586,383 +8005,128 @@
           "quantity": 300
         }
       ],
+      "runTime": 3,
       "blueprintId": 1203,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
     },
     {
-      "sourceTypeId": 89258,
+      "primaryTypeId": 78426,
       "facilityTypeId": 88063,
-      "inputQty": 20,
-      "runTime": 9,
-      "outputs": [
+      "inputs": [
         {
-          "typeId": 77804,
-          "quantity": 180
-        },
-        {
-          "typeId": 88234,
-          "quantity": 20
+          "typeId": 78426,
+          "quantity": 40
         }
       ],
-      "blueprintId": 1186,
-      "maxInputRuns": 200,
-      "maxOutputRuns": 200
-    },
-    {
-      "sourceTypeId": 78426,
-      "facilityTypeId": 88063,
-      "inputQty": 40,
-      "runTime": 5,
       "outputs": [
         {
           "typeId": 89260,
           "quantity": 40
         }
       ],
+      "runTime": 5,
       "blueprintId": 1204,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
     },
     {
-      "sourceTypeId": 89260,
+      "primaryTypeId": 92394,
       "facilityTypeId": 88063,
-      "inputQty": 10,
-      "runTime": 9,
-      "outputs": [
+      "inputs": [
         {
-          "typeId": 77801,
-          "quantity": 198
-        },
-        {
-          "typeId": 77805,
-          "quantity": 20
-        }
-      ],
-      "blueprintId": 1192,
-      "maxInputRuns": 400,
-      "maxOutputRuns": 200
-    },
-    {
-      "sourceTypeId": 78446,
-      "facilityTypeId": 88063,
-      "inputQty": 100,
-      "runTime": 15,
-      "outputs": [
-        {
-          "typeId": 88781,
-          "quantity": 1
-        },
-        {
-          "typeId": 77804,
-          "quantity": 126
-        },
-        {
-          "typeId": 78423,
-          "quantity": 349
-        }
-      ],
-      "blueprintId": 1197,
-      "maxInputRuns": 40,
-      "maxOutputRuns": 70
-    },
-    {
-      "sourceTypeId": 88765,
-      "facilityTypeId": 87161,
-      "inputQty": 1,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 78423,
-          "quantity": 7
-        }
-      ],
-      "blueprintId": 1185,
-      "maxInputRuns": 2500,
-      "maxOutputRuns": 715
-    },
-    {
-      "sourceTypeId": 88765,
-      "facilityTypeId": 88063,
-      "inputQty": 5,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 88782,
-          "quantity": 1
-        },
-        {
-          "typeId": 88783,
-          "quantity": 1
-        },
-        {
-          "typeId": 78423,
-          "quantity": 50
-        }
-      ],
-      "blueprintId": 1194,
-      "maxInputRuns": 4000,
-      "maxOutputRuns": 200
-    },
-    {
-      "sourceTypeId": 77810,
-      "facilityTypeId": 87161,
-      "inputQty": 20,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 89260,
-          "quantity": 15
-        },
-        {
-          "typeId": 99001,
-          "quantity": 4
-        },
-        {
-          "typeId": 89259,
-          "quantity": 8
-        }
-      ],
-      "blueprintId": 1184,
-      "maxInputRuns": 25,
-      "maxOutputRuns": 25
-    },
-    {
-      "sourceTypeId": 77810,
-      "facilityTypeId": 88063,
-      "inputQty": 40,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 89260,
+          "typeId": 92394,
           "quantity": 30
-        },
-        {
-          "typeId": 99001,
-          "quantity": 8
-        },
-        {
-          "typeId": 89259,
-          "quantity": 16
         }
       ],
-      "blueprintId": 1202,
+      "outputs": [
+        {
+          "typeId": 78435,
+          "quantity": 6
+        },
+        {
+          "typeId": 92422,
+          "quantity": 26
+        }
+      ],
+      "runTime": 20,
+      "blueprintId": 1480,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
     },
     {
-      "sourceTypeId": 78447,
+      "primaryTypeId": 92414,
       "facilityTypeId": 88063,
-      "inputQty": 100,
-      "runTime": 15,
-      "outputs": [
+      "inputs": [
         {
-          "typeId": 88781,
-          "quantity": 1
-        },
-        {
-          "typeId": 88783,
-          "quantity": 16
+          "typeId": 92414,
+          "quantity": 30
         }
       ],
-      "blueprintId": 1198,
-      "maxInputRuns": 40,
-      "maxOutputRuns": 45
-    },
-    {
-      "sourceTypeId": 77729,
-      "facilityTypeId": 88063,
-      "inputQty": 30,
-      "runTime": 20,
       "outputs": [
-        {
-          "typeId": 83839,
-          "quantity": 16
-        },
         {
           "typeId": 77728,
-          "quantity": 28
-        }
-      ],
-      "blueprintId": 1195,
-      "maxInputRuns": 136,
-      "maxOutputRuns": 136
-    },
-    {
-      "sourceTypeId": 78434,
-      "facilityTypeId": 88063,
-      "inputQty": 30,
-      "runTime": 20,
-      "outputs": [
-        {
-          "typeId": 78435,
-          "quantity": 28
-        },
-        {
-          "typeId": 83839,
-          "quantity": 1
-        }
-      ],
-      "blueprintId": 1196,
-      "maxInputRuns": 140,
-      "maxOutputRuns": 140
-    },
-    {
-      "sourceTypeId": 88764,
-      "facilityTypeId": 87161,
-      "inputQty": 3,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 84182,
-          "quantity": 1
-        }
-      ],
-      "blueprintId": 1179,
-      "maxInputRuns": 34,
-      "maxOutputRuns": 50
-    },
-    {
-      "sourceTypeId": 88764,
-      "facilityTypeId": 88063,
-      "inputQty": 10,
-      "runTime": 4,
-      "outputs": [
-        {
-          "typeId": 84210,
-          "quantity": 1
-        },
-        {
-          "typeId": 84182,
           "quantity": 6
         },
         {
-          "typeId": 88561,
-          "quantity": 2
+          "typeId": 92422,
+          "quantity": 26
         }
       ],
-      "blueprintId": 1188,
-      "maxInputRuns": 80,
-      "maxOutputRuns": 44
+      "runTime": 20,
+      "blueprintId": 1481,
+      "maxInputRuns": 100,
+      "maxOutputRuns": 100
     },
     {
-      "sourceTypeId": 89259,
-      "facilityTypeId": 88063,
-      "inputQty": 20,
-      "runTime": 9,
-      "outputs": [
-        {
-          "typeId": 88235,
-          "quantity": 50
-        },
-        {
-          "typeId": 77803,
-          "quantity": 150
-        }
-      ],
-      "blueprintId": 1190,
-      "maxInputRuns": 200,
-      "maxOutputRuns": 200
-    },
-    {
-      "sourceTypeId": 77728,
-      "facilityTypeId": 88063,
-      "inputQty": 10,
-      "runTime": 18,
-      "outputs": [
-        {
-          "typeId": 84868,
-          "quantity": 600
-        }
-      ],
-      "blueprintId": 1193,
-      "maxInputRuns": 400,
-      "maxOutputRuns": 24
-    },
-    {
-      "sourceTypeId": 78449,
-      "facilityTypeId": 88063,
-      "inputQty": 100,
-      "runTime": 15,
-      "outputs": [
-        {
-          "typeId": 88782,
-          "quantity": 8
-        },
-        {
-          "typeId": 88781,
-          "quantity": 1
-        }
-      ],
-      "blueprintId": 1200,
-      "maxInputRuns": 40,
-      "maxOutputRuns": 45
-    },
-    {
-      "sourceTypeId": 78423,
-      "facilityTypeId": 87161,
-      "inputQty": 275,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 88335,
-          "quantity": 75
-        }
-      ],
-      "blueprintId": 1181,
-      "maxInputRuns": 9,
-      "maxOutputRuns": 12
-    },
-    {
-      "sourceTypeId": 78423,
-      "facilityTypeId": 88063,
-      "inputQty": 275,
-      "runTime": 3,
-      "outputs": [
-        {
-          "typeId": 88335,
-          "quantity": 75
-        }
-      ],
-      "blueprintId": 1181,
-      "maxInputRuns": 67,
-      "maxOutputRuns": 96
-    },
-    {
-      "sourceTypeId": 88319,
+      "primaryTypeId": 88319,
       "facilityTypeId": 88064,
-      "inputQty": 200,
-      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88319,
+          "quantity": 200
+        }
+      ],
       "outputs": [
         {
           "typeId": 83839,
           "quantity": 1
         }
       ],
+      "runTime": 3,
       "blueprintId": 1180,
       "maxInputRuns": 360,
       "maxOutputRuns": 199500
     },
     {
-      "sourceTypeId": 78423,
+      "primaryTypeId": 78423,
       "facilityTypeId": 88064,
-      "inputQty": 275,
-      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 78423,
+          "quantity": 275
+        }
+      ],
       "outputs": [
         {
           "typeId": 88335,
           "quantity": 75
         }
       ],
+      "runTime": 8,
       "blueprintId": 1181,
       "maxInputRuns": 336,
       "maxOutputRuns": 479
     },
     {
-      "sourceTypeId": 88764,
+      "primaryTypeId": 88764,
       "facilityTypeId": 88064,
-      "inputQty": 10,
-      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 88764,
+          "quantity": 10
+        }
+      ],
       "outputs": [
         {
           "typeId": 84210,
@@ -7977,45 +8141,60 @@
           "quantity": 6
         }
       ],
+      "runTime": 4,
       "blueprintId": 1188,
       "maxInputRuns": 400,
       "maxOutputRuns": 211
     },
     {
-      "sourceTypeId": 78435,
+      "primaryTypeId": 78435,
       "facilityTypeId": 88064,
-      "inputQty": 10,
-      "runTime": 18,
+      "inputs": [
+        {
+          "typeId": 78435,
+          "quantity": 10
+        }
+      ],
       "outputs": [
         {
           "typeId": 78516,
           "quantity": 600
         }
       ],
+      "runTime": 25,
       "blueprintId": 1191,
       "maxInputRuns": 1995,
       "maxOutputRuns": 120
     },
     {
-      "sourceTypeId": 77728,
+      "primaryTypeId": 77728,
       "facilityTypeId": 88064,
-      "inputQty": 10,
-      "runTime": 18,
+      "inputs": [
+        {
+          "typeId": 77728,
+          "quantity": 10
+        }
+      ],
       "outputs": [
         {
           "typeId": 84868,
           "quantity": 600
         }
       ],
+      "runTime": 25,
       "blueprintId": 1193,
       "maxInputRuns": 1995,
       "maxOutputRuns": 120
     },
     {
-      "sourceTypeId": 88765,
+      "primaryTypeId": 88765,
       "facilityTypeId": 88064,
-      "inputQty": 5,
-      "runTime": 3,
+      "inputs": [
+        {
+          "typeId": 88765,
+          "quantity": 5
+        }
+      ],
       "outputs": [
         {
           "typeId": 88782,
@@ -8030,15 +8209,20 @@
           "quantity": 50
         }
       ],
+      "runTime": 3,
       "blueprintId": 1194,
       "maxInputRuns": 19950,
       "maxOutputRuns": 998
     },
     {
-      "sourceTypeId": 77729,
+      "primaryTypeId": 77729,
       "facilityTypeId": 88064,
-      "inputQty": 30,
-      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 77729,
+          "quantity": 30
+        }
+      ],
       "outputs": [
         {
           "typeId": 83839,
@@ -8049,15 +8233,20 @@
           "quantity": 28
         }
       ],
+      "runTime": 20,
       "blueprintId": 1195,
       "maxInputRuns": 667,
       "maxOutputRuns": 678
     },
     {
-      "sourceTypeId": 78434,
+      "primaryTypeId": 78434,
       "facilityTypeId": 88064,
-      "inputQty": 30,
-      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 78434,
+          "quantity": 30
+        }
+      ],
       "outputs": [
         {
           "typeId": 83839,
@@ -8068,15 +8257,20 @@
           "quantity": 28
         }
       ],
+      "runTime": 20,
       "blueprintId": 1196,
       "maxInputRuns": 667,
       "maxOutputRuns": 712
     },
     {
-      "sourceTypeId": 78446,
+      "primaryTypeId": 78446,
       "facilityTypeId": 88064,
-      "inputQty": 100,
-      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78446,
+          "quantity": 100
+        }
+      ],
       "outputs": [
         {
           "typeId": 88781,
@@ -8091,15 +8285,20 @@
           "quantity": 349
         }
       ],
+      "runTime": 15,
       "blueprintId": 1197,
       "maxInputRuns": 200,
       "maxOutputRuns": 348
     },
     {
-      "sourceTypeId": 78447,
+      "primaryTypeId": 78447,
       "facilityTypeId": 88064,
-      "inputQty": 100,
-      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78447,
+          "quantity": 100
+        }
+      ],
       "outputs": [
         {
           "typeId": 88781,
@@ -8110,15 +8309,20 @@
           "quantity": 16
         }
       ],
+      "runTime": 15,
       "blueprintId": 1198,
       "maxInputRuns": 200,
       "maxOutputRuns": 222
     },
     {
-      "sourceTypeId": 78448,
+      "primaryTypeId": 78448,
       "facilityTypeId": 88064,
-      "inputQty": 100,
-      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78448,
+          "quantity": 100
+        }
+      ],
       "outputs": [
         {
           "typeId": 88781,
@@ -8133,15 +8337,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 15,
       "blueprintId": 1199,
       "maxInputRuns": 200,
       "maxOutputRuns": 222
     },
     {
-      "sourceTypeId": 78449,
+      "primaryTypeId": 78449,
       "facilityTypeId": 88064,
-      "inputQty": 100,
-      "runTime": 15,
+      "inputs": [
+        {
+          "typeId": 78449,
+          "quantity": 100
+        }
+      ],
       "outputs": [
         {
           "typeId": 88781,
@@ -8152,15 +8361,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 15,
       "blueprintId": 1200,
       "maxInputRuns": 200,
       "maxOutputRuns": 222
     },
     {
-      "sourceTypeId": 89258,
+      "primaryTypeId": 89258,
       "facilityTypeId": 88064,
-      "inputQty": 60,
-      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89258,
+          "quantity": 60
+        }
+      ],
       "outputs": [
         {
           "typeId": 88234,
@@ -8171,15 +8385,20 @@
           "quantity": 540
         }
       ],
+      "runTime": 25,
       "blueprintId": 1205,
       "maxInputRuns": 336,
       "maxOutputRuns": 336
     },
     {
-      "sourceTypeId": 89259,
+      "primaryTypeId": 89259,
       "facilityTypeId": 88064,
-      "inputQty": 60,
-      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89259,
+          "quantity": 60
+        }
+      ],
       "outputs": [
         {
           "typeId": 88235,
@@ -8190,15 +8409,20 @@
           "quantity": 450
         }
       ],
+      "runTime": 25,
       "blueprintId": 1209,
       "maxInputRuns": 336,
       "maxOutputRuns": 336
     },
     {
-      "sourceTypeId": 89260,
+      "primaryTypeId": 89260,
       "facilityTypeId": 88064,
-      "inputQty": 60,
-      "runTime": 25,
+      "inputs": [
+        {
+          "typeId": 89260,
+          "quantity": 60
+        }
+      ],
       "outputs": [
         {
           "typeId": 77805,
@@ -8209,15 +8433,20 @@
           "quantity": 1188
         }
       ],
+      "runTime": 25,
       "blueprintId": 1212,
       "maxInputRuns": 336,
       "maxOutputRuns": 336
     },
     {
-      "sourceTypeId": 77800,
+      "primaryTypeId": 77800,
       "facilityTypeId": 88064,
-      "inputQty": 120,
-      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77800,
+          "quantity": 120
+        }
+      ],
       "outputs": [
         {
           "typeId": 89258,
@@ -8228,15 +8457,20 @@
           "quantity": 90
         }
       ],
+      "runTime": 4,
       "blueprintId": 1220,
       "maxInputRuns": 171,
       "maxOutputRuns": 171
     },
     {
-      "sourceTypeId": 77810,
+      "primaryTypeId": 77810,
       "facilityTypeId": 88064,
-      "inputQty": 120,
-      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77810,
+          "quantity": 120
+        }
+      ],
       "outputs": [
         {
           "typeId": 89259,
@@ -8251,15 +8485,20 @@
           "quantity": 24
         }
       ],
+      "runTime": 4,
       "blueprintId": 1221,
       "maxInputRuns": 171,
       "maxOutputRuns": 171
     },
     {
-      "sourceTypeId": 77811,
+      "primaryTypeId": 77811,
       "facilityTypeId": 88064,
-      "inputQty": 120,
-      "runTime": 4,
+      "inputs": [
+        {
+          "typeId": 77811,
+          "quantity": 120
+        }
+      ],
       "outputs": [
         {
           "typeId": 89258,
@@ -8270,30 +8509,40 @@
           "quantity": 900
         }
       ],
+      "runTime": 4,
       "blueprintId": 1222,
       "maxInputRuns": 171,
       "maxOutputRuns": 171
     },
     {
-      "sourceTypeId": 78426,
+      "primaryTypeId": 78426,
       "facilityTypeId": 88064,
-      "inputQty": 120,
-      "runTime": 8,
+      "inputs": [
+        {
+          "typeId": 78426,
+          "quantity": 120
+        }
+      ],
       "outputs": [
         {
           "typeId": 89260,
           "quantity": 120
         }
       ],
+      "runTime": 8,
       "blueprintId": 1223,
       "maxInputRuns": 171,
       "maxOutputRuns": 171
     },
     {
-      "sourceTypeId": 92394,
+      "primaryTypeId": 92394,
       "facilityTypeId": 88064,
-      "inputQty": 30,
-      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 92394,
+          "quantity": 30
+        }
+      ],
       "outputs": [
         {
           "typeId": 78435,
@@ -8304,15 +8553,20 @@
           "quantity": 26
         }
       ],
+      "runTime": 20,
       "blueprintId": 1480,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
     },
     {
-      "sourceTypeId": 92414,
+      "primaryTypeId": 92414,
       "facilityTypeId": 88064,
-      "inputQty": 30,
-      "runTime": 20,
+      "inputs": [
+        {
+          "typeId": 92414,
+          "quantity": 30
+        }
+      ],
       "outputs": [
         {
           "typeId": 77728,
@@ -8323,6 +8577,7 @@
           "quantity": 26
         }
       ],
+      "runTime": 20,
       "blueprintId": 1481,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
@@ -8330,10 +8585,14 @@
   ],
   "blueprints": [
     {
-      "outputTypeId": 91708,
+      "primaryTypeId": 91708,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91708,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -8348,26 +8607,36 @@
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9000
     },
     {
-      "outputTypeId": 91702,
+      "primaryTypeId": 91702,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91702,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 100
         }
       ],
+      "runTime": 0,
       "blueprintId": 9001
     },
     {
-      "outputTypeId": 91705,
+      "primaryTypeId": 91705,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91705,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -8382,13 +8651,18 @@
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9002
     },
     {
-      "outputTypeId": 91700,
+      "primaryTypeId": 91700,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91700,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -8399,13 +8673,18 @@
           "quantity": 15
         }
       ],
+      "runTime": 0,
       "blueprintId": 9003
     },
     {
-      "outputTypeId": 91713,
+      "primaryTypeId": 91713,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91713,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77800,
@@ -8416,13 +8695,18 @@
           "quantity": 250
         }
       ],
+      "runTime": 0,
       "blueprintId": 9004
     },
     {
-      "outputTypeId": 88092,
+      "primaryTypeId": 88092,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 88092,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -8437,39 +8721,54 @@
           "quantity": 10
         }
       ],
+      "runTime": 0,
       "blueprintId": 9005
     },
     {
-      "outputTypeId": 92165,
+      "primaryTypeId": 92165,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 92165,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9006
     },
     {
-      "outputTypeId": 91701,
+      "primaryTypeId": 91701,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91701,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9007
     },
     {
-      "outputTypeId": 91703,
+      "primaryTypeId": 91703,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91703,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -8480,26 +8779,36 @@
           "quantity": 15
         }
       ],
+      "runTime": 0,
       "blueprintId": 9008
     },
     {
-      "outputTypeId": 91751,
+      "primaryTypeId": 91751,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91751,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77810,
           "quantity": 50
         }
       ],
+      "runTime": 0,
       "blueprintId": 9009
     },
     {
-      "outputTypeId": 91717,
+      "primaryTypeId": 91717,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
-      "runTime": 0,
+      "outputs": [
+        {
+          "typeId": 91717,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -8514,12 +8823,18 @@
           "quantity": 6
         }
       ],
+      "runTime": 0,
       "blueprintId": 9010
     },
     {
-      "outputTypeId": 88070,
+      "primaryTypeId": 88070,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 88070,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
@@ -8530,60 +8845,90 @@
           "quantity": 1
         }
       ],
+      "runTime": 0,
       "blueprintId": 9011
     },
     {
-      "outputTypeId": 93228,
+      "primaryTypeId": 93228,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 93228,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9012
     },
     {
-      "outputTypeId": 91753,
+      "primaryTypeId": 91753,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91753,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77811,
           "quantity": 50
         }
       ],
+      "runTime": 0,
       "blueprintId": 9013
     },
     {
-      "outputTypeId": 87161,
+      "primaryTypeId": 87161,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 87161,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77800,
           "quantity": 50
         }
       ],
+      "runTime": 0,
       "blueprintId": 9014
     },
     {
-      "outputTypeId": 91756,
+      "primaryTypeId": 91756,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91756,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77800,
           "quantity": 50
         }
       ],
+      "runTime": 0,
       "blueprintId": 9015
     },
     {
-      "outputTypeId": 88071,
+      "primaryTypeId": 88071,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 88071,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
@@ -8594,84 +8939,126 @@
           "quantity": 1
         }
       ],
+      "runTime": 0,
       "blueprintId": 9016
     },
     {
-      "outputTypeId": 91712,
+      "primaryTypeId": 91712,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91712,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 4300
         }
       ],
+      "runTime": 0,
       "blueprintId": 9017
     },
     {
-      "outputTypeId": 88064,
+      "primaryTypeId": 88064,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 88064,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 100
         }
       ],
+      "runTime": 0,
       "blueprintId": 9018
     },
     {
-      "outputTypeId": 91710,
+      "primaryTypeId": 91710,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91710,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 130
         }
       ],
+      "runTime": 0,
       "blueprintId": 9019
     },
     {
-      "outputTypeId": 91715,
+      "primaryTypeId": 91715,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91715,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 120
         }
       ],
+      "runTime": 0,
       "blueprintId": 9020
     },
     {
-      "outputTypeId": 92407,
+      "primaryTypeId": 92407,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 92407,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9021
     },
     {
-      "outputTypeId": 91711,
+      "primaryTypeId": 91711,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91711,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 430
         }
       ],
+      "runTime": 0,
       "blueprintId": 9022
     },
     {
-      "outputTypeId": 92280,
+      "primaryTypeId": 92280,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 92280,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -8686,109 +9073,162 @@
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9023
     },
     {
-      "outputTypeId": 91718,
+      "primaryTypeId": 91718,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91718,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9024
     },
     {
-      "outputTypeId": 91719,
+      "primaryTypeId": 91719,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91719,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9025
     },
     {
-      "outputTypeId": 92166,
+      "primaryTypeId": 92166,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 92166,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9026
     },
     {
-      "outputTypeId": 91709,
+      "primaryTypeId": 91709,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91709,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9027
     },
     {
-      "outputTypeId": 91714,
+      "primaryTypeId": 91714,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91714,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9028
     },
     {
-      "outputTypeId": 92406,
+      "primaryTypeId": 92406,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 92406,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 10
         }
       ],
+      "runTime": 0,
       "blueprintId": 9029
     },
     {
-      "outputTypeId": 91720,
+      "primaryTypeId": 91720,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91720,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9030
     },
     {
-      "outputTypeId": 91721,
+      "primaryTypeId": 91721,
       "facilityTypeId": 10000014,
-      "outputQty": 1,
+      "outputs": [
+        {
+          "typeId": 91721,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89089,
           "quantity": 20
         }
       ],
+      "runTime": 0,
       "blueprintId": 9031
     },
     {
-      "outputTypeId": 83895,
+      "primaryTypeId": 83895,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 83895,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -8799,15 +9239,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 3,
       "blueprintId": 1026,
       "maxInputRuns": 219,
       "maxOutputRuns": 334
     },
     {
-      "outputTypeId": 83897,
+      "primaryTypeId": 83897,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 83897,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -8818,15 +9263,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 3,
       "blueprintId": 1027,
       "maxInputRuns": 219,
       "maxOutputRuns": 334
     },
     {
-      "outputTypeId": 82130,
+      "primaryTypeId": 82130,
       "facilityTypeId": 87119,
-      "outputQty": 100,
-      "runTime": 15,
+      "outputs": [
+        {
+          "typeId": 82130,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -8837,30 +9287,40 @@
           "quantity": 360
         }
       ],
+      "runTime": 15,
       "blueprintId": 1029,
       "maxInputRuns": 28,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 82133,
+      "primaryTypeId": 82133,
       "facilityTypeId": 87119,
-      "outputQty": 100,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 82133,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
           "quantity": 230
         }
       ],
+      "runTime": 10,
       "blueprintId": 1030,
       "maxInputRuns": 53,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 89978,
+      "primaryTypeId": 89978,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 43200,
+      "outputs": [
+        {
+          "typeId": 89978,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89980,
@@ -8879,15 +9339,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 43200,
       "blueprintId": 1031,
       "maxInputRuns": 3000,
       "maxOutputRuns": 10000
     },
     {
-      "outputTypeId": 89979,
+      "primaryTypeId": 89979,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 43200,
+      "outputs": [
+        {
+          "typeId": 89979,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89981,
@@ -8914,60 +9379,80 @@
           "quantity": 1
         }
       ],
+      "runTime": 43200,
       "blueprintId": 1032,
       "maxInputRuns": 2000,
       "maxOutputRuns": 10000
     },
     {
-      "outputTypeId": 78418,
+      "primaryTypeId": 78418,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 20,
+      "outputs": [
+        {
+          "typeId": 78418,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 83818,
           "quantity": 5
         }
       ],
+      "runTime": 20,
       "blueprintId": 1005,
       "maxInputRuns": 48,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 83463,
+      "primaryTypeId": 83463,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 83463,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89259,
           "quantity": 3
         }
       ],
+      "runTime": 3,
       "blueprintId": 1007,
       "maxInputRuns": 400,
       "maxOutputRuns": 500
     },
     {
-      "outputTypeId": 82128,
+      "primaryTypeId": 82128,
       "facilityTypeId": 87119,
-      "outputQty": 100,
-      "runTime": 6,
+      "outputs": [
+        {
+          "typeId": 82128,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 89260,
           "quantity": 24
         }
       ],
+      "runTime": 6,
       "blueprintId": 1010,
       "maxInputRuns": 50,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 88887,
+      "primaryTypeId": 88887,
       "facilityTypeId": 87119,
-      "outputQty": 10,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 88887,
+          "quantity": 10
+        }
+      ],
       "inputs": [
         {
           "typeId": 88335,
@@ -8978,15 +9463,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 10,
       "blueprintId": 1013,
       "maxInputRuns": 37,
       "maxOutputRuns": 20
     },
     {
-      "outputTypeId": 89089,
+      "primaryTypeId": 89089,
       "facilityTypeId": 87119,
-      "outputQty": 10,
-      "runTime": 25,
+      "outputs": [
+        {
+          "typeId": 89089,
+          "quantity": 10
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9001,15 +9491,20 @@
           "quantity": 65
         }
       ],
+      "runTime": 25,
       "blueprintId": 1015,
       "maxInputRuns": 3,
       "maxOutputRuns": 3
     },
     {
-      "outputTypeId": 88319,
+      "primaryTypeId": 88319,
       "facilityTypeId": 87119,
-      "outputQty": 200,
-      "runTime": 6,
+      "outputs": [
+        {
+          "typeId": 88319,
+          "quantity": 200
+        }
+      ],
       "inputs": [
         {
           "typeId": 83839,
@@ -9020,15 +9515,20 @@
           "quantity": 200
         }
       ],
+      "runTime": 6,
       "blueprintId": 1016,
       "maxInputRuns": 22,
       "maxOutputRuns": 18
     },
     {
-      "outputTypeId": 84180,
+      "primaryTypeId": 84180,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -9039,15 +9539,20 @@
           "quantity": 22
         }
       ],
+      "runTime": 3,
       "blueprintId": 1017,
       "maxInputRuns": 204,
       "maxOutputRuns": 250
     },
     {
-      "outputTypeId": 84182,
+      "primaryTypeId": 84182,
       "facilityTypeId": 87119,
-      "outputQty": 14,
-      "runTime": 4,
+      "outputs": [
+        {
+          "typeId": 84182,
+          "quantity": 14
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -9058,30 +9563,40 @@
           "quantity": 1050
         }
       ],
+      "runTime": 4,
       "blueprintId": 1019,
       "maxInputRuns": 6,
       "maxOutputRuns": 8
     },
     {
-      "outputTypeId": 84210,
+      "primaryTypeId": 84210,
       "facilityTypeId": 87119,
-      "outputQty": 14,
-      "runTime": 5,
+      "outputs": [
+        {
+          "typeId": 84210,
+          "quantity": 14
+        }
+      ],
       "inputs": [
         {
           "typeId": 77804,
           "quantity": 3150
         }
       ],
+      "runTime": 5,
       "blueprintId": 1020,
       "maxInputRuns": 4,
       "maxOutputRuns": 5
     },
     {
-      "outputTypeId": 88561,
+      "primaryTypeId": 88561,
       "facilityTypeId": 87119,
-      "outputQty": 14,
-      "runTime": 4,
+      "outputs": [
+        {
+          "typeId": 88561,
+          "quantity": 14
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -9096,15 +9611,20 @@
           "quantity": 210
         }
       ],
+      "runTime": 4,
       "blueprintId": 1021,
       "maxInputRuns": 6,
       "maxOutputRuns": 8
     },
     {
-      "outputTypeId": 88780,
+      "primaryTypeId": 88780,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 17,
+      "outputs": [
+        {
+          "typeId": 88780,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -9119,15 +9639,20 @@
           "quantity": 105
         }
       ],
+      "runTime": 17,
       "blueprintId": 1022,
       "maxInputRuns": 45,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 88565,
+      "primaryTypeId": 88565,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 11,
+      "outputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 83839,
@@ -9138,15 +9663,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 11,
       "blueprintId": 1023,
       "maxInputRuns": 1200,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 92483,
+      "primaryTypeId": 92483,
       "facilityTypeId": 87119,
-      "outputQty": 1,
-      "runTime": 11,
+      "outputs": [
+        {
+          "typeId": 92483,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 92422,
@@ -9157,15 +9687,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 11,
       "blueprintId": 1482,
       "maxInputRuns": 1200,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 78437,
+      "primaryTypeId": 78437,
       "facilityTypeId": 87120,
-      "outputQty": 600,
-      "runTime": 55,
+      "outputs": [
+        {
+          "typeId": 78437,
+          "quantity": 600
+        }
+      ],
       "inputs": [
         {
           "typeId": 78516,
@@ -9176,60 +9711,80 @@
           "quantity": 60
         }
       ],
+      "runTime": 55,
       "blueprintId": 1056,
       "maxInputRuns": 116,
       "maxOutputRuns": 120
     },
     {
-      "outputTypeId": 88840,
+      "primaryTypeId": 88840,
       "facilityTypeId": 87120,
-      "outputQty": 1,
-      "runTime": 24,
+      "outputs": [
+        {
+          "typeId": 88840,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88839,
           "quantity": 10
         }
       ],
+      "runTime": 24,
       "blueprintId": 1057,
       "maxInputRuns": 51,
       "maxOutputRuns": 51
     },
     {
-      "outputTypeId": 88842,
+      "primaryTypeId": 88842,
       "facilityTypeId": 87120,
-      "outputQty": 1,
-      "runTime": 37,
+      "outputs": [
+        {
+          "typeId": 88842,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88841,
           "quantity": 10
         }
       ],
+      "runTime": 37,
       "blueprintId": 1058,
       "maxInputRuns": 13,
       "maxOutputRuns": 13
     },
     {
-      "outputTypeId": 84206,
+      "primaryTypeId": 84206,
       "facilityTypeId": 87120,
-      "outputQty": 1,
-      "runTime": 32,
+      "outputs": [
+        {
+          "typeId": 84206,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84204,
           "quantity": 10
         }
       ],
+      "runTime": 32,
       "blueprintId": 1059,
       "maxInputRuns": 20,
       "maxOutputRuns": 20
     },
     {
-      "outputTypeId": 78422,
+      "primaryTypeId": 78422,
       "facilityTypeId": 87120,
-      "outputQty": 1,
-      "runTime": 126,
+      "outputs": [
+        {
+          "typeId": 78422,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88565,
@@ -9244,30 +9799,40 @@
           "quantity": 1347
         }
       ],
+      "runTime": 126,
       "blueprintId": 1060,
       "maxInputRuns": 3,
       "maxOutputRuns": 4
     },
     {
-      "outputTypeId": 82134,
+      "primaryTypeId": 82134,
       "facilityTypeId": 87120,
-      "outputQty": 100,
-      "runTime": 13,
+      "outputs": [
+        {
+          "typeId": 82134,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 7
         }
       ],
+      "runTime": 13,
       "blueprintId": 1061,
       "maxInputRuns": 287,
       "maxOutputRuns": 308
     },
     {
-      "outputTypeId": 82132,
+      "primaryTypeId": 82132,
       "facilityTypeId": 87120,
-      "outputQty": 100,
-      "runTime": 25,
+      "outputs": [
+        {
+          "typeId": 82132,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9290,15 +9855,20 @@
           "quantity": 43
         }
       ],
+      "runTime": 25,
       "blueprintId": 1062,
       "maxInputRuns": 167,
       "maxOutputRuns": 308
     },
     {
-      "outputTypeId": 82140,
+      "primaryTypeId": 82140,
       "facilityTypeId": 87120,
-      "outputQty": 100,
-      "runTime": 25,
+      "outputs": [
+        {
+          "typeId": 82140,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9309,15 +9879,20 @@
           "quantity": 400
         }
       ],
+      "runTime": 25,
       "blueprintId": 1063,
       "maxInputRuns": 200,
       "maxOutputRuns": 308
     },
     {
-      "outputTypeId": 82137,
+      "primaryTypeId": 82137,
       "facilityTypeId": 87120,
-      "outputQty": 100,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 82137,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -9328,30 +9903,40 @@
           "quantity": 20
         }
       ],
+      "runTime": 10,
       "blueprintId": 1064,
       "maxInputRuns": 25000,
       "maxOutputRuns": 16667
     },
     {
-      "outputTypeId": 88844,
+      "primaryTypeId": 88844,
       "facilityTypeId": 87120,
-      "outputQty": 1,
-      "runTime": 32,
+      "outputs": [
+        {
+          "typeId": 88844,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88843,
           "quantity": 10
         }
       ],
+      "runTime": 32,
       "blueprintId": 1055,
       "maxInputRuns": 20,
       "maxOutputRuns": 20
     },
     {
-      "outputTypeId": 88561,
+      "primaryTypeId": 88561,
       "facilityTypeId": 87162,
-      "outputQty": 14,
-      "runTime": 4,
+      "outputs": [
+        {
+          "typeId": 88561,
+          "quantity": 14
+        }
+      ],
       "inputs": [
         {
           "typeId": 89258,
@@ -9362,15 +9947,20 @@
           "quantity": 90
         }
       ],
+      "runTime": 4,
       "blueprintId": 1000,
       "maxInputRuns": 6,
       "maxOutputRuns": 8
     },
     {
-      "outputTypeId": 88886,
+      "primaryTypeId": 88886,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 197,
+      "outputs": [
+        {
+          "typeId": 88886,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9385,15 +9975,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 197,
       "blueprintId": 1001,
       "maxInputRuns": 12,
       "maxOutputRuns": 25
     },
     {
-      "outputTypeId": 84180,
+      "primaryTypeId": 84180,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 84180,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89258,
@@ -9404,30 +9999,40 @@
           "quantity": 5
         }
       ],
+      "runTime": 3,
       "blueprintId": 1002,
       "maxInputRuns": 150,
       "maxOutputRuns": 250
     },
     {
-      "outputTypeId": 84210,
+      "primaryTypeId": 84210,
       "facilityTypeId": 87162,
-      "outputQty": 14,
-      "runTime": 5,
+      "outputs": [
+        {
+          "typeId": 84210,
+          "quantity": 14
+        }
+      ],
       "inputs": [
         {
           "typeId": 89258,
           "quantity": 350
         }
       ],
+      "runTime": 5,
       "blueprintId": 1003,
       "maxInputRuns": 4,
       "maxOutputRuns": 5
     },
     {
-      "outputTypeId": 84182,
+      "primaryTypeId": 84182,
       "facilityTypeId": 87162,
-      "outputQty": 8,
-      "runTime": 4,
+      "outputs": [
+        {
+          "typeId": 84182,
+          "quantity": 8
+        }
+      ],
       "inputs": [
         {
           "typeId": 89259,
@@ -9442,30 +10047,40 @@
           "quantity": 70
         }
       ],
+      "runTime": 4,
       "blueprintId": 1004,
       "maxInputRuns": 3,
       "maxOutputRuns": 8
     },
     {
-      "outputTypeId": 78418,
+      "primaryTypeId": 78418,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 20,
+      "outputs": [
+        {
+          "typeId": 78418,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 83818,
           "quantity": 5
         }
       ],
+      "runTime": 20,
       "blueprintId": 1005,
       "maxInputRuns": 48,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 81974,
+      "primaryTypeId": 81974,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 156,
+      "outputs": [
+        {
+          "typeId": 81974,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89260,
@@ -9476,30 +10091,40 @@
           "quantity": 30
         }
       ],
+      "runTime": 156,
       "blueprintId": 1006,
       "maxInputRuns": 30,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 83463,
+      "primaryTypeId": 83463,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 3,
+      "outputs": [
+        {
+          "typeId": 83463,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89259,
           "quantity": 3
         }
       ],
+      "runTime": 3,
       "blueprintId": 1007,
       "maxInputRuns": 400,
       "maxOutputRuns": 500
     },
     {
-      "outputTypeId": 77852,
+      "primaryTypeId": 77852,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 167,
+      "outputs": [
+        {
+          "typeId": 77852,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9510,15 +10135,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 167,
       "blueprintId": 1008,
       "maxInputRuns": 23,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 87847,
+      "primaryTypeId": 87847,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 50,
+      "outputs": [
+        {
+          "typeId": 87847,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -9533,30 +10163,40 @@
           "quantity": 40
         }
       ],
+      "runTime": 50,
       "blueprintId": 1009,
       "maxInputRuns": 4,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 82128,
+      "primaryTypeId": 82128,
       "facilityTypeId": 87162,
-      "outputQty": 100,
-      "runTime": 6,
+      "outputs": [
+        {
+          "typeId": 82128,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 89260,
           "quantity": 24
         }
       ],
+      "runTime": 6,
       "blueprintId": 1010,
       "maxInputRuns": 50,
       "maxOutputRuns": 34
     },
     {
-      "outputTypeId": 81846,
+      "primaryTypeId": 81846,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 39,
+      "outputs": [
+        {
+          "typeId": 81846,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9567,30 +10207,40 @@
           "quantity": 10
         }
       ],
+      "runTime": 39,
       "blueprintId": 1011,
       "maxInputRuns": 40,
       "maxOutputRuns": 20
     },
     {
-      "outputTypeId": 82647,
+      "primaryTypeId": 82647,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 155,
+      "outputs": [
+        {
+          "typeId": 82647,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 4
         }
       ],
+      "runTime": 155,
       "blueprintId": 1012,
       "maxInputRuns": 30,
       "maxOutputRuns": 25
     },
     {
-      "outputTypeId": 88887,
+      "primaryTypeId": 88887,
       "facilityTypeId": 87162,
-      "outputQty": 10,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 88887,
+          "quantity": 10
+        }
+      ],
       "inputs": [
         {
           "typeId": 88335,
@@ -9601,15 +10251,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 10,
       "blueprintId": 1013,
       "maxInputRuns": 37,
       "maxOutputRuns": 20
     },
     {
-      "outputTypeId": 82652,
+      "primaryTypeId": 82652,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 207,
+      "outputs": [
+        {
+          "typeId": 82652,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9624,15 +10279,20 @@
           "quantity": 150
         }
       ],
+      "runTime": 207,
       "blueprintId": 1014,
       "maxInputRuns": 9,
       "maxOutputRuns": 9
     },
     {
-      "outputTypeId": 90887,
+      "primaryTypeId": 90887,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 120,
+      "outputs": [
+        {
+          "typeId": 90887,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -9643,45 +10303,60 @@
           "quantity": 1
         }
       ],
+      "runTime": 120,
       "blueprintId": 1472,
       "maxInputRuns": 120,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 92389,
+      "primaryTypeId": 92389,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 97,
+      "outputs": [
+        {
+          "typeId": 92389,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 1
         }
       ],
+      "runTime": 97,
       "blueprintId": 1473,
       "maxInputRuns": 120,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 82681,
+      "primaryTypeId": 82681,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 97,
+      "outputs": [
+        {
+          "typeId": 82681,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 1
         }
       ],
+      "runTime": 97,
       "blueprintId": 1116,
       "maxInputRuns": 50,
       "maxOutputRuns": 30
     },
     {
-      "outputTypeId": 83497,
+      "primaryTypeId": 83497,
       "facilityTypeId": 87162,
-      "outputQty": 1,
-      "runTime": 209,
+      "outputs": [
+        {
+          "typeId": 83497,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -9692,15 +10367,20 @@
           "quantity": 7
         }
       ],
+      "runTime": 209,
       "blueprintId": 1100,
       "maxInputRuns": 8,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 78515,
+      "primaryTypeId": 78515,
       "facilityTypeId": 88067,
-      "outputQty": 600,
-      "runTime": 55,
+      "outputs": [
+        {
+          "typeId": 78515,
+          "quantity": 600
+        }
+      ],
       "inputs": [
         {
           "typeId": 83899,
@@ -9711,15 +10391,20 @@
           "quantity": 600
         }
       ],
+      "runTime": 55,
       "blueprintId": 1033,
       "maxInputRuns": 24,
       "maxOutputRuns": 24
     },
     {
-      "outputTypeId": 82137,
+      "primaryTypeId": 82137,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 82137,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -9730,75 +10415,100 @@
           "quantity": 60
         }
       ],
+      "runTime": 10,
       "blueprintId": 1034,
       "maxInputRuns": 1540,
       "maxOutputRuns": 3336
     },
     {
-      "outputTypeId": 88843,
+      "primaryTypeId": 88843,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 7,
+      "outputs": [
+        {
+          "typeId": 88843,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 10
         }
       ],
+      "runTime": 7,
       "blueprintId": 1035,
       "maxInputRuns": 40,
       "maxOutputRuns": 40
     },
     {
-      "outputTypeId": 88839,
+      "primaryTypeId": 88839,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 5,
+      "outputs": [
+        {
+          "typeId": 88839,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
           "quantity": 10
         }
       ],
+      "runTime": 5,
       "blueprintId": 1037,
       "maxInputRuns": 100,
       "maxOutputRuns": 100
     },
     {
-      "outputTypeId": 88841,
+      "primaryTypeId": 88841,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 8,
+      "outputs": [
+        {
+          "typeId": 88841,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 10
         }
       ],
+      "runTime": 8,
       "blueprintId": 1038,
       "maxInputRuns": 28,
       "maxOutputRuns": 28
     },
     {
-      "outputTypeId": 84204,
+      "primaryTypeId": 84204,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 7,
+      "outputs": [
+        {
+          "typeId": 84204,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 10
         }
       ],
+      "runTime": 7,
       "blueprintId": 1039,
       "maxInputRuns": 40,
       "maxOutputRuns": 40
     },
     {
-      "outputTypeId": 82411,
+      "primaryTypeId": 82411,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 248,
+      "outputs": [
+        {
+          "typeId": 82411,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9809,15 +10519,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 248,
       "blueprintId": 1040,
       "maxInputRuns": 213,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 82412,
+      "primaryTypeId": 82412,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 222,
+      "outputs": [
+        {
+          "typeId": 82412,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9828,15 +10543,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 222,
       "blueprintId": 1042,
       "maxInputRuns": 287,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 78416,
+      "primaryTypeId": 78416,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 46,
+      "outputs": [
+        {
+          "typeId": 78416,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88565,
@@ -9851,15 +10571,20 @@
           "quantity": 128
         }
       ],
+      "runTime": 46,
       "blueprintId": 1043,
       "maxInputRuns": 7,
       "maxOutputRuns": 12
     },
     {
-      "outputTypeId": 78417,
+      "primaryTypeId": 78417,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 31,
+      "outputs": [
+        {
+          "typeId": 78417,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88565,
@@ -9874,15 +10599,20 @@
           "quantity": 38
         }
       ],
+      "runTime": 31,
       "blueprintId": 1044,
       "maxInputRuns": 20,
       "maxOutputRuns": 36
     },
     {
-      "outputTypeId": 82413,
+      "primaryTypeId": 82413,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 222,
+      "outputs": [
+        {
+          "typeId": 82413,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9893,15 +10623,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 222,
       "blueprintId": 1045,
       "maxInputRuns": 287,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 82410,
+      "primaryTypeId": 82410,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 222,
+      "outputs": [
+        {
+          "typeId": 82410,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -9912,15 +10647,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 222,
       "blueprintId": 1046,
       "maxInputRuns": 287,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 78420,
+      "primaryTypeId": 78420,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 31,
+      "outputs": [
+        {
+          "typeId": 78420,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88565,
@@ -9935,15 +10675,20 @@
           "quantity": 38
         }
       ],
+      "runTime": 31,
       "blueprintId": 1047,
       "maxInputRuns": 20,
       "maxOutputRuns": 36
     },
     {
-      "outputTypeId": 78421,
+      "primaryTypeId": 78421,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 31,
+      "outputs": [
+        {
+          "typeId": 78421,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88565,
@@ -9958,15 +10703,20 @@
           "quantity": 38
         }
       ],
+      "runTime": 31,
       "blueprintId": 1048,
       "maxInputRuns": 20,
       "maxOutputRuns": 36
     },
     {
-      "outputTypeId": 83896,
+      "primaryTypeId": 83896,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 5,
+      "outputs": [
+        {
+          "typeId": 83896,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -9977,15 +10727,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 5,
       "blueprintId": 1049,
       "maxInputRuns": 667,
       "maxOutputRuns": 800
     },
     {
-      "outputTypeId": 83898,
+      "primaryTypeId": 83898,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 5,
+      "outputs": [
+        {
+          "typeId": 83898,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77803,
@@ -9996,30 +10751,40 @@
           "quantity": 1
         }
       ],
+      "runTime": 5,
       "blueprintId": 1050,
       "maxInputRuns": 667,
       "maxOutputRuns": 800
     },
     {
-      "outputTypeId": 82127,
+      "primaryTypeId": 82127,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 82127,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
           "quantity": 230
         }
       ],
+      "runTime": 10,
       "blueprintId": 1051,
       "maxInputRuns": 176,
       "maxOutputRuns": 136
     },
     {
-      "outputTypeId": 82131,
+      "primaryTypeId": 82131,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 15,
+      "outputs": [
+        {
+          "typeId": 82131,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10030,30 +10795,40 @@
           "quantity": 360
         }
       ],
+      "runTime": 15,
       "blueprintId": 1052,
       "maxInputRuns": 93,
       "maxOutputRuns": 136
     },
     {
-      "outputTypeId": 82126,
+      "primaryTypeId": 82126,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 10,
+      "outputs": [
+        {
+          "typeId": 82126,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
           "quantity": 230
         }
       ],
+      "runTime": 10,
       "blueprintId": 1053,
       "maxInputRuns": 93,
       "maxOutputRuns": 136
     },
     {
-      "outputTypeId": 81658,
+      "primaryTypeId": 81658,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 8,
+      "outputs": [
+        {
+          "typeId": 81658,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -10064,15 +10839,20 @@
           "quantity": 10
         }
       ],
+      "runTime": 8,
       "blueprintId": 1054,
       "maxInputRuns": 9990,
       "maxOutputRuns": 6668
     },
     {
-      "outputTypeId": 88780,
+      "primaryTypeId": 88780,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 17,
+      "outputs": [
+        {
+          "typeId": 88780,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77801,
@@ -10087,15 +10867,20 @@
           "quantity": 105
         }
       ],
+      "runTime": 17,
       "blueprintId": 1022,
       "maxInputRuns": 150,
       "maxOutputRuns": 200
     },
     {
-      "outputTypeId": 88565,
+      "primaryTypeId": 88565,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 11,
+      "outputs": [
+        {
+          "typeId": 88565,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 83839,
@@ -10106,15 +10891,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 11,
       "blueprintId": 1023,
       "maxInputRuns": 4000,
       "maxOutputRuns": 800
     },
     {
-      "outputTypeId": 92483,
+      "primaryTypeId": 92483,
       "facilityTypeId": 88067,
-      "outputQty": 1,
-      "runTime": 11,
+      "outputs": [
+        {
+          "typeId": 92483,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 92422,
@@ -10125,15 +10915,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 11,
       "blueprintId": 1482,
       "maxInputRuns": 4000,
       "maxOutputRuns": 800
     },
     {
-      "outputTypeId": 82132,
+      "primaryTypeId": 82132,
       "facilityTypeId": 88067,
-      "outputQty": 100,
-      "runTime": 25,
+      "outputs": [
+        {
+          "typeId": 82132,
+          "quantity": 100
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -10156,15 +10951,20 @@
           "quantity": 43
         }
       ],
+      "runTime": 25,
       "blueprintId": 1062,
       "maxInputRuns": 34,
       "maxOutputRuns": 62
     },
     {
-      "outputTypeId": 88889,
+      "primaryTypeId": 88889,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 452,
+      "outputs": [
+        {
+          "typeId": 88889,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10183,15 +10983,20 @@
           "quantity": 35
         }
       ],
+      "runTime": 452,
       "blueprintId": 1066,
       "maxInputRuns": 12,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 87599,
+      "primaryTypeId": 87599,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 904,
+      "outputs": [
+        {
+          "typeId": 87599,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10210,15 +11015,20 @@
           "quantity": 35
         }
       ],
+      "runTime": 904,
       "blueprintId": 1067,
       "maxInputRuns": 12,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 78508,
+      "primaryTypeId": 78508,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 4230,
+      "outputs": [
+        {
+          "typeId": 78508,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10237,15 +11047,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 4230,
       "blueprintId": 1068,
       "maxInputRuns": 5,
       "maxOutputRuns": 21
     },
     {
-      "outputTypeId": 82028,
+      "primaryTypeId": 82028,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 574,
+      "outputs": [
+        {
+          "typeId": 82028,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10264,15 +11079,20 @@
           "quantity": 120
         }
       ],
+      "runTime": 574,
       "blueprintId": 1069,
       "maxInputRuns": 83,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82030,
+      "primaryTypeId": 82030,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 632,
+      "outputs": [
+        {
+          "typeId": 82030,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10287,15 +11107,20 @@
           "quantity": 150
         }
       ],
+      "runTime": 632,
       "blueprintId": 1070,
       "maxInputRuns": 59,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 81657,
+      "primaryTypeId": 81657,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 664,
+      "outputs": [
+        {
+          "typeId": 81657,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10306,15 +11131,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 664,
       "blueprintId": 1071,
       "maxInputRuns": 49,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82033,
+      "primaryTypeId": 82033,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 643,
+      "outputs": [
+        {
+          "typeId": 82033,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10329,15 +11159,20 @@
           "quantity": 180
         }
       ],
+      "runTime": 643,
       "blueprintId": 1072,
       "maxInputRuns": 55,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82092,
+      "primaryTypeId": 82092,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 2457,
+      "outputs": [
+        {
+          "typeId": 82092,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10356,15 +11191,20 @@
           "quantity": 70
         }
       ],
+      "runTime": 2457,
       "blueprintId": 1073,
       "maxInputRuns": 65,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82094,
+      "primaryTypeId": 82094,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 2872,
+      "outputs": [
+        {
+          "typeId": 82094,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10375,15 +11215,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 2872,
       "blueprintId": 1074,
       "maxInputRuns": 35,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82098,
+      "primaryTypeId": 82098,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 2667,
+      "outputs": [
+        {
+          "typeId": 82098,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10398,15 +11243,20 @@
           "quantity": 250
         }
       ],
+      "runTime": 2667,
       "blueprintId": 1075,
       "maxInputRuns": 48,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82096,
+      "primaryTypeId": 82096,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 2727,
+      "outputs": [
+        {
+          "typeId": 82096,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10421,15 +11271,20 @@
           "quantity": 300
         }
       ],
+      "runTime": 2727,
       "blueprintId": 1076,
       "maxInputRuns": 44,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82093,
+      "primaryTypeId": 82093,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 9935,
+      "outputs": [
+        {
+          "typeId": 82093,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10444,15 +11299,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 9935,
       "blueprintId": 1077,
       "maxInputRuns": 62,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82095,
+      "primaryTypeId": 82095,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 11770,
+      "outputs": [
+        {
+          "typeId": 82095,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10463,15 +11323,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 11770,
       "blueprintId": 1078,
       "maxInputRuns": 32,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82099,
+      "primaryTypeId": 82099,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 11086,
+      "outputs": [
+        {
+          "typeId": 82099,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10486,15 +11351,20 @@
           "quantity": 340
         }
       ],
+      "runTime": 11086,
       "blueprintId": 1079,
       "maxInputRuns": 41,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82097,
+      "primaryTypeId": 82097,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 11412,
+      "outputs": [
+        {
+          "typeId": 82097,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10509,45 +11379,60 @@
           "quantity": 420
         }
       ],
+      "runTime": 11412,
       "blueprintId": 1080,
       "maxInputRuns": 36,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83423,
+      "primaryTypeId": 83423,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 921,
+      "outputs": [
+        {
+          "typeId": 83423,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 24
         }
       ],
+      "runTime": 921,
       "blueprintId": 1081,
       "maxInputRuns": 11,
       "maxOutputRuns": 27
     },
     {
-      "outputTypeId": 83426,
+      "primaryTypeId": 83426,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 921,
+      "outputs": [
+        {
+          "typeId": 83426,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 16
         }
       ],
+      "runTime": 921,
       "blueprintId": 1082,
       "maxInputRuns": 11,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 83451,
+      "primaryTypeId": 83451,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1169,
+      "outputs": [
+        {
+          "typeId": 83451,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10558,15 +11443,20 @@
           "quantity": 62
         }
       ],
+      "runTime": 1169,
       "blueprintId": 1083,
       "maxInputRuns": 3,
       "maxOutputRuns": 28
     },
     {
-      "outputTypeId": 83449,
+      "primaryTypeId": 83449,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1169,
+      "outputs": [
+        {
+          "typeId": 83449,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10581,15 +11471,20 @@
           "quantity": 600
         }
       ],
+      "runTime": 1169,
       "blueprintId": 1084,
       "maxInputRuns": 3,
       "maxOutputRuns": 14
     },
     {
-      "outputTypeId": 83457,
+      "primaryTypeId": 83457,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1169,
+      "outputs": [
+        {
+          "typeId": 83457,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10600,15 +11495,20 @@
           "quantity": 62
         }
       ],
+      "runTime": 1169,
       "blueprintId": 1085,
       "maxInputRuns": 3,
       "maxOutputRuns": 9
     },
     {
-      "outputTypeId": 83443,
+      "primaryTypeId": 83443,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 804,
+      "outputs": [
+        {
+          "typeId": 83443,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -10619,15 +11519,20 @@
           "quantity": 6
         }
       ],
+      "runTime": 804,
       "blueprintId": 1086,
       "maxInputRuns": 21,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83438,
+      "primaryTypeId": 83438,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 962,
+      "outputs": [
+        {
+          "typeId": 83438,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10642,15 +11547,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 962,
       "blueprintId": 1087,
       "maxInputRuns": 9,
       "maxOutputRuns": 42
     },
     {
-      "outputTypeId": 83459,
+      "primaryTypeId": 83459,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 970,
+      "outputs": [
+        {
+          "typeId": 83459,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10669,15 +11579,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 970,
       "blueprintId": 1088,
       "maxInputRuns": 8,
       "maxOutputRuns": 42
     },
     {
-      "outputTypeId": 83528,
+      "primaryTypeId": 83528,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 863,
+      "outputs": [
+        {
+          "typeId": 83528,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10688,15 +11603,20 @@
           "quantity": 10
         }
       ],
+      "runTime": 863,
       "blueprintId": 1089,
       "maxInputRuns": 15,
       "maxOutputRuns": 112
     },
     {
-      "outputTypeId": 83524,
+      "primaryTypeId": 83524,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 14863,
+      "outputs": [
+        {
+          "typeId": 83524,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10707,15 +11627,20 @@
           "quantity": 15
         }
       ],
+      "runTime": 14863,
       "blueprintId": 1090,
       "maxInputRuns": 10,
       "maxOutputRuns": 77
     },
     {
-      "outputTypeId": 82915,
+      "primaryTypeId": 82915,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 798,
+      "outputs": [
+        {
+          "typeId": 82915,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10734,15 +11659,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 798,
       "blueprintId": 1092,
       "maxInputRuns": 22,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83434,
+      "primaryTypeId": 83434,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 830,
+      "outputs": [
+        {
+          "typeId": 83434,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -10753,15 +11683,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 830,
       "blueprintId": 1094,
       "maxInputRuns": 18,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 83430,
+      "primaryTypeId": 83430,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 943,
+      "outputs": [
+        {
+          "typeId": 83430,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -10772,15 +11707,20 @@
           "quantity": 11
         }
       ],
+      "runTime": 943,
       "blueprintId": 1095,
       "maxInputRuns": 10,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 82650,
+      "primaryTypeId": 82650,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 150,
+      "outputs": [
+        {
+          "typeId": 82650,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -10791,15 +11731,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 150,
       "blueprintId": 1096,
       "maxInputRuns": 72,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 78507,
+      "primaryTypeId": 78507,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 471,
+      "outputs": [
+        {
+          "typeId": 78507,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10818,15 +11763,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 471,
       "blueprintId": 1098,
       "maxInputRuns": 10,
       "maxOutputRuns": 42
     },
     {
-      "outputTypeId": 83497,
+      "primaryTypeId": 83497,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 209,
+      "outputs": [
+        {
+          "typeId": 83497,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -10837,15 +11787,20 @@
           "quantity": 7
         }
       ],
+      "runTime": 209,
       "blueprintId": 1100,
       "maxInputRuns": 18,
       "maxOutputRuns": 17
     },
     {
-      "outputTypeId": 78502,
+      "primaryTypeId": 78502,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1883,
+      "outputs": [
+        {
+          "typeId": 78502,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10864,15 +11819,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 1883,
       "blueprintId": 1102,
       "maxInputRuns": 10,
       "maxOutputRuns": 42
     },
     {
-      "outputTypeId": 78510,
+      "primaryTypeId": 78510,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 942,
+      "outputs": [
+        {
+          "typeId": 78510,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10891,15 +11851,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 942,
       "blueprintId": 1103,
       "maxInputRuns": 10,
       "maxOutputRuns": 42
     },
     {
-      "outputTypeId": 81656,
+      "primaryTypeId": 81656,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 137,
+      "outputs": [
+        {
+          "typeId": 81656,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10910,15 +11875,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 137,
       "blueprintId": 1104,
       "maxInputRuns": 97,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82090,
+      "primaryTypeId": 82090,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 301,
+      "outputs": [
+        {
+          "typeId": 82090,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10929,15 +11899,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 301,
       "blueprintId": 1105,
       "maxInputRuns": 70,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82091,
+      "primaryTypeId": 82091,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 620,
+      "outputs": [
+        {
+          "typeId": 82091,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -10948,15 +11923,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 620,
       "blueprintId": 1106,
       "maxInputRuns": 63,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 81972,
+      "primaryTypeId": 81972,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 115,
+      "outputs": [
+        {
+          "typeId": 81972,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10975,15 +11955,20 @@
           "quantity": 60
         }
       ],
+      "runTime": 115,
       "blueprintId": 1107,
       "maxInputRuns": 165,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82088,
+      "primaryTypeId": 82088,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 249,
+      "outputs": [
+        {
+          "typeId": 82088,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -10998,15 +11983,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 249,
       "blueprintId": 1108,
       "maxInputRuns": 129,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82089,
+      "primaryTypeId": 82089,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 505,
+      "outputs": [
+        {
+          "typeId": 82089,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -11025,15 +12015,20 @@
           "quantity": 110
         }
       ],
+      "runTime": 505,
       "blueprintId": 1109,
       "maxInputRuns": 124,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82084,
+      "primaryTypeId": 82084,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 276,
+      "outputs": [
+        {
+          "typeId": 82084,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11048,15 +12043,20 @@
           "quantity": 125
         }
       ],
+      "runTime": 276,
       "blueprintId": 1110,
       "maxInputRuns": 95,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82085,
+      "primaryTypeId": 82085,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 577,
+      "outputs": [
+        {
+          "typeId": 82085,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11071,15 +12071,20 @@
           "quantity": 170
         }
       ],
+      "runTime": 577,
       "blueprintId": 1111,
       "maxInputRuns": 81,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82032,
+      "primaryTypeId": 82032,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 132,
+      "outputs": [
+        {
+          "typeId": 82032,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11094,15 +12099,20 @@
           "quantity": 90
         }
       ],
+      "runTime": 132,
       "blueprintId": 1112,
       "maxInputRuns": 109,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82086,
+      "primaryTypeId": 82086,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 283,
+      "outputs": [
+        {
+          "typeId": 82086,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11117,15 +12127,20 @@
           "quantity": 150
         }
       ],
+      "runTime": 283,
       "blueprintId": 1113,
       "maxInputRuns": 87,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82087,
+      "primaryTypeId": 82087,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 597,
+      "outputs": [
+        {
+          "typeId": 82087,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11140,15 +12155,20 @@
           "quantity": 210
         }
       ],
+      "runTime": 597,
       "blueprintId": 1114,
       "maxInputRuns": 72,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 77484,
+      "primaryTypeId": 77484,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 750,
+      "outputs": [
+        {
+          "typeId": 77484,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11159,30 +12179,40 @@
           "quantity": 5
         }
       ],
+      "runTime": 750,
       "blueprintId": 1115,
       "maxInputRuns": 29,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 82681,
+      "primaryTypeId": 82681,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 97,
+      "outputs": [
+        {
+          "typeId": 82681,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 1
         }
       ],
+      "runTime": 97,
       "blueprintId": 1116,
       "maxInputRuns": 250,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83536,
+      "primaryTypeId": 83536,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 194,
+      "outputs": [
+        {
+          "typeId": 83536,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -11193,15 +12223,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 194,
       "blueprintId": 1117,
       "maxInputRuns": 250,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 82651,
+      "primaryTypeId": 82651,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 111,
+      "outputs": [
+        {
+          "typeId": 82651,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11212,15 +12247,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 111,
       "blueprintId": 1118,
       "maxInputRuns": 179,
       "maxOutputRuns": 56
     },
     {
-      "outputTypeId": 83437,
+      "primaryTypeId": 83437,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 222,
+      "outputs": [
+        {
+          "typeId": 83437,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11235,30 +12275,40 @@
           "quantity": 1
         }
       ],
+      "runTime": 222,
       "blueprintId": 1119,
       "maxInputRuns": 179,
       "maxOutputRuns": 56
     },
     {
-      "outputTypeId": 83441,
+      "primaryTypeId": 83441,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 97,
+      "outputs": [
+        {
+          "typeId": 83441,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 1
         }
       ],
+      "runTime": 97,
       "blueprintId": 1120,
       "maxInputRuns": 250,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83442,
+      "primaryTypeId": 83442,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 194,
+      "outputs": [
+        {
+          "typeId": 83442,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -11269,15 +12319,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 194,
       "blueprintId": 1121,
       "maxInputRuns": 250,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83613,
+      "primaryTypeId": 83613,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 181,
+      "outputs": [
+        {
+          "typeId": 83613,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11292,15 +12347,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 181,
       "blueprintId": 1122,
       "maxInputRuns": 34,
       "maxOutputRuns": 120
     },
     {
-      "outputTypeId": 83614,
+      "primaryTypeId": 83614,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 405,
+      "outputs": [
+        {
+          "typeId": 83614,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11315,15 +12375,20 @@
           "quantity": 9
         }
       ],
+      "runTime": 405,
       "blueprintId": 1123,
       "maxInputRuns": 21,
       "maxOutputRuns": 60
     },
     {
-      "outputTypeId": 83615,
+      "primaryTypeId": 83615,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 916,
+      "outputs": [
+        {
+          "typeId": 83615,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11338,15 +12403,20 @@
           "quantity": 20
         }
       ],
+      "runTime": 916,
       "blueprintId": 1124,
       "maxInputRuns": 11,
       "maxOutputRuns": 30
     },
     {
-      "outputTypeId": 83618,
+      "primaryTypeId": 83618,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 159,
+      "outputs": [
+        {
+          "typeId": 83618,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11361,15 +12431,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 159,
       "blueprintId": 1125,
       "maxInputRuns": 57,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83619,
+      "primaryTypeId": 83619,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 362,
+      "outputs": [
+        {
+          "typeId": 83619,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11384,15 +12459,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 362,
       "blueprintId": 1126,
       "maxInputRuns": 34,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83620,
+      "primaryTypeId": 83620,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 835,
+      "outputs": [
+        {
+          "typeId": 83620,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11407,15 +12487,20 @@
           "quantity": 11
         }
       ],
+      "runTime": 835,
       "blueprintId": 1127,
       "maxInputRuns": 18,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83623,
+      "primaryTypeId": 83623,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 159,
+      "outputs": [
+        {
+          "typeId": 83623,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11430,15 +12515,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 159,
       "blueprintId": 1128,
       "maxInputRuns": 57,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83624,
+      "primaryTypeId": 83624,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 350,
+      "outputs": [
+        {
+          "typeId": 83624,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11453,15 +12543,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 350,
       "blueprintId": 1129,
       "maxInputRuns": 40,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 72960,
+      "primaryTypeId": 72960,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 148,
+      "outputs": [
+        {
+          "typeId": 72960,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11472,15 +12567,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 148,
       "blueprintId": 1130,
       "maxInputRuns": 74,
       "maxOutputRuns": 672
     },
     {
-      "outputTypeId": 83625,
+      "primaryTypeId": 83625,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 796,
+      "outputs": [
+        {
+          "typeId": 83625,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11495,15 +12595,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 796,
       "blueprintId": 1131,
       "maxInputRuns": 22,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83628,
+      "primaryTypeId": 83628,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 181,
+      "outputs": [
+        {
+          "typeId": 83628,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11518,15 +12623,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 181,
       "blueprintId": 1132,
       "maxInputRuns": 34,
       "maxOutputRuns": 120
     },
     {
-      "outputTypeId": 83629,
+      "primaryTypeId": 83629,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 405,
+      "outputs": [
+        {
+          "typeId": 83629,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11537,15 +12647,20 @@
           "quantity": 12
         }
       ],
+      "runTime": 405,
       "blueprintId": 1133,
       "maxInputRuns": 21,
       "maxOutputRuns": 60
     },
     {
-      "outputTypeId": 83630,
+      "primaryTypeId": 83630,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 923,
+      "outputs": [
+        {
+          "typeId": 83630,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11556,15 +12671,20 @@
           "quantity": 24
         }
       ],
+      "runTime": 923,
       "blueprintId": 1134,
       "maxInputRuns": 11,
       "maxOutputRuns": 30
     },
     {
-      "outputTypeId": 82682,
+      "primaryTypeId": 82682,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 181,
+      "outputs": [
+        {
+          "typeId": 82682,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11579,15 +12699,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 181,
       "blueprintId": 1135,
       "maxInputRuns": 35,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83516,
+      "primaryTypeId": 83516,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 371,
+      "outputs": [
+        {
+          "typeId": 83516,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11602,15 +12727,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 371,
       "blueprintId": 1136,
       "maxInputRuns": 31,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83517,
+      "primaryTypeId": 83517,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 777,
+      "outputs": [
+        {
+          "typeId": 83517,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11625,15 +12755,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 777,
       "blueprintId": 1137,
       "maxInputRuns": 25,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83518,
+      "primaryTypeId": 83518,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1585,
+      "outputs": [
+        {
+          "typeId": 83518,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11648,15 +12783,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 1585,
       "blueprintId": 1138,
       "maxInputRuns": 23,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83519,
+      "primaryTypeId": 83519,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 3274,
+      "outputs": [
+        {
+          "typeId": 83519,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11671,15 +12811,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 3274,
       "blueprintId": 1139,
       "maxInputRuns": 20,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 82683,
+      "primaryTypeId": 82683,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 178,
+      "outputs": [
+        {
+          "typeId": 82683,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11694,15 +12839,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 178,
       "blueprintId": 1140,
       "maxInputRuns": 37,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83520,
+      "primaryTypeId": 83520,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 366,
+      "outputs": [
+        {
+          "typeId": 83520,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11717,15 +12867,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 366,
       "blueprintId": 1141,
       "maxInputRuns": 33,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83521,
+      "primaryTypeId": 83521,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 760,
+      "outputs": [
+        {
+          "typeId": 83521,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11740,15 +12895,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 760,
       "blueprintId": 1142,
       "maxInputRuns": 28,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83522,
+      "primaryTypeId": 83522,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1553,
+      "outputs": [
+        {
+          "typeId": 83522,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11763,15 +12923,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 1553,
       "blueprintId": 1143,
       "maxInputRuns": 25,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83523,
+      "primaryTypeId": 83523,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 3192,
+      "outputs": [
+        {
+          "typeId": 83523,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11786,15 +12951,20 @@
           "quantity": 6
         }
       ],
+      "runTime": 3192,
       "blueprintId": 1144,
       "maxInputRuns": 22,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 83498,
+      "primaryTypeId": 83498,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 469,
+      "outputs": [
+        {
+          "typeId": 83498,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -11805,15 +12975,20 @@
           "quantity": 13
         }
       ],
+      "runTime": 469,
       "blueprintId": 1145,
       "maxInputRuns": 10,
       "maxOutputRuns": 9
     },
     {
-      "outputTypeId": 83499,
+      "primaryTypeId": 83499,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1054,
+      "outputs": [
+        {
+          "typeId": 83499,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -11824,15 +12999,20 @@
           "quantity": 26
         }
       ],
+      "runTime": 1054,
       "blueprintId": 1146,
       "maxInputRuns": 5,
       "maxOutputRuns": 5
     },
     {
-      "outputTypeId": 83500,
+      "primaryTypeId": 83500,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 2339,
+      "outputs": [
+        {
+          "typeId": 83500,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -11843,15 +13023,20 @@
           "quantity": 52
         }
       ],
+      "runTime": 2339,
       "blueprintId": 1147,
       "maxInputRuns": 3,
       "maxOutputRuns": 3
     },
     {
-      "outputTypeId": 83501,
+      "primaryTypeId": 83501,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 5144,
+      "outputs": [
+        {
+          "typeId": 83501,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -11862,15 +13047,20 @@
           "quantity": 104
         }
       ],
+      "runTime": 5144,
       "blueprintId": 1148,
       "maxInputRuns": 2,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 83448,
+      "primaryTypeId": 83448,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 505,
+      "outputs": [
+        {
+          "typeId": 83448,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11885,15 +13075,20 @@
           "quantity": 450
         }
       ],
+      "runTime": 505,
       "blueprintId": 1149,
       "maxInputRuns": 7,
       "maxOutputRuns": 28
     },
     {
-      "outputTypeId": 82653,
+      "primaryTypeId": 82653,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 207,
+      "outputs": [
+        {
+          "typeId": 82653,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11904,15 +13099,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 207,
       "blueprintId": 1150,
       "maxInputRuns": 19,
       "maxOutputRuns": 70
     },
     {
-      "outputTypeId": 83450,
+      "primaryTypeId": 83450,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 505,
+      "outputs": [
+        {
+          "typeId": 83450,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11923,15 +13123,20 @@
           "quantity": 24
         }
       ],
+      "runTime": 505,
       "blueprintId": 1151,
       "maxInputRuns": 7,
       "maxOutputRuns": 28
     },
     {
-      "outputTypeId": 82654,
+      "primaryTypeId": 82654,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 207,
+      "outputs": [
+        {
+          "typeId": 82654,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11942,15 +13147,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 207,
       "blueprintId": 1152,
       "maxInputRuns": 19,
       "maxOutputRuns": 70
     },
     {
-      "outputTypeId": 83456,
+      "primaryTypeId": 83456,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 505,
+      "outputs": [
+        {
+          "typeId": 83456,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -11961,15 +13171,20 @@
           "quantity": 24
         }
       ],
+      "runTime": 505,
       "blueprintId": 1153,
       "maxInputRuns": 7,
       "maxOutputRuns": 28
     },
     {
-      "outputTypeId": 82667,
+      "primaryTypeId": 82667,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 243,
+      "outputs": [
+        {
+          "typeId": 82667,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -11984,15 +13199,20 @@
           "quantity": 17
         }
       ],
+      "runTime": 243,
       "blueprintId": 1154,
       "maxInputRuns": 8,
       "maxOutputRuns": 56
     },
     {
-      "outputTypeId": 83458,
+      "primaryTypeId": 83458,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 496,
+      "outputs": [
+        {
+          "typeId": 83458,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 77805,
@@ -12007,120 +13227,160 @@
           "quantity": 19
         }
       ],
+      "runTime": 496,
       "blueprintId": 1155,
       "maxInputRuns": 7,
       "maxOutputRuns": 56
     },
     {
-      "outputTypeId": 83768,
+      "primaryTypeId": 83768,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 218,
+      "outputs": [
+        {
+          "typeId": 83768,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 12
         }
       ],
+      "runTime": 218,
       "blueprintId": 1156,
       "maxInputRuns": 14,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83769,
+      "primaryTypeId": 83769,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 461,
+      "outputs": [
+        {
+          "typeId": 83769,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 16
         }
       ],
+      "runTime": 461,
       "blueprintId": 1157,
       "maxInputRuns": 11,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83770,
+      "primaryTypeId": 83770,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 949,
+      "outputs": [
+        {
+          "typeId": 83770,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 19
         }
       ],
+      "runTime": 949,
       "blueprintId": 1158,
       "maxInputRuns": 9,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83772,
+      "primaryTypeId": 83772,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 201,
+      "outputs": [
+        {
+          "typeId": 83772,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 12
         }
       ],
+      "runTime": 201,
       "blueprintId": 1159,
       "maxInputRuns": 21,
       "maxOutputRuns": 3360
     },
     {
-      "outputTypeId": 83773,
+      "primaryTypeId": 83773,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 426,
+      "outputs": [
+        {
+          "typeId": 83773,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 16
         }
       ],
+      "runTime": 426,
       "blueprintId": 1160,
       "maxInputRuns": 16,
       "maxOutputRuns": 2800
     },
     {
-      "outputTypeId": 83774,
+      "primaryTypeId": 83774,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 881,
+      "outputs": [
+        {
+          "typeId": 83774,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 19
         }
       ],
+      "runTime": 881,
       "blueprintId": 1161,
       "maxInputRuns": 14,
       "maxOutputRuns": 2400
     },
     {
-      "outputTypeId": 83775,
+      "primaryTypeId": 83775,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 1811,
+      "outputs": [
+        {
+          "typeId": 83775,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
           "quantity": 22
         }
       ],
+      "runTime": 1811,
       "blueprintId": 1162,
       "maxInputRuns": 12,
       "maxOutputRuns": 2100
     },
     {
-      "outputTypeId": 83777,
+      "primaryTypeId": 83777,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 201,
+      "outputs": [
+        {
+          "typeId": 83777,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12131,15 +13391,20 @@
           "quantity": 6
         }
       ],
+      "runTime": 201,
       "blueprintId": 1163,
       "maxInputRuns": 21,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83778,
+      "primaryTypeId": 83778,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 415,
+      "outputs": [
+        {
+          "typeId": 83778,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12150,15 +13415,20 @@
           "quantity": 7
         }
       ],
+      "runTime": 415,
       "blueprintId": 1164,
       "maxInputRuns": 18,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83779,
+      "primaryTypeId": 83779,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 863,
+      "outputs": [
+        {
+          "typeId": 83779,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12169,105 +13439,140 @@
           "quantity": 8
         }
       ],
+      "runTime": 863,
       "blueprintId": 1165,
       "maxInputRuns": 15,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83782,
+      "primaryTypeId": 83782,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 184,
+      "outputs": [
+        {
+          "typeId": 83782,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 8
         }
       ],
+      "runTime": 184,
       "blueprintId": 1166,
       "maxInputRuns": 32,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 83783,
+      "primaryTypeId": 83783,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 387,
+      "outputs": [
+        {
+          "typeId": 83783,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 10
         }
       ],
+      "runTime": 387,
       "blueprintId": 1167,
       "maxInputRuns": 25,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83784,
+      "primaryTypeId": 83784,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 804,
+      "outputs": [
+        {
+          "typeId": 83784,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 12
         }
       ],
+      "runTime": 804,
       "blueprintId": 1168,
       "maxInputRuns": 21,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83421,
+      "primaryTypeId": 83421,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 357,
+      "outputs": [
+        {
+          "typeId": 83421,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 7
         }
       ],
+      "runTime": 357,
       "blueprintId": 1169,
       "maxInputRuns": 36,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82648,
+      "primaryTypeId": 82648,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 172,
+      "outputs": [
+        {
+          "typeId": 82648,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 4
         }
       ],
+      "runTime": 172,
       "blueprintId": 1170,
       "maxInputRuns": 42,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83425,
+      "primaryTypeId": 83425,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 391,
+      "outputs": [
+        {
+          "typeId": 83425,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
           "quantity": 7
         }
       ],
+      "runTime": 391,
       "blueprintId": 1171,
       "maxInputRuns": 24,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 82649,
+      "primaryTypeId": 82649,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 182,
+      "outputs": [
+        {
+          "typeId": 82649,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -12278,15 +13583,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 182,
       "blueprintId": 1172,
       "maxInputRuns": 34,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 83429,
+      "primaryTypeId": 83429,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 421,
+      "outputs": [
+        {
+          "typeId": 83429,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84210,
@@ -12297,15 +13607,20 @@
           "quantity": 6
         }
       ],
+      "runTime": 421,
       "blueprintId": 1173,
       "maxInputRuns": 17,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 83433,
+      "primaryTypeId": 83433,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 357,
+      "outputs": [
+        {
+          "typeId": 83433,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12316,15 +13631,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 357,
       "blueprintId": 1174,
       "maxInputRuns": 36,
       "maxOutputRuns": 105
     },
     {
-      "outputTypeId": 77753,
+      "primaryTypeId": 77753,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 89,
+      "outputs": [
+        {
+          "typeId": 77753,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12339,15 +13659,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 89,
       "blueprintId": 1175,
       "maxInputRuns": 37,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 78490,
+      "primaryTypeId": 78490,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 825,
+      "outputs": [
+        {
+          "typeId": 78490,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12362,15 +13687,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 825,
       "blueprintId": 1176,
       "maxInputRuns": 19,
       "maxOutputRuns": 84
     },
     {
-      "outputTypeId": 78511,
+      "primaryTypeId": 78511,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 413,
+      "outputs": [
+        {
+          "typeId": 78511,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12385,15 +13715,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 413,
       "blueprintId": 1177,
       "maxInputRuns": 19,
       "maxOutputRuns": 84
     },
     {
-      "outputTypeId": 78506,
+      "primaryTypeId": 78506,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 207,
+      "outputs": [
+        {
+          "typeId": 78506,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12408,15 +13743,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 207,
       "blueprintId": 1178,
       "maxInputRuns": 19,
       "maxOutputRuns": 84
     },
     {
-      "outputTypeId": 88886,
+      "primaryTypeId": 88886,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 197,
+      "outputs": [
+        {
+          "typeId": 88886,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12431,15 +13771,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 197,
       "blueprintId": 1001,
       "maxInputRuns": 24,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 81974,
+      "primaryTypeId": 81974,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 156,
+      "outputs": [
+        {
+          "typeId": 81974,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89260,
@@ -12450,15 +13795,20 @@
           "quantity": 30
         }
       ],
+      "runTime": 156,
       "blueprintId": 1006,
       "maxInputRuns": 63,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 77852,
+      "primaryTypeId": 77852,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 167,
+      "outputs": [
+        {
+          "typeId": 77852,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12469,15 +13819,20 @@
           "quantity": 3
         }
       ],
+      "runTime": 167,
       "blueprintId": 1008,
       "maxInputRuns": 48,
       "maxOutputRuns": 420
     },
     {
-      "outputTypeId": 81846,
+      "primaryTypeId": 81846,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 39,
+      "outputs": [
+        {
+          "typeId": 81846,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
@@ -12488,30 +13843,40 @@
           "quantity": 10
         }
       ],
+      "runTime": 39,
       "blueprintId": 1011,
       "maxInputRuns": 84,
       "maxOutputRuns": 168
     },
     {
-      "outputTypeId": 82647,
+      "primaryTypeId": 82647,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 155,
+      "outputs": [
+        {
+          "typeId": 82647,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84182,
           "quantity": 4
         }
       ],
+      "runTime": 155,
       "blueprintId": 1012,
       "maxInputRuns": 63,
       "maxOutputRuns": 210
     },
     {
-      "outputTypeId": 82652,
+      "primaryTypeId": 82652,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 207,
+      "outputs": [
+        {
+          "typeId": 82652,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 84180,
@@ -12526,15 +13891,20 @@
           "quantity": 150
         }
       ],
+      "runTime": 207,
       "blueprintId": 1014,
       "maxInputRuns": 19,
       "maxOutputRuns": 70
     },
     {
-      "outputTypeId": 92421,
+      "primaryTypeId": 92421,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 320,
+      "outputs": [
+        {
+          "typeId": 92421,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -12549,15 +13919,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 320,
       "blueprintId": 1479,
       "maxInputRuns": 120,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 92390,
+      "primaryTypeId": 92390,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 800,
+      "outputs": [
+        {
+          "typeId": 92390,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -12572,15 +13947,20 @@
           "quantity": 16
         }
       ],
+      "runTime": 800,
       "blueprintId": 1474,
       "maxInputRuns": 120,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 90887,
+      "primaryTypeId": 90887,
       "facilityTypeId": 88068,
-      "outputQty": 1,
-      "runTime": 120,
+      "outputs": [
+        {
+          "typeId": 90887,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 88561,
@@ -12591,15 +13971,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 120,
       "blueprintId": 1472,
       "maxInputRuns": 120,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 87848,
+      "primaryTypeId": 87848,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 150,
+      "outputs": [
+        {
+          "typeId": 87848,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -12618,15 +14003,20 @@
           "quantity": 78
         }
       ],
+      "runTime": 150,
       "blueprintId": 1224,
       "maxInputRuns": 2,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 87847,
+      "primaryTypeId": 87847,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 50,
+      "outputs": [
+        {
+          "typeId": 87847,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -12641,15 +14031,20 @@
           "quantity": 40
         }
       ],
+      "runTime": 50,
       "blueprintId": 1009,
       "maxInputRuns": 6,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 87846,
+      "primaryTypeId": 87846,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 130,
+      "outputs": [
+        {
+          "typeId": 87846,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -12672,15 +14067,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 130,
       "blueprintId": 1226,
       "maxInputRuns": 2,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 87698,
+      "primaryTypeId": 87698,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 60,
+      "outputs": [
+        {
+          "typeId": 87698,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -12699,15 +14099,20 @@
           "quantity": 17
         }
       ],
+      "runTime": 60,
       "blueprintId": 1227,
       "maxInputRuns": 3,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 91107,
+      "primaryTypeId": 91107,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 10260,
+      "outputs": [
+        {
+          "typeId": 91107,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89979,
@@ -12730,15 +14135,20 @@
           "quantity": 88
         }
       ],
+      "runTime": 10260,
       "blueprintId": 1471,
       "maxInputRuns": 1,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 91106,
+      "primaryTypeId": 91106,
       "facilityTypeId": 88069,
-      "outputQty": 1,
-      "runTime": 10630,
+      "outputs": [
+        {
+          "typeId": 91106,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 89978,
@@ -12761,15 +14171,20 @@
           "quantity": 96
         }
       ],
+      "runTime": 10630,
       "blueprintId": 1470,
       "maxInputRuns": 1,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 82426,
+      "primaryTypeId": 82426,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 8320,
+      "outputs": [
+        {
+          "typeId": 82426,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78417,
@@ -12788,15 +14203,20 @@
           "quantity": 29
         }
       ],
+      "runTime": 8320,
       "blueprintId": 1228,
       "maxInputRuns": 3,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 81904,
+      "primaryTypeId": 81904,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 59126,
+      "outputs": [
+        {
+          "typeId": 81904,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78421,
@@ -12819,15 +14239,20 @@
           "quantity": 4
         }
       ],
+      "runTime": 59126,
       "blueprintId": 1229,
       "maxInputRuns": 2,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 81808,
+      "primaryTypeId": 81808,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 99136,
+      "outputs": [
+        {
+          "typeId": 81808,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78416,
@@ -12850,15 +14275,20 @@
           "quantity": 7
         }
       ],
+      "runTime": 99136,
       "blueprintId": 1230,
       "maxInputRuns": 2,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 82424,
+      "primaryTypeId": 82424,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 72472,
+      "outputs": [
+        {
+          "typeId": 82424,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78421,
@@ -12877,15 +14307,20 @@
           "quantity": 83
         }
       ],
+      "runTime": 72472,
       "blueprintId": 1231,
       "maxInputRuns": 2,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 81609,
+      "primaryTypeId": 81609,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 8200,
+      "outputs": [
+        {
+          "typeId": 81609,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78420,
@@ -12904,15 +14339,20 @@
           "quantity": 28
         }
       ],
+      "runTime": 8200,
       "blueprintId": 1232,
       "maxInputRuns": 3,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 82425,
+      "primaryTypeId": 82425,
       "facilityTypeId": 88070,
-      "outputQty": 1,
-      "runTime": 62228,
+      "outputs": [
+        {
+          "typeId": 82425,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78421,
@@ -12935,15 +14375,20 @@
           "quantity": 5
         }
       ],
+      "runTime": 62228,
       "blueprintId": 1483,
       "maxInputRuns": 2,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 82430,
+      "primaryTypeId": 82430,
       "facilityTypeId": 88071,
-      "outputQty": 1,
-      "runTime": 230063,
+      "outputs": [
+        {
+          "typeId": 82430,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78416,
@@ -12970,15 +14415,20 @@
           "quantity": 2
         }
       ],
+      "runTime": 230063,
       "blueprintId": 1233,
       "maxInputRuns": 1,
       "maxOutputRuns": 2
     },
     {
-      "outputTypeId": 81611,
+      "primaryTypeId": 81611,
       "facilityTypeId": 88071,
-      "outputQty": 1,
-      "runTime": 324000,
+      "outputs": [
+        {
+          "typeId": 81611,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78422,
@@ -12997,15 +14447,20 @@
           "quantity": 256
         }
       ],
+      "runTime": 324000,
       "blueprintId": 1234,
       "maxInputRuns": 1,
       "maxOutputRuns": 1
     },
     {
-      "outputTypeId": 91749,
+      "primaryTypeId": 91749,
       "facilityTypeId": 91978,
-      "outputQty": 1,
-      "runTime": 50800,
+      "outputs": [
+        {
+          "typeId": 91749,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78421,
@@ -13024,15 +14479,20 @@
           "quantity": 8
         }
       ],
+      "runTime": 50800,
       "blueprintId": 1487,
       "maxInputRuns": 50,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 91967,
+      "primaryTypeId": 91967,
       "facilityTypeId": 91978,
-      "outputQty": 1,
-      "runTime": 46400,
+      "outputs": [
+        {
+          "typeId": 91967,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78418,
@@ -13047,15 +14507,20 @@
           "quantity": 1
         }
       ],
+      "runTime": 46400,
       "blueprintId": 1475,
       "maxInputRuns": 50,
       "maxOutputRuns": 50
     },
     {
-      "outputTypeId": 91968,
+      "primaryTypeId": 91968,
       "facilityTypeId": 91978,
-      "outputQty": 1,
-      "runTime": 37100,
+      "outputs": [
+        {
+          "typeId": 91968,
+          "quantity": 1
+        }
+      ],
       "inputs": [
         {
           "typeId": 78416,
@@ -13082,6 +14547,7 @@
           "quantity": 4
         }
       ],
+      "runTime": 37100,
       "blueprintId": 1476,
       "maxInputRuns": 50,
       "maxOutputRuns": 50

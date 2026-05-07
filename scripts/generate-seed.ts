@@ -5,13 +5,13 @@
  *
  * Data sources (in priority order):
  *   1. Fresh game data from <data_dir>/ (types.json, industry_blueprints.json, industry_facilities.json)
- *   2. Curated data from scripts/curated-data/*.json (flags, asteroids, decompositions, custom items, etc.)
+ *   2. Curated data from scripts/curated-data/*.json (flags, asteroids, custom items, etc.)
  *
  * The script:
  *   - Reads fresh game data
  *   - Overlays curated boolean flags on items
  *   - Adds custom items/facilities/blueprints not present in game data
- *   - Preserves all curated data (asteroids, decompositions, locations)
+ *   - Preserves all curated data (asteroids, locations)
  *   - Validates the result before writing
  */
 
@@ -63,22 +63,22 @@ type Facility = {
 
 type BlueprintInput = { typeId: number; quantity: number };
 type Blueprint = {
-  outputTypeId: number;
+  primaryTypeId: number;
   facilityTypeId: number;
-  outputQty: number;
-  runTime: number;
+  outputs: { typeId: number; quantity: number }[];
   inputs: BlueprintInput[];
+  runTime: number;
   blueprintId?: number | null;
   maxInputRuns?: number | null;
   maxOutputRuns?: number | null;
 };
 
 type Decomposition = {
-  sourceTypeId: number;
+  primaryTypeId: number;
   facilityTypeId: number;
-  inputQty: number;
-  runTime: number;
+  inputs: { typeId: number; quantity: number }[];
   outputs: { typeId: number; quantity: number }[];
+  runTime: number;
   blueprintId?: number | null;
   maxInputRuns?: number | null;
   maxOutputRuns?: number | null;
@@ -145,7 +145,6 @@ function main() {
   const flags: FlagsEntry[] = loadCurated("flags.json");
   const locations: string[] = loadCurated("locations.json");
   const asteroids: AsteroidType[] = loadCurated("asteroids.json");
-  const decompositions: Decomposition[] = loadCurated("decompositions.json");
   const customFacilities: Facility[] = loadCurated("custom-facilities.json");
   const customItems: (FlagsEntry & { name?: string })[] = loadCurated("custom-items.json");
   const customBlueprints: Blueprint[] = loadCurated("custom-blueprints.json");
@@ -158,12 +157,6 @@ function main() {
 
   // 4. Generate facilities
   const facilities: Facility[] = [...customFacilities];
-  // Pre-populate knownFacInfo with refineries from curated decompositions
-  for (const tid of decompositions.map((d) => d.facilityTypeId)) {
-    if (!knownFacInfo.has(tid)) {
-      knownFacInfo.set(tid, { name: `Refinery`, type: "refinery" });
-    }
-  }
   for (const [tidStr, fac] of Object.entries(rawFacilities)) {
     const tid = Number(tidStr);
     const existing = knownFacInfo.get(tid);
@@ -225,14 +218,12 @@ function main() {
     }
   }
 
-  // 6. Generate blueprints (from game data + custom)
+  // 6. Generate blueprints and decompositions (from game data + custom)
   const blueprints: Blueprint[] = [...customBlueprints];
+  const decompositions: Decomposition[] = [];
 
   for (const [ftidStr, fac] of Object.entries(rawFacilities)) {
     const facTypeId = Number(ftidStr);
-
-    // Skip refineries — they are handled as decompositions
-    if (knownFacInfo.get(facTypeId)?.type === "refinery") continue;
 
     for (const entry of fac.blueprints) {
       const bp = rawBlueprints[entry.blueprintID];
@@ -241,31 +232,60 @@ function main() {
         continue;
       }
 
-      blueprints.push({
-        outputTypeId: bp.primaryTypeID,
-        facilityTypeId: facTypeId,
-        outputQty: bp.outputs[0]?.quantity ?? 1,
-        runTime: bp.runTime,
-        inputs: bp.inputs.map((i) => ({ typeId: i.typeID, quantity: i.quantity })),
-        blueprintId: entry.blueprintID,
-        maxInputRuns: entry.maxInputRuns,
-        maxOutputRuns: entry.maxOutputRuns,
-      });
+      const isDecomp = bp.inputs.some((i) => i.typeID === bp.primaryTypeID);
+
+      if (isDecomp) {
+        decompositions.push({
+          primaryTypeId: bp.primaryTypeID,
+          facilityTypeId: facTypeId,
+          inputs: bp.inputs.map((i) => ({ typeId: i.typeID, quantity: i.quantity })),
+          outputs: bp.outputs.map((o) => ({ typeId: o.typeID, quantity: o.quantity })),
+          runTime: bp.runTime,
+          blueprintId: entry.blueprintID,
+          maxInputRuns: entry.maxInputRuns,
+          maxOutputRuns: entry.maxOutputRuns,
+        });
+      } else {
+        blueprints.push({
+          primaryTypeId: bp.primaryTypeID,
+          facilityTypeId: facTypeId,
+          outputs: bp.outputs.map((o) => ({ typeId: o.typeID, quantity: o.quantity })),
+          inputs: bp.inputs.map((i) => ({ typeId: i.typeID, quantity: i.quantity })),
+          runTime: bp.runTime,
+          blueprintId: entry.blueprintID,
+          maxInputRuns: entry.maxInputRuns,
+          maxOutputRuns: entry.maxOutputRuns,
+        });
+      }
     }
   }
 
-  // 7. Validate: check that all TypeIDs referenced in blueprints/decomps exist in items
+  // 7. Mark facilities that have decompositions as refineries
+  const decompFacTypeIds = new Set(decompositions.map((d) => d.facilityTypeId));
+  for (const f of facilities) {
+    if (f.typeId && decompFacTypeIds.has(f.typeId)) {
+      f.type = "refinery";
+    }
+  }
+
+  // 8. Validate: check that all TypeIDs referenced in blueprints/decomps exist in items
   const itemTypeIds = new Set(items.map((i) => i.typeId));
   const missing = new Set<number>();
 
   for (const bp of blueprints) {
-    if (!itemTypeIds.has(bp.outputTypeId)) missing.add(bp.outputTypeId);
+    if (!itemTypeIds.has(bp.primaryTypeId)) missing.add(bp.primaryTypeId);
     for (const inp of bp.inputs) {
       if (!itemTypeIds.has(inp.typeId)) missing.add(inp.typeId);
     }
+    for (const o of bp.outputs) {
+      if (!itemTypeIds.has(o.typeId)) missing.add(o.typeId);
+    }
   }
   for (const d of decompositions) {
-    if (!itemTypeIds.has(d.sourceTypeId)) missing.add(d.sourceTypeId);
+    if (!itemTypeIds.has(d.primaryTypeId)) missing.add(d.primaryTypeId);
+    for (const inp of d.inputs) {
+      if (!itemTypeIds.has(inp.typeId)) missing.add(inp.typeId);
+    }
     for (const o of d.outputs) {
       if (!itemTypeIds.has(o.typeId)) missing.add(o.typeId);
     }

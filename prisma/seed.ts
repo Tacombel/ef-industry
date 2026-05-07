@@ -119,24 +119,31 @@ async function main() {
   await prisma.decomposition.deleteMany({});
 
   for (const d of data.decompositions) {
-    const sourceId = itemIdByTypeId.get(d.sourceTypeId);
-    if (!sourceId) { console.warn(`  ⚠ Item typeId ${d.sourceTypeId} not found for decomposition`); continue; }
+    const sourceId = itemIdByTypeId.get(d.primaryTypeId);
+    if (!sourceId) { console.warn(`  ⚠ Item typeId ${d.primaryTypeId} not found for decomposition`); continue; }
     const refineryName = refineryNameByTypeId.get(d.facilityTypeId) ?? String(d.facilityTypeId);
     const key = `${sourceId}||${refineryName}||${String(d.blueprintId ?? null)}`;
     const decomp = await prisma.decomposition.create({
       data: {
         sourceItemId: sourceId,
+        primaryTypeId: d.primaryTypeId,
         refinery: refineryName,
-        inputQty: d.inputQty,
         runTime: d.runTime,
         blueprintId: d.blueprintId ?? null,
         isDefault: defaultKeys.has(key),
         maxInputRuns: d.maxInputRuns ?? null,
         maxOutputRuns: d.maxOutputRuns ?? null,
+        inputs: {
+          create: d.inputs.flatMap((inp) => {
+            const inpItemId = itemIdByTypeId.get(inp.typeId);
+            if (!inpItemId) { console.warn(`  ⚠ Input typeId ${inp.typeId} not found in decomposition of typeId ${d.primaryTypeId}`); return []; }
+            return [{ itemId: inpItemId, quantity: inp.quantity }];
+          }),
+        },
         outputs: {
           create: d.outputs.flatMap((out) => {
             const outItemId = itemIdByTypeId.get(out.typeId);
-            if (!outItemId) { console.warn(`  ⚠ Output typeId ${out.typeId} not found in decomposition of typeId ${d.sourceTypeId}`); return []; }
+            if (!outItemId) { console.warn(`  ⚠ Output typeId ${out.typeId} not found in decomposition of typeId ${d.primaryTypeId}`); return []; }
             return [{ itemId: outItemId, quantity: out.quantity }];
           }),
         },
@@ -148,13 +155,15 @@ async function main() {
 
   // Blueprints
   for (const bp of data.blueprints) {
-    const outputItemId = itemIdByTypeId.get(bp.outputTypeId);
-    if (!outputItemId) { console.warn(`  ⚠ Item typeId ${bp.outputTypeId} not found for blueprint`); continue; }
+    const outputItemId = itemIdByTypeId.get(bp.primaryTypeId);
+    if (!outputItemId) { console.warn(`  ⚠ Item typeId ${bp.primaryTypeId} not found for blueprint`); continue; }
+    const primaryOutput = bp.outputs.find((o) => o.typeId === bp.primaryTypeId);
+    const outputQty = primaryOutput?.quantity ?? 1;
     const factoryName = factoryNameByTypeId.get(bp.facilityTypeId) ?? String(bp.facilityTypeId);
     const upserted = await prisma.blueprint.upsert({
       where: { outputItemId_factory: { outputItemId, factory: factoryName } },
-      update: { outputQty: bp.outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
-      create: { outputItemId, factory: factoryName, outputQty: bp.outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
+      update: { outputQty, runTime: bp.runTime, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
+      create: { outputItemId, factory: factoryName, outputQty, runTime: bp.runTime, isDefault: false, blueprintId: bp.blueprintId ?? null, maxInputRuns: bp.maxInputRuns ?? null, maxOutputRuns: bp.maxOutputRuns ?? null },
     });
     await prisma.blueprintInput.deleteMany({ where: { blueprintId: upserted.id } });
     for (const inp of bp.inputs) {
@@ -164,11 +173,10 @@ async function main() {
           data: { blueprintId: upserted.id, itemId: inpItemId, quantity: inp.quantity },
         });
       } else {
-        console.warn(`  ⚠ Input typeId ${inp.typeId} not found in blueprint for typeId ${bp.outputTypeId}`);
+        console.warn(`  ⚠ Input typeId ${inp.typeId} not found in blueprint for typeId ${bp.primaryTypeId}`);
       }
     }
   }
-  // Delete orphan blueprints (in DB but not in seed)
   const seedBlueprintIds = data.blueprints.map((bp) => bp.blueprintId).filter((id): id is number => id !== null && id !== undefined);
   const deleted = await prisma.blueprint.deleteMany({
     where: { OR: [{ blueprintId: { notIn: seedBlueprintIds } }, { blueprintId: null }] },

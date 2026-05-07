@@ -12,6 +12,7 @@ export async function GET(req: NextRequest) {
   const decompositions = await prisma.decomposition.findMany({
     include: {
       sourceItem: true,
+      inputs: { include: { item: true } },
       outputs: { include: { item: true } },
     },
     orderBy: [{ sourceItem: { name: "asc" } }, { refinery: "asc" }],
@@ -27,16 +28,13 @@ export async function POST(req: NextRequest) {
   if (authError) return authError;
 
   const body = await req.json();
-  const { sourceItemId, refinery = "", inputQty = 1, isDefault = false, outputs = [] } = body;
+  const { sourceItemId, primaryTypeId, refinery = "", inputs = [], isDefault = false, outputs = [] } = body;
 
   if (!sourceItemId) {
     return NextResponse.json({ error: "sourceItemId is required" }, { status: 400 });
   }
   if (outputs.length === 0) {
     return NextResponse.json({ error: "At least one output is required" }, { status: 400 });
-  }
-  if (!Number.isInteger(inputQty) || inputQty < 1) {
-    return NextResponse.json({ error: "inputQty must be a positive integer" }, { status: 400 });
   }
   if (outputs.some((o: { itemId: string; quantity: number }) => !o.itemId || !Number.isInteger(o.quantity) || o.quantity < 1)) {
     return NextResponse.json({ error: "Each output must have a valid itemId and quantity >= 1" }, { status: 400 });
@@ -60,9 +58,15 @@ export async function POST(req: NextRequest) {
     return tx.decomposition.create({
       data: {
         sourceItemId,
+        primaryTypeId,
         refinery: normalizedRefinery,
-        inputQty,
         isDefault: shouldBeDefault,
+        inputs: {
+          create: inputs.map((i: { itemId: string; quantity: number }) => ({
+            itemId: i.itemId,
+            quantity: i.quantity,
+          })),
+        },
         outputs: {
           create: outputs.map((o: { itemId: string; quantity: number }) => ({
             itemId: o.itemId,

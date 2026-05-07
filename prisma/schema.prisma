@@ -32,8 +32,9 @@ model Item {
   blueprints           Blueprint[]
   usedAsInput          BlueprintInput[]
   collectionItems      CollectionItem[]
-  decompositions       Decomposition[]
-  decompositionOutputs DecompositionOutput[]
+  decompositions        Decomposition[]
+  decompositionInputs   DecompositionInput[]
+  decompositionOutputs  DecompositionOutput[]
   asteroidTypes        ItemAsteroidType[]
 }
 
@@ -105,22 +106,35 @@ model Settings {
 // 1 unit of sourceItem → multiple output materials (reprocessing/decomposition)
 // Multiple decompositions per sourceItem are allowed (one per refinery)
 model Decomposition {
-  id           String   @id @default(cuid())
-  blueprintId  Int?
-  sourceItemId String
-  refinery     String   @default("")
-  inputQty     Int      @default(1)
-  runTime      Int      @default(0)
-  maxInputRuns Int?
+  id            String   @id @default(cuid())
+  blueprintId   Int?
+  primaryTypeId Int @default(0)
+  sourceItemId  String
+  refinery      String   @default("")
+  runTime       Int      @default(0)
+  maxInputRuns  Int?
   maxOutputRuns Int?
-  isDefault    Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  isDefault     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   sourceItem Item                  @relation(fields: [sourceItemId], references: [id], onDelete: Cascade)
+  inputs     DecompositionInput[]
   outputs    DecompositionOutput[]
 
   @@unique([sourceItemId, refinery, blueprintId])
+}
+
+model DecompositionInput {
+  id              String @id @default(cuid())
+  decompositionId String
+  itemId          String
+  quantity        Int
+
+  decomposition Decomposition @relation(fields: [decompositionId], references: [id], onDelete: Cascade)
+  item          Item          @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([decompositionId, itemId])
 }
 
 model DecompositionOutput {

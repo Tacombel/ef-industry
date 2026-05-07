@@ -7,7 +7,7 @@ import { requireDev } from "@/lib/dev-guard";
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const d = await prisma.decomposition.findUnique({
     where: { id: params.id },
-    include: { sourceItem: true, outputs: { include: { item: true } } },
+    include: { sourceItem: true, inputs: { include: { item: true } }, outputs: { include: { item: true } } },
   });
   if (!d) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(d);
@@ -20,7 +20,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   if (authError) return authError;
 
   const body = await req.json();
-  const { refinery, inputQty, isDefault, outputs } = body;
+  const { refinery, inputs, isDefault, outputs } = body;
 
   const d = await prisma.$transaction(async (tx) => {
     // If setting as default, unset existing default for same sourceItem
@@ -34,6 +34,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       }
     }
 
+    if (inputs !== undefined) {
+      await tx.decompositionInput.deleteMany({ where: { decompositionId: params.id } });
+    }
     if (outputs !== undefined) {
       await tx.decompositionOutput.deleteMany({ where: { decompositionId: params.id } });
     }
@@ -42,8 +45,15 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       where: { id: params.id },
       data: {
         ...(refinery !== undefined && { refinery: normalizeName(refinery) }),
-        ...(inputQty !== undefined && { inputQty }),
         ...(isDefault !== undefined && { isDefault }),
+        ...(inputs !== undefined && {
+          inputs: {
+            create: inputs.map((i: { itemId: string; quantity: number }) => ({
+              itemId: i.itemId,
+              quantity: i.quantity,
+            })),
+          },
+        }),
         ...(outputs !== undefined && {
           outputs: {
             create: outputs.map((o: { itemId: string; quantity: number }) => ({
@@ -53,7 +63,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
           },
         }),
       },
-      include: { sourceItem: true, outputs: { include: { item: true } } },
+      include: { sourceItem: true, inputs: { include: { item: true } }, outputs: { include: { item: true } } },
     });
   });
 

@@ -1,457 +1,337 @@
 [
   {
-    "outputTypeId": 91708,
+    "primaryTypeId": 91708,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91708, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84210,
-        "quantity": 10
-      },
-      {
-        "typeId": 84180,
-        "quantity": 5
-      },
-      {
-        "typeId": 84182,
-        "quantity": 20
-      }
+      { "typeId": 84210, "quantity": 10 },
+      { "typeId": 84180, "quantity": 5 },
+      { "typeId": 84182, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9000
   },
   {
-    "outputTypeId": 91702,
+    "primaryTypeId": 91702,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91702, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 100
-      }
+      { "typeId": 89089, "quantity": 100 }
     ],
+    "runTime": 0,
     "blueprintId": 9001
   },
   {
-    "outputTypeId": 91705,
+    "primaryTypeId": 91705,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91705, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84210,
-        "quantity": 10
-      },
-      {
-        "typeId": 84180,
-        "quantity": 5
-      },
-      {
-        "typeId": 84182,
-        "quantity": 20
-      }
+      { "typeId": 84210, "quantity": 10 },
+      { "typeId": 84180, "quantity": 5 },
+      { "typeId": 84182, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9002
   },
   {
-    "outputTypeId": 91700,
+    "primaryTypeId": 91700,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91700, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84180,
-        "quantity": 15
-      },
-      {
-        "typeId": 84182,
-        "quantity": 15
-      }
+      { "typeId": 84180, "quantity": 15 },
+      { "typeId": 84182, "quantity": 15 }
     ],
+    "runTime": 0,
     "blueprintId": 9003
   },
   {
-    "outputTypeId": 91713,
+    "primaryTypeId": 91713,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91713, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 77800,
-        "quantity": 250
-      },
-      {
-        "typeId": 77810,
-        "quantity": 250
-      }
+      { "typeId": 77800, "quantity": 250 },
+      { "typeId": 77810, "quantity": 250 }
     ],
+    "runTime": 0,
     "blueprintId": 9004
   },
   {
-    "outputTypeId": 88092,
+    "primaryTypeId": 88092,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 88092, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84210,
-        "quantity": 10
-      },
-      {
-        "typeId": 84180,
-        "quantity": 10
-      },
-      {
-        "typeId": 88561,
-        "quantity": 10
-      }
+      { "typeId": 84210, "quantity": 10 },
+      { "typeId": 84180, "quantity": 10 },
+      { "typeId": 88561, "quantity": 10 }
     ],
+    "runTime": 0,
     "blueprintId": 9005
   },
   {
-    "outputTypeId": 92165,
+    "primaryTypeId": 92165,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 92165, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9006
   },
   {
-    "outputTypeId": 91701,
+    "primaryTypeId": 91701,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91701, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9007
   },
   {
-    "outputTypeId": 91703,
+    "primaryTypeId": 91703,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91703, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84182,
-        "quantity": 15
-      },
-      {
-        "typeId": 88561,
-        "quantity": 15
-      }
+      { "typeId": 84182, "quantity": 15 },
+      { "typeId": 88561, "quantity": 15 }
     ],
+    "runTime": 0,
     "blueprintId": 9008
   },
   {
-    "outputTypeId": 91751,
+    "primaryTypeId": 91751,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91751, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 77810,
-        "quantity": 50
-      }
+      { "typeId": 77810, "quantity": 50 }
     ],
+    "runTime": 0,
     "blueprintId": 9009
   },
   {
-    "outputTypeId": 91717,
+    "primaryTypeId": 91717,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
-    "runTime": 0,
+    "outputs": [{ "typeId": 91717, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84210,
-        "quantity": 6
-      },
-      {
-        "typeId": 84180,
-        "quantity": 6
-      },
-      {
-        "typeId": 88561,
-        "quantity": 6
-      }
+      { "typeId": 84210, "quantity": 6 },
+      { "typeId": 84180, "quantity": 6 },
+      { "typeId": 88561, "quantity": 6 }
     ],
+    "runTime": 0,
     "blueprintId": 9010
   },
   {
-    "outputTypeId": 88070,
+    "primaryTypeId": 88070,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 88070, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      },
-      {
-        "typeId": 89088,
-        "quantity": 1
-      }
+      { "typeId": 89089, "quantity": 20 },
+      { "typeId": 89088, "quantity": 1 }
     ],
+    "runTime": 0,
     "blueprintId": 9011
   },
   {
-    "outputTypeId": 93228,
+    "primaryTypeId": 93228,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 93228, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84180,
-        "quantity": 20
-      }
+      { "typeId": 84180, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9012
   },
   {
-    "outputTypeId": 91753,
+    "primaryTypeId": 91753,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91753, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 77811,
-        "quantity": 50
-      }
+      { "typeId": 77811, "quantity": 50 }
     ],
+    "runTime": 0,
     "blueprintId": 9013
   },
   {
-    "outputTypeId": 87161,
+    "primaryTypeId": 87161,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 87161, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 77800,
-        "quantity": 50
-      }
+      { "typeId": 77800, "quantity": 50 }
     ],
+    "runTime": 0,
     "blueprintId": 9014
   },
   {
-    "outputTypeId": 91756,
+    "primaryTypeId": 91756,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91756, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 77800,
-        "quantity": 50
-      }
+      { "typeId": 77800, "quantity": 50 }
     ],
+    "runTime": 0,
     "blueprintId": 9015
   },
   {
-    "outputTypeId": 88071,
+    "primaryTypeId": 88071,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 88071, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 130
-      },
-      {
-        "typeId": 89087,
-        "quantity": 1
-      }
+      { "typeId": 89089, "quantity": 130 },
+      { "typeId": 89087, "quantity": 1 }
     ],
+    "runTime": 0,
     "blueprintId": 9016
   },
   {
-    "outputTypeId": 91712,
+    "primaryTypeId": 91712,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91712, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 4300
-      }
+      { "typeId": 89089, "quantity": 4300 }
     ],
+    "runTime": 0,
     "blueprintId": 9017
   },
   {
-    "outputTypeId": 88064,
+    "primaryTypeId": 88064,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 88064, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 100
-      }
+      { "typeId": 89089, "quantity": 100 }
     ],
+    "runTime": 0,
     "blueprintId": 9018
   },
   {
-    "outputTypeId": 91710,
+    "primaryTypeId": 91710,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91710, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 130
-      }
+      { "typeId": 89089, "quantity": 130 }
     ],
+    "runTime": 0,
     "blueprintId": 9019
   },
   {
-    "outputTypeId": 91715,
+    "primaryTypeId": 91715,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91715, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 120
-      }
+      { "typeId": 89089, "quantity": 120 }
     ],
+    "runTime": 0,
     "blueprintId": 9020
   },
   {
-    "outputTypeId": 92407,
+    "primaryTypeId": 92407,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 92407, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9021
   },
   {
-    "outputTypeId": 91711,
+    "primaryTypeId": 91711,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91711, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 430
-      }
+      { "typeId": 89089, "quantity": 430 }
     ],
+    "runTime": 0,
     "blueprintId": 9022
   },
   {
-    "outputTypeId": 92280,
+    "primaryTypeId": 92280,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 92280, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 84210,
-        "quantity": 20
-      },
-      {
-        "typeId": 84182,
-        "quantity": 20
-      },
-      {
-        "typeId": 88561,
-        "quantity": 20
-      }
+      { "typeId": 84210, "quantity": 20 },
+      { "typeId": 84182, "quantity": 20 },
+      { "typeId": 88561, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9023
   },
   {
-    "outputTypeId": 91718,
+    "primaryTypeId": 91718,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91718, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9024
   },
   {
-    "outputTypeId": 91719,
+    "primaryTypeId": 91719,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91719, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9025
   },
   {
-    "outputTypeId": 92166,
+    "primaryTypeId": 92166,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 92166, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9026
   },
   {
-    "outputTypeId": 91709,
+    "primaryTypeId": 91709,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91709, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9027
   },
   {
-    "outputTypeId": 91714,
+    "primaryTypeId": 91714,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91714, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9028
   },
   {
-    "outputTypeId": 92406,
+    "primaryTypeId": 92406,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 92406, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 10
-      }
+      { "typeId": 89089, "quantity": 10 }
     ],
+    "runTime": 0,
     "blueprintId": 9029
   },
   {
-    "outputTypeId": 91720,
+    "primaryTypeId": 91720,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91720, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9030
   },
   {
-    "outputTypeId": 91721,
+    "primaryTypeId": 91721,
     "facilityTypeId": 10000014,
-    "outputQty": 1,
+    "outputs": [{ "typeId": 91721, "quantity": 1 }],
     "inputs": [
-      {
-        "typeId": 89089,
-        "quantity": 20
-      }
+      { "typeId": 89089, "quantity": 20 }
     ],
+    "runTime": 0,
     "blueprintId": 9031
   }
 ]

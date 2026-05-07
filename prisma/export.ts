@@ -36,6 +36,7 @@ async function main() {
       prisma.decomposition.findMany({
         include: {
           sourceItem: true,
+          inputs: { include: { item: true } },
           outputs: { include: { item: true } },
         },
         orderBy: { sourceItem: { name: "asc" } },
@@ -85,11 +86,14 @@ async function main() {
       items: at.items.map((i) => i.item.typeId).sort((a, b) => (a ?? 0) - (b ?? 0)),
     })),
     decompositions: decompositions.map((d) => ({
-      sourceTypeId: d.sourceItem.typeId,
+      primaryTypeId: d.primaryTypeId,
       facilityTypeId: refineryTypeIdByName.get(d.refinery) ?? null,
-      inputQty: d.inputQty,
-      runTime: d.runTime,
+      inputs: d.inputs.map((i) => ({ typeId: i.item.typeId, quantity: i.quantity })),
       outputs: d.outputs.map((o) => ({ typeId: o.item.typeId, quantity: o.quantity })),
+      runTime: d.runTime,
+      blueprintId: d.blueprintId,
+      maxInputRuns: d.maxInputRuns,
+      maxOutputRuns: d.maxOutputRuns,
     })),
     blueprints: blueprints.map((bp) => ({
       outputTypeId: bp.outputItem.typeId,

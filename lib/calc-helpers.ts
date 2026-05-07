@@ -10,13 +10,16 @@ export async function fetchCalcItems(stockMap: Map<string, number> = new Map()):
         orderBy: { isDefault: "desc" },
       },
       decompositions: {
-        include: { outputs: { select: { itemId: true, quantity: true } } },
+        include: {
+          inputs: { select: { itemId: true, quantity: true } },
+          outputs: { select: { itemId: true, quantity: true } },
+        },
         orderBy: { isDefault: "desc" },
       },
       decompositionOutputs: {
         include: {
           decomposition: {
-            select: { id: true, sourceItemId: true, inputQty: true, refinery: true, isDefault: true },
+            select: { id: true, sourceItemId: true, primaryTypeId: true, refinery: true, isDefault: true, inputs: { select: { itemId: true, quantity: true } } },
           },
         },
       },
@@ -38,22 +41,28 @@ export async function fetchCalcItems(stockMap: Map<string, number> = new Map()):
       isDefault: bp.isDefault,
       inputs: bp.inputs,
     })),
-    decompositions: item.decompositions.map((d) => ({
-      id: d.id,
-      refinery: d.refinery,
-      inputQty: d.inputQty,
-      runTime: d.runTime,
-      isDefault: d.isDefault,
-      outputs: d.outputs,
-    })),
-    producedBy: item.decompositionOutputs.map((dOut) => ({
-      decompositionId: dOut.decompositionId,
-      sourceItemId: dOut.decomposition.sourceItemId,
-      inputQty: dOut.decomposition.inputQty,
-      outputQty: dOut.quantity,
-      refinery: dOut.decomposition.refinery,
-      isDefault: dOut.decomposition.isDefault,
-    })),
+    decompositions: item.decompositions.map((d) => {
+      const inputQty = d.inputs.find((inp) => inp.itemId === item.id)?.quantity ?? 1;
+      return {
+        id: d.id,
+        refinery: d.refinery,
+        inputQty,
+        runTime: d.runTime,
+        isDefault: d.isDefault,
+        outputs: d.outputs,
+      };
+    }),
+    producedBy: item.decompositionOutputs.map((dOut) => {
+      const inputQty = dOut.decomposition.inputs.find((inp) => inp.itemId === dOut.decomposition.sourceItemId)?.quantity ?? 1;
+      return {
+        decompositionId: dOut.decompositionId,
+        sourceItemId: dOut.decomposition.sourceItemId,
+        inputQty,
+        outputQty: dOut.quantity,
+        refinery: dOut.decomposition.refinery,
+        isDefault: dOut.decomposition.isDefault,
+      };
+    }),
   }));
 }
 
