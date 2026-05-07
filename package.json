@@ -1,6 +1,6 @@
 {
   "name": "ef-industry",
-  "version": "1.55.1",
+  "version": "1.55.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "db:seed": "tsx prisma/seed.ts",
-    "db:export": "tsx prisma/export.ts",
     "prepare": "git rev-parse --git-dir > /dev/null 2>&1 && git config core.hooksPath .githooks || true"
   },
   "prisma": {

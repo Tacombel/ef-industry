@@ -349,11 +349,15 @@ export default function OreSection({
                     </button>
                   )}
                 </div>
-                <span className="text-xs text-gray-500">
-                  Decompose <span className="text-purple-300 font-semibold">{d.unitsToDecompose}</span> units
-                  · <span className="text-gray-300 font-semibold">{d.runs}</span> batch{d.runs > 1 ? "es" : ""}
-                  <span className="text-gray-600"> of {d.inputQty} u</span>
-                </span>
+                <div className="text-xs text-gray-500">
+                  <div>
+                    Decompose <span className="text-purple-300 font-semibold">{d.unitsToDecompose}</span> units
+                  </div>
+                  <div>
+                    <span className="text-gray-300 font-semibold">{d.runs}</span> batch{d.runs > 1 ? "es" : ""}
+                    <span className="text-gray-600"> of {d.inputQty} u</span>
+                  </div>
+                </div>
                 <span className="text-xs text-gray-300 font-medium w-24 text-right">{d.actualStock}</span>
                 <span className="text-xs text-gray-600">in stock</span>
                 {(() => {
