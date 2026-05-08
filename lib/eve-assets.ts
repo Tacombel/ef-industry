@@ -77,6 +77,86 @@ export async function getCharacterByWallet(walletAddress: string): Promise<EveCh
   }
 }
 
+export interface CharacterSummary {
+  /** EVE character address — used to query OwnerCap<StorageUnit> */
+  id: string;
+  name: string;
+  corpId?: number;
+  /** Sui PlayerProfile object address */
+  profileAddress: string;
+}
+
+/**
+ * Returns all EVE Frontier characters by paginating through all PlayerProfile objects.
+ * Results are meant to be cached at the API layer (revalidate: 300s).
+ */
+export async function getAllCharacters(): Promise<CharacterSummary[]> {
+  const query = `
+    query GetAllPlayerProfiles($type: String!, $after: String) {
+      objects(filter: { type: $type }, first: 50, after: $after) {
+        nodes {
+          address
+          asMoveObject {
+            contents {
+              extract(path: "character_id") {
+                asAddress {
+                  asObject {
+                    address
+                    asMoveObject {
+                      contents {
+                        json
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  `;
+
+  const results: CharacterSummary[] = [];
+  let after: string | null = null;
+  const MAX_PAGES = 100;
+
+  for (let page = 0; page < MAX_PAGES; page++) {
+    try {
+      const variables: Record<string, unknown> = { type: CHARACTER_PLAYER_PROFILE_TYPE };
+      if (after) variables.after = after;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data: any = await graphql<any>(query, variables);
+
+      const nodes = data?.objects?.nodes ?? [];
+      for (const node of nodes) {
+        const profileAddress: string = node.address;
+        const charObj = node.asMoveObject?.contents?.extract?.asAddress?.asObject;
+        if (!charObj) continue;
+        const json = charObj.asMoveObject?.contents?.json ?? {};
+        results.push({
+          id: charObj.address,
+          name: json?.metadata?.name ?? json?.name ?? "",
+          corpId: json?.tribe_id ?? json?.corp_id ?? undefined,
+          profileAddress,
+        });
+      }
+
+      const pageInfo = data?.objects?.pageInfo ?? {};
+      if (!pageInfo.hasNextPage) break;
+      after = pageInfo.endCursor;
+    } catch {
+      break;
+    }
+  }
+
+  return results;
+}
+
 export interface EveSsu {
   /** On-chain SSU object address */
   id: string;

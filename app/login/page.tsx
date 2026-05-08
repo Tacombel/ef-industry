@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 function AdminLoginForm() {
   const searchParams = useSearchParams();
@@ -127,6 +128,22 @@ function LoginPage() {
         </div>
 
         <AdminLoginForm />
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-800" />
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="bg-gray-950 px-3 text-gray-600">o</span>
+          </div>
+        </div>
+
+        <Link
+          href="/browse"
+          className="block w-full text-center py-2.5 rounded text-sm text-gray-400 border border-gray-700 hover:border-gray-500 hover:text-gray-200 transition-colors"
+        >
+          Explorar sin cuenta
+        </Link>
       </div>
     </div>
   );

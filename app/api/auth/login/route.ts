@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   const user = await prisma.user.findFirst({
-    where: { username: { equals: username.trim(), mode: "insensitive" } },
+    where: { username: { equals: username.trim() } },
     select: { id: true, username: true, password: true, role: true },
   });
   if (!user || !user.password) {

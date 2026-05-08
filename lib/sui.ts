@@ -184,6 +184,46 @@ const PLAYER_PROFILE_TYPE = `${EF_PKG}::character::PlayerProfile`;
 const OWNER_CAP_TYPE = `${EF_PKG}::access::OwnerCap<${EF_PKG}::storage_unit::StorageUnit>`;
 
 /**
+ * Discover SSUs owned by an EVE character address directly (skips wallet→PlayerProfile step).
+ * Used by guest browse mode where we already have the character_id from the character list.
+ */
+export async function getSsusByCharacterId(characterId: string): Promise<SsuSummary[]> {
+  const ownedResult = await suiRpc("suix_getOwnedObjects", [
+    characterId,
+    { filter: { StructType: OWNER_CAP_TYPE }, options: { showContent: true } },
+    null,
+    50,
+  ]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ssuAddresses: string[] = (ownedResult.data ?? [])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((o: any) => o.data?.content?.fields?.authorized_object_id as string)
+    .filter(Boolean);
+
+  if (ssuAddresses.length === 0) return [];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const fetched: any[] = await suiRpc("sui_multiGetObjects", [
+    ssuAddresses,
+    { showContent: true },
+  ]);
+
+  const results: SsuSummary[] = [];
+  for (const obj of fetched) {
+    if (obj.error || !obj.data) continue;
+    const fields = obj.data?.content?.fields;
+    if (!fields) continue;
+    const name: string = fields.metadata?.fields?.name ?? "";
+    const status: string = fields.status?.fields?.status?.variant ?? "UNKNOWN";
+    const typeId: number = parseInt(fields.type_id ?? "0");
+    results.push({ address: obj.data.objectId, name, typeId, status });
+  }
+
+  return results;
+}
+
+/**
  * Discover all SSU assemblies owned by a wallet address.
  *
  * EVE Frontier ownership chain:

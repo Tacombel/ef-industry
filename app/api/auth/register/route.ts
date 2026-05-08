@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   const trimmed = username.trim();
 
   const existing = await prisma.user.findFirst({
-    where: { username: { equals: trimmed, mode: "insensitive" } },
+    where: { username: { equals: trimmed } },
     select: { id: true },
   });
   if (existing) {
