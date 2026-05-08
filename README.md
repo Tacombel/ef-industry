@@ -1,6 +1,6 @@
 # EVE Frontier Industry Calculator
 
-> v1.55.1 — README updated 2026-05-07 (local HEAD: `HEAD`)
+> v1.56.0 — README updated 2026-05-08 (local HEAD: `41c574c`)
 
 A fan-made web tool for the blockchain game **EVE Frontier**. Calculates blueprint production chains, optimizes mining trips, and tracks inventory across Smart Storage Units (SSUs) pulled directly from the Sui blockchain.
 
@@ -12,6 +12,7 @@ A fan-made web tool for the blockchain game **EVE Frontier**. Calculates bluepri
 - **Multi-factory support** — items craftable in multiple facilities show all options; switch factory to recalculate
 - **Recipe tooltips** — hover any factory/refinery badge to see inputs, outputs, and batch size
 - **Ore optimization** — greedy algorithm picks the best ore sources to minimize mining volume
+- **Ore exclusion** — exclude specific ores from the calculation; warning shown when all sources for a material are excluded
 - **Trip estimation** — mining trips calculated from cargo capacity and mining rate; per-ore breakdown
 - **Stock deduction** — SSU inventory factored in; raw materials, intermediates, and final products show what you already have
 - **Factory/refinery overrides** — per-item preferences persist between sessions (requires login)
@@ -147,7 +148,7 @@ npm start
 - **bcryptjs** — password hashing
 - **Sui blockchain** (`@mysten/sui` / JSON-RPC) — wallet auth, SSU inventory, on-chain data
 - **Docker** — multi-stage build, non-root user, healthcheck
-- **Vitest** — test suite (42 tests, calculator + dev-guard coverage)
+- **Vitest** — test suite (46 tests, calculator + dev-guard coverage)
 ---
 
 ## Data sources
