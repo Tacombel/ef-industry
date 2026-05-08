@@ -53,16 +53,26 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
   const [prefsReady, setPrefsReady] = useState(false);
 
   const collectionsCountRef = useRef(collectionsCount);
+  const abortRef = useRef<AbortController | null>(null);
 
+  const [excludedOreIds, setExcludedOreIds] = useState<Set<string>>(new Set());
+  const excludedOreIdsRef = useRef<Set<string>>(new Set());
+  const [excludedOreNames, setExcludedOreNames] = useState<Map<string, string>>(new Map());
   const [ignoredItems, setIgnoredItems] = useState<Set<string>>(new Set());
   const ignoredRef = useRef(ignoredItems);
 
   const load = useCallback((isReload = false) => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     if (isReload) setRecalculating(true);
     else setLoading(true);
     setError("");
     const ignored = ignoredRef.current;
+    const excluded = [...excludedOreIdsRef.current].join(",");
     const params = new URLSearchParams();
+    if (excluded) params.set("excludedOres", excluded);
     if (ignored.size > 0) params.set("ignore", [...ignored].join(","));
     if (ssuAddressesRef.current.length > 0) params.set("ssuAddresses", ssuAddressesRef.current.join(","));
     if (collectionsCountRef.current > 1) params.set("collections", String(collectionsCountRef.current));
@@ -71,7 +81,7 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
     const refineryOverrides = [...refineryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
     if (refineryOverrides) params.set("refineryOverrides", refineryOverrides);
     const query = params.toString() ? `?${params.toString()}` : "";
-    fetch(`/api/collections/${collectionId}/calculate${query}`)
+    fetch(`/api/collections/${collectionId}/calculate${query}`, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => {
         if (data.error) {
@@ -82,7 +92,8 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         setLoading(false);
         setRecalculating(false);
       })
-      .catch(() => {
+      .catch((err) => {
+        if (err.name === "AbortError") return;
         setError("Failed to calculate");
         setLoading(false);
         setRecalculating(false);
@@ -150,6 +161,24 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         body: JSON.stringify({ itemId: sourceItemId, preferenceType: "refinery", value: refinery }),
       }).catch((err) => console.error("Failed to save refinery preference:", err));
     }
+  }
+
+  function excludeOre(oreId: string, oreName: string) {
+    const next = new Set(excludedOreIdsRef.current);
+    next.add(oreId);
+    excludedOreIdsRef.current = next;
+    setExcludedOreIds(next);
+    setExcludedOreNames((m) => new Map(m).set(oreId, oreName));
+    load(true);
+  }
+
+  function restoreOre(oreId: string) {
+    const next = new Set(excludedOreIdsRef.current);
+    next.delete(oreId);
+    excludedOreIdsRef.current = next;
+    setExcludedOreIds(next);
+    setExcludedOreNames((m) => { const n = new Map(m); n.delete(oreId); return n; });
+    load(true);
   }
 
   if (loading) return <p className="text-gray-500 text-sm">Calculating…</p>;
@@ -383,7 +412,10 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
             <tbody>
               {result.rawMaterials.filter((r) => !r.isRawMaterial).map((row) => (
                 <tr key={row.itemId} className="border-b border-gray-800/40">
-                  <td className="py-1 pr-4 text-gray-200">{row.itemName}</td>
+                  <td className="py-1 pr-4 text-gray-200">
+                    {row.itemName}
+                    {row.isLoot && <span className="badge badge-loot ml-1.5">Loot</span>}
+                  </td>
                   <td className="py-1 pr-4 text-right text-gray-400">{row.totalNeeded}</td>
                   <td className="py-1 pr-4 text-right text-gray-300 font-medium">{row.actualStock}</td>
                   <td className={`py-1 text-right font-semibold ${row.toBuy > 0 ? "text-red-400" : row.actualStock >= row.totalNeeded ? "text-green-400" : "text-cyan-400"}`}>
@@ -394,6 +426,35 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {(result.warnings ?? []).length > 0 && (
+        <div className="rounded-md border border-red-700 bg-red-900/20 px-3 py-2 space-y-1">
+          <p className="text-red-400 text-xs font-semibold">⚠ Some materials have no ore source (all sources excluded):</p>
+          {result.warnings!.map((w) => (
+            <p key={w.materialId} className="text-xs text-red-300">
+              <span className="font-medium">{w.materialName}</span>
+              <span className="text-red-500"> — excluded: {w.excludedSources.join(", ")}</span>
+            </p>
+          ))}
+        </div>
+      )}
+
+      {/* Excluded ores banner */}
+      {excludedOreIds.size > 0 && (
+        <div className="flex flex-wrap items-center gap-2 rounded border border-gray-700 bg-gray-800/40 px-3 py-2">
+          <span className="text-xs text-gray-500">Excluded:</span>
+          {[...excludedOreIds].map((id) => (
+            <span key={id} className="flex items-center gap-1 rounded bg-gray-700 px-2 py-0.5 text-xs text-gray-300">
+              {excludedOreNames.get(id) ?? id}
+              <button
+                onClick={() => restoreOre(id)}
+                className="ml-0.5 text-gray-400 hover:text-white"
+                title="Restore"
+              >×</button>
+            </span>
+          ))}
         </div>
       )}
 
@@ -413,6 +474,7 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
         onCargoChange={updateCargoCapacity}
         miningRate={miningRate}
         onMiningRateChange={updateMiningRate}
+        onExcludeOre={excludeOre}
         onSelectRefinery={selectRefinery}
       />
 

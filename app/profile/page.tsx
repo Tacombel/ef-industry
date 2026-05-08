@@ -9,7 +9,7 @@ const WalletSection = dynamic(() => import("@/components/profile/WalletSection")
 
 export default function ProfilePage() {
   const { user } = useSession();
-  const isAdmin = user?.role === "ADMIN";
+  const canChangePassword = !!user;
 
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -70,7 +70,7 @@ export default function ProfilePage() {
 
           <WalletSection username={user?.username} />
 
-          {isAdmin && (
+          {canChangePassword && (
             <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
               <h2 className="text-base font-semibold text-gray-100 mb-4">Change password</h2>
 

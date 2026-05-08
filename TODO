@@ -59,6 +59,7 @@
 ## Deuda técnica / Refactor
 
 - ~~Refactorizar carga de JSON: incorporar `primaryTypeID` para distinguir BP (output) de decomposition (input); incorporar `maxInputRuns`/`maxOutputRuns` de `industry_facilities.json`; unificar blueprints y decompositions en una sola estructura. Objetivo: que solo lo curado (custom items, custom blueprints, flags, asteroids) esté fuera de los JSON.~~ ✅ Completado
+- Limpiar deps directas innecesarias: `@mysten/dapp-kit-react`, `@mysten/sui` (solo transitivas).
 - Utilizar el typeId del item como ID único (en lugar de ID interno).
 - Revisar BD y limpiar campos obsoletos (ej: `Item.isAsteroid`, `User.password`).
 - Ver si la parte de asteroides se puede eliminar. Alternativa: usar el grupo del material y mostrarlo directamente.

@@ -1,6 +1,6 @@
 # EVE Frontier Industry Calculator
 
-> v1.52.2 — README updated 2026-05-04 (local HEAD: `d2d28b1`)
+> v1.55.1 — README updated 2026-05-07 (local HEAD: `HEAD`)
 
 A fan-made web tool for the blockchain game **EVE Frontier**. Calculates blueprint production chains, optimizes mining trips, and tracks inventory across Smart Storage Units (SSUs) pulled directly from the Sui blockchain.
 
@@ -23,9 +23,9 @@ A fan-made web tool for the blockchain game **EVE Frontier**. Calculates bluepri
 - **SSU status** — online/offline status and capacity bars per SSU
 
 ### Catalogue
-- **Items** — 200+ game items with typeId, categories, ore/loot/found tags
-- **Blueprints** — crafting recipes with factory, inputs, output quantity, and run time
-- **Decompositions** — ore reprocessing rules per refinery, including two-level found-item chains
+- **Items** — 400+ game items with typeId, material/found/final tags
+- **Blueprints** — 200+ crafting recipes with factory, inputs, outputs, run time, and batch limits
+- **Decompositions** — 50+ reprocessing rules per refinery, auto-derived from game data (no manual curation)
 - **Factories & Refineries** — facility listing with related blueprint/decomposition counts
 - **Asteroids** — asteroid types, locations, and which ores they contain
 

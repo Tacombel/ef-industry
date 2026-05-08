@@ -12,6 +12,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const excludedOres = req.nextUrl.searchParams.get("excludedOres");
+  const excludedOreIds = excludedOres ? new Set(excludedOres.split(",").filter(Boolean)) : undefined;
   const ignoreParam = req.nextUrl.searchParams.get("ignore");
   const ignoredIds = new Set(ignoreParam ? ignoreParam.split(",").filter(Boolean) : []);
   const ssuAddressesParam = req.nextUrl.searchParams.get("ssuAddresses");
@@ -47,7 +49,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const result = calculate(
       activeItems.map((ci) => ({ itemId: ci.itemId, quantity: ci.quantity * collectionsCount })),
       itemMap,
-      { factoryOverrides, refineryOverrides }
+      { excludedOreIds, factoryOverrides, refineryOverrides }
     );
 
     result.intermediates = result.intermediates.filter((i) => !collectionItemIds.has(i.itemId));
