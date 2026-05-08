@@ -825,9 +825,27 @@ export function calculate(
   rawMaterials.sort((a, b) => a.itemName.localeCompare(b.itemName));
   intermediates.sort((a, b) => a.itemName.localeCompare(b.itemName));
 
-  // Compute total production from the final decomposition runs
+  // Identify non-raw-material sources in finalRuns that cannot be acquired:
+  // stock is insufficient AND no non-excluded ore produces them.
+  // Example: Iron-Rich Nodules scheduled to produce Nickel-Iron Veins, but both
+  // Platinum and Iridosmine (its ore sources) are excluded.
+  const unacquirableSources = new Set<string>();
+  for (const [sourceId, runs] of finalRuns) {
+    const item = itemMap.get(sourceId)!;
+    if (item.isRawMaterial) continue;
+    const d = pd(item);
+    if (!d) continue;
+    const unitsNeeded = runs * d.inputQty;
+    if (Math.min(item.stock, unitsNeeded) >= unitsNeeded) continue;
+    if ((decompByOutput.get(sourceId) ?? []).length > 0) continue;
+    unacquirableSources.add(sourceId);
+  }
+
+  // Compute total production — skip unacquirable sources so their outputs
+  // don't falsely appear covered in the warning check below.
   const produced = new Map<string, number>();
   for (const [oreId, runs] of finalRuns) {
+    if (unacquirableSources.has(oreId)) continue;
     const item = itemMap.get(oreId)!;
     const d = pd(item);
     if (!d) continue;
@@ -839,12 +857,26 @@ export function calculate(
   // Verify the final solution covers every need the greedy algorithm was asked to satisfy.
   // initialNeeds captures rawMaterials[].toBuy pre-consolidation — exactly what the greedy received.
   const warnings: CalculationWarning[] = [];
+  const excluded = options?.excludedOreIds;
+
+  // Warn about non-raw-material sources that cannot be acquired (2-level chain blocked).
+  for (const sourceId of unacquirableSources) {
+    const materialName = itemMap.get(sourceId)?.name ?? sourceId;
+    const allSources = allDecompByOutput.get(sourceId) ?? [];
+    warnings.push({
+      materialId: sourceId,
+      materialName,
+      excludedSources: excluded
+        ? allSources.filter((s) => excluded.has(s.id)).map((s) => s.name)
+        : [],
+    });
+  }
+
   for (const [itemId, needed] of initialNeeds) {
     const cov = produced.get(itemId) ?? 0;
     if (cov >= needed) continue;
     const materialName = itemMap.get(itemId)?.name ?? itemId;
     const allSources = allDecompByOutput.get(itemId) ?? [];
-    const excluded = options?.excludedOreIds;
     warnings.push({
       materialId: itemId,
       materialName,

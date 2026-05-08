@@ -570,3 +570,70 @@ describe("factory overrides", () => {
   });
 
 });
+
+// --- Ore exclusion warnings ---
+
+describe("ore exclusion warnings", () => {
+  // 2-level decomp chain:
+  //   ore1 (raw) → foundItem (isFound) → material (isFound)  ← blueprint input
+  //   ore2 (raw) → foundItem (isFound)  [alternative]
+  // Excluding both ores makes foundItem unacquirable → warning must fire.
+
+  const ore1 = makeItem({
+    id: "ore1", name: "Ore 1", isRawMaterial: true, volume: 1,
+    decompositions: [{ id: "dec_ore1", refinery: "R", inputQty: 10, isDefault: true,
+      outputs: [{ itemId: "foundItem", quantity: 15 }],
+    }],
+  });
+  const ore2 = makeItem({
+    id: "ore2", name: "Ore 2", isRawMaterial: true, volume: 1,
+    decompositions: [{ id: "dec_ore2", refinery: "R", inputQty: 10, isDefault: true,
+      outputs: [{ itemId: "foundItem", quantity: 10 }],
+    }],
+  });
+  const foundItem = makeItem({
+    id: "foundItem", name: "Found Item", isFound: true, volume: 1,
+    decompositions: [{ id: "dec_found", refinery: "R", inputQty: 10, isDefault: true,
+      outputs: [{ itemId: "material", quantity: 100 }],
+    }],
+    producedBy: [
+      { decompositionId: "dec_ore1", sourceItemId: "ore1", inputQty: 10, outputQty: 15, refinery: "R", isDefault: true },
+      { decompositionId: "dec_ore2", sourceItemId: "ore2", inputQty: 10, outputQty: 10, refinery: "R", isDefault: false },
+    ],
+  });
+  const material = makeItem({
+    id: "material", name: "Material", isFound: true, volume: 1,
+    producedBy: [{ decompositionId: "dec_found", sourceItemId: "foundItem", inputQty: 10, outputQty: 100, refinery: "R", isDefault: true }],
+  });
+  const product2 = makeItem({
+    id: "product2", name: "Product 2",
+    blueprints: [{ id: "bp2", outputQty: 1, factory: "F", isDefault: true,
+      inputs: [{ itemId: "material", quantity: 100 }],
+    }],
+  });
+  const itemMap2 = buildItemMap([ore1, ore2, foundItem, material, product2]);
+
+  it("fires no warning when ores are available", () => {
+    const result = calculate([{ itemId: "product2", quantity: 1 }], itemMap2);
+    expect(result.warnings).toBeUndefined();
+  });
+
+  it("fires no warning when one ore is excluded but the other covers the need", () => {
+    const result = calculate([{ itemId: "product2", quantity: 1 }], itemMap2, {
+      excludedOreIds: new Set(["ore1"]),
+    });
+    expect(result.warnings).toBeUndefined();
+  });
+
+  it("fires a warning when all ore sources of the found item are excluded", () => {
+    const result = calculate([{ itemId: "product2", quantity: 1 }], itemMap2, {
+      excludedOreIds: new Set(["ore1", "ore2"]),
+    });
+    expect(result.warnings).toBeDefined();
+    const warnedIds = result.warnings!.map(w => w.materialId);
+    expect(warnedIds).toContain("foundItem");
+    const foundWarn = result.warnings!.find(w => w.materialId === "foundItem");
+    expect(foundWarn?.excludedSources).toContain("Ore 1");
+    expect(foundWarn?.excludedSources).toContain("Ore 2");
+  });
+});
