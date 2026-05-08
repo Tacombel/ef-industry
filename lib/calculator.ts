@@ -686,7 +686,7 @@ export function calculate(
       if (source.isRawMaterial) continue;
       const consumed = r * (pd(source)?.inputQty ?? 1);
       // Stock + what other scheduled decomps produce for this source
-      let acquired = Math.min(source.stock, consumed) + (covered.get(sourceId) ?? 0);
+      const acquired = Math.min(source.stock, consumed) + (covered.get(sourceId) ?? 0);
       if (acquired >= consumed) continue;
       return false;
     }
