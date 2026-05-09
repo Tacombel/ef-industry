@@ -164,7 +164,7 @@ export default function SsuTab({ guestCharacterId }: { guestCharacterId?: string
       })
       .catch((e) => setDetailError(e instanceof Error ? e.message : "Unknown error"))
       .finally(() => setDetailLoading(false));
-  }, [selectedAddress]);
+  }, [selectedAddress, inventoryApi]);
 
   function handleSort(key: SortKey) {
     if (key === sortKey) setSortDir((d) => (d === "asc" ? "desc" : "asc"));

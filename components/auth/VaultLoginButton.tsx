@@ -21,6 +21,7 @@ export default function VaultLoginButton({ redirectTo = "/dashboard", compact = 
       setPendingAuth(false);
       doAuth(walletAddress);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingAuth, isConnected, walletAddress]);
 
   async function doAuth(address: string) {

@@ -106,7 +106,7 @@ export default function CollectionCalculation({ collectionId, guestItems, refres
         setLoading(false);
         setRecalculating(false);
       });
-  }, [collectionId]);
+  }, [collectionId, guestItems]);
 
   useEffect(() => {
     if (sessionLoading) return;
