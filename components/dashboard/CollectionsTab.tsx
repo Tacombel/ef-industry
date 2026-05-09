@@ -13,12 +13,24 @@ interface CollectionItem { id: string; itemId: string; quantity: number; item: I
 interface Collection { id: string; name: string; description?: string; items: CollectionItem[] }
 
 const emptyRow = () => ({ itemId: "", quantity: 1 });
+const GUEST_COLLECTIONS_KEY = "ef-guest-tab-collections";
 
-export default function CollectionsTab() {
-  const { ssus } = useSsuList();
+type GuestCollectionRaw = { id: string; name: string; description?: string; items: { itemId: string; quantity: number }[] };
+
+function loadGuestRaw(): GuestCollectionRaw[] {
+  try { return JSON.parse(localStorage.getItem(GUEST_COLLECTIONS_KEY) ?? "[]"); } catch { return []; }
+}
+function saveGuestRaw(cols: GuestCollectionRaw[]) {
+  localStorage.setItem(GUEST_COLLECTIONS_KEY, JSON.stringify(cols));
+}
+
+export default function CollectionsTab({ guestCharacterId }: { guestCharacterId?: string }) {
+  const isGuest = !!guestCharacterId;
+  const { ssus } = useSsuList(guestCharacterId);
   const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
   const ssuAddresses = activeSsuAddresses(ssus);
-  const { isLoggedIn } = useSession();
+  const { isLoggedIn: isServerLoggedIn } = useSession();
+  const isLoggedIn = isServerLoggedIn || isGuest;
   const [collections, setCollections] = useState<Collection[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,11 +49,28 @@ export default function CollectionsTab() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [collectionRes, itemRes] = await Promise.all([fetch("/api/collections"), fetch("/api/items")]);
-    setCollections(collectionRes.ok ? await collectionRes.json() : []);
-    setItems(itemRes.ok ? await itemRes.json() : []);
+    if (isGuest) {
+      const itemRes = await fetch("/api/items");
+      const allItems: Item[] = itemRes.ok ? await itemRes.json() : [];
+      const itemMap = new Map(allItems.map((i) => [i.id, i]));
+      const raw = loadGuestRaw();
+      setCollections(raw.map((c) => ({
+        ...c,
+        items: c.items.map((r, idx) => ({
+          id: `${c.id}-${idx}`,
+          itemId: r.itemId,
+          quantity: r.quantity,
+          item: itemMap.get(r.itemId) ?? { id: r.itemId, name: r.itemId, isRawMaterial: false, isFound: false, blueprints: [] },
+        })),
+      })));
+      setItems(allItems);
+    } else {
+      const [collectionRes, itemRes] = await Promise.all([fetch("/api/collections"), fetch("/api/items")]);
+      setCollections(collectionRes.ok ? await collectionRes.json() : []);
+      setItems(itemRes.ok ? await itemRes.json() : []);
+    }
     setLoading(false);
-  }, []);
+  }, [isGuest]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -69,6 +98,19 @@ export default function CollectionsTab() {
     if (rows.some((r) => !r.itemId)) { setError("All rows need an item"); return; }
     setSaving(true);
     try {
+      if (isGuest) {
+        const raw = loadGuestRaw();
+        if (editId) {
+          const idx = raw.findIndex((c) => c.id === editId);
+          if (idx >= 0) raw[idx] = { id: editId, name, description, items: rows };
+        } else {
+          raw.push({ id: crypto.randomUUID(), name, description, items: rows });
+        }
+        saveGuestRaw(raw);
+        setShowForm(false);
+        load();
+        return;
+      }
       const url = editId ? `/api/collections/${editId}` : "/api/collections";
       const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
@@ -93,6 +135,11 @@ export default function CollectionsTab() {
 
   async function remove(id: string, collectionName: string) {
     if (!confirm(`Delete collection "${collectionName}"?`)) return;
+    if (isGuest) {
+      saveGuestRaw(loadGuestRaw().filter((c) => c.id !== id));
+      load();
+      return;
+    }
     await fetch(`/api/collections/${id}`, { method: "DELETE" });
     load();
   }

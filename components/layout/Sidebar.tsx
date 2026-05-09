@@ -75,7 +75,7 @@ function SidebarContent() {
         </div>
 
         {/* Admin navigation items */}
-        <div className="px-2 py-4 space-y-1 border-t border-gray-800">
+        {(role === "ADMIN" || role === "SUPERADMIN") && <div className="px-2 py-4 space-y-1 border-t border-gray-800">
           {adminNavItems.map((item) => {
             const active = pathname.startsWith(item.href);
             const count = item.label === "Items" ? itemCount : item.label === "Factories" ? factoryCount : item.label === "Refineries" ? refineryCount : item.label === "Asteroids" ? asteroidCount : null;
@@ -95,7 +95,7 @@ function SidebarContent() {
               </Link>
             );
           })}
-        </div>
+        </div>}
       </nav>
 
       <div className="px-2 pb-2 space-y-1">
@@ -170,8 +170,7 @@ function SidebarContent() {
 export default function Sidebar() {
   const pathname = usePathname();
 
-  // Hide sidebar on dashboard, home, login, and profile
-  if (pathname === '/dashboard' || pathname === '/' || pathname === '/login' || pathname === '/profile') {
+  if (['/dashboard', '/', '/login', '/profile', '/browse'].includes(pathname) || pathname.startsWith('/browse')) {
     return null;
   }
 

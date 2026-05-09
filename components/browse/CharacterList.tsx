@@ -1,47 +1,28 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { CharacterSummary } from "@/lib/eve-assets";
 
 interface Props {
   characters: CharacterSummary[];
+  total: number;
+  query: string;
+  onQueryChange: (q: string) => void;
+  loading: boolean;
+  error: string | null;
   selectedId: string | null;
   onSelect: (character: CharacterSummary) => void;
 }
 
-export default function CharacterList({ characters, selectedId, onSelect }: Props) {
-  const [search, setSearch] = useState("");
-  const [corpFilter, setCorpFilter] = useState<number | "">("");
+const PAGE_SIZE = 50;
+
+export default function CharacterList({ characters, total, query, onQueryChange, loading, error, selectedId, onSelect }: Props) {
   const [page, setPage] = useState(0);
-  const PAGE_SIZE = 50;
+  const totalPages = Math.ceil(characters.length / PAGE_SIZE);
+  const visible = characters.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
-  const corps = useMemo(() => {
-    const ids = new Set<number>();
-    for (const c of characters) {
-      if (c.corpId != null) ids.add(c.corpId);
-    }
-    return [...ids].sort((a, b) => a - b);
-  }, [characters]);
-
-  const filtered = useMemo(() => {
-    const q = search.toLowerCase().trim();
-    return characters.filter((c) => {
-      if (q && !c.name.toLowerCase().includes(q)) return false;
-      if (corpFilter !== "" && c.corpId !== corpFilter) return false;
-      return true;
-    });
-  }, [characters, search, corpFilter]);
-
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  const visible = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
-
-  function handleSearch(v: string) {
-    setSearch(v);
-    setPage(0);
-  }
-
-  function handleCorp(v: string) {
-    setCorpFilter(v === "" ? "" : Number(v));
+  function handleQuery(v: string) {
+    onQueryChange(v);
     setPage(0);
   }
 
@@ -50,32 +31,30 @@ export default function CharacterList({ characters, selectedId, onSelect }: Prop
       <div className="space-y-2">
         <input
           type="search"
-          placeholder="Buscar personaje..."
-          value={search}
-          onChange={(e) => handleSearch(e.target.value)}
+          placeholder="Search character..."
+          value={query}
+          onChange={(e) => handleQuery(e.target.value)}
           className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-1.5 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-600"
         />
-        {corps.length > 0 && (
-          <select
-            value={String(corpFilter)}
-            onChange={(e) => handleCorp(e.target.value)}
-            className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-1.5 text-sm text-gray-300 focus:outline-none focus:border-cyan-600"
-          >
-            <option value="">Todas las corps</option>
-            {corps.map((id) => (
-              <option key={id} value={id}>Corp {id}</option>
-            ))}
-          </select>
-        )}
         <p className="text-xs text-gray-500">
-          {filtered.length} personaje{filtered.length !== 1 ? "s" : ""}
-          {search || corpFilter !== "" ? ` de ${characters.length}` : " en total"}
+          {loading
+            ? (query.trim() ? "Searching…" : "Loading…")
+            : error ? ""
+            : characters.length > 0
+              ? (query.trim()
+                  ? `${characters.length} result${characters.length !== 1 ? "s" : ""}`
+                  : `${characters.length} character${characters.length !== 1 ? "s" : ""}`)
+              : ""}
         </p>
       </div>
 
       <div className="flex-1 overflow-y-auto min-h-0 rounded-lg border border-gray-800 divide-y divide-gray-800">
-        {visible.length === 0 ? (
-          <p className="text-sm text-gray-500 text-center py-8">Sin resultados</p>
+        {error ? (
+          <p className="text-sm text-red-400 text-center py-8">{error}</p>
+        ) : loading ? (
+          <p className="text-sm text-gray-500 text-center py-8">{query.trim() ? "Searching…" : "Loading…"}</p>
+        ) : visible.length === 0 ? (
+          <p className="text-sm text-gray-500 text-center py-8">No results</p>
         ) : (
           visible.map((c) => {
             const active = c.id === selectedId;
@@ -90,7 +69,7 @@ export default function CharacterList({ characters, selectedId, onSelect }: Prop
                 }`}
               >
                 <span className={`text-sm font-medium ${active ? "text-cyan-300" : "text-gray-200"}`}>
-                  {c.name || <span className="text-gray-500 italic">Sin nombre</span>}
+                  {c.name || <span className="text-gray-500 italic">Unnamed</span>}
                 </span>
                 {c.corpId != null && (
                   <span className="ml-2 text-xs text-gray-500">Corp {c.corpId}</span>
@@ -108,7 +87,7 @@ export default function CharacterList({ characters, selectedId, onSelect }: Prop
             disabled={page === 0}
             className="px-2 py-1 rounded hover:text-gray-300 disabled:opacity-40"
           >
-            ← Anterior
+            ← Previous
           </button>
           <span>{page + 1} / {totalPages}</span>
           <button
@@ -116,7 +95,7 @@ export default function CharacterList({ characters, selectedId, onSelect }: Prop
             disabled={page >= totalPages - 1}
             className="px-2 py-1 rounded hover:text-gray-300 disabled:opacity-40"
           >
-            Siguiente →
+            Next →
           </button>
         </div>
       )}

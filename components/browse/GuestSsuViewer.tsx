@@ -43,7 +43,7 @@ function AddToPackButton({
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        title={`Añadir ${name} a un pack`}
+        title={`Add ${name} to a pack`}
         className="text-xs px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:border-cyan-600 hover:text-cyan-400 transition-colors"
       >
         + Pack
@@ -52,7 +52,7 @@ function AddToPackButton({
         <div className="absolute right-0 top-full mt-1 z-10 bg-gray-900 border border-gray-700 rounded-lg shadow-xl p-2 w-48">
           {collections.length > 0 ? (
             <>
-              <p className="text-xs text-gray-500 mb-1 px-1">Añadir a:</p>
+              <p className="text-xs text-gray-500 mb-1 px-1">Add to:</p>
               {collections.map((c) => (
                 <button
                   key={c.id}
@@ -132,8 +132,8 @@ export default function GuestSsuViewer({ character, collections, onAddItem, onCr
 
   if (!character) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-500 text-sm">
-        Selecciona un personaje para ver sus SSUs
+      <div className="flex items-center justify-center py-16 text-gray-500 text-sm">
+        Select a character to view their SSUs
       </div>
     );
   }
@@ -146,17 +146,17 @@ export default function GuestSsuViewer({ character, collections, onAddItem, onCr
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="text-lg font-bold text-gray-100">{character.name || "Personaje sin nombre"}</h2>
+        <h2 className="text-lg font-bold text-gray-100">{character.name || "Unnamed character"}</h2>
         {character.corpId != null && (
           <p className="text-xs text-gray-500">Corp {character.corpId}</p>
         )}
       </div>
 
-      {ssusLoading && <p className="text-sm text-gray-500">Cargando SSUs…</p>}
+      {ssusLoading && <p className="text-sm text-gray-500">Loading SSUs…</p>}
       {ssusError && <p className="text-sm text-red-400">{ssusError}</p>}
 
       {!ssusLoading && !ssusError && ssus.length === 0 && (
-        <p className="text-sm text-gray-500">Este personaje no tiene SSUs.</p>
+        <p className="text-sm text-gray-500">This character has no SSUs.</p>
       )}
 
       {ssus.length > 0 && (
@@ -211,7 +211,7 @@ export default function GuestSsuViewer({ character, collections, onAddItem, onCr
       {selectedSsu && (
         <div className="space-y-3 border-t border-gray-800 pt-4">
           <h3 className="text-sm font-semibold text-gray-300">Inventario SSU</h3>
-          {invLoading && <p className="text-sm text-gray-500">Cargando inventario…</p>}
+          {invLoading && <p className="text-sm text-gray-500">Loading inventory…</p>}
           {invError && (
             <div className="rounded bg-red-900/40 border border-red-700 px-4 py-3 text-sm text-red-300">
               {invError}
@@ -241,7 +241,7 @@ export default function GuestSsuViewer({ character, collections, onAddItem, onCr
               </div>
 
               {inventory.items.length === 0 ? (
-                <p className="text-sm text-gray-500 text-center py-4">SSU vacío</p>
+                <p className="text-sm text-gray-500 text-center py-4">Empty SSU</p>
               ) : (
                 <div className="rounded-lg border border-gray-800 overflow-hidden">
                   <table className="w-full text-sm">

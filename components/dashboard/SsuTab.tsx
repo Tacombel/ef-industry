@@ -91,8 +91,9 @@ function ItemTable({ items, sortKey, sortDir, onSort }: {
   );
 }
 
-export default function SsuTab() {
-  const { ssus, loading: listLoading, error: listError } = useSsuList();
+export default function SsuTab({ guestCharacterId }: { guestCharacterId?: string }) {
+  const inventoryApi = guestCharacterId ? "/api/guest/ssu-inventory" : "/api/ssu-inventory";
+  const { ssus, loading: listLoading, error: listError } = useSsuList(guestCharacterId);
   const { ignoredSet, toggleIgnored } = useSsuIgnored();
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
   const [detailData, setDetailData] = useState<SsuData | null>(null);
@@ -124,7 +125,7 @@ export default function SsuTab() {
     setCombinedLoading(true);
     Promise.all(
       activeSsuAddresses.map((addr) =>
-        fetch(`/api/ssu-inventory?address=${encodeURIComponent(addr)}`)
+        fetch(`${inventoryApi}?address=${encodeURIComponent(addr)}`)
           .then((r) => r.json())
           .then((json: SsuData) => json.items ?? [])
           .catch(() => [] as InventoryItem[])
@@ -155,7 +156,7 @@ export default function SsuTab() {
     setDetailLoading(true);
     setDetailError(null);
     setDetailData(null);
-    fetch(`/api/ssu-inventory?address=${encodeURIComponent(selectedAddress)}`)
+    fetch(`${inventoryApi}?address=${encodeURIComponent(selectedAddress)}`)
       .then((r) => r.json().then((json) => ({ ok: r.ok, json })))
       .then(({ ok, json }) => {
         if (!ok) throw new Error(json.error ?? "Error fetching inventory");

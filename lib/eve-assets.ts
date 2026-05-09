@@ -94,138 +94,40 @@ export interface CharacterSummary {
   profileAddress: string;
 }
 
-/**
- * Returns all EVE Frontier characters by paginating through all PlayerProfile objects.
- * Results are meant to be cached at the API layer (revalidate: 300s).
- */
-const CHAR_CACHE_TTL = 5 * 60 * 1000;
-const CHAR_CREATED_EVENT = `${EVE_WORLD_PACKAGE}::character::CharacterCreatedEvent`;
+// ---------------------------------------------------------------------------
+// In-process character cache — shared across all users, persists for the
+// lifetime of the Node.js process. TTL: 1 hour; stale-while-revalidate.
+// ---------------------------------------------------------------------------
+const CHAR_CACHE_TTL = 60 * 60 * 1000;
+let _charCache: CharacterSummary[] | null = null;
+let _charCacheTime = 0;
+let _charCacheBuild: Promise<CharacterSummary[]> | null = null;
 
-interface CharCacheState {
-  data: CharacterSummary[];
-  checkpoint: number;
-  refreshedAt: number;
-}
+export async function getCachedCharacters(): Promise<CharacterSummary[]> {
+  const fresh = _charCache && Date.now() - _charCacheTime < CHAR_CACHE_TTL;
+  if (fresh) return _charCache!;
 
-let _charCache: CharCacheState | null = null;
-let _charCacheBuild: Promise<CharCacheState> | null = null;
-
-async function getCurrentCheckpoint(): Promise<number> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const data: any = await graphql<any>(`{ checkpoint { sequenceNumber } }`, {});
-  return Number(data.checkpoint.sequenceNumber);
-}
-
-async function fetchNewCharactersSince(afterCheckpoint: number): Promise<CharacterSummary[]> {
-  const eventQuery = `
-    query($type: String!, $afterCheckpoint: Int!, $after: String) {
-      events(
-        filter: { type: $type, afterCheckpoint: $afterCheckpoint },
-        first: 200,
-        after: $after
-      ) {
-        nodes { contents { json } }
-        pageInfo { hasNextPage endCursor }
-      }
-    }
-  `;
-  const fetchQuery = `
-    query($ids: [SuiAddress!]!) {
-      multiGetObjects(ids: $ids) {
-        address
-        asMoveObject { contents { json } }
-      }
-    }
-  `;
-
-  const newEntries: { id: string; tribeId: number | undefined }[] = [];
-  let after: string | null = null;
-  while (true) {
-    const vars: Record<string, unknown> = { type: CHAR_CREATED_EVENT, afterCheckpoint };
-    if (after) vars.after = after;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data: any = await graphql<any>(eventQuery, vars);
-    for (const node of (data?.events?.nodes ?? [])) {
-      const json = node.contents?.json ?? {};
-      if (json.character_id) newEntries.push({ id: json.character_id, tribeId: json.tribe_id ?? undefined });
-    }
-    if (!data?.events?.pageInfo?.hasNextPage) break;
-    after = data.events.pageInfo.endCursor;
-  }
-
-  if (newEntries.length === 0) return [];
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const objData: any = await graphql<any>(fetchQuery, { ids: newEntries.map((e) => e.id) });
-  const results: CharacterSummary[] = [];
-  for (const obj of (objData?.multiGetObjects ?? [])) {
-    if (!obj?.address) continue;
-    const json = obj.asMoveObject?.contents?.json ?? {};
-    const entry = newEntries.find((e) => e.id === obj.address);
-    results.push({
-      id: obj.address,
-      name: json?.metadata?.name ?? json?.name ?? "",
-      corpId: entry?.tribeId,
-      profileAddress: "",
-    });
-  }
-  return results;
-}
-
-async function buildFullCache(): Promise<CharCacheState> {
-  const [data, checkpoint] = await Promise.all([getAllCharacters(), getCurrentCheckpoint()]);
-  return { data, checkpoint, refreshedAt: Date.now() };
-}
-
-async function refreshCacheIncremental(): Promise<void> {
-  if (!_charCache) return;
-  try {
-    const [newChars, checkpoint] = await Promise.all([
-      fetchNewCharactersSince(_charCache.checkpoint),
-      getCurrentCheckpoint(),
-    ]);
-    const existingIds = new Set(_charCache.data.map((c) => c.id));
-    _charCache = {
-      data: [..._charCache.data, ...newChars.filter((c) => !existingIds.has(c.id))],
-      checkpoint,
-      refreshedAt: Date.now(),
-    };
-  } finally {
-    _charCacheBuild = null;
-  }
-}
-
-async function getCharacterCache(): Promise<CharCacheState> {
-  if (_charCache && Date.now() - _charCache.refreshedAt < CHAR_CACHE_TTL) {
+  // Stale but available → return immediately and refresh in background
+  if (_charCache && !_charCacheBuild) {
+    _charCacheBuild = getAllCharacters()
+      .then((data) => { _charCache = data; _charCacheTime = Date.now(); _charCacheBuild = null; return data; })
+      .catch(() => { _charCacheBuild = null; return _charCache!; });
     return _charCache;
   }
-  if (!_charCache) {
-    if (!_charCacheBuild) {
-      _charCacheBuild = buildFullCache().then((cache) => {
-        _charCache = cache;
-        _charCacheBuild = null;
-        return cache;
-      });
-    }
-    return _charCacheBuild;
-  }
-  // Cache stale: refresh in background, return stale data immediately
-  if (!_charCacheBuild) {
-    _charCacheBuild = refreshCacheIncremental().then(() => _charCache!).catch(() => { _charCacheBuild = null; return _charCache!; });
-  }
-  return _charCache;
-}
 
-export async function searchCharacters(query: string, maxResults = 50): Promise<CharacterSummary[]> {
-  const cache = await getCharacterCache();
-  const q = query.toLowerCase();
-  return cache.data.filter((c) => c.name.toLowerCase().includes(q)).slice(0, maxResults);
+  // No cache yet → build it and wait
+  if (!_charCacheBuild) {
+    _charCacheBuild = getAllCharacters()
+      .then((data) => { _charCache = data; _charCacheTime = Date.now(); _charCacheBuild = null; return data; })
+      .catch((err) => { _charCacheBuild = null; throw err; });
+  }
+  return _charCacheBuild;
 }
 
 export async function getAllCharacters(): Promise<CharacterSummary[]> {
   const query = `
     query GetAllPlayerProfiles($type: String!, $after: String) {
-      objects(filter: { type: $type }, first: 200, after: $after) {
+      objects(filter: { type: $type }, first: 50, after: $after) {
         nodes {
           address
           asMoveObject {
@@ -255,10 +157,10 @@ export async function getAllCharacters(): Promise<CharacterSummary[]> {
 
   const results: CharacterSummary[] = [];
   let after: string | null = null;
-  const MAX_PAGES = 200;
   let consecutiveErrors = 0;
 
-  for (let page = 0; page < MAX_PAGES; page++) {
+  // No hard page cap — stop only when blockchain says hasNextPage=false or after 3 consecutive errors
+  while (true) {
     try {
       const variables: Record<string, unknown> = { type: CHARACTER_PLAYER_PROFILE_TYPE };
       if (after) variables.after = after;

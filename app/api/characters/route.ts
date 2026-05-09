@@ -1,16 +1,18 @@
-import { NextResponse } from "next/server";
-import { unstable_cache } from "next/cache";
-import { getAllCharacters } from "@/lib/eve-assets";
+import { NextRequest, NextResponse } from "next/server";
+import { getCachedCharacters } from "@/lib/eve-assets";
 
-const getCachedCharacters = unstable_cache(getAllCharacters, ["all-characters"], {
-  revalidate: 300,
-});
+export async function GET(req: NextRequest) {
+  const q = req.nextUrl.searchParams.get("q")?.trim() ?? "";
 
-export async function GET() {
   try {
-    const characters = await getCachedCharacters();
-    return NextResponse.json({ characters });
+    const all = await getCachedCharacters();
+    const ql = q.toLowerCase();
+    const results = q
+      ? all.filter((c) => c.name.toLowerCase().includes(ql) || c.id.toLowerCase().includes(ql))
+      : [...all];
+    results.sort((a, b) => (a.name || "￿").localeCompare(b.name || "￿"));
+    return NextResponse.json({ characters: results, total: results.length });
   } catch {
-    return NextResponse.json({ characters: [], error: "Failed to fetch characters from blockchain" });
+    return NextResponse.json({ characters: [], total: 0, error: "Failed to fetch characters from blockchain" });
   }
 }

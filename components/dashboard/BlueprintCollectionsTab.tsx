@@ -19,8 +19,8 @@ interface Blueprint {
 
 type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
-export default function BlueprintCollectionsTab() {
-  const { ssus } = useSsuList();
+export default function BlueprintCollectionsTab({ guestCharacterId }: { guestCharacterId?: string }) {
+  const { ssus } = useSsuList(guestCharacterId);
   const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
   const ssuAddresses = activeSsuAddresses(ssus);
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);

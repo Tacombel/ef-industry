@@ -47,7 +47,7 @@ export default function GuestPacksPanel({ open, onClose }: Props) {
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {collections.length === 0 && (
             <p className="text-sm text-gray-500 text-center py-4">
-              Aún no tienes packs.<br />Añade items desde el inventario de una SSU.
+              No packs yet.<br />Add items from a SSU's inventory.
             </p>
           )}
 
@@ -67,7 +67,7 @@ export default function GuestPacksPanel({ open, onClose }: Props) {
                     <button
                       onClick={(e) => { e.stopPropagation(); deleteCollection(col.id); }}
                       className="text-xs text-gray-600 hover:text-red-400 transition-colors px-1"
-                      title="Eliminar pack"
+                      title="Delete pack"
                     >
                       ✕
                     </button>
@@ -78,7 +78,7 @@ export default function GuestPacksPanel({ open, onClose }: Props) {
                 {expanded && (
                   <div className="border-t border-gray-800 divide-y divide-gray-800">
                     {col.items.length === 0 ? (
-                      <p className="text-xs text-gray-500 text-center py-3">Pack vacío</p>
+                      <p className="text-xs text-gray-500 text-center py-3">Empty pack</p>
                     ) : (
                       col.items.map((item) => (
                         <div key={item.typeId} className="flex items-center gap-2 px-3 py-2">
