@@ -97,31 +97,37 @@ export interface CharacterSummary {
 // ---------------------------------------------------------------------------
 // In-process character cache — shared across all users, persists for the
 // lifetime of the Node.js process. TTL: 1 hour; stale-while-revalidate.
+// Stored on globalThis so HMR module reloads in next dev don't clear it.
 // ---------------------------------------------------------------------------
 const CHAR_CACHE_TTL = 60 * 60 * 1000;
-let _charCache: CharacterSummary[] | null = null;
-let _charCacheTime = 0;
-let _charCacheBuild: Promise<CharacterSummary[]> | null = null;
+const g = globalThis as typeof globalThis & {
+  _charCache: CharacterSummary[] | null;
+  _charCacheTime: number;
+  _charCacheBuild: Promise<CharacterSummary[]> | null;
+};
+if (g._charCache === undefined) g._charCache = null;
+if (g._charCacheTime === undefined) g._charCacheTime = 0;
+if (g._charCacheBuild === undefined) g._charCacheBuild = null;
 
 export async function getCachedCharacters(): Promise<CharacterSummary[]> {
-  const fresh = _charCache && Date.now() - _charCacheTime < CHAR_CACHE_TTL;
-  if (fresh) return _charCache!;
+  const fresh = g._charCache && Date.now() - g._charCacheTime < CHAR_CACHE_TTL;
+  if (fresh) return g._charCache!;
 
   // Stale but available → return immediately and refresh in background
-  if (_charCache && !_charCacheBuild) {
-    _charCacheBuild = getAllCharacters()
-      .then((data) => { _charCache = data; _charCacheTime = Date.now(); _charCacheBuild = null; return data; })
-      .catch(() => { _charCacheBuild = null; return _charCache!; });
-    return _charCache;
+  if (g._charCache && !g._charCacheBuild) {
+    g._charCacheBuild = getAllCharacters()
+      .then((data) => { g._charCache = data; g._charCacheTime = Date.now(); g._charCacheBuild = null; return data; })
+      .catch(() => { g._charCacheBuild = null; return g._charCache!; });
+    return g._charCache;
   }
 
   // No cache yet → build it and wait
-  if (!_charCacheBuild) {
-    _charCacheBuild = getAllCharacters()
-      .then((data) => { _charCache = data; _charCacheTime = Date.now(); _charCacheBuild = null; return data; })
-      .catch((err) => { _charCacheBuild = null; throw err; });
+  if (!g._charCacheBuild) {
+    g._charCacheBuild = getAllCharacters()
+      .then((data) => { g._charCache = data; g._charCacheTime = Date.now(); g._charCacheBuild = null; return data; })
+      .catch((err) => { g._charCacheBuild = null; throw err; });
   }
-  return _charCacheBuild;
+  return g._charCacheBuild;
 }
 
 export async function getAllCharacters(): Promise<CharacterSummary[]> {

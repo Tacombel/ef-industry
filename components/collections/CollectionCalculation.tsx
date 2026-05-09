@@ -17,7 +17,7 @@ function formatDuration(seconds: number): string {
   return `${s}s`;
 }
 
-export default function CollectionCalculation({ collectionId, refreshKey = 0, ssuAddresses = [], collectionsCount = 1 }: { collectionId: string; refreshKey?: number; ssuAddresses?: string[]; collectionsCount?: number }) {
+export default function CollectionCalculation({ collectionId, guestItems, refreshKey = 0, ssuAddresses = [], collectionsCount = 1 }: { collectionId: string; guestItems?: { itemId: string; quantity: number }[]; refreshKey?: number; ssuAddresses?: string[]; collectionsCount?: number }) {
   const ssuAddressesRef = useRef(ssuAddresses);
   useEffect(() => { ssuAddressesRef.current = ssuAddresses; }, [ssuAddresses]);
 
@@ -81,7 +81,15 @@ export default function CollectionCalculation({ collectionId, refreshKey = 0, ss
     const refineryOverrides = [...refineryOverridesRef.current.entries()].map(([k, v]) => `${k}:${v}`).join("|");
     if (refineryOverrides) params.set("refineryOverrides", refineryOverrides);
     const query = params.toString() ? `?${params.toString()}` : "";
-    fetch(`/api/collections/${collectionId}/calculate${query}`, { signal: controller.signal })
+    const fetchPromise = guestItems
+      ? fetch(`/api/guest/collections/calculate${query}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: guestItems }),
+          signal: controller.signal,
+        })
+      : fetch(`/api/collections/${collectionId}/calculate${query}`, { signal: controller.signal });
+    fetchPromise
       .then((r) => r.json())
       .then((data) => {
         if (data.error) {

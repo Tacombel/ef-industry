@@ -240,7 +240,7 @@ export default function CollectionsTab({ guestCharacterId }: { guestCharacterId?
                 </div>
               </div>
 
-              {calcCollectionId === collection.id && <CollectionCalculation collectionId={collection.id} refreshKey={refreshKey} ssuAddresses={ssuAddresses} collectionsCount={collectionsCount} />}
+              {calcCollectionId === collection.id && <CollectionCalculation collectionId={collection.id} guestItems={isGuest ? collection.items.map(ci => ({ itemId: ci.itemId, quantity: ci.quantity })) : undefined} refreshKey={refreshKey} ssuAddresses={ssuAddresses} collectionsCount={collectionsCount} />}
             </div>
           ))}
         </div>
