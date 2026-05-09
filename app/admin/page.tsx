@@ -147,7 +147,9 @@ export default function AdminPage() {
   // Usage
   type DailyEntry = { date: string; registered: number; anonymous: number };
   type PathEntry = { path: string; type: string; registered: number; anonymous: number; total: number };
-  type UsageData = { daily: DailyEntry[]; topPaths: PathEntry[]; totals: { registered: number; anonymous: number }; dbSizeBytes: number };
+  type BrowseDaily = { date: string; sessions: number };
+  type BrowseStats = { sessions: number; ssuViews: number; calculates: number; conversions: number; daily: BrowseDaily[] };
+  type UsageData = { daily: DailyEntry[]; topPaths: PathEntry[]; totals: { registered: number; anonymous: number }; dbSizeBytes: number; browse: BrowseStats };
   const [usage, setUsage] = useState<UsageData | null>(null);
   const loadUsage = useCallback(() => {
     fetch("/api/admin/usage").then((r) => r.ok ? r.json() : null).then((d) => d && setUsage(d)).catch((err) => console.error("Failed to load usage:", err));
@@ -327,6 +329,63 @@ export default function AdminPage() {
 
             {usage.totals.registered + usage.totals.anonymous === 0 && (
               <p className="text-sm text-gray-500">No usage data yet — activity will appear here as users interact with the app.</p>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Anonymous Browse */}
+      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-gray-100">Anonymous Browse — last 30 days</h2>
+            <p className="text-xs text-gray-500 mt-0.5">Funnel: sessions → SSU views → collection calculations → "This is me"</p>
+          </div>
+          <button onClick={loadUsage} className="btn-sm btn-secondary">↻</button>
+        </div>
+        {!usage ? (
+          <p className="text-sm text-gray-500">Loading…</p>
+        ) : !usage.browse || usage.browse.sessions === 0 ? (
+          <p className="text-sm text-gray-500">No browse activity yet.</p>
+        ) : (
+          <div className="space-y-5">
+            {/* Funnel */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { label: "Sessions", value: usage.browse.sessions, color: "text-cyan-400" },
+                { label: "SSU views", value: usage.browse.ssuViews, color: "text-blue-400" },
+                { label: "Calculations", value: usage.browse.calculates, color: "text-purple-400" },
+                { label: "\"This is me\"", value: usage.browse.conversions, color: "text-green-400",
+                  rate: usage.browse.sessions > 0 ? `${((usage.browse.conversions / usage.browse.sessions) * 100).toFixed(1)}%` : null },
+              ].map(({ label, value, color, rate }) => (
+                <div key={label} className="rounded-md border border-gray-800 bg-gray-950 px-4 py-3 text-center">
+                  <p className={`text-2xl font-bold ${color}`}>{value}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{label}</p>
+                  {rate && <p className="text-xs text-green-600 mt-1">conversion {rate}</p>}
+                </div>
+              ))}
+            </div>
+            {/* Daily sessions */}
+            {usage.browse.daily.length > 0 && (
+              <div>
+                <p className="text-xs text-gray-500 mb-2">Daily sessions (last 14 days)</p>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-gray-500 border-b border-gray-800 text-left">
+                      <th className="pb-2 pr-4">Date</th>
+                      <th className="pb-2 text-right">Sessions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usage.browse.daily.map((d) => (
+                      <tr key={d.date} className="border-b border-gray-800/50">
+                        <td className="py-1.5 pr-4 font-mono text-xs text-gray-400">{d.date}</td>
+                        <td className="py-1.5 text-right text-cyan-400 font-semibold">{d.sessions}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         )}

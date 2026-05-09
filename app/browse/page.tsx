@@ -8,6 +8,10 @@ import CharacterList from "@/components/browse/CharacterList";
 import GuestSsuViewer from "@/components/browse/GuestSsuViewer";
 import { useGuestCollections } from "@/hooks/useGuestCollections";
 
+function track(path: string) {
+  fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path }) }).catch(() => {});
+}
+
 export default function BrowsePage() {
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -18,6 +22,8 @@ export default function BrowsePage() {
   const [selected, setSelected] = useState<CharacterSummary | null>(null);
 
   const { collections, createCollection, addItem } = useGuestCollections();
+
+  useEffect(() => { track("/browse"); }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,7 +60,13 @@ export default function BrowsePage() {
     };
   }, [query]);
 
+  function handleSelect(character: CharacterSummary) {
+    setSelected(character);
+    track("/browse/ssu-view");
+  }
+
   function handleThisIsMe(character: CharacterSummary) {
+    track("/browse/this-is-me");
     localStorage.setItem("ef-guest-character", JSON.stringify({ id: character.id, name: character.name }));
     router.push("/dashboard");
   }
@@ -91,7 +103,7 @@ export default function BrowsePage() {
                   loading={loading}
                   error={error}
                   selectedId={selected?.id ?? null}
-                  onSelect={setSelected}
+                  onSelect={handleSelect}
                 />
               </div>
             </div>

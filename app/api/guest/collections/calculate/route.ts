@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { calculate, buildItemMap } from "@/lib/calculator";
 import { fetchCalcItems, enrichAsteroids } from "@/lib/calc-helpers";
 import { fetchStockMapFromAddresses } from "@/lib/sui";
+import { trackEvent } from "@/lib/track";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -64,6 +65,7 @@ export async function POST(req: NextRequest) {
     });
 
     await enrichAsteroids(result);
+    trackEvent({ type: "api", path: "/browse/calculate", statusCode: 200 });
     return NextResponse.json(result);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Calculation error";
