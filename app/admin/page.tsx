@@ -3,6 +3,15 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/hooks/useSession";
 
+interface Incident {
+  id: number;
+  createdAt: string;
+  level: "error" | "warn" | "info";
+  source: string;
+  message: string;
+  detail?: string | null;
+}
+
 const DB_WARN_BYTES = 50 * 1024 * 1024;   // 50 MB
 const DB_DANGER_BYTES = 100 * 1024 * 1024; // 100 MB
 
@@ -144,6 +153,27 @@ export default function AdminPage() {
     fetch("/api/admin/usage").then((r) => r.ok ? r.json() : null).then((d) => d && setUsage(d)).catch((err) => console.error("Failed to load usage:", err));
   }, []);
   useEffect(() => { loadUsage(); }, [loadUsage]);
+
+  // Incidents
+  const [incidents, setIncidents] = useState<Incident[]>([]);
+  const [incidentsLoading, setIncidentsLoading] = useState(true);
+  const [incidentSource, setIncidentSource] = useState("");
+  const [incidentLevel, setIncidentLevel] = useState("");
+  const [expandedIncident, setExpandedIncident] = useState<number | null>(null);
+  const loadIncidents = useCallback(() => {
+    setIncidentsLoading(true);
+    const params = new URLSearchParams({ limit: "200" });
+    if (incidentSource) params.set("source", incidentSource);
+    if (incidentLevel) params.set("level", incidentLevel);
+    fetch(`/api/admin/incidents?${params}`)
+      .then((r) => r.ok ? r.json() : [])
+      .then((d) => setIncidents(d))
+      .catch(() => setIncidents([]))
+      .finally(() => setIncidentsLoading(false));
+  }, [incidentSource, incidentLevel]);
+  useEffect(() => { loadIncidents(); }, [loadIncidents]);
+
+  const incidentSources = useMemo(() => [...new Set(incidents.map((i) => i.source))].sort(), [incidents]);
 
   const selfId = useMemo(
     () => users.find((x) => x.username === me?.username)?.id,
@@ -525,6 +555,73 @@ export default function AdminPage() {
               })}
             </tbody>
           </table>
+        )}
+      </div>
+
+      {/* Incident log */}
+      <div className="rounded-lg border border-gray-800 bg-gray-900 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-gray-100">Incident log</h2>
+            <p className="text-xs text-gray-500 mt-0.5">Errors and warnings from blockchain, GraphQL, and API calls. Last 200.</p>
+          </div>
+          <button onClick={loadIncidents} className="btn-sm btn-secondary">↻</button>
+        </div>
+
+        {/* Filters */}
+        <div className="flex gap-3 mb-4">
+          <select
+            value={incidentLevel}
+            onChange={(e) => setIncidentLevel(e.target.value)}
+            className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs text-gray-300 focus:outline-none focus:border-cyan-600"
+          >
+            <option value="">All levels</option>
+            <option value="error">error</option>
+            <option value="warn">warn</option>
+            <option value="info">info</option>
+          </select>
+          <select
+            value={incidentSource}
+            onChange={(e) => setIncidentSource(e.target.value)}
+            className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs text-gray-300 focus:outline-none focus:border-cyan-600"
+          >
+            <option value="">All sources</option>
+            {incidentSources.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+
+        {incidentsLoading ? (
+          <p className="text-sm text-gray-500">Loading…</p>
+        ) : incidents.length === 0 ? (
+          <p className="text-sm text-gray-500">No incidents recorded.</p>
+        ) : (
+          <div className="divide-y divide-gray-800 text-sm">
+            {incidents.map((inc) => {
+              const levelColor = inc.level === "error" ? "text-red-400" : inc.level === "warn" ? "text-yellow-400" : "text-blue-400";
+              const isExpanded = expandedIncident === inc.id;
+              return (
+                <div key={inc.id} className="py-2">
+                  <div className="flex items-start gap-3">
+                    <span className={`shrink-0 text-xs font-semibold uppercase w-10 ${levelColor}`}>{inc.level}</span>
+                    <span className="shrink-0 text-xs text-gray-600 font-mono w-32">{new Date(inc.createdAt).toLocaleString()}</span>
+                    <span className="shrink-0 text-xs text-gray-500 w-36 truncate" title={inc.source}>{inc.source}</span>
+                    <span className="flex-1 text-gray-200 text-xs truncate" title={inc.message}>{inc.message}</span>
+                    {inc.detail && (
+                      <button
+                        onClick={() => setExpandedIncident(isExpanded ? null : inc.id)}
+                        className="shrink-0 text-xs text-gray-600 hover:text-gray-300"
+                      >
+                        {isExpanded ? "▲" : "▼"}
+                      </button>
+                    )}
+                  </div>
+                  {isExpanded && inc.detail && (
+                    <pre className="mt-2 ml-14 text-xs text-gray-400 bg-gray-950 rounded p-2 overflow-x-auto whitespace-pre-wrap break-all">{inc.detail}</pre>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
 

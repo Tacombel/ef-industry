@@ -234,3 +234,15 @@ model UsageLog {
   @@index([path])
   @@index([userId])
 }
+
+model IncidentLog {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  level     String   // "error" | "warn" | "info"
+  source    String
+  message   String
+  detail    String?
+
+  @@index([createdAt])
+  @@index([source])
+}
