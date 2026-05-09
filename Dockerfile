@@ -12,6 +12,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate
+RUN npm run lint
 RUN npm run build
 RUN git rev-parse HEAD > /app/.commit-sha 2>/dev/null || echo "unknown" > /app/.commit-sha
 RUN node_modules/.bin/esbuild prisma/seed.ts \

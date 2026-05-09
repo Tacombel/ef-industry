@@ -339,7 +339,7 @@ export default function AdminPage() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-base font-semibold text-gray-100">Anonymous Browse — last 30 days</h2>
-            <p className="text-xs text-gray-500 mt-0.5">Funnel: sessions → SSU views → collection calculations → "This is me"</p>
+            <p className="text-xs text-gray-500 mt-0.5">Funnel: sessions → SSU views → collection calculations → &quot;This is me&quot;</p>
           </div>
           <button onClick={loadUsage} className="btn-sm btn-secondary">↻</button>
         </div>

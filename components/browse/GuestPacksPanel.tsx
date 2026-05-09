@@ -47,7 +47,7 @@ export default function GuestPacksPanel({ open, onClose }: Props) {
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {collections.length === 0 && (
             <p className="text-sm text-gray-500 text-center py-4">
-              No packs yet.<br />Add items from a SSU's inventory.
+              No packs yet.<br />Add items from a SSU&apos;s inventory.
             </p>
           )}
 

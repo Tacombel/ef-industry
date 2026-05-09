@@ -16,7 +16,7 @@ interface Props {
 
 const PAGE_SIZE = 50;
 
-export default function CharacterList({ characters, total, query, onQueryChange, loading, error, selectedId, onSelect }: Props) {
+export default function CharacterList({ characters, query, onQueryChange, loading, error, selectedId, onSelect }: Props) {
   const [page, setPage] = useState(0);
   const totalPages = Math.ceil(characters.length / PAGE_SIZE);
   const visible = characters.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
