@@ -71,8 +71,8 @@ export default function CharacterList({ characters, query, onQueryChange, loadin
                 <span className={`text-sm font-medium ${active ? "text-cyan-300" : "text-gray-200"}`}>
                   {c.name || <span className="text-gray-500 italic">Unnamed</span>}
                 </span>
-                {c.corpId != null && (
-                  <span className="ml-2 text-xs text-gray-500">Corp {c.corpId}</span>
+                {(c.corpName ?? c.corpId) != null && (
+                  <span className="ml-2 text-xs text-gray-500">{c.corpName ?? `Corp ${c.corpId}`}</span>
                 )}
               </button>
             );

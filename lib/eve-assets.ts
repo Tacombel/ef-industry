@@ -90,8 +90,39 @@ export interface CharacterSummary {
   id: string;
   name: string;
   corpId?: number;
+  corpName?: string;
   /** Sui PlayerProfile object address */
   profileAddress: string;
+}
+
+// ---------------------------------------------------------------------------
+// Tribe (corp) name cache — fetched from World API, TTL: 24 hours.
+// ---------------------------------------------------------------------------
+const WORLD_API = "https://world-api-stillness.live.tech.evefrontier.com";
+const TRIBE_CACHE_TTL = 24 * 60 * 60 * 1000;
+const gt = globalThis as typeof globalThis & {
+  _tribeMap: Map<number, string> | null;
+  _tribeMapTime: number;
+};
+if (gt._tribeMap === undefined) gt._tribeMap = null;
+if (gt._tribeMapTime === undefined) gt._tribeMapTime = 0;
+
+async function getTribeMap(): Promise<Map<number, string>> {
+  if (gt._tribeMap && Date.now() - gt._tribeMapTime < TRIBE_CACHE_TTL) return gt._tribeMap;
+  try {
+    const res = await fetch(`${WORLD_API}/v2/tribes?limit=1000`);
+    if (!res.ok) throw new Error(`tribes HTTP ${res.status}`);
+    const data = await res.json();
+    const map = new Map<number, string>();
+    for (const t of data?.data ?? []) {
+      if (t.id && t.name) map.set(t.id, t.name);
+    }
+    gt._tribeMap = map;
+    gt._tribeMapTime = Date.now();
+    return map;
+  } catch {
+    return gt._tribeMap ?? new Map();
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -161,6 +192,7 @@ export async function getAllCharacters(): Promise<CharacterSummary[]> {
     }
   `;
 
+  const tribeMap = await getTribeMap();
   const results: CharacterSummary[] = [];
   let after: string | null = null;
   let consecutiveErrors = 0;
@@ -180,10 +212,12 @@ export async function getAllCharacters(): Promise<CharacterSummary[]> {
         const charObj = node.asMoveObject?.contents?.extract?.asAddress?.asObject;
         if (!charObj) continue;
         const json = charObj.asMoveObject?.contents?.json ?? {};
+        const corpId: number | undefined = json?.tribe_id ?? json?.corp_id ?? undefined;
         results.push({
           id: charObj.address,
           name: json?.metadata?.name ?? json?.name ?? "",
-          corpId: json?.tribe_id ?? json?.corp_id ?? undefined,
+          corpId,
+          corpName: corpId != null ? tribeMap.get(corpId) : undefined,
           profileAddress,
         });
       }
