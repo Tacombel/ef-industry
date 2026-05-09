@@ -470,7 +470,10 @@ export default function AdminPage() {
               </tr>
             </thead>
             <tbody>
-              {users.map((u) => {
+              {[...users].sort((a, b) => {
+                const rank = (r: string) => r === "SUPERADMIN" ? 0 : r === "ADMIN" ? 1 : 2;
+                return rank(a.role) - rank(b.role) || a.username.localeCompare(b.username);
+              }).map((u) => {
                 const isSelf = selfId === u.id;
                 const isTargetSA = u.role === "SUPERADMIN";
                 const isResetting = resetId === u.id;
