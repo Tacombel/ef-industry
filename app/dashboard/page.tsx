@@ -28,6 +28,7 @@ export default function DashboardPage() {
   const [characterName, setCharacterName] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [guestCharacter, setGuestCharacter] = useState<{ id: string; name: string } | null>(null);
   const [apiStatus, setApiStatus] = useState<"green" | "yellow" | "red" | null>(null);
   const [incidents24h, setIncidents24h] = useState(0);
 
@@ -48,6 +49,12 @@ export default function DashboardPage() {
         setUsername(data?.username ?? null);
         setCharacterName(data?.characterName ?? null);
         setRole(data?.role ?? null);
+        if (!data?.username) {
+          try {
+            const stored = localStorage.getItem("ef-guest-character");
+            if (stored) setGuestCharacter(JSON.parse(stored));
+          } catch { /* ignore */ }
+        }
         if (data?.username) {
           fetch("/api/preferences")
             .then((r) => r.ok ? r.json() : null)
@@ -73,6 +80,11 @@ export default function DashboardPage() {
     router.refresh();
   }
 
+  function handleGuestLogout() {
+    localStorage.removeItem("ef-guest-character");
+    setGuestCharacter(null);
+  }
+
   return (
     <div className="flex flex-col h-full -mx-6 -my-6">
       {/* App header */}
@@ -80,18 +92,9 @@ export default function DashboardPage() {
         <Image src="/EF-Industry.png" alt="EF Industry" width={36} height={36} className="rounded-lg" />
         <h1 className="text-lg font-bold text-cyan-400 tracking-wide">EF Industry</h1>
         <div className="absolute right-4 flex items-center gap-3">
-          {!authLoading && !username && (
+          {!authLoading && (
             <Link
-              href="/login"
-              className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
-              title="Admin login"
-            >
-              Admin
-            </Link>
-          )}
-          {(role === "ADMIN" || role === "SUPERADMIN") && (
-            <Link
-              href="/admin"
+              href={(role === "ADMIN" || role === "SUPERADMIN") ? "/admin" : "/login"}
               className="relative text-xs text-gray-500 hover:text-gray-300 transition-colors"
               title={incidents24h > 0 ? `${incidents24h} API incident(s) in the last 24h` : "Admin panel"}
             >
@@ -168,9 +171,30 @@ export default function DashboardPage() {
                 ⏻
               </button>
             </div>
+          ) : guestCharacter ? (
+            <div className="flex items-center gap-2 pl-2 border-l border-gray-800">
+              <span className="text-sm text-gray-300 px-2">
+                👤 {guestCharacter.name || "Guest"}
+                <span className="ml-1.5 text-xs text-gray-500">Guest</span>
+              </span>
+              <button
+                onClick={handleGuestLogout}
+                className="px-3 py-2 text-sm font-medium text-gray-400 hover:text-gray-100 hover:bg-gray-800/30 rounded transition-colors"
+                title="Exit guest session"
+              >
+                ⏻
+              </button>
+            </div>
           ) : (
             <div className="flex items-center gap-2 pl-2 border-l border-gray-800">
               <VaultLoginButton compact redirectTo="/dashboard" />
+              <Link
+                href="/browse"
+                className="px-3 py-2 text-sm font-medium bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors"
+                title="Browse without an account"
+              >
+                🔍 Anonymous Browse
+              </Link>
             </div>
           )}
         </div>
@@ -178,10 +202,10 @@ export default function DashboardPage() {
 
       {/* Tab content area */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
-        {activeTab === 'blueprints' && <BlueprintCollectionsTab />}
-        {activeTab === 'collections' && <CollectionsTab />}
+        {activeTab === 'blueprints' && <BlueprintCollectionsTab guestCharacterId={guestCharacter?.id} />}
+        {activeTab === 'collections' && <CollectionsTab guestCharacterId={guestCharacter?.id} />}
         {activeTab === 'decompositions' && <DecompositionsTab />}
-        {activeTab === 'ssu' && <SsuTab />}
+        {activeTab === 'ssu' && <SsuTab guestCharacterId={guestCharacter?.id} />}
       </div>
     </div>
   );
