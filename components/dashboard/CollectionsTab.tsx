@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import CollectionCalculation from "@/components/collections/CollectionCalculation";
 import ImportCollectionModal from "@/components/collections/ImportCollectionModal";
 import SsuSelector from "@/components/common/SsuSelector";
@@ -27,8 +27,11 @@ function saveGuestRaw(cols: GuestCollectionRaw[]) {
 export default function CollectionsTab({ guestCharacterId }: { guestCharacterId?: string }) {
   const isGuest = !!guestCharacterId;
   const { ssus } = useSsuList(guestCharacterId);
-  const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
-  const ssuAddresses = activeSsuAddresses(ssus);
+  const { ignoredSet, toggleIgnored } = useSsuIgnored();
+  const ssuAddresses = useMemo(
+    () => ssus.filter(s => !ignoredSet.has(s.address)).map(s => s.address),
+    [ssus, ignoredSet]
+  );
   const { isLoggedIn: isServerLoggedIn } = useSession();
   const isLoggedIn = isServerLoggedIn || isGuest;
   const [collections, setCollections] = useState<Collection[]>([]);

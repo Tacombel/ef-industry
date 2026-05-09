@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import BlueprintCalculation from "@/components/blueprints/BlueprintCalculation";
 import SsuSelector from "@/components/common/SsuSelector";
 import { useSsuList } from "@/hooks/useSsuList";
@@ -21,8 +21,11 @@ type GroupedBlueprints = { item: Item; blueprints: Blueprint[] }[];
 
 export default function BlueprintCollectionsTab({ guestCharacterId }: { guestCharacterId?: string }) {
   const { ssus } = useSsuList(guestCharacterId);
-  const { ignoredSet, toggleIgnored, activeSsuAddresses } = useSsuIgnored();
-  const ssuAddresses = activeSsuAddresses(ssus);
+  const { ignoredSet, toggleIgnored } = useSsuIgnored();
+  const ssuAddresses = useMemo(
+    () => ssus.filter(s => !ignoredSet.has(s.address)).map(s => s.address),
+    [ssus, ignoredSet]
+  );
   const [grouped, setGrouped] = useState<GroupedBlueprints>([]);
   const [factories, setFactories] = useState<{id: string; name: string}[]>([]);
   const [loading, setLoading] = useState(true);
