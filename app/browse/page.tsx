@@ -60,7 +60,7 @@ export default function BrowsePage() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-gray-950 flex flex-col">
+    <div className="fixed inset-0 overflow-hidden bg-gray-950 flex flex-col z-10">
       {/* Header */}
       <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur shrink-0">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
