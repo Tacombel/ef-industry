@@ -791,7 +791,7 @@ export function calculate(
   // against the exact data the greedy algorithm received.
   const initialNeeds = new Map<string, number>();
   for (const row of rawMaterials) {
-    if (row.toBuy > 0) initialNeeds.set(row.itemId, row.toBuy);
+    if (row.toBuy > 0 && !row.isLoot) initialNeeds.set(row.itemId, row.toBuy);
   }
 
   // Consolidate: if an item appears in both rawMaterials and decompositions (as source),
